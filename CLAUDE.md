@@ -1,0 +1,1 @@
+Read profile.md first, then INDEX.md. Instructions live only in skills/ and arrow/skills/. Any change to a skill must also touch INDEX.md and CHANGELOG.md in the same commit. Never put personal or Delta material in arrow/. Never send, delete, or pay without asking.

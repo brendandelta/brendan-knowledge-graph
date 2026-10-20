@@ -1,0 +1,5 @@
+.env
+*.log
+memory/daily/
+memory/audit/
+.DS_Store

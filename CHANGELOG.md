@@ -13,3 +13,4 @@
 - INDEX: planned skills money-queue, crm-sync-feed, accounting-and-tax.
 - DECISIONS: nine entries from the 10/20 session.
 - Open tasks moved to TASKS.md.
+- CONSTITUTION.md added; CLAUDE.md points to it first.

@@ -39,3 +39,5 @@
 **Mercury is dead.** Chase Business Checking is Delta's operating account; Chase Business Savings is the tax reserve.
 
 **No confidence tags** in output to Brendan. Say when inferring instead.
+
+**Constitution adopted.** Core (repo as brain, systems of record stay, sealed arrow/, propose-only money) is frozen; shell (engines, models, hardware, skills, tooling) evolves. Rebuild test and twice rule in CONSTITUTION.md. Reason: BARVIS and the Arrow web app were both full rebuilds that lost prior work.

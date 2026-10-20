@@ -2,11 +2,12 @@
 
 This repo is the system. Everything else (the Mac mini, the MCP servers, Notion, Gmail, the wall screen) either runs this repo or is data this repo reads.
 
-Start with `ARCHITECTURE.md`. Then `INDEX.md`. Then `profile.md`.
+Start with `CONSTITUTION.md`, then `ARCHITECTURE.md`. Then `INDEX.md`. Then `profile.md`.
 
 ## Layout
 
 ```
+CONSTITUTION.md   what never gets rebuilt
 profile.md        system prompt: who Brendan is and how to work with him
 INDEX.md          registry of every skill, what it touches, what depends on it
 ARCHITECTURE.md   the design, three layers, the rules

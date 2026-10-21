@@ -51,3 +51,9 @@
 **No confidence tags anywhere.** Private Markets Desk says "unverified" in words.
 
 **Repo is source of truth for instructions only.** Data (messages, records, the comms index) lives in databases and logs. The Delta CRM Spec in Notion becomes a pointer to skills/brendan-crm.
+
+**Composio for everything.** No Claude Desktop connectors. Custom MCP only where Composio has no toolkit.
+
+**1Password.** Account opened after the mini is set up. Four vaults by entity.
+
+**Money moves only through real payment APIs.** No bank scraping. Consumer bank transfers stay manual, agent-prepared.

@@ -22,3 +22,4 @@
 - Send exceptions removed from profile.md and the two skills; confidence tags removed from private-markets-desk.
 - comms-ingest: schema tightening notes. TASKS: recording capture project, CRM Spec pointer.
 - ARCHITECTURE build order: comms index is step 1 on the mini.
+- CONNECTIONS rewritten from live Composio state: 23 active connections, 3 custom servers, to-connect list, money-movement design note, 1Password decided.

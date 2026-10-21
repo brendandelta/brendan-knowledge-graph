@@ -14,3 +14,4 @@
 - DECISIONS: nine entries from the 10/20 session.
 - Open tasks moved to TASKS.md.
 - CONSTITUTION.md added; CLAUDE.md points to it first.
+- INDEX: four stubs removed; brendan-crm row notes Attio read-only; Ideas section replaces Known gaps.

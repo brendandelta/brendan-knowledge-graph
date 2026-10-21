@@ -43,3 +43,5 @@
 **Constitution adopted.** Core (repo as brain, systems of record stay, sealed arrow/, propose-only money) is frozen; shell (engines, models, hardware, skills, tooling) evolves. Rebuild test and twice rule in CONSTITUTION.md. Reason: BARVIS and the Arrow web app were both full rebuilds that lost prior work.
 
 **Stubs deleted; Attio reads allowed (UNCONFIRMED).** Four pre-written stub skills removed under the twice rule. brendan-crm may read Attio directly because Attio→Notion is the agreed one-way flow; writes to Attio only via crm-sync-feed after approval. Brendan has not confirmed the read half.
+
+**Grokbot prompts are the skills.** Imported nearly verbatim rather than rewritten. Fix seams after migration, not before. Reason: rebuild test.

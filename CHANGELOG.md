@@ -15,3 +15,7 @@
 - Open tasks moved to TASKS.md.
 - CONSTITUTION.md added; CLAUDE.md points to it first.
 - INDEX: four stubs removed; brendan-crm row notes Attio read-only; Ideas section replaces Known gaps.
+- Grokbot export imported: 8 skills created from running prompts (chief-of-staff, comms-ingest, crm-maintenance, suggested-actions; arrow: deal-indications, private-markets-desk, arrow-weekly, daily-arrow-report). Export kept verbatim in references/.
+- INDEX rewritten: live/draft/planned with engine; seams list; build order.
+- profile.md: two standing send exceptions recorded.
+- CONNECTIONS: Composio connection ids for Gmail x6, Attio, Todoist, Sheets.

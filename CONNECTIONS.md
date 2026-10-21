@@ -13,7 +13,10 @@ The "hands" layer. Every way the agent reaches a system of record. If a skill ta
 | imessage | iMessage | your iMessage MCP server (macOS only) | — | message-triage, morning-brief |
 | signal | Signal | your Signal MCP server | — | message-triage |
 | whatsapp | WhatsApp | WhatsApp MCP | — | message-triage |
-| todoist | Tasks | not connected yet | — | — |
+| todoist | Tasks | Composio, account `todoist_kino-vend`; projects Arrow/Delta/Janey/Personal finance/Personal other | Delta | chief-of-staff, comms-ingest |
+| composio:gmail x6 | arrowfund `gmail_tagish-stuss`; brendan@delta `gmail_antes-dyce`; admin@delta `gmail_crept-situla`; connmbrendan `gmail_gifola-hexine`; brendanfinancialt1 `gmail_cerris-heed`; brendanmconn96 | Composio | each | comms-ingest, crm-maintenance, chief-of-staff |
+| composio:attio | account `attio_bosser-wooded` | Composio | Arrow | deal-indications, crm-maintenance |
+| composio:googlesheets | run-log sheet, account `googlesheets_cush-citron` | Composio | Arrow | deal-indications |
 
 ## Composio
 

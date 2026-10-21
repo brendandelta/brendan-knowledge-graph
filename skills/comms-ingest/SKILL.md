@@ -8,7 +8,9 @@ description: Every few hours, index all communications (Signal, iMessage, WhatsA
 **Status:** live on Grokbot (Inbox Todo); migrate. INFRASTRUCTURE: the comms index at /workspace/comms-index is read by crm-maintenance and suggested-actions.
 **Source:** Grokbot export 2026-10-20 (`references/grokbot-export-2026-10-20.md`). Text below is the running prompt, lightly reformatted. Edit here, then update the engine.
 
-Migration notes: the comms index (JSONL per day + state.json + README schema) lives on Grokbot's box and must be recreated on the mini. Three skills depend on it. deal-indications deliberately does NOT use it (reads sources directly). Reconcile the cursor systems: comms-index state.json, attio-sync state.json, Notion Run Log CURSOR lines, Suggested Actions in-memory cursor.
+Migration notes: FIRST, read /workspace/comms-index/README.md on Grokbot's box and copy the schema here. Then tighten it: full message text, a description of every attachment (what the file or image appears to be), recording transcripts when they exist, and a flag when a line is too thin and the full thread should be read. Today recordings are NOT in the index (crm-maintenance pulls them from Attio separately).
+
+Migration notes (cont.): the comms index (JSONL per day + state.json + README schema) lives on Grokbot's box and must be recreated on the mini. Three skills depend on it. deal-indications deliberately does NOT use it (reads sources directly). Reconcile the cursor systems: comms-index state.json, attio-sync state.json, Notion Run Log CURSOR lines, Suggested Actions in-memory cursor.
 
 ## Bot instructions
 

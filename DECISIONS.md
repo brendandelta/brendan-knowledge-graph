@@ -49,3 +49,5 @@
 **No send exceptions.** Grokbot's two auto-sends (deal-indications Signal ack, private-markets-desk team email) are removed on migration. Confirm-before-send is absolute.
 
 **No confidence tags anywhere.** Private Markets Desk says "unverified" in words.
+
+**Repo is source of truth for instructions only.** Data (messages, records, the comms index) lives in databases and logs. The Delta CRM Spec in Notion becomes a pointer to skills/brendan-crm.

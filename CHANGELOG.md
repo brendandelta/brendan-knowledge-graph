@@ -21,3 +21,4 @@
 - CONNECTIONS: Composio connection ids for Gmail x6, Attio, Todoist, Sheets.
 - Send exceptions removed from profile.md and the two skills; confidence tags removed from private-markets-desk.
 - comms-ingest: schema tightening notes. TASKS: recording capture project, CRM Spec pointer.
+- ARCHITECTURE build order: comms index is step 1 on the mini.

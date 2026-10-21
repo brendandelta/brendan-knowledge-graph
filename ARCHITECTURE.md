@@ -48,8 +48,8 @@ Test for which side a thing goes on: would a teammate need it to do Arrow work? 
 ## Build order
 
 0. Mini + Tailscale + MCP servers under launchd. Repo exists.
-1. Morning brief as a scheduled job writing an HTML page.
-2. Chat endpoint with tools, text input from phone/laptop.
+1. **Comms index.** First job on the mini, before any skill migrates. Read Grokbot's README, design the schema (full text, attachment descriptions, transcripts, thin-line flag), stand it up, run comms-ingest against it. Everything downstream reads this.
+2. Migrate deal-indications, crm-maintenance, chief-of-staff, suggested-actions onto the index.
 3. Monitor on the wall, Pi thin client, kiosk mode.
 4. Voice pipeline.
 5. Memory reflection, proactive triggers, idle screen.

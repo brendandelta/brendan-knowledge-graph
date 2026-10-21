@@ -11,6 +11,7 @@ Open loops that are not skills. Checked off in commits.
 - [ ] Settle terms on the $25K Chris/Gabe loan.
 - [ ] Recover access to bmconn@ucdavis.edu.
 - [ ] Buy the Mac mini.
+- [ ] **Day one on the mini: design and stand up the comms index.** Nothing else migrates until it runs.
 - [ ] Design the Drive folder structure across all accounts for the agentic system.
 - [ ] Capture project: phone-call and in-person recording feeding transcripts into the comms index. California two-party consent: disclose, never stealth.
 - [ ] Replace the Delta CRM Spec Notion page with a pointer to skills/brendan-crm (when combing brendan-crm).

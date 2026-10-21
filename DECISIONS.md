@@ -57,3 +57,9 @@
 **1Password.** Account opened after the mini is set up. Four vaults by entity.
 
 **Money moves only through real payment APIs.** No bank scraping. Consumer bank transfers stay manual, agent-prepared.
+
+## 2026-10-21
+
+**Default send-from is brendan@arrowfund.co** for nearly everything; agents ask when another address plainly fits better.
+
+**Attio writes from the personal CRM:** check Attio; if absent, ask before adding; if present, fill only Attio-tracked structured fields (contact, check size, investor type, sectors) and only where empty.

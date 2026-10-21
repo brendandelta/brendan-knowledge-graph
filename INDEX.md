@@ -8,7 +8,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 
 | Skill | Reads | Writes | Depends on | Status |
 |---|---|---|---|---|
-| brendan-crm | composio:notion, composio:attio (read only), gcal, imessage, signal | composio:notion | profile.md, Delta CRM Spec (Notion) | live (Claude) |
+| brendan-crm | composio:notion, composio:attio, gcal, imessage, signal | composio:notion; attio (list membership + empty structured fields, ask before adding anyone) | profile.md | live (Claude), v4 |
 | delta-bookkeeper | composio:quickbooks, Delta Intake | composio:quickbooks | profile.md | live (Claude); becomes accounting-and-tax |
 | chief-of-staff | todoist, gmail (arrow), whatsapp, gcal x2 | todoist, chat | profile.md | live (Grokbot); migrate |
 | comms-ingest | signal, imessage, whatsapp, 6 gmails, gcal, attio | comms index, todoist | — | live (Grokbot); migrate. Infrastructure: three skills read its index. |
@@ -38,6 +38,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | 1password-migration | after mini | open account |
 | drive-restructure | after 1Password | — |
 | photo-consolidation | after 1Password | — |
+| health-insurance | decide by early Nov | pick route, engage broker |
 
 ## Ideas (not yet seen twice)
 
@@ -48,7 +49,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 
 1. Four cursor systems (comms-index state.json, attio-sync state.json, Notion Run Log CURSOR, Suggested Actions "in memory"). One state directory.
 2. suggested-actions: instructions say use the comms index, routines say there is none. Pick one.
-3. Delta CRM Spec (Notion) vs brendan-crm/SKILL.md: one source, one pointer.
+3. DONE: brendan-crm/SKILL.md is the spec; Notion page to become a pointer (TASKS).
 4. DECIDED: no confidence tags anywhere; private-markets-desk says 'unverified' in words.
 5. DECIDED: no send exceptions. deal-indications drops the Signal ack; private-markets-desk email goes out only on a tap.
 6. comms index must be rebuilt on the mini before crm-maintenance or suggested-actions can run there.

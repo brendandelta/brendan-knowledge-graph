@@ -25,3 +25,8 @@
 - CONNECTIONS rewritten from live Composio state: 23 active connections, 3 custom servers, to-connect list, money-movement design note, 1Password decided.
 - projects/ added with five project files and README; INDEX Projects table; TASKS lines now point at projects.
 - Sweep: profile.md now says 1Password. Audit gains decision-consistency and project checks.
+
+## 2026-10-21
+- brendan-crm v4: repo is the spec; Grokbot → crm-maintenance; Attio ask-before-add and sectors in mirror; send-from arrowfund; Source "Agent"; wipe moved to TASKS.
+- projects/health-insurance.md added; INDEX project row.
+- TASKS: Attio wipe, Grokbot list import.

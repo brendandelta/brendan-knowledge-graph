@@ -16,3 +16,6 @@ Open loops that are not skills. Checked off in commits.
 - [ ] Replace the Delta CRM Spec Notion page with a pointer to skills/brendan-crm (when combing brendan-crm).
 - [ ] Notion overhaul (both workspaces).
 - [ ] Money movement: explore a capped, agent-payable account or card for personal transfers.
+- [ ] Health insurance → projects/health-insurance.md
+- [ ] Attio one-time wipe: after Notion is confirmed complete, clear private list attribute values and archive tier, met, first_met, met_at, introduced_by, next_step, follow_up_by, my_notes, knows_private, chat_handles, instagram via ATTIO_UPDATE_ATTRIBUTE (is_archived). Keep the list and entries.
+- [ ] Import the updated Grokbot capability list when Brendan sends it (same treatment as the 10/20 export).

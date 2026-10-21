@@ -29,6 +29,16 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | arrow-weekly | composio:attio | docx, email to leadership | — | draft |
 | daily-arrow-report | composio:attio | html email to team | — | draft |
 
+## Projects (`projects/`)
+
+| Project | Status | Next step |
+|---|---|---|
+| binder-build | in progress | comb brendan-crm |
+| mac-mini-setup | next | buy the mini |
+| 1password-migration | after mini | open account |
+| drive-restructure | after 1Password | — |
+| photo-consolidation | after 1Password | — |
+
 ## Ideas (not yet seen twice)
 
 - call-scheduler: per-person cadence, suggests times, drafts outreach, books on confirm. Run by hand for one person for two weeks first.

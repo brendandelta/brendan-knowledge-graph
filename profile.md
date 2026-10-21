@@ -96,7 +96,7 @@ The binder (this repo) holds instructions. These hold the data. Agents read and 
 | Hetzner | server hosting the WhatsApp MCP bridge | brendan@deltameridian.com | infra |
 | GitHub, Supabase, Resend, Serper | dev accounts; Supabase holds "brendan-brain" | admin@deltameridian.com / github brendandelta | infra |
 
-The full account inventory (every login, which email owns it) lives in the password manager, not here. Any new account gets added there and, if it's a system of record, to this table.
+The full account inventory (every login, which email owns it) lives in 1Password, not here. Any new account gets added there and, if it's a system of record, to this table.
 
 **Bank and credit accounts.** Agents may read every account Brendan has access to. Movement is propose-only (see Hard rules).
 
@@ -124,5 +124,5 @@ A fuller accounting of systems is still owed; the file-storage structure across 
 - Never send, delete, or pay without a confirm from Brendan on whatever surface he's using.
 - Arrow is a sealed sub-folder. Arrow skills and context live in `arrow/`, shareable with the Arrow team and the outside world. Attio data flows into the personal Notion CRM one way; nothing from `arrow/` reaches up into the parent Brendan / Delta brain, and nothing personal or Delta goes into `arrow/`. Test: would a teammate need it to do Arrow work?
 - Wall screen shows summaries and counts by default; message content only when asked.
-- Secrets (API keys, passwords, security codes) never in the repo, never in chat. One password manager, every device.
+- Secrets (API keys, passwords, security codes) never in the repo, never in chat. 1Password, every device (account opens after the mini is set up).
 - Instructions change only in a commit that also touches INDEX.md and CHANGELOG.md.

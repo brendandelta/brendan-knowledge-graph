@@ -23,3 +23,5 @@
 - comms-ingest: schema tightening notes. TASKS: recording capture project, CRM Spec pointer.
 - ARCHITECTURE build order: comms index is step 1 on the mini.
 - CONNECTIONS rewritten from live Composio state: 23 active connections, 3 custom servers, to-connect list, money-movement design note, 1Password decided.
+- projects/ added with five project files and README; INDEX Projects table; TASKS lines now point at projects.
+- Sweep: profile.md now says 1Password. Audit gains decision-consistency and project checks.

@@ -12,3 +12,5 @@ Report to memory/audit/YYYY-MM-DD.md and copy to memory/audit/latest.md:
 6. Skills marked "live" in INDEX that are still placeholders.
 
 Keep it short. One line per finding. No findings → write "clean".
+7. Read DECISIONS.md. For each decision, grep every .md for references that contradict it or still use the pre-decision wording (e.g. "the password manager" after 1Password was chosen).
+8. Every TASKS.md line pointing at a project has a matching projects/ file, and every projects/ file has an INDEX row.

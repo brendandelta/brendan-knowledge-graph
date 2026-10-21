@@ -15,6 +15,7 @@ DECISIONS.md      dated log of why things are the way they are
 CHANGELOG.md      what changed, when. Every instruction change gets a line.
 RUNBOOK.md        when something breaks
 TASKS.md          open loops that are not skills
+projects/         one-off multi-step efforts, one file each
 CONNECTIONS.md    every connection to an outside system, Composio included
 
 skills/           instructions. The only place instructions live.

@@ -45,3 +45,7 @@
 **Stubs deleted; Attio reads allowed (UNCONFIRMED).** Four pre-written stub skills removed under the twice rule. brendan-crm may read Attio directly because Attio→Notion is the agreed one-way flow; writes to Attio only via crm-sync-feed after approval. Brendan has not confirmed the read half.
 
 **Grokbot prompts are the skills.** Imported nearly verbatim rather than rewritten. Fix seams after migration, not before. Reason: rebuild test.
+
+**No send exceptions.** Grokbot's two auto-sends (deal-indications Signal ack, private-markets-desk team email) are removed on migration. Confirm-before-send is absolute.
+
+**No confidence tags anywhere.** Private Markets Desk says "unverified" in words.

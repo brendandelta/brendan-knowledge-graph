@@ -8,7 +8,7 @@ description: Several times daily, read Signal, WhatsApp, and Arrow Gmail directl
 **Status:** live on Grokbot; migrate
 **Source:** Grokbot export 2026-10-20 (`references/grokbot-export-2026-10-20.md`). Text below is the running prompt, lightly reformatted. Edit here, then update the engine.
 
-Migration notes: carries a STANDING SEND PERMISSION ('added into Attio' to three internal Signal chats). This is an exception to the confirm-before-send rule and must be recorded in profile.md Hard rules. Needs arrow/references/attio-schema.md (blocks and interests fields, conventions) extracted from this prompt.
+Migration notes: the Grokbot version sent 'added into Attio' to three internal Signal chats without asking. REMOVED 2026-10-20: on migration, drop the Signal acknowledgement entirely. Confirm-before-send has no exceptions. Needs arrow/references/attio-schema.md (blocks and interests fields, conventions) extracted from this prompt.
 
 ## Routine (weekdays 7:47, 10:47, 12:47, 2:47, 4:47, 10:47pm PT)
 

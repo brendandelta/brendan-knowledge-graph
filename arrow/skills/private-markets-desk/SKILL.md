@@ -8,7 +8,7 @@ description: Weekday AI private-markets teach pack: 3 company cards, 2 watchlist
 **Status:** live on Grokbot; migrate
 **Source:** Grokbot export 2026-10-20 (`references/grokbot-export-2026-10-20.md`). Text below is the running prompt, lightly reformatted. Edit here, then update the engine.
 
-Migration notes: says 'confidence-tag soft claims', which conflicts with profile.md (no confidence tags). Decide. Has a hard send boundary (one email, four recipients): record as a standing permission.
+Migration notes: DECIDED 2026-10-20. (a) Remove 'confidence-tag soft claims'; say 'unverified' in words instead. (b) The daily team email no longer auto-sends: post the pack in chat with a send button; Brendan taps, then it goes.
 
 ## Bot instructions
 

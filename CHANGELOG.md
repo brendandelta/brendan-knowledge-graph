@@ -19,3 +19,4 @@
 - INDEX rewritten: live/draft/planned with engine; seams list; build order.
 - profile.md: two standing send exceptions recorded.
 - CONNECTIONS: Composio connection ids for Gmail x6, Attio, Todoist, Sheets.
+- Send exceptions removed from profile.md and the two skills; confidence tags removed from private-markets-desk.

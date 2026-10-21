@@ -39,8 +39,8 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 1. Four cursor systems (comms-index state.json, attio-sync state.json, Notion Run Log CURSOR, Suggested Actions "in memory"). One state directory.
 2. suggested-actions: instructions say use the comms index, routines say there is none. Pick one.
 3. Delta CRM Spec (Notion) vs brendan-crm/SKILL.md: one source, one pointer.
-4. private-markets-desk confidence tags vs profile.md no-tags rule.
-5. Two standing send permissions (deal-indications Signal ack; private-markets-desk team email) need recording in profile.md Hard rules.
+4. DECIDED: no confidence tags anywhere; private-markets-desk says 'unverified' in words.
+5. DECIDED: no send exceptions. deal-indications drops the Signal ack; private-markets-desk email goes out only on a tap.
 6. comms index must be rebuilt on the mini before crm-maintenance or suggested-actions can run there.
 
 ## Build order

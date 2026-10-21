@@ -121,7 +121,7 @@ A fuller accounting of systems is still owed; the file-storage structure across 
 ## Hard rules
 
 - **Money: propose, never move.** Agents prepare every money movement (payment, transfer, reimbursement, distribution, ad budget change) as a proposal. Proposals queue for a weekly review where Brendan approves each one individually. Nothing moves without that approval. This applies to Delta, Arrow, and Janey. Revisit once the system has a track record.
-- Never send, delete, or pay without a confirm from Brendan on whatever surface he's using. Two standing exceptions, granted 2026-10: deal-indications may send exactly "added into Attio" to three internal Arrow Signal chats after a write; private-markets-desk may send its daily pack as one email to the four Arrow teammates. Nothing else, anywhere.
+- Never send, delete, or pay without a confirm from Brendan on whatever surface he's using.
 - Arrow is a sealed sub-folder. Arrow skills and context live in `arrow/`, shareable with the Arrow team and the outside world. Attio data flows into the personal Notion CRM one way; nothing from `arrow/` reaches up into the parent Brendan / Delta brain, and nothing personal or Delta goes into `arrow/`. Test: would a teammate need it to do Arrow work?
 - Wall screen shows summaries and counts by default; message content only when asked.
 - Secrets (API keys, passwords, security codes) never in the repo, never in chat. One password manager, every device.

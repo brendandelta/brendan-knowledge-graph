@@ -36,7 +36,7 @@ notion:                                  # PRIVATE. The brain.
     Met at: text
     Introduced by: relation → People
     Knows: relation → People   # symmetric: write both directions
-    Circles: multi_select [Wildcard, Burning Man, Milken, UC Davis, Arrow, Family, Friends, Work, LA, SF, NYC]
+    Circles: multi_select [Wildcard, Burning Man, Milken, UC Davis, Arrow, Janey, Delta, Family, Friends, Work, LA, SF, NYC]
     Based in: multi_select [Los Angeles, San Francisco, New York, Miami, Seattle, Austin, London, Other]
     Spends time in: multi_select (same options)
     School: multi_select [UC Davis, …]
@@ -53,6 +53,7 @@ notion:                                  # PRIVATE. The brain.
     Investor type: select [Angel, Family office, VC, LP, Strategic, Operator, Other]
     Sectors / interests: multi_select (add options freely)
     Arrow relevance: multi_select [LP, Deal source, Founder, Co-investor, Service provider, Team]
+    Janey relevance: multi_select [Customer, Retailer, Supplier, Advisor, Investor, Creator, Team]   # Janey Health; add options freely
     Deals discussed: text   # comma-separated deal names; no Deals database on purpose
     Last discussed: date    # most recent substantive topic (Last touch = any contact)
   page_body_sections:      # canonical order for NEW pages; existing pages keep their order. ALL APPEND-ONLY.
@@ -104,7 +105,7 @@ Dates: `YYYY-MM-DD`, America/Los_Angeles. Today's date comes from the system pro
 
 ### 1. Log / update a person
 1. **Find, never duplicate.** Notion: Email → Phone → Chat handles → Name + Company. Several plausible matches → ask which. Nothing → create.
-2. **Properties.** Set whichever of Tier, Met, First met, Met at, Company, Role, Circles, Based in, Introduced by, Next step, Follow up by are known. `Source = Claude`. Don't invent values. Set `Cadence days` from tier if empty.
+2. **Properties.** Set whichever of Tier, Met, First met, Met at, Company, Role, Circles, Based in, Introduced by, Next step, Follow up by, Arrow relevance, Janey relevance are known. `Source = Claude`. Don't invent values. Set `Cadence days` from tier if empty.
 3. **Contact.** Email, Phone, LinkedIn, Instagram from a signature or card.
 4. **Body.** Candid context → append under `## My notes` as `YYYY-MM-DD: …`. Neutral facts → `## Context`. Substantive topics from a call/thread → `## What we've discussed` (dated), and set `Last discussed`; add deal names to `Deals discussed`. New person → write a `## Summary` (name, nicknames, company, city, school, sectors, check size). Existing person with a big new fact → append `YYYY-MM-DD update: …` under Summary; never rewrite it.
 5. **Relationships.** Workflow 3 for any "knows" / intro facts.
@@ -187,10 +188,11 @@ Dates: `YYYY-MM-DD`, America/Los_Angeles. Today's date comes from the system pro
 
 - **Schema change:** change the Notion database → update CONFIG here → update crm-maintenance if it touches that field → INDEX.md and CHANGELOG.md lines. Same commit.
 - **"Update the CRM skill to…":** edit this SKILL.md in the repo, commit with INDEX.md and CHANGELOG.md, then re-upload to claude.ai (Settings → Capabilities → Skills) and to the engine. The repo copy is the source; everything else is a copy.
-- **Open question:** does Janey need a relevance field (customer, supplier, advisor) the way Arrow has one? Unanswered 2026-10-21.
+- **Contexts.** Four: Personal, Delta, Arrow, Janey (see profile.md). A person can matter to more than one; `Arrow relevance` and `Janey relevance` say how, `Circles` says where you know them from. Nothing about Janey goes to Attio.
 
 ## Changelog
 
+- 2026-10-27 — v4.1. Janey relevance property; Janey and Delta added to Circles; contexts note. Notion db needs the two new options added.
 - 2026-10-21 — v4. Repo is the spec; Notion Spec page becomes a pointer. Grokbot → crm-maintenance. Attio: ask before adding anyone new; mirror only Attio-tracked structured fields, now including sectors. Default send-from brendan@arrowfund.co. Source gains "Agent". Attio wipe moved to TASKS.
 
 - 2026-10-13 — v3. Notion confirmed as master; Attio demoted to a mirror of empty structured fields only. Added Check size, Investor type, Sectors / interests, Arrow relevance, Deals discussed, Last discussed. Page body now five sections (Summary, Context, What we've discussed, My notes, Touch log); missing sections appended to all 123 pages; append-only rule made absolute (Summary never rewritten). Rejected Relationship owner, Confidence, Deals relation. Spec §8 added.

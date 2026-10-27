@@ -30,3 +30,6 @@
 - brendan-crm v4: repo is the spec; Grokbot → crm-maintenance; Attio ask-before-add and sectors in mirror; send-from arrowfund; Source "Agent"; wipe moved to TASKS.
 - projects/health-insurance.md added; INDEX project row.
 - TASKS: Attio wipe, Grokbot list import.
+
+## 2026-10-27
+- brendan-crm v4.1: Janey relevance field, Janey/Delta circles.

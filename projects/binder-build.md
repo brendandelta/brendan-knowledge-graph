@@ -6,7 +6,7 @@
 Build the binder.
 
 ## Done when
-Every file in brendan-os has been read by Brendan once, is consistent with CONSTITUTION and profile, and is committed.
+Every file in brendan-knowledge-graph has been read by Brendan once, is consistent with CONSTITUTION and profile, and is committed.
 
 ## Decisions
 (none yet)

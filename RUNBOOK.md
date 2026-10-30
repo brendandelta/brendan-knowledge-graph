@@ -3,7 +3,7 @@
 ## The mini rebooted and an MCP server won't start
 1. `launchctl list | grep brendan` — see what's loaded
 2. `launchctl load ~/Library/LaunchAgents/com.brendan.<service>.plist`
-3. Logs: `~/Library/Logs/brendan-os/<service>.log`
+3. Logs: `~/Library/Logs/brendan-knowledge-graph/<service>.log`
 
 ## iMessage stopped sending after a macOS update
 Apple broke the automation path. Don't auto-update. Check the MCP server's repo for a fix before touching anything.

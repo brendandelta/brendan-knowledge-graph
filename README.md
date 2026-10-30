@@ -1,4 +1,4 @@
-# brendan-os
+# brendan-knowledge-graph
 
 This repo is the system. Everything else (the Mac mini, the MCP servers, Notion, Gmail, the wall screen) either runs this repo or is data this repo reads.
 

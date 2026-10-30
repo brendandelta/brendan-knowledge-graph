@@ -63,3 +63,5 @@
 **Default send-from is brendan@arrowfund.co** for nearly everything; agents ask when another address plainly fits better.
 
 **Attio writes from the personal CRM:** check Attio; if absent, ask before adding; if present, fill only Attio-tracked structured fields (contact, check size, investor type, sectors) and only where empty.
+
+**Renamed brendan-os → brendan-knowledge-graph** (2026-10-29). Same thing, name now says what it is.

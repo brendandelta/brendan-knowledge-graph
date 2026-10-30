@@ -33,3 +33,6 @@
 
 ## 2026-10-27
 - brendan-crm v4.1: Janey relevance field, Janey/Delta circles.
+
+## 2026-10-29
+- Renamed to brendan-knowledge-graph. Folder: ~/Claude/brendan-knowledge-graph. Remote: github.com/brendandelta/brendan-knowledge-graph.

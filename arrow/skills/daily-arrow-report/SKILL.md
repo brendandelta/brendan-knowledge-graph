@@ -8,6 +8,13 @@ description: Daily 10am PT HTML digest of yesterday in Attio (meetings, new cont
 **Status:** DRAFT on Grokbot; never scheduled (awaiting approval). Protocol v1 below.
 **Source:** Grokbot export 2026-10-20 (`references/grokbot-export-2026-10-20.md`). Text below is the running prompt, lightly reformatted. Edit here, then update the engine.
 
+## Bot instructions (synced 2026-10-29 with the live Grokbot "Daily Arrow Report" profile)
+- Read AGENTS.md in this repo first. The bot's own instructions are its working copy. Keep this file in sync with them. If the two disagree, keep following the bot's prompt and tell Brendan.
+- Every user-facing reply that names an action, app, email, CRM record, doc or web page follows the `embed-action-links` skill: a clickable markdown deep link in the same sentence, never an invented URL.
+- Source of truth is Attio only. Signal, WhatsApp, iMessage and Gmail are not report sources unless Brendan says so.
+- Never send, delete, move money or pay without Brendan's explicit confirmation. The daily send waits on Brendan's approval of the Oct 8 test, and it is still undecided whether each morning's email auto-sends or is drafted for him to send.
+- Routines: none (not scheduled).
+
 Migration notes: not running. template.html and render.py live on Grokbot's box; copy them here when migrating.
 
 # Arrow Daily Report: Protocol (v1)

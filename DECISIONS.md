@@ -66,6 +66,18 @@
 
 **Renamed brendan-knowledge-graph → brendan-knowledge-graph** (2026-10-29). Same thing, name now says what it is.
 
+## 2026-10-29
+
+**Send exceptions (approved by Brendan).** Private Markets Desk daily pack, Arrow Weekly and Daily Arrow Report go out as emails (Arrow Weekly and Daily Arrow Report auto-send only after Brendan approves the process). Deal Indications posts "added into Attio" acks on Signal. The Buy/Sell Sheet goes only to Gabe on WhatsApp, once Brendan approves it (not done yet). Call Cadence sends calendar invites. Everything else still waits for Brendan. Supersedes the 10/20 "no send exceptions".
+
+**Sync-and-flag.** Each bot keeps its own instructions and keeps its skill file here matching how it runs. Where a bot and the repo disagree, the bot's current way wins, but only after the gap is flagged to Brendan and he approves each change. Each bot edits only its own skill file; Grok Bot commits with INDEX.md and CHANGELOG.md.
+
+**Follow-up split.** Call Cadence owns relationship calls, Inbox Todo owns reply-owed tasks, CoS only ranks, brendan-crm workflow 5 runs on demand only. Inbox Todo also scans admin@arrowfund.co.
+
+**No confidence tags** in private-markets-desk (reaffirmed).
+
+**Notion Delta CRM Spec deleted.** skills/brendan-crm is the only spec.
+
 ## 2026-10-30
 
-**Entry file is AGENTS.md.** CLAUDE.md renamed, no duplicate or symlink, so every bot and agent reads one file first.
+**Entry file is AGENTS.md.** CLAUDE.md renamed, no duplicate or symlink, so every bot and agent reads one file first. CLAUDE.md stays only as a one-line pointer to AGENTS.md for Claude Code.

@@ -12,8 +12,9 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | delta-bookkeeper | composio:quickbooks, Delta Intake | composio:quickbooks | profile.md | live (Claude); becomes accounting-and-tax |
 | chief-of-staff | todoist, gmail (arrow), whatsapp, gcal x2 | todoist, chat | profile.md | live (Grokbot); migrate |
 | comms-ingest | signal, imessage, whatsapp, 6 gmails, gcal, attio | comms index, todoist | — | live (Grokbot); migrate. Infrastructure: three skills read its index. |
-| crm-maintenance | comms index, direct thread reads, attio calls | composio:notion (append only), attio (empty fields only) | comms-ingest, brendan-crm, Delta CRM Spec | live (Grokbot); migrate |
+| crm-maintenance | comms index, direct thread reads, attio calls | composio:notion (append only), attio (empty fields only) | comms-ingest, brendan-crm | live (Grokbot); migrate |
 | suggested-actions | comms index or direct reads, notion, attio | chat (drafts only) | comms-ingest, deal-indications | live (Grokbot); migrate |
+| call-cadence | notion People CRM, imessage, whatsapp, signal, gcal | chat (call list, drafts), gcal (15-min call events) | brendan-crm | live (Grokbot), v1.1 |
 | money-queue | QBO x3, Chase, Ramp, Shopify, Meta | proposal list only | hard rules | planned |
 | crm-sync-feed | composio:notion, composio:attio | attio, after approval | brendan-crm | planned |
 | accounting-and-tax | QBO x3, Gusto, banks | QBO | delta-bookkeeper | planned |
@@ -26,6 +27,8 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | arrow-fund-inbox | gdrive (99 - Inbox, README) | gdrive | — | live (Claude) |
 | deal-indications | signal, whatsapp, gmail (arrow) | composio:attio (blocks, interests), run-log sheet, Signal ack to 3 internal chats | attio-schema.md (to write) | live (Grokbot); migrate |
 | private-markets-desk | web | chat, one email to the team | — | live (Grokbot); migrate |
+| morning-buy-sell-sheet | composio:attio (blocks, interests, last 7 days) | chat; WhatsApp to Gabe once approved (not live yet) | — | live (Grokbot) |
+| nport-scraper | SEC N-PORT, Form D | holdings/people database, chat | — | live (Grokbot), v1 |
 | arrow-weekly | composio:attio | docx, email to leadership | — | draft |
 | daily-arrow-report | composio:attio | html email to team | — | draft |
 
@@ -51,7 +54,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 2. suggested-actions: instructions say use the comms index, routines say there is none. Pick one.
 3. DONE: brendan-crm/SKILL.md is the spec; Notion page to become a pointer (TASKS).
 4. DECIDED: no confidence tags anywhere; private-markets-desk says 'unverified' in words.
-5. DECIDED: no send exceptions. deal-indications drops the Signal ack; private-markets-desk email goes out only on a tap.
+5. SUPERSEDED 2026-10-29: named send exceptions approved (DECISIONS 2026-10-29).
 6. comms index must be rebuilt on the mini before crm-maintenance or suggested-actions can run there.
 
 ## Build order

@@ -37,5 +37,13 @@
 ## 2026-10-29
 - Renamed to brendan-knowledge-graph. Folder: ~/Claude/brendan-knowledge-graph. Remote: github.com/brendandelta/brendan-knowledge-graph.
 
+## 2026-10-29
+- Bots synced their own skill files to how they run today: arrow-weekly, daily-arrow-report, deal-indications, private-markets-desk, comms-ingest, crm-maintenance, suggested-actions.
+- deal-indications: "added into Attio" Signal acks to the 3 internal chats kept (supersedes 10/20 note); step 7 PERSON LINK, blocks and interests always linked to the sender's Attio person (interests via intermediary).
+- crm-maintenance and call-cadence point to skills/brendan-crm; Notion Delta CRM Spec deleted (repo is source of truth).
+- New skills: call-cadence (v1.1), morning-buy-sell-sheet, nport-scraper (v1). INDEX rows added.
+- DECISIONS: 10/29 send exceptions, sync-and-flag, follow-up split. INDEX seam 5 superseded.
+
 ## 2026-10-30
 - CLAUDE.md renamed to AGENTS.md (no duplicate kept). Every bot reads AGENTS.md first.
+- CLAUDE.md re-added as a one-line pointer to AGENTS.md, so Claude Code still auto-loads it.

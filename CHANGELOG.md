@@ -36,3 +36,6 @@
 
 ## 2026-10-29
 - Renamed to brendan-knowledge-graph. Folder: ~/Claude/brendan-knowledge-graph. Remote: github.com/brendandelta/brendan-knowledge-graph.
+
+## 2026-10-30
+- CLAUDE.md renamed to AGENTS.md (no duplicate kept). Every bot reads AGENTS.md first.

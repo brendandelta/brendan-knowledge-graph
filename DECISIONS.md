@@ -65,3 +65,7 @@
 **Attio writes from the personal CRM:** check Attio; if absent, ask before adding; if present, fill only Attio-tracked structured fields (contact, check size, investor type, sectors) and only where empty.
 
 **Renamed brendan-knowledge-graph → brendan-knowledge-graph** (2026-10-29). Same thing, name now says what it is.
+
+## 2026-10-30
+
+**Entry file is AGENTS.md.** CLAUDE.md renamed, no duplicate or symlink, so every bot and agent reads one file first.

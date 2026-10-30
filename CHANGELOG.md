@@ -47,3 +47,4 @@
 ## 2026-10-30
 - CLAUDE.md renamed to AGENTS.md (no duplicate kept). Every bot reads AGENTS.md first.
 - CLAUDE.md re-added as a one-line pointer to AGENTS.md, so Claude Code still auto-loads it.
+- chief-of-staff synced to live CoS Bot (Brendan approved all 9 mismatches): morning prep 9:10 + nudges, brief order, standing #1 Carta/Hubble + open items, wider sources, approval rule for all messages and no calendar writes, embed-action-links, temporary Galo wire watch, substance-over-systems + Attio-first inventory, interrupt only for true fires. INDEX row updated.

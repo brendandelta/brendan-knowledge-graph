@@ -10,7 +10,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 |---|---|---|---|---|
 | brendan-crm | composio:notion, composio:attio, gcal, imessage, signal | composio:notion; attio (list membership + empty structured fields, ask before adding anyone) | profile.md | live (Claude), v4 |
 | delta-bookkeeper | composio:quickbooks, Delta Intake | composio:quickbooks | profile.md | live (Claude); becomes accounting-and-tax |
-| chief-of-staff | todoist, gmail (arrow), whatsapp, gcal x2 | todoist, chat | profile.md | live (Grokbot); migrate |
+| chief-of-staff | todoist, gmail (arrow), whatsapp, signal, imessage, gcal x2, attio, other bots' transcripts | todoist, chat | profile.md | live (Grokbot) |
 | comms-ingest | signal, imessage, whatsapp, 6 gmails, gcal, attio | comms index, todoist | — | live (Grokbot); migrate. Infrastructure: three skills read its index. |
 | crm-maintenance | comms index, direct thread reads, attio calls | composio:notion (append only), attio (empty fields only) | comms-ingest, brendan-crm | live (Grokbot); migrate |
 | suggested-actions | comms index or direct reads, notion, attio | chat (drafts only) | comms-ingest, deal-indications | live (Grokbot); migrate |

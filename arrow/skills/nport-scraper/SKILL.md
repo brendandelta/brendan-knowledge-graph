@@ -21,9 +21,15 @@ decision-maker (PMs, SPV GPs) / holder-controller (fund and SPV entities, office
 Score = position size + fund age + live Arrow deal in name + existing Attio relationship.
 
 ## Run loop
-Routine "N-PORT top-100 queue worker": runs every 2 hours from 7am to 9pm PT, 7 days a week, because Brendan asked for continuous work until the queue is done.
-Each run reads /workspace/nport/STATUS.md and processes about 10 companies through Form D, then PMs, then a read-only Attio check. It then updates the Page and reports progress in chat.
-When the queue is empty, offer to switch to a monthly refresh with a digest of new SPVs and changed positions.
+Routine "N-PORT monthly refresh" (renamed from "N-PORT top-100 queue worker", approved by Brendan 2026-10-31): runs on the 1st of each month at about 8am PT, flexible by ±30 minutes. Cron: CRON_TZ=America/Los_Angeles 0 8 1 * *.
+The top-100 queue is done: all 103 companies on the list are fully scraped and enriched.
+Each run:
+- checks for a newer SEC DERA quarterly N-PORT bulk set (2026q3 is the latest loaded) and re-ingests it;
+- rescans Form D for new SPVs;
+- adds PMs, advisers and signers for new holders and scores them;
+- re-checks Attio read-only;
+- edits the N-PORT Private Marks Tracker Page in place;
+- sends Brendan a digest of new SPVs, changed positions and live-deal overlaps, or sends nothing if nothing changed.
 
 ## Rules
 Never write to Attio, send messages or contact anyone without Brendan's explicit confirm. Never fabricate numbers; every row links to its SEC filing.

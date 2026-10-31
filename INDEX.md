@@ -28,7 +28,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | deal-indications | signal, whatsapp, gmail (arrow) | composio:attio (blocks, interests), run-log sheet, Signal ack to 3 internal chats | attio-schema.md (to write) | live (Grokbot); migrate |
 | private-markets-desk | web | chat, one email to the team | — | live (Grokbot); migrate |
 | morning-buy-sell-sheet | composio:attio (blocks, interests, last 7 days) | chat; WhatsApp to Gabe once approved (not live yet) | — | live (Grokbot) |
-| nport-scraper | SEC N-PORT, Form D | holdings/people database, chat | — | live (Grokbot), v1 |
+| nport-scraper | SEC N-PORT, Form D | holdings/people database, tracker Page, monthly digest to chat | — | live (Grokbot), v1.1, monthly refresh |
 | arrow-weekly | composio:attio | docx, email to leadership | — | draft |
 | daily-arrow-report | composio:attio | html email to team | — | draft |
 

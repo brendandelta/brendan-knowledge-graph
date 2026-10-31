@@ -48,3 +48,6 @@
 - CLAUDE.md renamed to AGENTS.md (no duplicate kept). Every bot reads AGENTS.md first.
 - CLAUDE.md re-added as a one-line pointer to AGENTS.md, so Claude Code still auto-loads it.
 - chief-of-staff synced to live CoS Bot (Brendan approved all 9 mismatches): morning prep 9:10 + nudges, brief order, standing #1 Carta/Hubble + open items, wider sources, approval rule for all messages and no calendar writes, embed-action-links, temporary Galo wire watch, substance-over-systems + Attio-first inventory, interrupt only for true fires. INDEX row updated.
+
+## 2026-10-31
+- nport-scraper v1.1 synced to live N-PORT Scraper (Brendan approved): routine "N-PORT top-100 queue worker" renamed "N-PORT monthly refresh", 1st of each month ~8am PT ±30 min (CRON_TZ=America/Los_Angeles 0 8 1 * *); all 103 top-100 companies scraped and enriched; monthly run re-ingests newer DERA N-PORT sets (2026q3 latest), rescans Form D, adds and scores new holders' PMs/advisers/signers, read-only Attio check, edits tracker Page in place, digest only if something changed. Rules unchanged. INDEX row updated.

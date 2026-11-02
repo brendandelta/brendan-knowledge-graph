@@ -18,13 +18,14 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | money-queue | QBO x3, Chase, Ramp, Shopify, Meta | proposal list only | hard rules | planned |
 | crm-sync-feed | composio:notion, composio:attio | attio, after approval | brendan-crm | planned |
 | accounting-and-tax | QBO x3, Gusto, banks | QBO | delta-bookkeeper | planned |
-| document-filing | gdrive x4, gmail, messages | gdrive | arrow-fund-inbox | planned; Janey wrapper planned later (shared procedure + README in the Janey Drive), not built |
+| delta-meridian-inbox | composio:googledrive (googledrive_decare-benami: 99 - Inbox, Delta Drive README) | gdrive (copy to destination, original to 0 Archive), chat | arrow/skills/document-filing; Delta Drive README (Doc 1r9_MWLdYSFnxV7z-5gj9TbclfQDGUcnzgAg_f6pWxic) | draft; thin wrapper, weekdays 12pm PT (clear fits only, questions to chat) |
 
 ## Shared (`arrow/skills/`)
 
 | Skill | Reads | Writes | Depends on | Status |
 |---|---|---|---|---|
-| arrow-fund-inbox | gdrive (99 - Inbox, README) | gdrive | — | live (Claude) |
+| arrow-fund-inbox | composio:googledrive (googledrive_left-bim: 99 - Inbox, README) | gdrive, chat | document-filing; Arrow Drive README (rules and IDs in amendment v7) | live (Claude); thin wrapper, weekdays 12pm PT |
+| document-filing | composio:googledrive (one account per run), the drive's README | gdrive (copy to destination, original to 0 Archive), chat | per-drive wrapper + README in that drive | draft; generic shared procedure loaded by arrow-fund-inbox and (from skills/) delta-meridian-inbox; Janey wrapper planned later, not built |
 | deal-indications | signal, whatsapp, gmail (arrow) | composio:attio (blocks, interests), run-log sheet, Signal ack to 3 internal chats | attio-schema.md (to write) | live (Grokbot); migrate |
 | private-markets-desk | web | chat, one email to the team | — | live (Grokbot); migrate |
 | morning-buy-sell-sheet | composio:attio (blocks, interests, last 7 days) | chat; WhatsApp to Gabe once approved (not live yet) | — | live (Grokbot) |

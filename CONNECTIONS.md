@@ -21,9 +21,9 @@ Verified live against Composio 2026-10-20.
 | googledrive | brendanmconn96@gmail.com | `googledrive_octan-lined` (default; change default to arrow) | Personal | — |
 | googledrive | connmbrendan@gmail.com | `googledrive_mev-zuni` | Personal; holds some Janey folders | — |
 | googledrive | brendan@arrowfund.co | `googledrive_left-bim` | Arrow | arrow-fund-inbox |
-| googledrive | brendan@deltameridian.com | `googledrive_decare-benami` | Delta | — |
+| googledrive | brendan@deltameridian.com | `googledrive_decare-benami` | Delta | delta-meridian-inbox |
 | googlesheets | brendan@arrowfund.co | `googlesheets_cush-citron` | Arrow | deal-indications |
-| googledocs | brendan@arrowfund.co | `googledocs_colius-skiv` | Arrow | arrow-weekly (draft) |
+| googledocs | brendan@arrowfund.co | `googledocs_colius-skiv` | Arrow | arrow-weekly (draft); edits to the Arrow Drive README |
 | notion | Deltameridian workspace | `notion_pace-adiate` (default) | Personal | brendan-crm, crm-maintenance |
 | notion | Arrow team workspace ("Chris Clifford's Space") | `notion_woy-grouts` (alias work) | Arrow | — (Notion overhaul planned) |
 | attio | Arrow Fund workspace, full read-write | `attio_bosser-wooded` | Arrow | deal-indications, crm-maintenance, brendan-crm, suggested-actions |
@@ -41,6 +41,11 @@ Verified live against Composio 2026-10-20.
 | imessage | the Mac | paper, until 1Password | comms-ingest, crm-maintenance, suggested-actions |
 | signal | the Mac | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions |
 | whatsapp v0.3 | Hetzner, 24/7 | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions, chief-of-staff |
+
+## Git access from the box
+
+- The box can push to `brendandelta/brendan-knowledge-graph` (since 2026-11-02). Auth is a fine-grained GitHub token scoped to this one repo only (Contents: read/write), stored in the box's git credential helper. Every bot on the box can use it through plain `git push`.
+- The token itself is never written into this repo, a skill, a log, memory or chat. If it must be rotated, Brendan creates a new one on GitHub and it goes straight into the credential helper.
 
 ## To connect
 

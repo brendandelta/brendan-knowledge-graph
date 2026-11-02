@@ -8,7 +8,7 @@ Baseline verified Aug 5, 2026; updated Sept 29, 2026. Balances change — always
 ---
 
 ## 1. Company
-- **Delta Meridian Holdings LLC**, California single-member LLC, **S-corp election effective 2026**. Owner: **Brendan Conn** (admin@deltameridian.com; personal brendanmconn96@gmail.com). Santa Monica, CA.
+- **Delta Meridian Holdings LLC**, Delaware single-member LLC (operates in California), **S-corp election effective 2026**. Owner: **Brendan Conn** (admin@deltameridian.com; personal brendanmconn96@gmail.com). Santa Monica, CA.
 - S-corp consequences: reasonable salary required (December payroll), distributions tracked separately, basis tracking.
 - **Business:** operations consulting. **Sole client: Arrow Fund Holdings LLC** (principals Chris Clifford and Gabe Borden; Chris initiates Arrow's payments).
 - **Revenue pattern:** ~**$8,000/month**, lands ~the **28th** by real-time transfer/ACH. History: Feb $10,500; Mar–May 1 $4,000 installments; from May 28 single $8,000/month.
@@ -61,14 +61,14 @@ No business credit card in QBO as of Sept 2026 (confirm if one appears).
 6. **Home office: $536.25/month** accountable-plan reimbursement, paid at month-end for the following month. Lease + calculation + bank statements are the documentation (no per-month rent receipts needed).
 7. **Phone and internet: 90% business / 10% personal.** Book the bill to Utilities; the 10% personal share is adjusted out by journal entry (check the Aug 1, 2026 JEs in QBO for the exact pattern before repeating it).
 8. **Vehicle: no gas on the business.** Personal car. Mileage reimbursement (~70¢/mile 2026) via the accountable plan — Brendan reports miles after long business-driving days. Parking & tolls deductible on top. Stray gas → Shareholder distributions.
-9. **Receipts attach to the QBO transaction** (QBO is system of record). Priority: travel, hotels, flights, meals >$75. Delta Intake in Notion holds receipts until attached.
+9. **Receipts attach to the QBO transaction** (QBO is system of record for the books) **and a copy is also filed in the Delta Drive**: `01 Financials / 01 Invoices & Receipts / {Vendor}`, or `… / Brendan Reimbursements / {Vendor}` for reimbursement backup (Delta Drive README, section 5; filed by delta-meridian-inbox). Priority: travel, hotels, flights, meals >$75. Delta Intake in Notion holds receipts until attached.
 10. **Pre-Aug-2026 history is verified — never edit it.**
 
 ## 5. Decision tree (every bank item)
 1. **From Arrow?** ~$8,000 (or the $4,000 pattern) → Consulting income. Any other amount → a reimbursement: find the fronted cost (memo, amount, Delta Intake "Arrow-fronted" rows) → offset to that expense. No match → ask.
 2. **Counterparty is a Delta-owned account** (0012, 8603 savings, legacy Mercury)? → Transfer. Book once.
 3. **Outbound to 0669 / Brendan?** $536.25 at month-end → Home office reimbursement. Memo says reimbursement for itemized business costs → those expense accounts, receipts required (check Delta Intake). Anything else → Shareholder distributions.
-4. **IRS / FTB (EFTPS, "IRS USATAXPYMT", "FRANCHISE TAX BD")?** Personal estimated tax for Brendan → Shareholder distributions. CA LLC/S-corp franchise tax ($800 min / 1.5%) → Taxes & licenses (business). If unclear which, ask.
+4. **IRS / FTB (EFTPS, "IRS USATAXPYMT", "FRANCHISE TAX BD")?** Personal estimated tax for Brendan → Shareholder distributions. CA franchise tax on the S-corp ($800 min / 1.5%; Delaware LLC operating in California) → Taxes & licenses (business). If unclear which, ask.
 5. **Inbound to Tax Reserve from personal 0669** → Owner contributions.
 6. **Known vendor** (see §6) → mapped category.
 7. **Unknown vendor** → best guess + flag as a misfit. Never leave Uncategorized.
@@ -114,7 +114,7 @@ No business credit card in QBO as of Sept 2026 (confirm if one appears).
 5. Keep ~$1,500–2,000 operating float in 0012.
 6. Clear feed; match Delta Intake receipts.
 
-## 8. Tax framework (S-corp, California)
+## 8. Tax framework (S-corp; Delaware LLC operating in California)
 - **Reserve rule:** ~25% of net operating income. YTD NOI at 8/4/26 was $46,049.70 → target then ≈ $11,500; full-year NOI trending ~$85–90k → blended rate may drift to ~30%. Check reserve vs. YTD NOI each session and flag shortfalls.
 - **Estimated taxes:** federal + CA quarterly. Q1/Q2 2026 were missed; CPA sizing catch-up. Q3 due Sept 15, 2026; Q4 due Jan 15, 2027. Personal estimates paid from Delta → Shareholder distributions.
 - **December 2026:** reasonable-salary payroll (Officer wages + Payroll taxes). Provider not chosen as of Aug 2026.

@@ -18,7 +18,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | money-queue | QBO x3, Chase, Ramp, Shopify, Meta | proposal list only | hard rules | planned |
 | crm-sync-feed | composio:notion, composio:attio | attio, after approval | brendan-crm | planned |
 | accounting-and-tax | QBO x3, Gusto, banks | QBO | delta-bookkeeper | planned |
-| document-filing | gdrive x4, gmail, messages | gdrive | arrow-fund-inbox | planned |
+| document-filing | gdrive x4, gmail, messages | gdrive | arrow-fund-inbox | planned; Janey wrapper planned later (shared procedure + README in the Janey Drive), not built |
 
 ## Shared (`arrow/skills/`)
 

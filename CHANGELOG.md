@@ -51,3 +51,6 @@
 
 ## 2026-10-31
 - nport-scraper v1.1 synced to live N-PORT Scraper (Brendan approved): routine "N-PORT top-100 queue worker" renamed "N-PORT monthly refresh", 1st of each month ~8am PT ±30 min (CRON_TZ=America/Los_Angeles 0 8 1 * *); all 103 top-100 companies scraped and enriched; monthly run re-ingests newer DERA N-PORT sets (2026q3 latest), rescans Form D, adds and scores new holders' PMs/advisers/signers, read-only Attio check, edits tracker Page in place, digest only if something changed. Rules unchanged. INDEX row updated.
+
+## 2026-11-02
+- Janey document-filing noted as planned, not built: projects/drive-restructure.md (Decisions + Log), INDEX document-filing row, CONNECTIONS Janey Drive row. Same pattern as Arrow/Delta: shared procedure skill + thin per-drive wrapper + README in the Janey Drive.

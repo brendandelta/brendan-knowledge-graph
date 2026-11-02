@@ -47,7 +47,7 @@ Verified live against Composio 2026-10-20.
 | Toolkit | Account | Context | Why |
 |---|---|---|---|
 | googlecalendar | connmbrendan@gmail.com | Personal | chief-of-staff already expects it |
-| googledrive | brendan@janeyhealth.com | Janey | owns the Janey Drive connection; document-filing |
+| googledrive | brendan@janeyhealth.com | Janey | owns the Janey Drive connection; document-filing (Janey wrapper planned, not built) |
 | quickbooks | Janey | Janey | accounting-and-tax |
 | facebook_ads | Janey Meta ad account | Janey | toolkit exists |
 | gusto | payroll | Delta / Arrow | toolkit exists |

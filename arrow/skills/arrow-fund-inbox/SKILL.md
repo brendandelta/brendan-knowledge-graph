@@ -1,13 +1,13 @@
 ---
 name: "arrow-fund-inbox"
-description: Sort, rename, and file documents from the "99 - Inbox" folder in the Arrow Fund shared Google Drive into their correct folders, following the drive's README. Files that clearly fit an existing folder are filed straight away; anything ambiguous is discussed with Brendan first. Then surfaces next steps (payments due, missing vendor paperwork, signatures, replies). Use this skill whenever the user says they dropped, placed, threw, added, or uploaded files into the inbox, asks to "process/clear/sort/file the inbox", mentions invoices, contracts, W-9s, financial reports, or other paperwork waiting to be filed, or asks what needs doing from recent documents, even if they don't say "skill" or name the folder. Also runs on the weekday 12pm PT filing schedule.
+description: Sort, rename, and file documents from the "99 - Inbox" folder in the Arrow Fund shared Google Drive into their correct folders, following the drive's README. Files that clearly fit an existing folder are filed straight away; anything ambiguous is discussed with Brendan first. Then surfaces next steps (payments due, missing vendor paperwork, signatures, replies). Use this skill whenever the user says they dropped, placed, threw, added, or uploaded files into the inbox, asks to "process/clear/sort/file the inbox", mentions invoices, contracts, W-9s, financial reports, or other paperwork waiting to be filed, or asks what needs doing from recent documents, even if they don't say "skill" or name the folder. Also use it whenever any file is being placed anywhere in the Arrow Fund shared drive or a folder is being created there, even outside the inbox. Also runs on the weekday 12pm PT filing schedule.
 ---
 
 # Arrow Fund Inbox
 
 Brendan and the team drop documents into `99 - Inbox` at the root of the Arrow Fund shared drive.
 
-**How:** follow the shared procedure in `arrow/skills/document-filing/SKILL.md` (next to this skill) exactly, with the settings below.
+**How:** follow the shared procedure in `arrow/skills/document-filing/SKILL.md` (next to this skill) exactly, with the settings below. Its APPROVAL LAYER applies here in full: no folder is created in this drive without Brendan's explicit approval and a README amendment written in the same step.
 **What goes where:** the drive's README (amendments v2–v7; v7 of 2026-11-02 holds the key folder IDs) holds the folder map, folder IDs, naming patterns and every confirmed filing rule (Apex Horizon, carry side letters, Harvey Esquire, S11/Hubble, S12–S16, Delaware SR confirmations, Carta, Taiga, deal-attributable vendor costs, shortcuts, invoices Arrow issues). Read it in full every run. Rules are added to the README, not here.
 
 ## Settings

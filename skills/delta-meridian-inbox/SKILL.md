@@ -1,13 +1,13 @@
 ---
 name: "delta-meridian-inbox"
-description: Sort, rename, and file documents from the "99 - Inbox" folder in the Delta Meridian Holdings Google Drive (brendan@deltameridian.com) into their correct folders, following that drive's README. Clear fits are filed straight away; anything ambiguous is raised with Brendan first. Use when Brendan says he dropped or added files to the Delta inbox, asks to process/clear/sort the Delta inbox, mentions Delta paperwork (formation, OA, EIN, contracts, compliance, tax, payroll, bank statements, Delta invoices or receipts, GridLync) waiting to be filed, and on the weekday 12pm PT filing schedule. Do NOT use for the Arrow Fund drive.
+description: Sort, rename, and file documents from the "99 - Inbox" folder in the Delta Meridian Holdings Google Drive (brendan@deltameridian.com) into their correct folders, following that drive's README. Clear fits are filed straight away; anything ambiguous is raised with Brendan first. Use when Brendan says he dropped or added files to the Delta inbox, asks to process/clear/sort the Delta inbox, mentions Delta paperwork (formation, OA, EIN, contracts, compliance, tax, payroll, bank statements, Delta invoices or receipts, GridLync) waiting to be filed, whenever any file is being placed anywhere in the Delta drive or a folder is being created there, and on the weekday 12pm PT filing schedule. Do NOT use for the Arrow Fund drive.
 ---
 
 # Delta Meridian Inbox
 
 Brendan drops Delta Meridian Holdings LLC documents into `99 - Inbox` at the root of the Delta My Drive.
 
-**How:** follow the shared procedure in `arrow/skills/document-filing/SKILL.md` exactly (it lives in `arrow/` so the Arrow team gets it too; it is generic and carries nothing Delta), with the settings below.
+**How:** follow the shared procedure in `arrow/skills/document-filing/SKILL.md` exactly (it lives in `arrow/` so the Arrow team gets it too; it is generic and carries nothing Delta), with the settings below. Its APPROVAL LAYER applies here in full: no folder is created in this drive without Brendan's explicit approval and a README amendment written in the same step.
 **What goes where:** the drive's README holds the folder map, folder IDs, naming conventions and confirmed filing rules. Read it in full every run. Rules are added to the README, not here.
 
 ## Settings

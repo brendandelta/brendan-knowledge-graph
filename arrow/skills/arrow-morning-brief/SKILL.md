@@ -7,7 +7,7 @@ description: Sun–Thu external markets brief (world/economy, macro, public, pri
 
 > **TEST MODE (locked 2026-11-05).** Every send goes to **brendan@arrowfund.co only**. Do **not** add vaidehi@arrowfund.co, create calendar invites, or auto-send past test until Brendan explicitly approves in this bot's chat. Flip this flag in the same commit as the live description / registry update.
 
-**Status:** draft skill · bot not yet created · routines pending Brendan's first test-brief approval.
+**Status:** live in TEST MODE · bot 3e40c3a8-3cce-401b-b460-d6ac50940c3c · routines live 2026-11-05 (Brendan-only)
 **Silo:** Arrow only. Never put personal, Delta, or Janey content here.
 **Source of decisions:** Brendan, 2026-11-05 (plan Page + chat; cadence updated same day to Sun–Thu briefs / Mon–Fri reviews, Sunday weekend edition). Sample look: `/workspace/morning-brief/sample-2026-11-05.html`.
 
@@ -221,3 +221,4 @@ Every run appends to `/workspace/arrow-morning-brief/YYYY-MM-DD/run.log`: start/
 ## Changelog
 
 - 2026-11-05 v0.1: skill + `template.html` drafted from Brendan's locked decisions (Sun–Thu 7pm PT HTML email from admin@ / Brendan Bot display name; Sunday = weekend edition; Mon–Fri 10:30am agenda; test = Brendan only; free sources; external-only; calendar invite pending). No bot / no routines / no sends yet.
+- 2026-11-05 v0.2: bot created (3e40c3a8-3cce-401b-b460-d6ac50940c3c); routines live in TEST MODE (Brendan-only): "Evening brief" `evening-brief` `0 19 * * 0-4` lateMinutes 0 with a run.log dedupe guard, and "Morning agenda" `morning-agenda` `30 10 * * 1-5` lateMinutes 0. First test brief sent to Brendan 2026-11-05. Composio GMAIL_SEND_EMAIL has no display-name field, so From shows the account default. Known template issue: the nested `<!-- omit tr ... -->` inside the head comment closes it early; strip the head comment before sending.

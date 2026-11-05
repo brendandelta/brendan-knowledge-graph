@@ -34,7 +34,7 @@ When in doubt, it's not a clear fit. A wrong move confuses everyone; a short que
 
 ## Scheduled runs vs. asked runs
 
-- **Scheduled run (weekdays 12pm PT):** file only clear fits. Post every "needs your call" item to Brendan in chat, grouped by drive, and stop; act on his answers in a later turn. If an inbox is empty (only `0 Archive`), say nothing about it.
+- **Scheduled run (weekdays 12pm PT):** process each drive the bot serves, one at a time, in a fully separate pass (own account, own README). File only clear fits. Then **always** post one summary to Brendan in the bot's chat, every weekday run, even when nothing was filed (Brendan, 2026-11-02): grouped by drive, in the Step 5 order, then any questions still open from earlier days. An empty inbox (only `0 Archive`) gets one line ("empty, nothing filed"); if every inbox is empty, the whole summary is one line plus open questions. Use a question card when the options are clean. Act on his answers in a later turn, only what he approved.
 - **Asked run:** same procedure; discuss open items in the conversation.
 
 ## Tools: Composio only

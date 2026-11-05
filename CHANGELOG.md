@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-05
+- document-filing: scheduled runs now always post a daily summary per drive (one line when empty) plus open questions (Brendan, 2026-11-02), replacing "say nothing when empty". Arrow Document Filing Bot routine slimmed to pull + follow skills; title and description set; registry entry updated.
 - Inbox Todo (comms-ingest): description rewritten to match the real cadence (three Comms Ingest routines approved 2026-10-15, not every 30 minutes) and channels (WhatsApp, Signal, iMessage, Gmail, calendar, Attio). Same wording synced in `skills/comms-ingest/SKILL.md` and `bots/inbox-todo.md`; stale-cadence mismatch flag removed. INDEX row already correct.
 - Personal CRM Contact Context: Brendan confirmed (t86u); deleted Attio routines attio-context, attio-backfill, attio-questions-evening-list-nov-5. Bot is Notion-only (weekday/weekend CRM enrichment). Registry + MAP + crm-maintenance skill updated; Arrow Attio People owns all Attio People work.
 - arrow-weekly-log v1.3: live on the Arrow Log bot; first backfill published. Schedule records the actual routines (one "Arrow weekly log" routine with both crons; Friday wrap lateMinutes 0) and the live routine prompts.

@@ -13,7 +13,7 @@ Template: [`arrow/bots/_TEMPLATE.md`](_TEMPLATE.md).
 | Morning Buy/Sell Sheet | [morning-buy-sell-sheet](bots/morning-buy-sell-sheet.md) | `arrow/skills/morning-buy-sell-sheet` | pending self-report |
 | N-PORT Scraper | [nport-scraper](bots/nport-scraper.md) | `arrow/skills/nport-scraper` | pending self-report |
 | Private Markets Desk | [private-markets-desk](bots/private-markets-desk.md) | `arrow/skills/private-markets-desk` | pending self-report |
-| Arrow Weekly | [arrow-weekly](bots/arrow-weekly.md) | `arrow/skills/arrow-weekly` | pending self-report |
+| Arrow Weekly | [arrow-weekly](bots/arrow-weekly.md) | `arrow/skills/arrow-weekly` | self-reported 2026-11-05 · test (no routine; first send pending) |
 | Arrow Document Filing Bot | [arrow-document-filing](bots/arrow-document-filing.md) | `arrow/skills/arrow-fund-inbox` (+ `document-filing`) | pending self-report |
 | Arrow Attio Firms | [arrow-attio-firms](bots/arrow-attio-firms.md) | `arrow/skills/arrow-attio-firm-context` | pending self-report |
 | Deal Indications Bot | [deal-indications](bots/deal-indications.md) | `arrow/skills/deal-indications` | pending self-report |

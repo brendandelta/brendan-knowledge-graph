@@ -5,7 +5,7 @@ description: Use when keeping Arrow Fund's Attio People records current with pla
 
 # attio-contact-context
 
-**Status:** live on Grokbot; owned by bot "Arrow Attio People" after the 2026-11-05 split (inherits routines, /workspace/attio-context/state.json, /workspace/attio-backfill/, ATTIO_CONTEXT_TOKEN from Contact Context). Event routine "Attio contact context" (folder attio-context) and backfill routine "Attio backfill" (folder attio-backfill).
+**Status:** live on the Arrow Attio People bot (taken over from Contact Context on 2026-11-05; inherits /workspace/attio-context/state.json, /workspace/attio-backfill/, ATTIO_CONTEXT_TOKEN). Event routine "Attio contact context" (folder attio-contact-context) and backfill routine "Attio backfill" (folder attio-backfill).
 **Source:** Designed with Brendan in chat, approved 2026-11-03; siloed from the Notion CRM 2026-11-04 (see DECISIONS.md 2026-11-03 and 2026-11-04). Renamed from attio-context on 2026-11-04. Keep this file and the live routine prompts the same; a change to one is made to the other.
 
 Migration notes: Owned by bot "Arrow Attio People" (2026-11-05). Fully separate from Brendan's personal Notion CRM on Contact Context (skills/brendan-crm, skills/crm-maintenance). The two share INPUTS (the same comms sources) but never OUTPUTS: the Notion CRM writes only Notion and never writes Attio; this process writes only Attio (plus its own files under /workspace) and never reads or writes Notion. Company firm intel is a separate skill/bot (arrow/skills/arrow-attio-firm-context, "Arrow Attio Firms"). The weekly Arrow Log is written by "Arrow Log" (arrow/skills/arrow-weekly-log); this bot may read it but never writes it. Hand-over plan: projects/contact-context-attio-split.md and bot-plan.md next to this skill. Workspace paths keep the old name (/workspace/attio-context, /workspace/attio-backfill). People `description` is NOT used here, because LinkedIn and bio enrichment writes it. Attio global search (`/` or Cmd-K) does not index custom text attributes (checked 2026-11-03); teammates (and Gabe's MCP layer) find Arrow context with a records query filter `arrow_context $contains …` or on the record page.
@@ -170,6 +170,7 @@ Results go to Brendan in this Grok Bot chat only when something is notable: a ti
 
 ## Changelog
 
+- 2026-11-05 — Status: process live on the Arrow Attio People bot (taken over from Contact Context); event routine "Attio contact context" (folder attio-contact-context), backfill routine "Attio backfill" (folder attio-backfill).
 - 2026-11-05 — Ownership moves to bot "Arrow Attio People" (Contact Context keeps Notion CRM only). Inherits Attio routines, state, backfill queue and token. See bot-plan.md and projects/contact-context-attio-split.md.
 - 2026-11-04 — v2.2. sector_of_interest expanded to 60 options (37 added, none renamed/archived); mapping guidance extended (most specific, multiple allowed, niche → arrow_context).
 - 2026-11-04 — v2.1. check_size_range options renamed in Attio to $0-100K, $100-200K, $200-500K (in place; values carried over). sector_of_interest options added: Secondaries, Climate, Healthcare, Media, Energy, Private Credit; mapping updated.

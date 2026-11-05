@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-05
+- attio-contact-context v2.3: relationship evidence rules (direct evidence + per-edge source link, both-endpoint human guard, add-only); introduced_by stays single, Introducer = inverse `introduced`; Backfill adds A–C relationship checks even when Arrow context is filled (relationship_checked.json). Backfill routine prompt updated to match.
 - attio-contact-context: Status now live on the Arrow Attio People bot (taken over from Contact Context); routines "Attio contact context" (folder attio-contact-context) and "Attio backfill" (folder attio-backfill). INDEX row updated.
 - New draft skills: arrow/skills/arrow-attio-firm-context (Attio company intel, PROPOSE mode; bot-plan.md) and arrow/skills/arrow-weekly-log (weekly Arrow Log doc; bot-plan.md).
 - arrow-weekly-log is a general shared Arrow source (any Arrow bot may read); Liability filter approved; Commitments are any-party; People updates; personal/mixed Arrow-account items excluded by content; deal names and sizes OK, prices/terms/counterparties never. Reports carry a matching Liability guard.

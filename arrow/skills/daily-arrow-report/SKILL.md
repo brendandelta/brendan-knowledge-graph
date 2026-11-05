@@ -1,23 +1,29 @@
 ---
 name: daily-arrow-report
-description: Daily 10am PT HTML digest of yesterday in Attio (meetings, new contacts, people talked to, deal moves) emailed to the team.
+description: Daily 10am PT HTML email of yesterday's Arrow activity, formatted from the Arrow Weekly Log doc plus current Attio status (meetings, new people, people updates, deals and blocks moved, commitments, firm intel), emailed to the team. Formatter and sender; never scans comms itself.
 ---
 
 # daily-arrow-report
 
-**Status:** DRAFT on Grokbot; never scheduled (awaiting approval). Protocol v1 below.
-**Source:** Grokbot export 2026-10-20 (`references/grokbot-export-2026-10-20.md`). Text below is the running prompt, lightly reformatted. Edit here, then update the engine.
+**Status:** v2 FINAL draft (2026-11-05). Brendan approved this design: the report reads the log plus current Attio status. It is not scheduled. Test mode applies until Brendan approves the process.
+**Source:** v1 protocol (Grokbot export 2026-10-20), rewritten 2026-11-05 so the report reads `arrow/skills/arrow-weekly-log`.
 
-## Bot instructions (synced 2026-10-29 with the live Grokbot "Daily Arrow Report" profile)
+## Bot instructions (keep in sync with the live "Daily Arrow Report" profile)
 - Read AGENTS.md in this repo first. The bot's own instructions are its working copy. Keep this file in sync with them. If the two disagree, keep following the bot's prompt and tell Brendan.
 - Every user-facing reply that names an action, app, email, CRM record, doc or web page follows the `embed-action-links` skill: a clickable markdown deep link in the same sentence, never an invented URL.
-- Source of truth is Attio only. Signal, WhatsApp, iMessage and Gmail are not report sources unless Brendan says so.
-- Never send, delete, move money or pay without Brendan's explicit confirmation. The daily send waits on Brendan's approval of the Oct 8 test, and it is still undecided whether each morning's email auto-sends or is drafted for him to send.
-- Routines: none (not scheduled).
+- **Sources (only these two):**
+  1. **The Arrow Log** says what happened. Read the doc in Drive folder [Arrow Weekly Log](https://drive.google.com/drive/folders/1Ge4r1wH2tMllGqom6sMQX96xkmBk58I5) (`1Ge4r1wH2tMllGqom6sMQX96xkmBk58I5`) for the week that contains yesterday (PT).
+  2. **Current Attio status** says where things stand now: current deal stages and owners, the pipeline snapshot, record links, and the fields on new people.
+  - Never read Gmail, WhatsApp, Signal, iMessage or the calendar directly. The Arrow Log bot does that.
+- Everything follows the §4a Liability guard: Attio status never brings back what the log's Liability filter kept out.
+- If the log and Attio disagree on a current stage or owner, Attio wins. Note the disagreement in Data notes.
+- Never add a fact that is in neither source. Shorten log entries but don't reword their facts. Keep their source links.
+- Never send, delete, move money or pay without Brendan's explicit confirmation, beyond the approved daily send once that approval exists.
+- Routines: "Daily Arrow Report", CRON_TZ=America/Los_Angeles `0 10 * * *`. Create it only after Brendan approves the process.
 
-Migration notes: not running. template.html and render.py live on Grokbot's box; copy them here when migrating.
+Migration notes: template.html and render.py live on Grokbot's box. Copy them here when migrating. render.py needs a new `build` stage that takes `data/log-<date>.json` + `data/attio-<date>.json`, and template.html needs the section changes in §4.
 
-# Arrow Daily Report: Protocol (v1)
+# Arrow Daily Report: Protocol (v2)
 
 Owner: Brendan Conn · Workspace: Attio "Arrow Fund" · Timezone: America/Los_Angeles (PT)
 
@@ -27,71 +33,80 @@ Owner: Brendan Conn · Workspace: Attio "Arrow Fund" · Timezone: America/Los_An
 - **To:** Chris@arrowfund.co, Gabe@arrowfund.co, vaidehi@arrowfund.co, jillian@arrowfund.co (all four in To; no CC/BCC).
 - **Subject:** `Arrow Daily Report – <Weekday, Mon D>` (en dash), e.g. `Arrow Daily Report – Thursday, Oct 8`.
 - **Body:** the rendered HTML from `template.html`, plus a plain-text alternative with the same content.
-- **Send once per day.** If the Attio pull fails or comes back partial, do not send a partial report. Retry up to 3 times, 10 minutes apart. If it still fails, send a short note: "Report delayed: Attio unavailable" (same recipients, same subject with "(delayed)").
-- **Test mode** (where we are now): render the files only and send nothing.
+- **Send once per day.** If the log read or the Attio status pull fails or comes back partial, do not send a partial report. Retry up to 3 times, 10 minutes apart. If it still fails, send a short note: "Report delayed: Attio unavailable" (same recipients, same subject with "(delayed)").
+- **Test mode** (where we are now): render the files, show Brendan the render in chat, and send nothing. Per DECISIONS 2026-10-29, once Brendan approves the process the report auto-sends once a day from brendan@arrowfund.co via Composio `gmail_tagish-stuss`, with no further confirmation.
+- **Log freshness gate:** before building, check that the Arrow Log doc's "Last updated" line is 9:30am PT today or later. If it isn't, wait 15 minutes and recheck, up to 3 times. If it's still stale: in test mode, tell Brendan; in live mode, send the "(delayed)" note described above, with the reason "Arrow Log not updated".
 
 ## 2. Files
 | File | Purpose |
 |---|---|
 | `template.html` | The single master template. **Its structure never changes day to day.** Page tokens `{{...}}` plus row partials between `<!--PARTIALS:BEGIN-->` and `<!--PARTIALS:END-->`. |
 | `render.py` | `python3 render.py <YYYY-MM-DD> <out.html> [footer]`. Stage 1 (`build`) normalizes the raw Attio pull into `data/report-<date>.json`. Stage 2 (`render`) fills the template. All values are HTML-escaped. It fails loudly if any token is left unfilled. |
-| `data/attio-<date>.json`, `data/attio-<date>-extra.json` | The raw Attio pull for the day, kept as an audit trail. |
+| `data/log-<date>.json` | Yesterday's entries parsed from the Arrow Log doc (audit trail). |
+| `data/attio-<date>.json` | The current-status Attio pull for the day (audit trail). |
 | `test-2026-10-08.html` / `.png` | Test render and screenshot. |
 
 Screenshot: `google-chrome --headless=new --no-sandbox --force-device-scale-factor=2 --window-size=680,6200 --screenshot=out.png file://.../report.html`, then crop the trailing background.
 
-## 3. Data gathering (Attio only, via the Composio `attio` toolkit)
-Run the steps through `COMPOSIO_MULTI_EXECUTE_TOOL`. For bulk work, use `COMPOSIO_REMOTE_WORKBENCH` with `run_composio_tool`. Let `S` and `E` be the UTC bounds of the PT day.
+## 3. Data gathering (log + current Attio status)
+Let `D` be yesterday (PT), and `S`/`E` the UTC bounds of that PT day.
 
-1. **Team roster:** `ATTIO_LIST_WORKSPACE_MEMBERS` maps member id/email to first name. Current members: Brendan, Chris, Gabriel, Jillian, Vaidehi. A "team member" is any `@arrowfund.co` address.
-2. **Meetings:** `ATTIO_LIST_MEETINGS {ends_from:S, starts_before:E, timezone:"America/Los_Angeles", sort:"start_asc", limit:200}`. Keep paging while `data.pagination.next_cursor` is set.
-   - Normalize: a timed meeting uses `start.datetime`/`end.datetime` (UTC ISO plus an IANA `timezone`). An all-day meeting uses `start.date`/`end.date`, and **end is exclusive** (RFC 5545). Include an all-day event only if `start.date ≤ D < end.date`.
-   - Post-filter strictly with `start < E and end > S`, then sort by start.
-   - For each meeting, call `ATTIO_LIST_CALL_RECORDINGS {meeting_id}`. If a recording exists, call `ATTIO_GET_CALL_RECORDING` to get the transcript.
-3. **Notes:** `ATTIO_LIST_NOTES {limit:50, offset:n}`, paging until a page comes back with fewer than 50. The API does **not** reliably return newest-first, so page everything, then filter on `created_at ∈ [S,E)`. Join a note to a meeting by `meeting_id`, or else by `parent_record_id` = a meeting participant's person record.
-4. **New contacts:** `ATTIO_POST_V2_OBJECTS_OBJECT_RECORDS_QUERY {object:"people", filter:{$and:[{created_at:{$gte:S}},{created_at:{$lt:E}}]}}`. Do the same for `companies` to get the "New company records" line.
-   - Who added: `created_by`. A `workspace-member` means "Added manually by <name>". `system` means auto-created by Attio. In that case, the source is "Email sync – <owner>'s mailbox" when `first_email_interaction` falls in the window; otherwise it is "Auto-created by Attio (no source recorded)". Also check the custom `source` attribute.
-   - List adds: `ATTIO_POST_V2_LISTS_LIST_ENTRIES_QUERY {list, filter:{created_at in window}}` for every list from `ATTIO_LIST_LISTS`. Append "added to <List>" to the source.
-5. **People talked to:**
-   - Email: query `people` with `last_email_interaction.interacted_at ∈ [S,E)`. The team member is `owner.id`, i.e. whose mailbox.
-   - Meetings: the external participants of the day's meetings, matched to person records by email. A cross-check is `last_calendar_interaction.interacted_at ∈ [S,E)`.
-   - Notes: the parent person records of the day's notes.
-   - Merge by normalized name, so duplicate records collapse into one row. Exclude automated senders using the domain/local-part rules in `render.py` (`is_automated`): Luma, DocuSign, newsletters, `e.`/`mail.`/`events.` subdomains, `support@`, `offerings@`, etc.
-6. **Deals:** `ATTIO_LIST_DEAL_RECORDS {limit:500}`. For each deal, call `ATTIO_LIST_DEAL_RECORD_ATTRIBUTE_VALUES {record_id, attribute:"stage", show_historic:true}`.
-   - A **deal move** is a historic stage value whose `active_from ∈ [S,E)` and which has a previous value. The move goes from the previous `status.title` to the new one, and `created_by_actor` tells you who changed it.
-   - **Notable updates:** deals with `created_at` in the window. Optionally, the same history check on `owner` and `value`.
-   - **Pipeline snapshot:** a count of deals by current stage.
-   - Pipeline shape (discovered): object `deals`, attribute `stage` (status), with stages **Lead → In Progress → Won 🎉 / Lost**. Owner is `owner` (actor-reference), value is `value` (currency), plus `associated_company` and `associated_people`. There is no separate deal pipeline list; all 16 lists are people lists.
-7. **Company names:** batch-resolve referenced company ids with `ATTIO_POST_V2_OBJECTS_OBJECT_RECORDS_QUERY {object:"companies", filter:{record_id:{$in:[...]}}}`.
-8. Save the raw pulls to `data/attio-<date>.json`, then run `render.py`.
+**A. Arrow Log (what happened)**
+1. Find the doc titled `Arrow Log — week of <Monday of D's week>` in folder `1Ge4r1wH2tMllGqom6sMQX96xkmBk58I5`. Use `GOOGLEDRIVE_FIND_FILE` on `googledrive_left-bim` with `'<folder>' in parents`. If D is a Sunday, that's the week that started 6 days earlier.
+2. Read it with `GOOGLEDOCS_GET_DOCUMENT_PLAINTEXT` on `googledocs_colius-skiv`.
+3. Parse the bullets under each heading: Deals and blocks moved · New people · People updates · Meetings · Commitments · Firm intel · Data notes.
+   - Keep the bullets whose date prefix is D, plus any bullet marked "updated <D>".
+   - For Commitments, also keep every bullet still open that is past its due date.
+4. Save the result to `data/log-<D>.json`.
+
+**B. Current Attio status (where things stand), read-only via the Composio `attio` toolkit**
+5. Team roster: `ATTIO_LIST_WORKSPACE_MEMBERS`, to map members to first names.
+6. Deals: run `ATTIO_LIST_DEAL_RECORDS {limit:500}`. For each deal named in the log:
+   - read its current stage, owner and size (if present). Never price, terms or counterparties (§4a);
+   - add stage moves dated D that the log missed, from `ATTIO_LIST_DEAL_RECORD_ATTRIBUTE_VALUES {attribute:"stage", show_historic:true}` where `active_from ∈ [S,E)`.
+   The pipeline snapshot is the count of all deals by current stage (Lead → In Progress → Won 🎉 / Lost).
+7. People: for every person in the log's New people and People updates, resolve the Attio record by email or name. Read company, job title and `created_by` (who added them), and the record link. Also run the v1 query of people created in `[S,E)` to catch any new contact the log missed; those rows get the source "Attio (not in log)".
+8. Meetings: run `ATTIO_LIST_MEETINGS` for `[S,E)` only to cross-check the log's Meetings list. Add any meeting that's missing, with the summary "No log entry".
+9. Batch-resolve company names. Save everything to `data/attio-<D>.json`.
+10. Run `render.py`.
 
 ## 4. Section rules (fixed order, never reorder)
-0. **Header:** "Arrow Fund · Daily Report", then the long date and the window line. Below that, four stat tiles in a fixed order: **Meetings · New contacts · Talked to · Deal moves**.
-1. **01 Meetings:** every in-window meeting across all team calendars, sorted by start.
-   - Each row shows: time in PT (plus the local time when the meeting's timezone is not PT/UTC), title, a kind tag, the team members, the external attendees with company, and a summary.
-   - Kind tag: `External` means a non-Arrow attendee. `Event` means a Luma/Partiful invite or a HOLD. `Internal` means team only.
-   - Summary priority: note text first, then the transcript, then "<Luma/Partiful> event · <venue>. No notes in Attio." (for events), then "No notes or call recording in Attio."
-2. **02 New Contacts:** real people created in the window. Each row shows: name · company, role (job title, else the record description, else "Role not set"), added by, and source.
-   - Automated senders and duplicate aliases are left out of the list and counted in Data notes.
-   - Follow the list with a "New company records" line.
-3. **03 People Talked To:** two parts.
-   - First, "Meetings & notes": one row per person with channels (Meeting / Email / Note), the team member, and a 1-2 line summary from notes.
-   - Then "Email · <Team member> (n)": compact rows of name · company and last interaction time in PT.
-   - Ends with the caption that email content is not available.
-4. **04 Deal Movement:** stage moves as `Deal`, `From → To`, owner, time, and who changed it. Then "Notable updates" (new deals and other changes), then "Pipeline snapshot".
-5. **Data notes:** always present. It lists every gap, exclusion, and Attio limitation that affected the day's report.
+0. **Header:** "Arrow Fund · Daily Report", then the long date and window line. Four stat tiles: **Meetings · New contacts · People updates · Deal moves**.
+1. **01 Meetings**, from Log: Meetings, cross-checked with Attio. Each row: time PT · title · kind tag (External / Event / Internal) · team members · external attendees with company (unless confidential; §4a) · the log's neutral one-line outcome, else "No notes."
+2. **02 New Contacts**, from Log: New people plus the Attio fields. Each row: name · company · role · added by · source (the log's "how they came in"). Then a "New company records" line from Attio.
+3. **03 People Updates**, from Log: People updates. One row per person: name · firm · role · channels · Arrow team member · the log's facts (role/firm change, what they're working on or looking for, topics, asks, next steps) · Attio link. Email-only contact rows (no topics) are grouped by team member.
+4. **04 Deal Movement**, from Log: Deals and blocks moved. Each row: deal/block name · From → To · size (if known) · owner (current, from Attio) · time · who changed it. Never price, terms or counterparties. Then "Notable updates", then the **Pipeline snapshot** (Attio).
+5. **05 Commitments**, from Log: Commitments (any party). Show what was new or completed yesterday, plus anything open and overdue. Format: Owner to action for party · due.
+6. **06 Firm Intel**, from Log: Firm intel. Public-filing marks are allowed. Never show buyer or seller identities on a live deal.
+7. **Data notes**, always present. It carries the log's Data notes for D (e.g. "Signal offline"), every log-vs-Attio disagreement, items added from Attio that weren't in the log, and any exclusions.
 
 **Empty sections** always render the `empty` partial: *"Nothing to report."* Never drop a section header.
 
+## 4a. Liability guard (applies to everything taken from Attio status or the log)
+The report goes to the whole team, so it follows the same **Liability filter** as the Arrow Log (`arrow/skills/arrow-weekly-log/SKILL.md`, items 1–11 and the writing rules). Attio status must never bring back what the log filter kept out.
+- **Log content:** use log bullets as written. Never "re-expand" a neutral fallback line ("Discussed [deal] with [counterparty type]; details with Brendan") by looking the item up in Attio or anywhere else.
+- **Attio note text, call transcripts and email content:** never copied in. Meeting and person summaries come only from the log's neutral one-liners. If the log has none, the row says "No notes."
+- **Deals, blocks and interests from Attio:** show **name, stage, owner, size, dates and counts**. Deal names and sizes are OK (Brendan-approved 2026-11-05).
+  - Never show **price** per share, share price, valuation multiples used as pricing, **terms**, fees, fee splits, finder or broker or referral compensation, or side arrangements.
+  - Never show **counterparties**: the identity of a buyer or seller. Use a counterparty type such as "fund LP" or "secondary seller" instead, or omit.
+  - Never show cap tables, data-room contents, or financials received under NDA.
+- **People fields:** never show accreditation, KYC/AML, tax, suitability, or any personal data from Attio records (personal emails, phones and addresses included). Never repeat characterizations stored in Attio text fields.
+- **No return or performance language** anywhere: no projected multiples, no "great opportunity", and nothing that could read as an offer or solicitation. Public-filing marks may appear only as factual Firm intel with the SEC link.
+- **Final self-check before rendering or sending:** re-read every row against the Liability filter. Drop anything doubtful, or reduce it to the neutral fallback line, and flag it to Brendan privately in this bot's chat with the source link and rule number. Nothing about held-back items appears in the email.
+
 ## 5. Tone and accuracy
-- Short, factual, third person, no adjectives or hype. Summaries are 1-2 lines (~220 characters) and are taken or condensed from Attio note or transcript text only.
+- Short, factual, third person, no adjectives or hype. Summaries are 1-2 lines (~220 characters) and are taken from the Arrow Log's neutral entries only (§4a). Never use Attio note text or transcripts.
 - **Never fabricate.** If Attio has no notes, the row says so. Never infer what an email said, and never guess a company or role. The fallbacks are "Company not set", "Role not set", or the email domain labeled "(email domain)".
 - All times are in PT with the "PT" label.
 - Keep names as stored in Attio, with whitespace normalized.
 
-## 6. Known Attio limitations (as of Oct 2026)
-- **Email content is never exposed** by the Attio API (the `email:read` scope is metadata-only, and the current connection does not have it). We only know that an email was exchanged, when, and in whose mailbox.
-- `last_email_interaction` holds only the latest interaction. If the report runs at 10 AM, anyone emailed yesterday *and again this morning* drops out of yesterday's list. An `email:read` scope or a webhook-based daily log would fix this.
-- Call recordings and transcripts only exist if Attio's call recorder is in use. As of Oct 8, 2026 there were none.
-- RSVP status is often `pending` for team members. A meeting being listed does not confirm anyone attended.
-- Deal stage history is reliable. Other "record updated" activity has no workspace-wide `updated_at` filter (Attio does not support it), so notable updates are limited to new deals and stage changes.
+## 6. Known limitations
+- The log only covers what the Arrow Log bot can read. If Signal or iMessage is offline (Brendan's Mac), those items show up late, and Data notes says so.
+- Attio never exposes email content. "What about" lines for other team members' email come from the log only when an Arrow source shows the content; otherwise the row says "Email (no content)".
+- A meeting being listed in Attio does not confirm anyone attended.
+- Deal stage history in Attio is reliable. Attio has no workspace-wide `updated_at` filter, so "Notable updates" covers only new deals, stage changes, and what the log reports.
+
+## Changelog
+- 2026-11-05 v2.2: go-live. People Talked To → People Updates (from log). Commitments are any-party. Deal names and sizes OK; prices, terms and counterparties never. Log is a general shared source any Arrow bot may read.
+- 2026-11-05 v2.1: added the §4a Liability guard (Brendan, "no liability inducing information"). No prices, terms or counterparties; names and sizes OK. No Attio note or transcript text, a final self-check, and private flags to Brendan.
+- 2026-11-05 v2: Brendan approved. The report now formats the Arrow Log plus current Attio status, and no longer scans comms. Sections 05 Commitments and 06 Firm Intel are new, and 03 People Talked To now comes from the log. There is a log freshness gate. Send terms are unchanged (DECISIONS 2026-10-29).

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-05
+- New draft skills: arrow/skills/arrow-attio-firm-context (Attio company intel, PROPOSE mode; bot-plan.md) and arrow/skills/arrow-weekly-log (weekly Arrow Log doc; bot-plan.md).
+- arrow-weekly-log is a general shared Arrow source (any Arrow bot may read); Liability filter approved; Commitments are any-party; People updates; personal/mixed Arrow-account items excluded by content; deal names and sizes OK, prices/terms/counterparties never. Reports carry a matching Liability guard.
+- daily-arrow-report and arrow-weekly become formatters/senders that read the weekly log plus current Attio status; neither scans comms. Arrow Weekly's Sep 21 tighter report bar moved from bot memory into the skill.
+- Contact Context split: Notion CRM stays on Contact Context (skills/crm-maintenance); attio-contact-context moves to new bot "Arrow Attio People" (inherits routines/state/token; bot-plan.md); arrow-attio-firm-context runs on new bot "Arrow Attio Firms" (PROPOSE; StepStone = Seller); arrow-weekly-log runs on new bot "Arrow Log". Plan: projects/contact-context-attio-split.md.
+- Attio: 7 company attributes created (firm_type, arrow_role, firm_context, holdings_marks, key_people, firm_intel_updated, firm_intel_source); public-filing marks allowed on companies.
+- Arrow Drive README amendment v8 (applied 2026-11-05): folder 00 — Firm & Admin / Arrow Weekly Log (1Ge4r1wH2tMllGqom6sMQX96xkmBk58I5).
+
+
 ## 2026-10-19
 - Repo created. Scaffolding, ARCHITECTURE, INDEX, profile, DECISIONS, RUNBOOK.
 - Stubs for morning-brief, message-triage, prep-for-meeting, week-ahead.

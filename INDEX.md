@@ -12,7 +12,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | delta-bookkeeper | composio:quickbooks, Delta Intake | composio:quickbooks | profile.md | live (Claude); becomes accounting-and-tax |
 | chief-of-staff | todoist, gmail (arrow), whatsapp, signal, imessage, gcal x2, attio, other bots' transcripts | todoist, chat | profile.md | live (Grokbot) |
 | comms-ingest | signal, imessage, whatsapp, 6 gmails, gcal, attio | comms index, todoist | — | live (Grokbot); migrate. Infrastructure: three skills read its index. |
-| crm-maintenance | comms index, direct thread reads (whatsapp, signal, imessage, 5 gmails, gcal), attio (read only, incl. calls) | composio:notion only (append only); never writes Attio | comms-ingest, brendan-crm | live (Grokbot); migrate |
+| crm-maintenance | comms index, direct thread reads (whatsapp, signal, imessage, 5 gmails, gcal), attio (read only, incl. calls) | composio:notion only (append only); never writes Attio | comms-ingest, brendan-crm | live (Grokbot, bot "Contact Context", Notion only after 2026-11-05 split); migrate |
 | suggested-actions | comms index or direct reads, notion, attio | chat (drafts only) | comms-ingest, deal-indications | live (Grokbot); migrate |
 | call-cadence | notion People CRM, imessage, whatsapp, signal, gcal | chat (call list, drafts), gcal (15-min call events) | brendan-crm | live (Grokbot), v1.1 |
 | money-queue | QBO x3, Chase, Ramp, Shopify, Meta | proposal list only | hard rules | planned |
@@ -30,9 +30,11 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | private-markets-desk | web | chat, one email to the team | — | live (Grokbot); migrate |
 | morning-buy-sell-sheet | composio:attio (blocks, interests, last 7 days) | chat; WhatsApp to Gabe once approved (not live yet) | — | live (Grokbot) |
 | nport-scraper | SEC N-PORT, Form D | holdings/people database, tracker Page, monthly digest to chat | — | live (Grokbot), v1.1, monthly refresh |
-| arrow-weekly | composio:attio | docx, email to leadership | — | draft |
-| daily-arrow-report | composio:attio | html email to team | — | draft |
-| attio-contact-context | comms-index, gmail (5 inboxes), gcal, whatsapp/signal (incl. team groups)/imessage (read), composio:attio (incl. calls, transcripts); never Notion | composio:attio People only: arrow_context, introduced_by, knows, close_with, contact_owner, context_updated, check_size_range, sector_of_interest, lp_fo_ria (+ FO tag), empty contact fields; /workspace/attio-context/state.json (cursor), /workspace/attio-backfill/ (queue.json, log.md, lock) | comms-ingest | live (Grokbot): routines "Attio contact context" (event runs, 5 times) and "Attio backfill" (Backfill mode, every 30 min 7:15am–9:45pm PT, tiers A–C) |
+| arrow-attio-firm-context | comms-index, gmail (brendan@arrowfund.co), whatsapp/signal Arrow chats (incl. "Data OS input"), gcal via Attio meetings, /workspace/nport/nport.db (read), composio:attio | composio:attio Companies only: firm_type, arrow_role, firm_context, holdings_marks, key_people, firm_intel_updated, firm_intel_source (created 2026-11-05) + dated notes, each after approval; /workspace/attio-firms/ | nport-scraper, comms-ingest | draft; bot "Arrow Attio Firms", PROPOSE mode; routine "Attio firm context" `0 9,13,16 * * 1-5` + `0 10 * * 0,6` PT |
+| arrow-weekly-log | gmail (brendan@arrowfund.co), whatsapp/signal/imessage Arrow chats, Attio meetings + changes, comms-index | Google Doc "Arrow Log — week of <date>" in Drive 00 — Firm & Admin / Arrow Weekly Log (1Ge4r1wH2tMllGqom6sMQX96xkmBk58I5; googledrive_left-bim + googledocs_colius-skiv), /workspace/arrow-log/ | attio-contact-context, arrow-attio-firm-context | draft; bot "Arrow Log"; routines "Arrow weekly log" (`30 9 * * *`, `0 12,19 * * *`) + "Arrow log Friday wrap" (`30 6 * * 5`), PT; any Arrow bot may read (read-only); daily-arrow-report and arrow-weekly are current readers; Liability filter before every write; Commitments any-party; People updates |
+| arrow-weekly | arrow-weekly-log doc (Friday wrap + sections); composio:attio (current status); googledrive/googledocs (read) | docx, email to leadership | arrow-weekly-log | draft; `0 7 * * 5` PT after first send approved |
+| daily-arrow-report | arrow-weekly-log doc (yesterday's entries); composio:attio (current status); googledrive/googledocs (read) | html email to team | arrow-weekly-log | draft; `0 10 * * *` PT after process approved |
+| attio-contact-context | comms-index, gmail (5 inboxes), gcal, whatsapp/signal (incl. team groups)/imessage (read), composio:attio (incl. calls, transcripts); never Notion | composio:attio People only: arrow_context, introduced_by, knows, close_with, contact_owner, context_updated, check_size_range, sector_of_interest, lp_fo_ria (+ FO tag), empty contact fields; /workspace/attio-context/state.json (cursor), /workspace/attio-backfill/ (queue.json, log.md, lock) | comms-ingest | live (Grokbot, bot "Arrow Attio People" after split; inherits routines, state.json, backfill queue, token): routines "Attio contact context", "Attio backfill" |
 
 ## Projects (`projects/`)
 
@@ -41,6 +43,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | binder-build | in progress | comb brendan-crm |
 | mac-mini-setup | next | buy the mini |
 | 1password-migration | after mini | open account |
+| contact-context-attio-split | go-live 2026-11-05 | create bots Arrow Attio People / Firms / Log; hand over Attio routines |
 | drive-restructure | after 1Password | — |
 | photo-consolidation | after 1Password | — |
 | health-insurance | decide by early Nov | pick route, engage broker |

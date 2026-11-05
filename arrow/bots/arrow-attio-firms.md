@@ -15,7 +15,7 @@
 | **Depends on** | Knowledge repo and AGENTS.md; firm-context skill; comms-ingest; N-PORT scraper/read-only filing data; Brendan's Mac online for Signal |
 | **Feeds** | Brendan's firm-update proposals; Attio Companies only after approval; Arrow Log reads firm context |
 | **Connectors needed** | Composio (Attio account `attio_bosser-wooded`, Gmail account `gmail_tagish-stuss`); Signal MCP; `whatsapp-mcp` |
-| **Last verified** | 2026-11-05 · registry executor, from live description and owner-bot supplied routine/configuration; no manual event run performed |
+| **Last verified** | 2026-11-05 · registry executor; template and live description rechecked on push retry; routine/configuration supplied by owner bot; no manual event run performed |
 
 ## Routines
 

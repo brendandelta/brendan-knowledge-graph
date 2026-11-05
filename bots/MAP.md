@@ -14,7 +14,7 @@ A Cross bot may mention Arrow only generically and must point to [`arrow/BOTS.md
 |---|---|---|---|
 | Grok Bot | [grok-bot.md](grok-bot.md) | `skills/grok-bot` | live (self-reported 2026-11-05) |
 | CoS Bot | [cos-bot.md](cos-bot.md) | `skills/chief-of-staff` | pending self-report |
-| Inbox Todo | [inbox-todo.md](inbox-todo.md) | `skills/comms-ingest` | pending self-report |
+| Inbox Todo | [inbox-todo.md](inbox-todo.md) | `skills/comms-ingest` | live (self-reported 2026-11-05) |
 | Suggested Actions | [suggested-actions.md](suggested-actions.md) | `skills/suggested-actions` | pending self-report |
 
 ## Personal

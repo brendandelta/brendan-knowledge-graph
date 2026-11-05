@@ -2,7 +2,7 @@
 # Bot registry entry template
 # Copy to bots/<slug>.md (Personal / Delta / Janey / Cross) or arrow/bots/<slug>.md (Arrow only).
 # Strip secrets, tokens, account numbers, and personal credentials before saving.
-# The bot that owns this entry updates it whenever its description, routines, cadence, or send permissions change, in the same commit as INDEX.md and CHANGELOG.md (plus arrow/BOTS.md or bots/MAP.md).
+# The bot that owns this entry updates it whenever its description, routines, cadence, or send permissions change, in the same commit as arrow/BOTS.md or bots/MAP.md plus a one-line CHANGELOG.md entry. Touch INDEX.md only when a skill or file is added or removed.
 ---
 
 # <Bot display name>

@@ -12,7 +12,7 @@
 | **Write targets** | Attio blocks + interests (Marwan-sourced, always linking person 582d6212-d6fc-4169-9f11-726d7f129f09 and The Spartan Group company 4100acbb-59de-435f-9541-e517a3437b69); Brendan's OffBook board (/my-board) Sell-Side and Buy-Side positions posted by this bot only; box state files `/workspace/marwan-board/state.json`, `/workspace/marwan-board/my-board-state.json`, `/workspace/marwan-board/attio-schema.md` |
 | **Send permissions** | Messages only Brendan, in its own chat. Standing OK (since 2026-11-02) to post, edit and remove positions this bot posted on Brendan's OffBook board without asking. Must get Brendan's explicit yes before adding a Marwan deal that matches our book to his board. Never edits Brendan's hand-added positions, Spartan deals or Master Board; never puts investor/seller/intermediary names on the board. No email/Slack/WhatsApp sends. |
 | **Depends on** | Attio data entered by Arrow team / other Arrow Attio bots; OffBook Google sign-in in the box browser |
-| **Feeds** | Morning Buy/Sell Sheet and other Attio readers (Marwan-sourced blocks/interests); Spartan's view of Arrow supply/demand via OffBook |
+| **Feeds** | Attio readers (Marwan-sourced blocks/interests); Spartan's view of Arrow supply/demand via OffBook |
 | **Connectors needed** | Composio (`user-composio`, Attio tools); box browser (computer use) for OffBook |
 | **Last verified** | 2026-11-05 · self-reported |
 

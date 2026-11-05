@@ -68,7 +68,7 @@
 
 ## 2026-10-29
 
-**Send exceptions (approved by Brendan).** Private Markets Desk daily pack, Arrow Weekly and Daily Arrow Report go out as emails (Arrow Weekly and Daily Arrow Report auto-send only after Brendan approves the process). Deal Indications posts "added into Attio" acks on Signal. The Buy/Sell Sheet goes only to Gabe on WhatsApp, once Brendan approves it (not done yet). Call Cadence sends calendar invites. Everything else still waits for Brendan. Supersedes the 10/20 "no send exceptions".
+**Send exceptions (approved by Brendan).** Private Markets Desk daily pack, Arrow Weekly and Daily Arrow Report go out as emails (Arrow Weekly and Daily Arrow Report auto-send only after Brendan approves the process). Deal Indications posts "added into Attio" acks on Signal. Call Cadence sends calendar invites. Everything else still waits for Brendan. Supersedes the 10/20 "no send exceptions".
 
 **Sync-and-flag.** Each bot keeps its own instructions and keeps its skill file here matching how it runs. Where a bot and the repo disagree, the bot's current way wins, but only after the gap is flagged to Brendan and he approves each change. Each bot edits only its own skill file; Grok Bot commits with INDEX.md and CHANGELOG.md.
 
@@ -89,3 +89,7 @@
 ## 2026-11-04
 
 **Notion CRM and Attio context are two separate processes (Brendan approved, chat t74u–t78u).** Inputs are shared; outputs are siloed. Both read the same sources (Comms Index, WhatsApp, Signal incl. team groups, iMessage, Attio calls/transcripts, the 5 Gmail inboxes, Calendar). The Notion CRM (brendan-crm, crm-maintenance) writes only Notion and treats Attio as read-only. arrow/skills/attio-contact-context (renamed from attio-context) is the only writer of Attio People context, relationship, investor and empty contact fields, and never reads or writes Notion. This supersedes the 2026-11-03 exception that read Notion Role/Company/Based in into Attio, and the planned crm-sync-feed. Why: the old mirror specs contradicted each other (sectors in, sectors banned) and two writers on the same Attio fields made provenance unclear. Label mapping for What they are: VC/fund manager → GP; family office → LP + FO tag; broker/placement/finder → Intermediary; the word "Broker" is never used. Scope: people only Brendan has spoken to (no other Arrow member on a call, thread, email or group, no block/interest/list link) are never added or suggested for Attio, and existing records with only Brendan-only context get neutral contact fields at most; nothing is deleted. Teammates' own records never get a Relationship owner.
+
+## 2026-11-05
+
+**Morning Buy/Sell Sheet retired.** Brendan deleted the bot, its routine, its skill (`arrow/skills/morning-buy-sell-sheet`), and its registry entry. A new block/interest qualification process with internal and external deal boards will replace it on a different system. The 2026-10-29 send exception for a Gabe/WhatsApp Buy/Sell Sheet is void.

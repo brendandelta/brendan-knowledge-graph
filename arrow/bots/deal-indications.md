@@ -12,7 +12,7 @@
 | **Write targets** | Attio (Arrow Fund workspace) blocks, interests, companies and people via Composio; append-only Google Sheet run log `1L5_uGlWeTZca6HTMofMGzYHNssq8DxCDfxecqweAeeY`; `/workspace/attio-sync/state.json`. Own skill file in this repo. |
 | **Send permissions** | Standing permission: send exactly `added into Attio` via Signal `draft_message` then `send_message`, only in the internal Signal chats Arrow OS Data Input (`04d20918`), Arrow Fund Team (`4e28c83d`) and ARROW FUND - Vaidehi Chat (`90b825e4`), after adding or updating from a message in that chat, at most once per chat per run. Never send anywhere else. Everything else is drafts only (get Brendan's approval first). Never move money, send, delete or pay without Brendan's explicit confirm. |
 | **Depends on** | Composio (Attio, Gmail, Google Sheets); Signal MCP; WhatsApp MCP |
-| **Feeds** | Attio blocks and interests (read by Morning Buy/Sell Sheet, Daily Arrow Report, Arrow Weekly, Marwan Deal Board, Arrow Log); run-log Google Sheet |
+| **Feeds** | Attio blocks and interests (read by Daily Arrow Report, Arrow Weekly, Marwan Deal Board, Arrow Log); run-log Google Sheet |
 | **Connectors needed** | user-composio (Attio, Gmail, Google Sheets); user-Signal MCP; user-whatsapp-mcp |
 | **Last verified** | 2026-11-05 · Deal Indications Bot (self-report) |
 

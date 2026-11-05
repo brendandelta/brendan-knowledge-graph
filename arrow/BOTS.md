@@ -14,7 +14,7 @@ Template: [`arrow/bots/_TEMPLATE.md`](_TEMPLATE.md).
 | N-PORT Scraper | [nport-scraper](bots/nport-scraper.md) | `arrow/skills/nport-scraper` | self-reported 2026-11-05 · live (monthly refresh; top-100 done) |
 | Private Markets Desk | [private-markets-desk](bots/private-markets-desk.md) | `arrow/skills/private-markets-desk` | self-reported 2026-11-05 · live |
 | Arrow Weekly | [arrow-weekly](bots/arrow-weekly.md) | `arrow/skills/arrow-weekly` | self-reported 2026-11-05 · test (no routine; first send pending) |
-| Arrow Document Filing Bot | [arrow-document-filing](bots/arrow-document-filing.md) | `arrow/skills/arrow-fund-inbox` (+ `document-filing`) | self-reported 2026-11-05 · live; Arrow-facing only, private cross-silo registry relocation pending |
+| Arrow Document Filing Bot | [arrow-document-filing](bots/arrow-document-filing.md) | `arrow/skills/arrow-fund-inbox` (+ `document-filing`) | live (self-reported 2026-11-05) |
 | Arrow Attio Firms | [arrow-attio-firms](bots/arrow-attio-firms.md) | `arrow/skills/arrow-attio-firm-context` | self-reported 2026-11-05 · live (PROPOSE; 1 enabled routine; writes require approval) |
 | Deal Indications Bot | [deal-indications](bots/deal-indications.md) | `arrow/skills/deal-indications` | self-reported 2026-11-05 · live |
 | Marwan Deal Board Bot | [marwan-deal-board](bots/marwan-deal-board.md) | (none in repo yet; logic in routine prompts) | self-reported 2026-11-05 · live (2 routines) |

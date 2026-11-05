@@ -5,7 +5,7 @@ description: Keeps one Google Doc per week ("Arrow Log — week of <Mon D, YYYY>
 
 # arrow-weekly-log
 
-**Status:** v1.2 FINAL draft (2026-11-05). Approved by Brendan for go-live; not running until the "Arrow Log" bot and its routines are created.
+**Status:** v1.3 LIVE (2026-11-05). Running on the "Arrow Log" bot (id f322ab2a-a8c5-4a6b-9fd3-b47148aaddf5); first backfill (week of Nov 2) published 2026-11-05 12:10pm PT.
 **Owner bot:** "Arrow Log" (its own dedicated bot; plan in arrow-log-bot-plan.md). No other bot writes the log.
 **Readers:** Any Arrow bot may read the log (read-only). It is a general shared Arrow source, not limited to the two report bots. Current readers: `daily-arrow-report` and `arrow-weekly` (each also pulls current Attio status). Other bots keep reading Brendan's / the team's comms directly unless they explicitly choose the log.
 
@@ -141,20 +141,21 @@ Written by the Friday 6:30am PT run (before Arrow Weekly's 7:00am run), then ref
 6. Advance only the cursors that succeeded. Unlock.
 7. Message nobody except Brendan in this bot's own chat, and only for (a) Liability-filter flags and (b) a run that failed twice in a row (one line with the error).
 
-## Schedule (proposed)
+## Schedule (live)
 All times are CRON_TZ=America/Los_Angeles, on the "Arrow Log" bot.
-- **"Arrow weekly log"**: `30 9 * * *` and `0 12,19 * * *`, i.e. 9:30am, 12:00pm and 7:00pm PT every day.
+- **"Arrow weekly log"** (folder `arrow-weekly-log`): ONE routine with two cron listeners, `30 9 * * *` and `0 12,19 * * *`, i.e. 9:30am, 12:00pm and 7:00pm PT every day. Timing flexible, default window ±15 min.
   - 12pm and 7pm are Brendan's cadence.
   - 9:30am closes out yesterday (7pm–midnight) 30 minutes before Daily Arrow Report runs at 10:00am (`0 10 * * *`).
   - On Fridays the 9:30, 12 and 7 runs also refresh the Friday wrap.
-- **"Arrow log Friday wrap"**: `30 6 * * 5`, i.e. Friday 6:30am PT. It writes the Friday wrap (plus a normal update) 30 minutes before Arrow Weekly runs at 7:00am (`0 7 * * 5`).
+- **"Arrow log Friday wrap"** (folder `arrow-log-friday-wrap`): `30 6 * * 5`, i.e. Friday 6:30am PT. Timing flexible with lateMinutes 0 (may start up to 15 min early, never late). It writes the Friday wrap (plus a normal update), done by 6:55am, before Arrow Weekly runs at 7:00am (`0 7 * * 5`).
 - Monday rollover: the first run on Monday (9:30am PT) creates the new week's doc. Items dated Sunday still go to the previous week's doc.
 
-## Live routine prompt (draft)
-- **"Arrow weekly log"** and **"Arrow log Friday wrap"** (folder `arrow-log`, bot "Arrow Log"):
-  "Load arrow/skills/arrow-weekly-log/SKILL.md and run one Run. Arrow only: apply the Filter strictly, then the Liability filter with its final self-check, before every write. When in doubt, leave it out, and flag it privately to Brendan in this chat, never in the doc. Write only to this week's Arrow Log doc and the arrow-log state files. Send nothing and message no one else. In this chat, tell Brendan only about Liability-filter flags and runs that failed twice in a row."
+## Live routine prompts
+- **"Arrow weekly log"**: "Pull the knowledge repo clone at /home/box/Claude/brendan-knowledge-graph, load arrow/skills/arrow-weekly-log/SKILL.md, and do one Run. Arrow only: apply the Filter, then the Liability filter, and do the final self-check on every entry before writing. When in doubt, leave it out, and flag it privately to Brendan in this chat, never in the doc. Write only to the Arrow Log doc for each item's week and to /workspace/arrow-log/. Send nothing, draft nothing, share nothing, and message no one else. In this chat, tell Brendan only about Liability-filter flags and runs that failed twice in a row; otherwise end silently with no message."
+- **"Arrow log Friday wrap"**: "Pull the knowledge repo clone at /home/box/Claude/brendan-knowledge-graph, load arrow/skills/arrow-weekly-log/SKILL.md, and do one Run, then write the Friday wrap at the top of this week's doc (Friday wrap section). It must be done by 6:55am PT, because Arrow Weekly reads it at 7:00am. Same rules as every Run: Arrow only, build the wrap only from entries already in the doc, run the Liability filter final self-check on every entry and on the wrap before saving, write only the log doc and /workspace/arrow-log/, and send, draft, share or message nothing. In this chat, tell Brendan only about Liability-filter flags and runs that failed twice in a row; otherwise end silently with no message."
 
 ## Changelog
+- 2026-11-05 v1.3: live on the Arrow Log bot. Schedule records the actual routines: one "Arrow weekly log" routine with both crons (flexible ±15) and "Arrow log Friday wrap" with lateMinutes 0; live routine prompts pasted verbatim (load from repo clone after git pull).
 - 2026-11-05 v0.1 draft (Grok Bot, for Brendan's review).
 - 2026-11-05 v1.2: go-live revisions (Brendan). Any Arrow bot may read the log. General (not Brendan-centric): Commitments are `[Owner] to [action] for [party]` for any party; "People talked to" became "People updates" (role/firm changes, what they're working on or looking for, topics, asks, next steps). Arrow-account personal/mixed items are excluded by content, not by inbox. Deal names and sizes OK; prices, terms and counterparties never. Liability filter approved as written.
 - 2026-11-05 v1.1: added the Liability filter (Brendan: "make sure 100% that no liability inducing information is being recorded in the log"). It runs before every write, has a final self-check, and private flags go to Brendan in the bot's chat.

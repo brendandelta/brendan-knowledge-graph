@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-05
+- arrow-weekly-log v1.3: live on the Arrow Log bot; first backfill published. Schedule records the actual routines (one "Arrow weekly log" routine with both crons; Friday wrap lateMinutes 0) and the live routine prompts.
 - Bot registry: `AGENTS.md` rules; templates `bots/_TEMPLATE.md` and `arrow/bots/_TEMPLATE.md`; indexes `bots/MAP.md` and `arrow/BOTS.md`; pending self-report stubs for known bots; Grok Bot entry `bots/grok-bot.md` + skill `skills/grok-bot` with routine "Bot registry refresh" (`0 19 * * *` PT).
 - Personal CRM Contact Context: `skills/crm-maintenance` renamed bot (was Contact Context); Notion-only; weekday/weekend routines unchanged; Attio routines on that bot paused pending Brendan delete; Attio People → Arrow Attio People; firm intel → Arrow Attio Firms; Weekly Log writer → Arrow Log only. Registry: `bots/personal-crm-contact-context.md`.
 - attio-contact-context v2.3: relationship evidence rules (direct evidence + per-edge source link, both-endpoint human guard, add-only); introduced_by stays single, Introducer = inverse `introduced`; Backfill adds A–C relationship checks even when Arrow context is filled (relationship_checked.json). Backfill routine prompt updated to match.

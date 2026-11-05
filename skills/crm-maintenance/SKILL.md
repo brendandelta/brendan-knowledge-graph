@@ -5,12 +5,12 @@ description: Enrich the Notion People database from the comms index and direct t
 
 # crm-maintenance
 
-**Status:** live on Grokbot (**Personal CRM Contact Context**, renamed from Contact Context 2026-11-05), Notion-only; migrate
+**Status:** live on Grokbot (**Personal CRM Contact Context**, Notion only; Attio routines deleted 2026-11-05); migrate
 **Source:** Synced 2026-10-29 from the live routine prompts (weekdays folder `daily-contact-context`, weekends folder `crm-enrichment-weekends`), verbatim; re-synced 2026-11-04 after the Attio silo; bot renamed Personal CRM Contact Context 2026-11-05. Earlier export: `references/grokbot-export-2026-10-20.md`. Keep this file and the live prompts identical; a change to one is made to the other. Registry: `bots/personal-crm-contact-context.md`.
 
 Migration notes: the Notion 'Delta CRM Spec' page was retired 2026-10-29; skills/brendan-crm/SKILL.md is the CRM spec. Section 10 (open items) is working state, not instructions; move to TASKS.md or memory.
 
-Silo (2026-11-04, Brendan approved; split and rename 2026-11-05): this process writes Notion only and never writes to Attio. The bot **Personal CRM Contact Context** (formerly Contact Context) keeps only this Notion CRM job. Its weekday and weekend Notion routines are unchanged (`daily-contact-context`, `crm-enrichment-weekends`). Its Attio routines on this bot are **paused**, pending Brendan's delete confirmation — do not run them. **Arrow Attio People** owns Attio People writes (`arrow/skills/attio-contact-context`). **Arrow Attio Firms** owns firm intel (`arrow/skills/arrow-attio-firm-context`). **Arrow Log** is the only writer of the Weekly Log (`arrow/skills/arrow-weekly-log`). See projects/contact-context-attio-split.md and bots/personal-crm-contact-context.md. Outputs stay siloed. The live prompts below already carry the Notion-only rule.
+Silo (2026-11-04, Brendan approved; split and rename 2026-11-05): this process writes Notion only and never writes to Attio. The bot **Personal CRM Contact Context** (formerly Contact Context) keeps only this Notion CRM job. Its weekday and weekend Notion routines are unchanged (`daily-contact-context`, `crm-enrichment-weekends`). Its Attio routines on this bot were **deleted** 2026-11-05 (Brendan confirm) — do not recreate them. **Arrow Attio People** owns Attio People writes (`arrow/skills/attio-contact-context`). **Arrow Attio Firms** owns firm intel (`arrow/skills/arrow-attio-firm-context`). **Arrow Log** is the only writer of the Weekly Log (`arrow/skills/arrow-weekly-log`). See projects/contact-context-attio-split.md and bots/personal-crm-contact-context.md. Outputs stay siloed. The live prompts below already carry the Notion-only rule.
 
 Both live routine prompts start with this paragraph:
 
@@ -170,5 +170,6 @@ Rules:
 - Ping Brendan only for notable items, in this Grok Bot chat.
 
 ## Changelog
+- 2026-11-05 — Attio routines deleted on Brendan confirm (t86u): attio-context, attio-backfill, attio-questions-evening-list-nov-5. Notion weekday/weekend routines only. Registry: bots/personal-crm-contact-context.md.
 - 2026-11-05 — Bot renamed **Personal CRM Contact Context**. Notion-only; weekday/weekend routines unchanged. Attio routines on this bot paused pending Brendan delete. Arrow Attio People / Firms / Log own Attio People, firm intel, and the Weekly Log. See projects/contact-context-attio-split.md and bots/personal-crm-contact-context.md.
 - 2026-11-05 — Contact Context split: Notion-only; Attio work moves to Arrow Attio People.

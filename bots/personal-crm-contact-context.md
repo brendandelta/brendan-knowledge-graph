@@ -6,7 +6,7 @@
 | **Bot id** | `89db7e33-9cc6-4c60-9044-923d6879b0bf` |
 | **Silo** | Personal |
 | **Purpose** | Keeps Brendan's personal Notion People CRM (Delta) current: syncs interactions from messages, email and calendar into people pages, enriches identities, and surfaces actionable follow-ups. Notion only; never writes Attio. |
-| **Status** | live (renamed from Contact Context 2026-11-05; 3 Attio routines paused, delete awaiting Brendan's confirm in this bot's chat) |
+| **Status** | live (Notion only; Attio routines deleted 2026-11-05 on Brendan's confirm) |
 | **Repo skill path** | `skills/crm-maintenance/SKILL.md` (enrichment rules: `contact-enrichment` skill) |
 | **Data sources (read)** | WhatsApp (whatsapp-mcp), Signal (Signal MCP; index-only when schema issue / Mac offline), iMessage (imessage MCP; needs Brendan's Mac online), Gmail and Google Calendar via Composio, Attio read-only via Composio, /workspace/comms-index (read only), public web for enrichment |
 | **Write targets** | Brendan's Notion People CRM (properties + append-only page bodies) and its Run Log; bot memory/journal. Never Attio, never the Arrow Weekly Log, never /workspace/comms-index. |
@@ -14,7 +14,7 @@
 | **Depends on** | Composio connections (Notion, Gmail, Calendar, Attio read), WhatsApp/Signal/iMessage MCPs, Brendan's Mac being online for Signal/iMessage |
 | **Feeds** | Brendan (chat digests), CoS Bot / Call Cadence / Suggested Actions via the Notion CRM they read |
 | **Connectors needed** | user-composio (Notion, Gmail, Google Calendar, Attio read), user-whatsapp-mcp, user-Signal MCP, user-imessage |
-| **Last verified** | 2026-11-05 12:20 PT · self-report |
+| **Last verified** | 2026-11-05 13:45 PT · Attio routines deleted |
 
 ## Routines
 
@@ -22,9 +22,8 @@
 |---|---|---|---|---|---|
 | CRM enrichment (weekdays) | daily-contact-context | `0 8,12,15 * * 1-5` | default | Sync new interactions into the Notion People CRM, enrich high-confidence identities, log the run, per skills/crm-maintenance | Brendan in this chat, only actionable items |
 | CRM enrichment (weekends) | crm-enrichment-weekends | `0 8,17 * * 0,6` | default | Same Notion CRM job on weekends | Brendan in this chat, only actionable items |
-| Attio contact context | attio-context | `30 8,12,15 * * 1-5` and `30 8,17 * * 0,6` | flexible ±15 min | PAUSED 2026-11-05; delete pending Brendan's confirm. Job now owned by Arrow Attio People | — |
-| Attio backfill | attio-backfill | `15,45 7-21 * * *` | flexible ±10 min | PAUSED 2026-11-05; delete pending Brendan's confirm. Job now owned by Arrow Attio People | — |
-| Attio questions evening list (Nov 5) | attio-questions-evening-list-nov-5 | `0 17 5 11 *` (one-off) | flexible ±10 min | PAUSED 2026-11-05; Arrow Attio People took over the list | — |
+
+Deleted 2026-11-05 (Brendan confirm t86u): Attio contact context (`attio-context`), Attio backfill (`attio-backfill`), Attio questions evening list (Nov 5) (`attio-questions-evening-list-nov-5`). All Attio People work now belongs to Arrow Attio People (`arrow/bots/arrow-attio-people.md`).
 
 ## Full description (verbatim, secrets stripped)
 

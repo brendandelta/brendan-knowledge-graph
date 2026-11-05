@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-05
+- Personal CRM Contact Context: Brendan confirmed (t86u); deleted Attio routines attio-context, attio-backfill, attio-questions-evening-list-nov-5. Bot is Notion-only (weekday/weekend CRM enrichment). Registry + MAP + crm-maintenance skill updated; Arrow Attio People owns all Attio People work.
 - arrow-weekly-log v1.3: live on the Arrow Log bot; first backfill published. Schedule records the actual routines (one "Arrow weekly log" routine with both crons; Friday wrap lateMinutes 0) and the live routine prompts.
 - Bot registry: `AGENTS.md` rules; templates `bots/_TEMPLATE.md` and `arrow/bots/_TEMPLATE.md`; indexes `bots/MAP.md` and `arrow/BOTS.md`; pending self-report stubs for known bots; Grok Bot entry `bots/grok-bot.md` + skill `skills/grok-bot` with routine "Bot registry refresh" (`0 19 * * *` PT).
 - Personal CRM Contact Context: `skills/crm-maintenance` renamed bot (was Contact Context); Notion-only; weekday/weekend routines unchanged; Attio routines on that bot paused pending Brendan delete; Attio People → Arrow Attio People; firm intel → Arrow Attio Firms; Weekly Log writer → Arrow Log only. Registry: `bots/personal-crm-contact-context.md`.

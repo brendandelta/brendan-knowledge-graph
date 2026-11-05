@@ -12,7 +12,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | delta-bookkeeper | composio:quickbooks, Delta Intake | composio:quickbooks | profile.md | live (Claude); becomes accounting-and-tax |
 | chief-of-staff | todoist, gmail (arrow), whatsapp, signal, imessage, gcal x2, attio, other bots' transcripts | todoist, chat | profile.md | live (Grokbot) |
 | comms-ingest | signal, imessage, whatsapp, 6 gmails, gcal, attio | comms index, todoist | — | live (Grokbot); migrate. Infrastructure: three skills read its index. |
-| crm-maintenance | comms index, direct thread reads (whatsapp, signal, imessage, 5 gmails, gcal), attio (read only, incl. calls) | composio:notion only (append only); never writes Attio | comms-ingest, brendan-crm | live (Grokbot, bot "Personal CRM Contact Context", Notion only; Attio routines paused pending delete); migrate |
+| crm-maintenance | comms index, direct thread reads (whatsapp, signal, imessage, 5 gmails, gcal), attio (read only, incl. calls) | composio:notion only (append only); never writes Attio | comms-ingest, brendan-crm | live (Grokbot, bot "Personal CRM Contact Context", Notion only; Attio routines deleted 2026-11-05); migrate |
 | suggested-actions | comms index or direct reads, notion, attio | chat (drafts only) | comms-ingest, deal-indications | live (Grokbot); migrate |
 | call-cadence | notion People CRM, imessage, whatsapp, signal, gcal | chat (call list, drafts), gcal (15-min call events) | brendan-crm | live (Grokbot), v1.1 |
 | grok-bot | knowledge repo, connectors per task | bots/MAP.md, bots/grok-bot.md, chat | AGENTS.md bot registry | live (Grokbot); routine "Bot registry refresh" 7pm PT |
@@ -49,7 +49,7 @@ Rebuild map of live Grok Bots. Arrow-only entries under `arrow/bots/` + [`arrow/
 | binder-build | in progress | comb brendan-crm |
 | mac-mini-setup | next | buy the mini |
 | 1password-migration | after mini | open account |
-| contact-context-attio-split | go-live 2026-11-05 | create bots Arrow Attio People / Firms / Log; hand over Attio routines |
+| contact-context-attio-split | done 2026-11-05 | Personal CRM Attio routines deleted; Arrow Attio People / Firms / Log live |
 | drive-restructure | after 1Password | — |
 | photo-consolidation | after 1Password | — |
 | health-insurance | decide by early Nov | pick route, engage broker |

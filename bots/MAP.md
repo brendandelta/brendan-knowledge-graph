@@ -21,7 +21,7 @@ A Cross bot may mention Arrow only generically and must point to [`arrow/BOTS.md
 
 | Bot | File | Skill | Status in registry |
 |---|---|---|---|
-| Personal CRM Contact Context | [personal-crm-contact-context.md](personal-crm-contact-context.md) | `skills/crm-maintenance` | live (Notion only; 3 Attio routines paused pending delete; self-reported 2026-11-05) |
+| Personal CRM Contact Context | [personal-crm-contact-context.md](personal-crm-contact-context.md) | `skills/crm-maintenance` | live (Notion only; Attio routines deleted 2026-11-05) |
 | Call Cadence | [call-cadence.md](call-cadence.md) | `skills/call-cadence` | live (self-reported 2026-11-05) |
 
 ## Delta

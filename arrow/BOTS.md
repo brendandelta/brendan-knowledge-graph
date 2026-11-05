@@ -12,7 +12,7 @@ Template: [`arrow/bots/_TEMPLATE.md`](_TEMPLATE.md).
 |---|---|---|---|
 | Morning Buy/Sell Sheet | [morning-buy-sell-sheet](bots/morning-buy-sell-sheet.md) | `arrow/skills/morning-buy-sell-sheet` | self-reported 2026-11-05 · live (Signal; Gabe/WhatsApp switch pending) |
 | N-PORT Scraper | [nport-scraper](bots/nport-scraper.md) | `arrow/skills/nport-scraper` | pending self-report |
-| Private Markets Desk | [private-markets-desk](bots/private-markets-desk.md) | `arrow/skills/private-markets-desk` | pending self-report |
+| Private Markets Desk | [private-markets-desk](bots/private-markets-desk.md) | `arrow/skills/private-markets-desk` | self-reported 2026-11-05 · live |
 | Arrow Weekly | [arrow-weekly](bots/arrow-weekly.md) | `arrow/skills/arrow-weekly` | self-reported 2026-11-05 · test (no routine; first send pending) |
 | Arrow Document Filing Bot | [arrow-document-filing](bots/arrow-document-filing.md) | `arrow/skills/arrow-fund-inbox` (+ `document-filing`) | self-reported 2026-11-05 · live; Arrow-facing only, private cross-silo registry relocation pending |
 | Arrow Attio Firms | [arrow-attio-firms](bots/arrow-attio-firms.md) | `arrow/skills/arrow-attio-firm-context` | self-reported 2026-11-05 · live (PROPOSE; 1 enabled routine; writes require approval) |

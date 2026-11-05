@@ -1,9 +1,9 @@
 ---
 name: "brendan-crm"
-description: Brendan Conn's personal, whole-life CRM ("People" database in his private Delta Meridian Notion workspace). Use whenever Brendan wants to log or update a person he met, capture a brain dump about people, link who knows or introduced whom, get briefed or prepped before a call or meeting with someone, find who is going cold or who to follow up with, find a warm path to a person or company, do a city sweep ("I'm going to NYC"), enrich an event with the people he actually met, or draft follow-up messages. Triggers on phrases like "log this", "I met...", "add X to my people", "update X", "brief me on X", "prep me for my call with X", "who's going cold", "who should I follow up with", "who do I know at Y", "who introduced me to X", "I'm going to [city]", "enrich this event", "do my follow-ups", or any mention of his people, tiers, or networking context, even if he never says Notion, Attio, or skill. Do NOT use for Arrow Fund deal or LP pipeline work in the shared Attio lists, or for Delta bookkeeping.
+description: Brendan Conn's personal, whole-life CRM ("People" database in his private Delta Meridian Notion workspace). Use whenever Brendan wants to log or update a person he met, capture a brain dump about people, link who knows or introduced whom, get briefed or prepped before a call or meeting with someone, find who is going cold or who to follow up with, find a warm path to a person or company, do a city sweep ("I'm going to NYC"), enrich an event with the people he actually met, or draft follow-up messages. Triggers on phrases like "log this", "I met...", "add X to my people", "update X", "brief me on X", "prep me for my call with X", "who's going cold", "who should I follow up with", "who do I know at Y", "who introduced me to X", "I'm going to [city]", "enrich this event", "do my follow-ups", or any mention of his people, tiers, or networking context, even if he never says Notion, Attio, or skill. Writes Notion only; reads Attio but never writes it. Do NOT use for Arrow Fund deal or LP pipeline work in the shared Attio lists, for Attio People context (arrow/skills/attio-contact-context), or for Delta bookkeeping.
 ---
 
-# Brendan CRM (v4 — Notion master, Attio mirror; repo is the spec)
+# Brendan CRM (v4.3 — Notion only, Attio read-only; repo is the spec)
 
 Brendan gives messy brain dumps; Claude does all the data entry. He talks, the CRM stays accurate, and nothing private ever touches Arrow Fund's systems.
 
@@ -63,19 +63,19 @@ notion:                                  # PRIVATE. The brain.
     - "## My notes"             # candid, Brendan only, "YYYY-MM-DD: …"
     - "## Touch log"            # Grokbot-maintained, "YYYY-MM-DD · channel · gist", cap 30
 
-attio:                                   # SHARED with Arrow Fund teammates and admins. Feed + membership flag only.
+attio:                                   # SHARED with Arrow Fund teammates and admins. READ ONLY for this process.
   workspace: arrow-fund
   composio_account: attio_bosser-wooded
-  list: {name: "Brendan's People", list_id: a59624fd-f0ed-434c-94d1-b6baba2ff0ab, api_slug: brendan_s_people, parent_object: people}
-  mirror_fields: [job_title/Role, company, location, email_addresses, phone_numbers, linkedin, instagram, check size, investor type, sectors / interests]   # only fields Attio itself tracks
-  mirror_rule: Notion first, always. If the person is NOT in Attio, ask Brendan whether they belong there before creating anything. If they ARE, copy mirror_fields ONLY where the Attio field is empty. Never overwrite a teammate's value; log conflicts.
-  claude_may_write: [list membership (no entry values), mirror_fields where empty]
-  claude_never_writes: [any list entry value, record notes, comments, page body of any kind, Tier, Next step, Arrow relevance, deals discussed, My notes, anything evaluative or personal]
+  claude_may_read: [record id, last_interaction, contact fields, list membership]   # used to fill Notion only
+  claude_may_write: []                   # nothing, ever (2026-11-04 silo). Attio People are written only by arrow/skills/attio-contact-context.
+  on_conflict: Notion vs Attio differences are logged as CONFLICT for Brendan; never fixed in Attio.
 
 going_cold_thresholds: {tier_1_days: 30, tier_2_days: 90, tier_3_days: 180}
 ```
 
-**Privacy rule (absolute).** Everything about a relationship lives in Notion. Attio gets a name on a list and a copy of empty structured fields, nothing more. If you are about to write a *sentence* into Attio, stop.
+**Privacy rule (absolute).** Everything about a relationship lives in Notion. This process never writes to Attio: no list membership, no fields, no records, no notes. If you are about to write anything into Attio, stop.
+
+**Silo (2026-11-04, Brendan approved).** Two separate processes. This CRM (this skill and crm-maintenance) writes Notion only and treats Attio as read-only. A separate Arrow process, arrow/skills/attio-contact-context, is the only writer of Attio People context, relationship, investor and contact fields, and it never reads or writes Notion. The two read the same comms sources (inputs shared), but outputs are siloed. Nothing from Notion is ever copied into Attio. People only Brendan has spoken to stay in Notion and are never suggested for Attio.
 
 **Append-only rule (absolute).** No automation or Claude workflow ever deletes, rewrites, or reorders page-body blocks. Summary included. Fix a wrong line by appending a dated correction.
 
@@ -84,7 +84,7 @@ going_cold_thresholds: {tier_1_days: 30, tier_2_days: 90, tier_3_days: 180}
 
 ## Tool cheat sheet
 
-Prefer Composio for Notion and Attio. Load with `COMPOSIO_SEARCH_TOOLS`, then run via `COMPOSIO_MULTI_EXECUTE_TOOL` (small ops) or `COMPOSIO_REMOTE_WORKBENCH` (bulk, or when a tool lacks a needed parameter; `proxy_execute` against `https://api.notion.com/v1/...` with header `Notion-Version: 2022-06-28`).
+Prefer Composio for Notion and Attio (Attio read-only). Load with `COMPOSIO_SEARCH_TOOLS`, then run via `COMPOSIO_MULTI_EXECUTE_TOOL` (small ops) or `COMPOSIO_REMOTE_WORKBENCH` (bulk, or when a tool lacks a needed parameter; `proxy_execute` against `https://api.notion.com/v1/...` with header `Notion-Version: 2022-06-28`).
 
 | Need | Tool |
 |---|---|
@@ -95,8 +95,6 @@ Prefer Composio for Notion and Attio. Load with `COMPOSIO_SEARCH_TOOLS`, then ru
 | Read page body | `NOTION_GET_PAGE_MARKDOWN` |
 | Relations | `NOTION_UPDATE_ROW_DATABASE` with type `relation`, comma-separated page ids |
 | Attio lookup | `ATTIO_SEARCH_RECORDS` / `ATTIO_FIND_RECORD` (object `people`) |
-| Attio membership | `ATTIO_ADD_RECORD_TO_LIST` (list `brendan_s_people`, **no entry_values**) |
-| Attio contact fill | `ATTIO_UPDATE_RECORD` for `email_addresses`, `phone_numbers`, `linkedin` only |
 | Signal | Gmail `search_threads`; Google Calendar `list_events`; iMessage / WhatsApp `search_messages`, `get_messages`, `unreplied` |
 
 Dates: `YYYY-MM-DD`, America/Los_Angeles. Today's date comes from the system prompt.
@@ -109,7 +107,7 @@ Dates: `YYYY-MM-DD`, America/Los_Angeles. Today's date comes from the system pro
 3. **Contact.** Email, Phone, LinkedIn, Instagram from a signature or card.
 4. **Body.** Candid context → append under `## My notes` as `YYYY-MM-DD: …`. Neutral facts → `## Context`. Substantive topics from a call/thread → `## What we've discussed` (dated), and set `Last discussed`; add deal names to `Deals discussed`. New person → write a `## Summary` (name, nicknames, company, city, school, sectors, check size). Existing person with a big new fact → append `YYYY-MM-DD update: …` under Summary; never rewrite it.
 5. **Relationships.** Workflow 3 for any "knows" / intro facts.
-6. **Attio check.** Search Attio by email, then phone, then name. Found: write the id to `Attio record ID`, add to the list with no entry values, copy `mirror_fields` into any *empty* Attio field, never overwrite. Not found: ask Brendan "add to Attio?" in the same question as anything else missing; create only on a yes. (crm-sync-feed does this weekly for anyone missed.)
+6. **Attio lookup (read only).** Search Attio by email, then phone, then name. Found: write the id to the Notion `Attio record ID` property. Never write to Attio, never add to a list, never ask to create an Attio person.
 7. **Ambiguity gate.** If any match, tier, or privacy call is uncertain, show the planned writes as a compact table and wait for a yes. Otherwise write, then show the table.
 
 ### 2. Quick capture (brain dump → structured updates)
@@ -169,7 +167,7 @@ Dates: `YYYY-MM-DD`, America/Los_Angeles. Today's date comes from the system pro
 ## Sources
 
 - **Notion People** is the system of record. Everything ends up here.
-- **Attio** is a feed and a membership flag. Read `last_interaction` and contact fields; write only membership and contact fields.
+- **Attio** is read-only: record id, `last_interaction` and contact fields, used to fill Notion. Never written by this skill (2026-11-04 silo).
 - **Gmail, Google Calendar**: context, guest lists, drafts (drafts only).
 - **iMessage**: read, plus guarded two-step send. Existing threads only. Many contacts have long descriptive names; match by phone or Chat handles first.
 - **WhatsApp**: read-only. Numeric IDs map via Chat handles; add new mappings when discovered.
@@ -192,6 +190,8 @@ Dates: `YYYY-MM-DD`, America/Los_Angeles. Today's date comes from the system pro
 
 ## Changelog
 
+- 2026-11-04 — v4.3. Full silo: the CRM writes Notion only and never writes Attio (mirror_fields, mirror rule, list membership and contact fill removed; workflow 1 step 6 is a read-only lookup that only sets Notion `Attio record ID`). arrow/skills/attio-contact-context (renamed from attio-context) is the only Attio People writer and never touches Notion. Inputs shared, outputs siloed.
+- 2026-11-03 — v4.2. Carve-out: arrow/skills/attio-context owns arrow_context, introduced_by/introduced, knows, close_with, contact_owner, context_updated in Attio; the CRM never writes them. (v3 rejected Relationship owner for this CRM; that still stands here, ownership now lives in attio-context.)
 - 2026-10-27 — v4.1. Janey relevance property; Janey and Delta added to Circles; contexts note. Notion db needs the two new options added.
 - 2026-10-21 — v4. Repo is the spec; Notion Spec page becomes a pointer. Grokbot → crm-maintenance. Attio: ask before adding anyone new; mirror only Attio-tracked structured fields, now including sectors. Default send-from brendan@arrowfund.co. Source gains "Agent". Attio wipe moved to TASKS.
 

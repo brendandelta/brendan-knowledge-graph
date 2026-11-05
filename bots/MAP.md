@@ -13,7 +13,7 @@ A Cross bot may mention Arrow only generically and must point to [`arrow/BOTS.md
 | Bot | File | Skill | Status in registry |
 |---|---|---|---|
 | Grok Bot | [grok-bot.md](grok-bot.md) | `skills/grok-bot` | live (self-reported 2026-11-05) |
-| CoS Bot | [cos-bot.md](cos-bot.md) | `skills/chief-of-staff` | pending self-report |
+| CoS Bot | [cos-bot.md](cos-bot.md) | `skills/chief-of-staff` | live (self-reported 2026-11-05) |
 | Inbox Todo | [inbox-todo.md](inbox-todo.md) | `skills/comms-ingest` | live (self-reported 2026-11-05) |
 | Suggested Actions | [suggested-actions.md](suggested-actions.md) | `skills/suggested-actions` | live (self-reported 2026-11-05) |
 
@@ -22,7 +22,7 @@ A Cross bot may mention Arrow only generically and must point to [`arrow/BOTS.md
 | Bot | File | Skill | Status in registry |
 |---|---|---|---|
 | Personal CRM Contact Context | [personal-crm-contact-context.md](personal-crm-contact-context.md) | `skills/crm-maintenance` | live (Notion only; 3 Attio routines paused pending delete; self-reported 2026-11-05) |
-| Call Cadence | [call-cadence.md](call-cadence.md) | `skills/call-cadence` | pending self-report |
+| Call Cadence | [call-cadence.md](call-cadence.md) | `skills/call-cadence` | live (self-reported 2026-11-05) |
 
 ## Delta
 

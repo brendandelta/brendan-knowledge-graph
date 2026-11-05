@@ -20,7 +20,7 @@ Template: [`arrow/bots/_TEMPLATE.md`](_TEMPLATE.md).
 | Marwan Deal Board Bot | [marwan-deal-board](bots/marwan-deal-board.md) | (none in repo yet; logic in routine prompts) | self-reported 2026-11-05 · live (2 routines) |
 | Arrow Attio People | [arrow-attio-people](bots/arrow-attio-people.md) | `arrow/skills/attio-contact-context` | self-reported 2026-11-05 · live |
 | Daily Arrow Report | [daily-arrow-report](bots/daily-arrow-report.md) | `arrow/skills/daily-arrow-report` | self-reported 2026-11-05 · test (no routine; first send pending) |
-| Arrow Log | [arrow-log](bots/arrow-log.md) | `arrow/skills/arrow-weekly-log` | pending self-report |
+| Arrow Log | [arrow-log](bots/arrow-log.md) | `arrow/skills/arrow-weekly-log` | self-reported 2026-11-05 · live (routines "Arrow weekly log" + "Arrow log Friday wrap") |
 
 ## Data flow (from INDEX.md and skills)
 

@@ -1,6 +1,8 @@
 # Changelog
 
 ## 2026-11-05
+- Bot registry: `AGENTS.md` rules; templates `bots/_TEMPLATE.md` and `arrow/bots/_TEMPLATE.md`; indexes `bots/MAP.md` and `arrow/BOTS.md`; pending self-report stubs for known bots; Grok Bot entry `bots/grok-bot.md` + skill `skills/grok-bot` with routine "Bot registry refresh" (`0 19 * * *` PT).
+- Personal CRM Contact Context: `skills/crm-maintenance` renamed bot (was Contact Context); Notion-only; weekday/weekend routines unchanged; Attio routines on that bot paused pending Brendan delete; Attio People → Arrow Attio People; firm intel → Arrow Attio Firms; Weekly Log writer → Arrow Log only. Registry: `bots/personal-crm-contact-context.md`.
 - attio-contact-context v2.3: relationship evidence rules (direct evidence + per-edge source link, both-endpoint human guard, add-only); introduced_by stays single, Introducer = inverse `introduced`; Backfill adds A–C relationship checks even when Arrow context is filled (relationship_checked.json). Backfill routine prompt updated to match.
 - attio-contact-context: Status now live on the Arrow Attio People bot (taken over from Contact Context); routines "Attio contact context" (folder attio-contact-context) and "Attio backfill" (folder attio-backfill). INDEX row updated.
 - New draft skills: arrow/skills/arrow-attio-firm-context (Attio company intel, PROPOSE mode; bot-plan.md) and arrow/skills/arrow-weekly-log (weekly Arrow Log doc; bot-plan.md).

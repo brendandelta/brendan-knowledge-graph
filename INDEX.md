@@ -12,9 +12,10 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | delta-bookkeeper | composio:quickbooks, Delta Intake | composio:quickbooks | profile.md | live (Claude); becomes accounting-and-tax |
 | chief-of-staff | todoist, gmail (arrow), whatsapp, signal, imessage, gcal x2, attio, other bots' transcripts | todoist, chat | profile.md | live (Grokbot) |
 | comms-ingest | signal, imessage, whatsapp, 6 gmails, gcal, attio | comms index, todoist | — | live (Grokbot); migrate. Infrastructure: three skills read its index. |
-| crm-maintenance | comms index, direct thread reads (whatsapp, signal, imessage, 5 gmails, gcal), attio (read only, incl. calls) | composio:notion only (append only); never writes Attio | comms-ingest, brendan-crm | live (Grokbot, bot "Contact Context", Notion only after 2026-11-05 split); migrate |
+| crm-maintenance | comms index, direct thread reads (whatsapp, signal, imessage, 5 gmails, gcal), attio (read only, incl. calls) | composio:notion only (append only); never writes Attio | comms-ingest, brendan-crm | live (Grokbot, bot "Personal CRM Contact Context", Notion only; Attio routines paused pending delete); migrate |
 | suggested-actions | comms index or direct reads, notion, attio | chat (drafts only) | comms-ingest, deal-indications | live (Grokbot); migrate |
 | call-cadence | notion People CRM, imessage, whatsapp, signal, gcal | chat (call list, drafts), gcal (15-min call events) | brendan-crm | live (Grokbot), v1.1 |
+| grok-bot | knowledge repo, connectors per task | bots/MAP.md, bots/grok-bot.md, chat | AGENTS.md bot registry | live (Grokbot); routine "Bot registry refresh" 7pm PT |
 | money-queue | QBO x3, Chase, Ramp, Shopify, Meta | proposal list only | hard rules | planned |
 | crm-sync-feed | composio:notion, composio:attio | attio, after approval | brendan-crm | superseded 2026-11-04: Notion never feeds Attio (silo); Attio People are written only by attio-contact-context |
 | accounting-and-tax | QBO x3, Gusto, banks | QBO | delta-bookkeeper | planned |
@@ -36,6 +37,10 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | daily-arrow-report | arrow-weekly-log doc (yesterday's entries); composio:attio (current status); googledrive/googledocs (read) | html email to team | arrow-weekly-log | draft; `0 10 * * *` PT after process approved |
 | carta-investor-onboarding | deal pipeline sheet (gsheets), composio:attio (people, call recordings), gmail (arrow), Carta Closings (read) | chat drafts; sheet / Attio / Carta (invite, countersign) only after Brendan OKs | fund docs (LPA, sub agreement) per vehicle | draft |
 | attio-contact-context | comms-index, gmail (5 inboxes), gcal, whatsapp/signal (incl. team groups)/imessage (read), composio:attio (incl. calls, transcripts); never Notion | composio:attio People only: arrow_context, introduced_by, knows, close_with, contact_owner, context_updated, check_size_range, sector_of_interest, lp_fo_ria (+ FO tag), empty contact fields; /workspace/attio-context/state.json (cursor), relationship-provenance.jsonl (private), /workspace/attio-backfill/ (queue.json, relationship_checked.json, log.md, lock) | comms-ingest | live (Grokbot, bot "Arrow Attio People", taken over from Contact Context 2026-11-05; inherits state.json, backfill queue, token): routines "Attio contact context" (folder attio-contact-context), "Attio backfill" (folder attio-backfill) |
+
+## Bot registry
+
+Rebuild map of live Grok Bots. Arrow-only entries under `arrow/bots/` + [`arrow/BOTS.md`](arrow/BOTS.md). Personal / Delta / Janey / Cross under `bots/` + [`bots/MAP.md`](bots/MAP.md). Template: `bots/_TEMPLATE.md` (mirrored at `arrow/bots/_TEMPLATE.md`). Rules in `AGENTS.md`. Grok Bot refreshes daily 7pm PT.
 
 ## Projects (`projects/`)
 

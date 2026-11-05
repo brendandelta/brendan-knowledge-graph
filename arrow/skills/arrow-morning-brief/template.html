@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arrow Morning Markets Brief — {{REVIEW_WEEKDAY}} review</title>
+<!--
+  Email-safe shell for arrow-morning-brief.
+  Fill every {{TOKEN}}. Replace SECTION partials between markers; do not reorder sections.
+  Derived from /workspace/morning-brief/sample-2026-11-05.html (approved look, 2026-11-05).
+  Cadence: render + send Sun–Thu 7pm PT only (cron 0 19 * * 0-4). No Fri/Sat send.
+  Sunday edition: set masthead to weekend edition; optionally insert a Weekend recap
+  block after cold open and a Week ahead block before discussion prompts (see SKILL.md §3b-Sunday).
+  Tokens:
+    {{REVIEW_WEEKDAY}}   e.g. Friday
+    {{SENT_DATE_LINE}}   e.g. Sent Thu Nov 5, 2026 · ~7:00pm PT
+    {{RECIPIENTS_LINE}}  e.g. To Brendan · Reply with your 3 questions before 11:00am PT
+    {{COLD_OPEN_ITEMS}}  <li>…</li> rows
+    {{WORLD_STORIES}}    story tables
+    {{MACRO_STORIES}}
+    {{PUBLIC_STORIES}}
+    {{PRIVATE_STORIES}}
+    {{TAKES_ITEMS}}      <p> numbered takes
+    {{PROMPT_ITEMS}}     <li> three seed questions
+    {{SOURCES_LINKS}}    footer <a> · <a> list
+  Story partial (repeat inside each section):
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 22px;">
+      <tr><td style="padding:0 0 12px;"><img src="HERO_URL" alt="" width="592" style="display:block;width:100%;max-width:592px;height:auto;border-radius:4px;"></td></tr>  <!-- omit tr if no image -->
+      <tr><td>
+        <h2 style="margin:0 0 8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:20px;line-height:1.3;font-weight:700;color:#0b1f33;">HEADLINE</h2>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.5;">BODY</p>
+        <p style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;"><a href="URL" style="color:#0b4f8a;text-decoration:none;font-weight:600;">Source: OUTLET →</a></p>
+      </td></tr>
+    </table>
+-->
+</head>
+<body style="margin:0;padding:0;background:#f4f1ea;-webkit-text-size-adjust:100%;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f4f1ea;">
+<tr><td align="center" style="padding:16px 8px;">
+<table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:640px;background:#ffffff;border-radius:8px;overflow:hidden;font-family:Georgia,'Times New Roman',serif;color:#1a1a1a;">
+
+<!-- masthead -->
+<tr><td style="background:#0b1f33;padding:28px 24px 22px;">
+  <p style="margin:0 0 6px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#9fb4c9;">Arrow Fund · Morning Markets Brief</p>
+  <h1 style="margin:0 0 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:26px;line-height:1.25;font-weight:700;color:#ffffff;">For {{REVIEW_WEEKDAY}}'s 11am review</h1>
+  <p style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.45;color:#c5d4e3;">{{SENT_DATE_LINE}}<br>{{RECIPIENTS_LINE}}</p>
+</td></tr>
+
+<!-- cold open -->
+<tr><td style="padding:22px 24px 8px;border-bottom:1px solid #ece7dc;">
+  <p style="margin:0 0 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8a7350;font-weight:700;">Cold open</p>
+  <ul style="margin:0;padding:0 0 0 18px;font-size:16px;line-height:1.45;">
+{{COLD_OPEN_ITEMS}}
+  </ul>
+</td></tr>
+
+<!-- world -->
+<tr><td style="padding:26px 24px 8px;">
+  <p style="margin:0 0 14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8a7350;font-weight:700;">World &amp; economy</p>
+{{WORLD_STORIES}}
+</td></tr>
+
+<!-- macro -->
+<tr><td style="padding:18px 24px 8px;background:#faf8f3;">
+  <p style="margin:0 0 14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8a7350;font-weight:700;">Macro</p>
+{{MACRO_STORIES}}
+</td></tr>
+
+<!-- public markets -->
+<tr><td style="padding:26px 24px 8px;">
+  <p style="margin:0 0 14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8a7350;font-weight:700;">Public markets</p>
+{{PUBLIC_STORIES}}
+</td></tr>
+
+<!-- private -->
+<tr><td style="padding:26px 24px 8px;background:#faf8f3;">
+  <p style="margin:0 0 14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8a7350;font-weight:700;">Private markets &amp; secondaries</p>
+{{PRIVATE_STORIES}}
+</td></tr>
+
+<!-- takes -->
+<tr><td style="padding:26px 24px 10px;">
+  <p style="margin:0 0 14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8a7350;font-weight:700;">Takes desk</p>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0b1f33;border-radius:6px;">
+    <tr><td style="padding:18px 18px 6px;">
+{{TAKES_ITEMS}}
+    </td></tr>
+    <tr><td style="padding:0 18px 16px;">
+      <p style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;color:#9fb4c9;">Takes are opinion grounded in the linked stories above — not predictions.</p>
+    </td></tr>
+  </table>
+</td></tr>
+
+<!-- prompts -->
+<tr><td style="padding:18px 24px 24px;">
+  <p style="margin:0 0 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8a7350;font-weight:700;">Discussion prompts · reply with your own 3</p>
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.45;color:#444;">Bot seeds below. Before 11:00am PT, reply to this email with <strong>exactly 3 questions</strong> you want on the agenda. The bot will merge replies into the call note.</p>
+  <ol style="margin:0;padding:0 0 0 20px;font-size:16px;line-height:1.45;">
+{{PROMPT_ITEMS}}
+  </ol>
+</td></tr>
+
+<!-- footer -->
+<tr><td style="padding:18px 24px 28px;background:#0b1f33;">
+  <p style="margin:0 0 8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#9fb4c9;">Sources used today</p>
+  <p style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:#c5d4e3;">
+{{SOURCES_LINKS}}
+  </p>
+  <p style="margin:14px 0 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;color:#7a8fa3;">Arrow Morning Markets Brief · external news only · reply with your 3 questions</p>
+</td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

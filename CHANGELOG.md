@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-05
+- New draft skill arrow/skills/arrow-morning-brief (+ template.html): Sun–Thu 7pm PT external markets HTML brief from admin@ (Brendan Bot display name; test = Brendan only); Sunday weekend edition; Mon–Fri 10:30am agenda from email-reply questions; calendar invite pending. Registry stub arrow/bots/arrow-morning-brief.md + BOTS.md / INDEX rows. No bot, routines, or sends yet.
 - Morning Buy/Sell Sheet retired: deleted bot, routine, skill `arrow/skills/morning-buy-sell-sheet`, registry entry `arrow/bots/morning-buy-sell-sheet.md`, and its `arrow/BOTS.md` / INDEX rows. Being replaced by a new block/interest qualification and deal-board system (Brendan, 2026-11-05).
 - Note: commit `6ede90f` is mislabeled "registry: Private Markets Desk entry" but contains the Deal Indications registry entry (parallel-bot race); left as-is, no history rewrite. Real Private Markets Desk entry is `7cc7fdf`.
 - AGENTS.md + bot registry templates: bot-entry updates add a one-line CHANGELOG and update `arrow/BOTS.md` or `bots/MAP.md`; touch INDEX.md only when a skill or file is added or removed. Shared-clone rules: always `git pull --rebase origin main`, never leave uncommitted edits, stage only your own files.

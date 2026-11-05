@@ -16,7 +16,7 @@ Template: [`arrow/bots/_TEMPLATE.md`](_TEMPLATE.md).
 | Arrow Weekly | [arrow-weekly](bots/arrow-weekly.md) | `arrow/skills/arrow-weekly` | self-reported 2026-11-05 · test (no routine; first send pending) |
 | Arrow Document Filing Bot | [arrow-document-filing](bots/arrow-document-filing.md) | `arrow/skills/arrow-fund-inbox` (+ `document-filing`) | self-reported 2026-11-05 · live; Arrow-facing only, private cross-silo registry relocation pending |
 | Arrow Attio Firms | [arrow-attio-firms](bots/arrow-attio-firms.md) | `arrow/skills/arrow-attio-firm-context` | self-reported 2026-11-05 · live (PROPOSE; 1 enabled routine; writes require approval) |
-| Deal Indications Bot | [deal-indications](bots/deal-indications.md) | `arrow/skills/deal-indications` | pending self-report |
+| Deal Indications Bot | [deal-indications](bots/deal-indications.md) | `arrow/skills/deal-indications` | self-reported 2026-11-05 · live |
 | Marwan Deal Board Bot | [marwan-deal-board](bots/marwan-deal-board.md) | (none in repo yet; logic in routine prompts) | self-reported 2026-11-05 · live (2 routines) |
 | Arrow Attio People | [arrow-attio-people](bots/arrow-attio-people.md) | `arrow/skills/attio-contact-context` | self-reported 2026-11-05 · live |
 | Daily Arrow Report | [daily-arrow-report](bots/daily-arrow-report.md) | `arrow/skills/daily-arrow-report` | self-reported 2026-11-05 · test (no routine; first send pending) |

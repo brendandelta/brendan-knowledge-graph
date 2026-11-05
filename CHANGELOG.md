@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-05
+- New skill arrow/skills/marwan-deal-board (live on Marwan Deal Board Bot): logic moved out of routine prompts; both routines now `git pull` then follow the skill (crons unchanged). Bot title/description set with the knowledge-repo header; registry entry + arrow/BOTS.md row + INDEX row updated.
 - document-filing: scheduled runs now always post a daily summary per drive (one line when empty) plus open questions (Brendan, 2026-11-02), replacing "say nothing when empty". Arrow Document Filing Bot routine slimmed to pull + follow skills; title and description set; registry entry updated.
 - Inbox Todo (comms-ingest): description rewritten to match the real cadence (three Comms Ingest routines approved 2026-10-15, not every 30 minutes) and channels (WhatsApp, Signal, iMessage, Gmail, calendar, Attio). Same wording synced in `skills/comms-ingest/SKILL.md` and `bots/inbox-todo.md`; stale-cadence mismatch flag removed. INDEX row already correct.
 - Personal CRM Contact Context: Brendan confirmed (t86u); deleted Attio routines attio-context, attio-backfill, attio-questions-evening-list-nov-5. Bot is Notion-only (weekday/weekend CRM enrichment). Registry + MAP + crm-maintenance skill updated; Arrow Attio People owns all Attio People work.

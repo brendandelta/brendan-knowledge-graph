@@ -17,7 +17,7 @@ Template: [`arrow/bots/_TEMPLATE.md`](_TEMPLATE.md).
 | Arrow Document Filing Bot | [arrow-document-filing](bots/arrow-document-filing.md) | `arrow/skills/arrow-fund-inbox` (+ `document-filing`) | live (self-reported 2026-11-05) |
 | Arrow Attio Firms | [arrow-attio-firms](bots/arrow-attio-firms.md) | `arrow/skills/arrow-attio-firm-context` | live (self-reported 2026-11-05) |
 | Deal Indications Bot | [deal-indications](bots/deal-indications.md) | `arrow/skills/deal-indications` | self-reported 2026-11-05 · live |
-| Marwan Deal Board Bot | [marwan-deal-board](bots/marwan-deal-board.md) | (none in repo yet; logic in routine prompts) | self-reported 2026-11-05 · live (2 routines) |
+| Marwan Deal Board Bot | [marwan-deal-board](bots/marwan-deal-board.md) | `arrow/skills/marwan-deal-board` | self-reported 2026-11-05 · live (2 routines) |
 | Arrow Attio People | [arrow-attio-people](bots/arrow-attio-people.md) | `arrow/skills/attio-contact-context` | self-reported 2026-11-05 · live |
 | Daily Arrow Report | [daily-arrow-report](bots/daily-arrow-report.md) | `arrow/skills/daily-arrow-report` | self-reported 2026-11-05 · test (no routine; first send pending) |
 | Arrow Log | [arrow-log](bots/arrow-log.md) | `arrow/skills/arrow-weekly-log` | self-reported 2026-11-05 · live (routines "Arrow weekly log" + "Arrow log Friday wrap") |

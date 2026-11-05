@@ -10,7 +10,7 @@ Template: [`arrow/bots/_TEMPLATE.md`](_TEMPLATE.md).
 
 | Bot | Slug / file | Skill | Status in registry |
 |---|---|---|---|
-| Morning Buy/Sell Sheet | [morning-buy-sell-sheet](bots/morning-buy-sell-sheet.md) | `arrow/skills/morning-buy-sell-sheet` | pending self-report |
+| Morning Buy/Sell Sheet | [morning-buy-sell-sheet](bots/morning-buy-sell-sheet.md) | `arrow/skills/morning-buy-sell-sheet` | self-reported 2026-11-05 · live (Signal; Gabe/WhatsApp switch pending) |
 | N-PORT Scraper | [nport-scraper](bots/nport-scraper.md) | `arrow/skills/nport-scraper` | pending self-report |
 | Private Markets Desk | [private-markets-desk](bots/private-markets-desk.md) | `arrow/skills/private-markets-desk` | pending self-report |
 | Arrow Weekly | [arrow-weekly](bots/arrow-weekly.md) | `arrow/skills/arrow-weekly` | self-reported 2026-11-05 · test (no routine; first send pending) |

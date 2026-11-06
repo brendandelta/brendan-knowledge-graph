@@ -28,7 +28,8 @@ Added 2026-11-04 after a folder was created in the Arrow drive on a misreading o
   3. That destination folder **already exists**. (Finding the same kind of document already filed there is the strongest signal.)
   4. The name follows the README pattern, or a pattern already used in that folder, without guesswork.
   5. The duplicate check (Step 2b) found nothing.
-- **Needs your call:** anything else. Examples: you'd need to create a new folder; the document could belong to more than one entity/deal/vendor; a README open item touches it; the entity/vendor isn't in the drive yet; the README marks it restricted; it's a possible duplicate; it belongs to a different drive or business; or you can't read it. Give your best guess, why you're unsure, and the options, then wait. The file stays in the inbox.
+- **Needs your call:** anything else. Examples: you'd need to create a new folder; the document could belong to more than one entity/deal/vendor; a README open item touches it; the entity/vendor isn't in the drive yet; the README marks it restricted; it's a possible duplicate; it belongs to a different drive or business; or you can't read it. The file stays in the inbox until Brendan answers.
+  When you ask about one of these, first describe what the document actually is (from its content: what it is, who it's from or about — not just the filename), then recommend how to file it, then give the options. Do not ask by naming the title alone. This describe-then-recommend step is only for documents that do **not** already have a super-apparent place that already exists. If that destination folder is already there and the file clearly belongs in it, that is a clear fit: file it automatically without asking (see above).
 
 When in doubt, it's not a clear fit. A wrong move confuses everyone; a short question costs little.
 
@@ -101,7 +102,7 @@ Creating a missing **standard** subfolder inside an existing vendor/entity folde
 
 In this order, with Drive links:
 1. **Filed:** short table: what it is · new name · destination. Flag anything renamed but not moved, or copied but not archived.
-2. **Needs your call:** for each, what it is, best guess, why unsure, the options (including any folder you'd create). Execute only what he approves.
+2. **Needs your call:** only for documents that do not already have an obvious existing home (those are filed automatically as clear fits). For each: describe what it is from its content, then recommend how to file it, then the options (including any folder you'd create) and why you're unsure. Never lead with only the filename. Execute only what he approves.
 3. **Housekeeping noticed:** gaps or inconsistencies (missing months in a series, misnamed files, misplaced files). One line each.
 4. **Next steps** (below).
 

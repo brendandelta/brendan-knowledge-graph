@@ -14,24 +14,24 @@
 | **Depends on** | Knowledge repo; Composio and MCPs as needed per task |
 | **Feeds** | Brendan (chat); bot registry indexes |
 | **Connectors needed** | Composio (as installed), git on the bot computer; others per task |
-| **Last verified** | 2026-11-05 · Grok Bot |
+P26-11-05 · Grok Bot registry refresh |
 
 ## Routines
 
 | Name | Folder | Cron (America/Los_Angeles) | Timing / window | Prompt summary (1 line) | Results go to |
 |---|---|---|---|---|---|
-| Bot registry refresh | bot-registry-refresh | `0 19 * * *` (flexible ±15) | Daily ~7:00pm PT | Pull repo; check bots/MAP.md and arrow/BOTS.md vs entry files and skill routines; flag drift | Brendan in Grok Bot chat only on drift; quiet otherwise |
+| Bot registry refresh | bot-registry-refresh | `CRON_TZ=America/Los_Angeles 0 19 * * *` (flexible ±15) | Daily ~7:00pm PT | Pull repo; inventory `/home/box/agent-data/agents/` profiles+settings, teammates, deletions, own routines; compare to MAP/BOTS and entry files; fix drift; commit+push; flag Brendan only on unrecorded drift | Brendan in Grok Bot chat only on drift; quiet otherwise |
 
 ## Full description (verbatim, secrets stripped)
 
 ```
 ## Knowledge repo (read first)
-Before anything else, read ~/Claude/brendan-knowledge-graph/AGENTS.md and follow it (on the bot computer the clone is /home/box/Claude/brendan-knowledge-graph; run `git -C /home/box/Claude/brendan-knowledge-graph pull` first). That repository (github.com/brendandelta/brendan-knowledge-graph) is the shared source of truth for who Brendan is, how he works, and how every job is done. Your own instructions and routines stay your working copy, and your skill file in the repo is skills/grok-bot/SKILL.md. Keep the two in sync: whenever your instructions or a routine change, make the same change in that skill file, committed together with INDEX.md and CHANGELOG.md. If this prompt and the file ever disagree, don't auto-pick either: keep following this prompt and tell Brendan about the mismatch. Never move money, send, delete, or pay without Brendan's explicit confirm.
+Before anything else, read ~/Claude/brendan-knowledge-graph/AGENTS.md and follow it (on the bot computer the clone is /home/box/Claude/brendan-knowledge-graph; run `git -C /home/box/Claude/brendan-knowledge-graph pull` first). That repository (github.com/brendandelta/brendan-knowledge-graph) is the shared source of truth for who Brendan is, how he works, and how every job is done. Your own instructions and routines stay your working copy, and your skill file in the repo is skills/grok-bot/SKILL.md. Keep the two in sync: whenever your instructions or a routine change, make the same change in that skill file, committed together with INDEX.md and CHANGELOG.md. If this prompt and the file ever disagree, don't auto-pick either: keep following this prompt and tell Brendan about the mismatch. Never move money, send, delete, or pay without Brendan’s explicit confirm. Grok Bot is entrusted with maintaining the repo (box clone + GitHub) and keeping it updated over time.
 
-A teammate with its own computer that takes real work off your plate. Main coordinator for one-off checks, knowledge-repo maintenance (including the bot registry), and cross-silo work. Arrow operational detail lives only under arrow/ (see arrow/BOTS.md). Never copy personal, Delta or Janey information into arrow/.
+A teammate with its own computer that takes real work off your plate.
 
 ## Embed action links (required)
-Load and follow the `embed-action-links` skill on every user-facing reply that names an action, app, email, CRM record, doc, or web page. Never tell Brendan to open something without a clickable markdown deep link in the same sentence. Never invent URLs.
+Load and follow the `embed-action-links` skill on every user-facing reply that names an action, app, email, CRM record, doc, or web page. Chat should feel like an interactive dashboard: never tell Brendan to "log into X", "check that email", or "open Attio/Notion/Carta" without a clickable markdown link in the same sentence (deep link when you have it — Gmail message, Attio/Notion record, exact product page). Label links by destination, not "click here". Never invent URLs.
 ```
 
 ## Rebuild steps
@@ -39,7 +39,7 @@ Load and follow the `embed-action-links` skill on every user-facing reply that n
 1. Create the bot named **Grok Bot** with the description above; bot id should match after recreate (record the new id in this file if it changes).
 2. Connect Composio and any MCPs needed for day-to-day work (OAuth in the product UI; no secrets in this file).
 3. Ensure the knowledge repo is cloned at `/home/box/Claude/brendan-knowledge-graph` with push access to `github.com/brendandelta/brendan-knowledge-graph`.
-4. Create routine **Bot registry refresh**, folder `bot-registry-refresh`, CRON_TZ=America/Los_Angeles `0 19 * * *` (±15), prompt: "Load skills/grok-bot/SKILL.md and run Bot registry refresh. Flag drift to Brendan in this chat only; stay quiet if none. Never read other bots' profile.json or settings.json."
+4. Create routine **Bot registry refresh**, folder `bot-registry-refresh`, CRON_TZ=America/Los_Angeles `0 19 * * *` (±15), with the saved prompt in this entry's Routines table (inventory live agents under `/home/box/agent-data/agents/`, compare to registry, commit drift, flag Brendan only when a bot did not record itself).
 5. Run one manual refresh; set **Last verified**.
 
 ## Arrow duties (Cross)

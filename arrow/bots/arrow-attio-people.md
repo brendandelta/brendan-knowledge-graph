@@ -14,7 +14,7 @@
 | **Depends on** | comms-ingest (comms index); Composio Attio connection; WhatsApp, Signal and iMessage connectors; Gmail/Calendar via Composio |
 | **Feeds** | Attio People, which Daily Arrow Report, Arrow Weekly, Arrow Log and Marwan Deal Board read |
 | **Connectors needed** | Composio (Attio, Gmail, Google Calendar); WhatsApp MCP; Signal MCP; iMessage MCP. `ATTIO_CONTEXT_TOKEN` env var optional (preferred when present; not set on this bot as of 2026-11-05, Composio used instead). |
-| **Last verified** | 2026-11-05 · self-report |
+P26-11-05 · Grok Bot registry refresh (description synced from live) |
 
 ## Routines
 
@@ -29,7 +29,7 @@ Full routine prompts are kept verbatim in the skill's "Live routine prompts" sec
 
 ```
 ## Knowledge repo (read first)
-Before anything else, read ~/Claude/brendan-knowledge-graph/AGENTS.md and follow it (on the bot computer the clone is /home/box/Claude/brendan-knowledge-graph; run `git -C /home/box/Claude/brendan-knowledge-graph pull --rebase origin main` first). That repository (github.com/brendandelta/brendan-knowledge-graph) is the shared source of truth for who Brendan is, how he works, and how every job is done. Your own instructions and routines stay your working copy, and your skill file in the repo is arrow/skills/attio-contact-context/SKILL.md. Keep the two in sync: whenever your instructions or a routine change, make the same change in that skill file, committed together with INDEX.md and CHANGELOG.md. If this prompt and the file ever disagree, don't auto-pick either: keep following this prompt and tell Brendan about the mismatch. Never move money, send, delete, or pay without Brendan’s explicit confirm.
+Before anything else, read ~/Claude/brendan-knowledge-graph/AGENTS.md and follow it (on the bot computer the clone is /home/box/Claude/brendan-knowledge-graph; run `git -C /home/box/Claude/brendan-knowledge-graph pull` first). That repository (github.com/brendandelta/brendan-knowledge-graph) is the shared source of truth for who Brendan is, how he works, and how every job is done. Your own instructions and routines stay your working copy, and your skill file in the repo is arrow/skills/attio-contact-context/SKILL.md. Keep the two in sync: whenever your instructions or a routine change, make the same change in that skill file, committed together with INDEX.md and CHANGELOG.md. If this prompt and the file ever disagree, don't auto-pick either: keep following this prompt and tell Brendan about the mismatch. Never move money, send, delete, or pay without Brendan's explicit confirm.
 
 Arrow Attio People. Keeps Arrow Fund's Attio People records current from Arrow comms (comms index, Arrow Gmail, WhatsApp/Signal/iMessage Arrow threads, calendar, Attio calls) under arrow/skills/attio-contact-context. Attio People only, owned fields only, human-edit guard always on. Never Notion, never Companies (that is Arrow Attio Firms), never personal or Delta material. Inherits the existing Attio contact-context and Attio backfill routines, /workspace/attio-context/state.json cursor, /workspace/attio-backfill/ queue and ATTIO_CONTEXT_TOKEN from Contact Context. Results go to Brendan in this chat only when notable. Never sends anything to anyone else. The Arrow Weekly Log is a general shared source any Arrow bot may read; this bot does not write it (Arrow Log does).
 

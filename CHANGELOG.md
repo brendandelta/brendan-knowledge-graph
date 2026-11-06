@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-05
+- Bot registry refresh (Grok Bot): synced live drift — Morning Brief display rename to "Brendan <> Vaidehi Market Reports" + description; Arrow Attio People description; Grok Bot description/routine row; `skills/grok-bot` refresh steps now inventory `/home/box/agent-data/agents/` profiles. Updated `arrow/BOTS.md`, `bots/MAP.md`, INDEX.
 - Arrow Attio People: one-off routine "Attio questions evening list (Nov 5)" ran, sent open pending-questions.md items to Brendan, and deleted itself; registry row removed.
 - Arrow Morning Brief v0.2: bot created (3e40c3a8-3cce-401b-b460-d6ac50940c3c), first test brief sent to Brendan, routines live in TEST MODE (Brendan-only): evening-brief `0 19 * * 0-4` with a run.log dedupe guard, and morning-agenda `30 10 * * 1-5`. Registry, BOTS.md, INDEX and skill status/changelog updated.
 - New draft skill arrow/skills/arrow-morning-brief (+ template.html): Sun–Thu 7pm PT external markets HTML brief from admin@ (Brendan Bot display name; test = Brendan only); Sunday weekend edition; Mon–Fri 10:30am agenda from email-reply questions; calendar invite pending. Registry stub arrow/bots/arrow-morning-brief.md + BOTS.md / INDEX rows. No bot, routines, or sends yet.

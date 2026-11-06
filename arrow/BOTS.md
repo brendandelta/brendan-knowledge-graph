@@ -20,7 +20,7 @@ Template: [`arrow/bots/_TEMPLATE.md`](_TEMPLATE.md).
 | Arrow Attio People | [arrow-attio-people](bots/arrow-attio-people.md) | `arrow/skills/attio-contact-context` | self-reported 2026-11-05 · live |
 | Daily Arrow Report | [daily-arrow-report](bots/daily-arrow-report.md) | `arrow/skills/daily-arrow-report` | self-reported 2026-11-05 · test (no routine; first send pending) |
 | Brendan <> Vaidehi Market Reports (Arrow Morning Brief) | [arrow-morning-brief](bots/arrow-morning-brief.md) | `arrow/skills/arrow-morning-brief` | live (recipients: Brendan + Vaidehi, approved 2026-11-06) · bot 3e40c3a8 |
-| Arrow Log | [arrow-log](bots/arrow-log.md) | `arrow/skills/arrow-weekly-log` | self-reported 2026-11-05 · live (routines "Arrow weekly log" + "Arrow log Friday wrap") |
+| Arrow Log | [arrow-log](bots/arrow-log.md) | `arrow/skills/arrow-weekly-log` | self-reported 2026-11-06 · live v1.4 (valuation/PPS/owner OK; fees never) |
 
 ## Data flow (from INDEX.md and skills)
 

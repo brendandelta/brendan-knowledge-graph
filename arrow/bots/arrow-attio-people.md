@@ -22,9 +22,8 @@
 |---|---|---|---|---|---|
 | Attio contact context | attio-contact-context | `30 8,12,15 * * 1-5` and `30 8,17 * * 0,6` | flexible ±15 min | One event run of the skill: update in-scope People touched since the cursor, advance the cursor. | Brendan in this bot's chat, only when notable (people worth adding, conflicts, blocked source) |
 | Attio backfill | attio-backfill | `15,45 7-21 * * *` | flexible ±10 min | One 25-person batch of Backfill mode (tiers A–C, D skipped), plus A–C relationship checks; temporary until A–C done. | Brendan in this bot's chat, only when a tier finishes, a failure, or a conflict |
-| Attio questions evening list (Nov 5) | attio-questions-evening-list-nov-5 | `0 17 5 11 *` (one-off, 2026-11-05) | exact | Send Brendan the open questions from /workspace/attio-backfill/pending-questions.md, then delete itself. | Brendan in this bot's chat; quiet if none |
 
-Full routine prompts are kept verbatim in the skill's "Live routine prompts" section (the one-off is not).
+Full routine prompts are kept verbatim in the skill's "Live routine prompts" section.
 
 ## Full description (verbatim, secrets stripped)
 

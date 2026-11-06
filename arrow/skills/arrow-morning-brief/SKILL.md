@@ -1,13 +1,13 @@
 ---
 name: arrow-morning-brief
-description: Sun–Thu external markets brief (world/economy, macro, public, private/secondaries, All-In-style takes, discussion prompts) emailed as a mobile-first HTML article to Brendan and (once approved) Vaidehi; compiles their 3-question email replies into a 10:30am PT agenda for the 11am review.
+description: Sun–Thu external markets brief (world/economy, macro, public, private/secondaries, All-In-style takes, discussion prompts) emailed as a mobile-first HTML article to Brendan and Vaidehi; compiles their 3-question email replies into a 10:30am PT agenda for the 11am review.
 ---
 
 # arrow-morning-brief
 
-> **TEST MODE (locked 2026-11-05).** Every send goes to **brendan@arrowfund.co only**. Do **not** add vaidehi@arrowfund.co, create calendar invites, or auto-send past test until Brendan explicitly approves in this bot's chat. Flip this flag in the same commit as the live description / registry update.
+> **Live recipients (since 2026-11-06).** Sends go to **brendan@arrowfund.co** and **vaidehi@arrowfund.co**. Do **not** add more recipients or create calendar invites until Brendan explicitly approves in this bot's chat.
 
-**Status:** live in TEST MODE · bot 3e40c3a8-3cce-401b-b460-d6ac50940c3c · routines live 2026-11-05 (Brendan-only)
+**Status:** live · bot 3e40c3a8-3cce-401b-b460-d6ac50940c3c · routines live · recipients Brendan + Vaidehi (approved 2026-11-06)
 **Silo:** Arrow only. Never put personal, Delta, or Janey content here.
 **Source of decisions:** Brendan, 2026-11-05 (plan Page + chat; cadence updated same day to Sun–Thu briefs / Mon–Fri reviews, Sunday weekend edition). Sample look: `/workspace/morning-brief/sample-2026-11-05.html`.
 
@@ -22,10 +22,10 @@ description: Sun–Thu external markets brief (world/economy, macro, public, pri
 
 ## 1. Cadence and recipients
 
-| Job | Cron (America/Los_Angeles) | Timing | Recipients (test) | Recipients (live, pending) |
-|---|---|---|---|---|
-| Generate + email brief | `0 19 * * 0-4` | 7:00pm PT **Sun–Thu only**; `lateMinutes: 0` so it may start ~6:30pm. **No send Fri/Sat.** | brendan@arrowfund.co only | + vaidehi@arrowfund.co after Brendan's OK |
-| Build agenda | `30 10 * * 1-5` | 10:30am PT **Mon–Fri** (covers the prior evening's brief; Monday agenda covers Sunday's weekend edition) | same as above | same |
+| Job | Cron (America/Los_Angeles) | Timing | Recipients |
+|---|---|---|---|
+| Generate + email brief | `0 19 * * 0-4` | 7:00pm PT **Sun–Thu only**; `lateMinutes: 0` so it may start ~6:30pm. **No send Fri/Sat.** | brendan@arrowfund.co and vaidehi@arrowfund.co |
+| Build agenda | `30 10 * * 1-5` | 10:30am PT **Mon–Fri** (covers the prior evening's brief; Monday agenda covers Sunday's weekend edition) | same as above |
 
 - **Review call:** 11:00–11:15am PT **Mon–Fri**. Title when created: `Arrow Morning Markets · 15m`. **Calendar invite is NOT created yet** — pending Brendan's approval (weekdays-only is now the working assumption).
 - **Subject (brief, Mon–Thu evenings):** `Arrow Morning Markets · for <Weekday>'s 11am` (e.g. `Arrow Morning Markets · for Friday's 11am`).
@@ -109,7 +109,7 @@ Write the filled HTML to `/workspace/arrow-morning-brief/YYYY-MM-DD/brief.html` 
 - [ ] No news older than ~36h unless labeled background (Sunday weekend edition: Fri–Sun window OK; label Friday items as weekend context).
 - [ ] Spot-check links (at least every cold-open + section lead link) return 2xx or a readable article page.
 - [ ] Deduped vs yesterday's brief archive (don't rehash the same lead without a new development).
-- [ ] Recipients match **TEST MODE** (Brendan only) or the approved live list.
+- [ ] Recipients are **brendan@arrowfund.co** and **vaidehi@arrowfund.co** (the approved live list).
 - [ ] From account is `gmail_dammer-immi` / admin@.
 
 Fail any check → fix or cut; never send a failing brief.
@@ -118,7 +118,7 @@ Fail any check → fix or cut; never send a failing brief.
 
 Call Composio `GMAIL_SEND_EMAIL` on account **`gmail_dammer-immi`**:
 
-- `to`: test → `brendan@arrowfund.co`; live → Brendan + Vaidehi (only after chat approval)
+- `to`: `brendan@arrowfund.co` and `vaidehi@arrowfund.co`
 - `subject`: per §1
 - `body`: the rendered HTML
 - `is_html`: true
@@ -133,10 +133,10 @@ git -C /home/box/Claude/brendan-knowledge-graph pull
 ```
 
 1. Find last night's brief thread in **admin@arrowfund.co** (search subject `Arrow Morning Markets · for` matching today's review weekday, or the message-id saved in `run.log`).
-2. Read replies from Brendan and (when live) Vaidehi. Parse up to 3 questions each. Ignore signatures, quoted reply text, and anything that is not a question.
+2. Read replies from Brendan and Vaidehi. Parse up to 3 questions each. Ignore signatures, quoted reply text, and anything that is not a question.
 3. Merge duplicates / near-duplicates. Prefer the sharper wording. Cap the agenda at **6 questions** (3 each); if someone sent fewer, note the gap.
 4. Write `/workspace/arrow-morning-brief/YYYY-MM-DD/agenda.md` using the facilitator template in §8.
-5. Email the agenda as a short HTML or plain+HTML note to the same recipient list as the brief (test = Brendan only), subject per §1, from the same admin@ account.
+5. Email the agenda as a short HTML or plain+HTML note to the same recipient list as the brief (`brendan@arrowfund.co` and `vaidehi@arrowfund.co`), subject per §1, from the same admin@ account.
 6. **Do not create or modify calendar events** until Brendan approves the invite step. When that lands, the agenda text may also go into the event description — note only, do not invent the event now.
 7. If no replies by 10:30: still send an agenda that lists the bot's 3 seed prompts and a one-line "no replies yet — bring your 3 to the call".
 
@@ -188,7 +188,7 @@ Each person replies to the brief email with **exactly 3 questions** before 11:00
 2. …
 3. …
 
-### Vaidehi   # omit block entirely while TEST MODE / Vaidehi not on recipients
+### Vaidehi
 1. …
 2. …
 3. …
@@ -208,11 +208,9 @@ Call shape (when the invite exists): 0–3m align → 3–12m work the questions
 
 ## 9. Pending / still open (do not invent answers)
 
-- Add Vaidehi to recipients (needs Brendan's chat OK).
 - Create the recurring 11:00–11:15am PT **Mon–Fri** calendar invite (needs Brendan's OK; weekdays-only is the working assumption after the Sun–Thu brief cadence lock).
 - Optional Signal / Telegram top-3 ping — **out for v1**.
 - Auto-append call actions to Arrow Log Firm Intel — out for now.
-- Flip TEST MODE → live auto-send — only after Brendan approves a real test brief in the bot's chat.
 
 ## 10. Logging
 
@@ -222,3 +220,4 @@ Every run appends to `/workspace/arrow-morning-brief/YYYY-MM-DD/run.log`: start/
 
 - 2026-11-05 v0.1: skill + `template.html` drafted from Brendan's locked decisions (Sun–Thu 7pm PT HTML email from admin@ / Brendan Bot display name; Sunday = weekend edition; Mon–Fri 10:30am agenda; test = Brendan only; free sources; external-only; calendar invite pending). No bot / no routines / no sends yet.
 - 2026-11-05 v0.2: bot created (3e40c3a8-3cce-401b-b460-d6ac50940c3c); routines live in TEST MODE (Brendan-only): "Evening brief" `evening-brief` `0 19 * * 0-4` lateMinutes 0 with a run.log dedupe guard, and "Morning agenda" `morning-agenda` `30 10 * * 1-5` lateMinutes 0. First test brief sent to Brendan 2026-11-05. Composio GMAIL_SEND_EMAIL has no display-name field, so From shows the account default. Known template issue: the nested `<!-- omit tr ... -->` inside the head comment closes it early; strip the head comment before sending.
+- 2026-11-06 v0.3: Brendan approved adding Vaidehi. Live recipients are brendan@arrowfund.co and vaidehi@arrowfund.co for the evening brief and the morning agenda. Calendar invite still pending.

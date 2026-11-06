@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-06
+- Arrow Morning Brief v0.3: Brendan approved adding Vaidehi; live recipients are brendan@arrowfund.co and vaidehi@arrowfund.co for the evening brief and morning agenda. Calendar invite still pending.
 - arrow/skills/attio-contact-context: Gabe People record id in Access updated to c1ed36e3-ca7a-4c9e-ad79-73d7ffef26a7 (prior 37fd798b 404 after Attio record rotation).
 
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-06
+- arrow/skills/attio-contact-context: Gabe People record id in Access updated to c1ed36e3-ca7a-4c9e-ad79-73d7ffef26a7 (prior 37fd798b 404 after Attio record rotation).
+
+
 ## 2026-11-05
 - Bot registry refresh (Grok Bot): synced live drift — Morning Brief display rename to "Brendan <> Vaidehi Market Reports" + description; Arrow Attio People description; Grok Bot description/routine row; `skills/grok-bot` refresh steps now inventory `/home/box/agent-data/agents/` profiles. Updated `arrow/BOTS.md`, `bots/MAP.md`, INDEX.
 - Arrow Attio People: one-off routine "Attio questions evening list (Nov 5)" ran, sent open pending-questions.md items to Brendan, and deleted itself; registry row removed.

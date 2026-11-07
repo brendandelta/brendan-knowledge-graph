@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-06
+- Arrow Chief of Staff: new Arrow company COS / project-management bot (f6e9b74f-37da-4703-8a77-3277f1cb848f) created and handed the Notion PM rewrite; skill `arrow/skills/arrow-chief-of-staff`, registry `arrow/bots/arrow-chief-of-staff.md`. No notification routines yet.
 - nport-scraper v1.3: Brendan redirected the dataset destination from monthly Vaidehi email drafts to an Attio cap-table-companies write (to be built into the firms tracker). Monthly refresh no longer drafts email to Vaidehi; Attio writes stay off until that path is approved and live.
 - nport-scraper v1.2: after each monthly refresh with new data, rebuild the full all-company holder workbook and create a Gmail draft from brendan@arrowfund.co to vaidehi@arrowfund.co (Brendan sends; never auto-send). First package drafted 2026-11-06 covering all 103 companies.
 - arrow-weekly-log v1.4: Brendan — name who a block or interest belongs to; log valuations and PPS; never record fees (core liability). Rule 4 and rule 9 updated.

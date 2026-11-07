@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| **Name** | Marwan Deal Board Bot |
+| **Name** | Marwan Deal Board Bot · OffBook board ↔ Attio sync |
 | **Bot id** | 98d627fd-8f39-4c96-b70e-9b08d4950eed |
 | **Silo** | Arrow |
 | **Purpose** | Two-way sync between Spartan's OffBook secondaries board and Attio: (1) mirror Marwan Chahboun's (The Spartan Group) board into Attio blocks/interests tagged to him; (2) post Arrow's recent Attio blocks/interests that have terms to Brendan's own side of the board (no investor names). |
@@ -14,7 +14,7 @@
 | **Depends on** | Attio data entered by Arrow team / other Arrow Attio bots; OffBook Google sign-in in the box browser |
 | **Feeds** | Attio readers (Marwan-sourced blocks/interests); Spartan's view of Arrow supply/demand via OffBook |
 | **Connectors needed** | Composio (`user-composio`, Attio tools); box browser (computer use) for OffBook |
-| **Last verified** | 2026-11-05 · self-reported |
+| **Last verified** | 2026-11-06 · Grok Bot registry refresh (live display name); was 2026-11-05 · self-reported |
 
 ## Routines
 

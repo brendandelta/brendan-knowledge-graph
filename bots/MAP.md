@@ -12,10 +12,10 @@ A Cross bot may mention Arrow only generically and must point to [`arrow/BOTS.md
 
 | Bot | File | Skill | Status in registry |
 |---|---|---|---|
-| Grok Bot | [grok-bot.md](grok-bot.md) | `skills/grok-bot` | live (registry refresh 2026-11-05) |
-| CoS Bot | [cos-bot.md](cos-bot.md) | `skills/chief-of-staff` | live (self-reported 2026-11-05) |
+| Grok Bot | [grok-bot.md](grok-bot.md) | `skills/grok-bot` | live (registry refresh 2026-11-06) |
+| CoS Bot (live name: Brendan · Chief of Staff) | [cos-bot.md](cos-bot.md) | `skills/chief-of-staff` | live (name drift synced 2026-11-06) |
 | Inbox Todo | [inbox-todo.md](inbox-todo.md) | `skills/comms-ingest` | live (self-reported 2026-11-05) |
-| Suggested Actions | [suggested-actions.md](suggested-actions.md) | `skills/suggested-actions` | live (self-reported 2026-11-05) |
+| Suggested Actions | [suggested-actions.md](suggested-actions.md) | `skills/suggested-actions` | missing from live (flagged 2026-11-06 registry refresh) |
 
 ## Personal
 

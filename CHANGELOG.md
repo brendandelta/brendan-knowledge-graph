@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-06
+- Bot registry refresh (Grok Bot): Suggested Actions (`c0d5c0d3…`) missing from live `/home/box/agent-data/agents/` (not in `deleted-agents.json`); marked missing in `bots/suggested-actions.md`, `bots/MAP.md`, INDEX, and `skills/suggested-actions`. Synced CoS live display name to Brendan · Chief of Staff; synced Document Filing and Marwan live display names; fixed corrupted Last verified row on `bots/grok-bot.md`.
 - Arrow Chief of Staff: new Arrow company COS / project-management bot (f6e9b74f-37da-4703-8a77-3277f1cb848f) created and handed the Notion PM rewrite; skill `arrow/skills/arrow-chief-of-staff`, registry `arrow/bots/arrow-chief-of-staff.md`. No notification routines yet.
 - nport-scraper v1.3: Brendan redirected the dataset destination from monthly Vaidehi email drafts to an Attio cap-table-companies write (to be built into the firms tracker). Monthly refresh no longer drafts email to Vaidehi; Attio writes stay off until that path is approved and live.
 - nport-scraper v1.2: after each monthly refresh with new data, rebuild the full all-company holder workbook and create a Gmail draft from brendan@arrowfund.co to vaidehi@arrowfund.co (Brendan sends; never auto-send). First package drafted 2026-11-06 covering all 103 companies.

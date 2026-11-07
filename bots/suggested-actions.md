@@ -6,7 +6,7 @@
 | **Bot id** | `c0d5c0d3-201d-4728-9ac4-0c2d749c2c43` |
 | **Silo** | Cross |
 | **Purpose** | Suggests (never sends) ranked intro and deal-match actions with ready-to-send drafts for Brendan, plus a daily synergy idea. |
-| **Status** | live |
+| **Status** | missing from live inventory (2026-11-06 registry refresh) — id `c0d5c0d3-201d-4728-9ac4-0c2d749c2c43` not under `/home/box/agent-data/agents/` and not in `deleted-agents.json`; skill + rebuild steps retained |
 | **Repo skill path** | `skills/suggested-actions/SKILL.md` |
 | **Data sources (read)** | All read-only: WhatsApp MCP, Signal MCP, iMessage MCP (Brendan's Mac must be online), Gmail brendan@arrowfund.co via Composio, Attio via Composio, Notion People CRM. Originals fetched by reference only. |
 | **Write targets** | Its own Grok Bot chat; its own memory (read cursor + suggestion log of suggested/skipped/done); repo `skills/suggested-actions/SKILL.md` with `INDEX.md` and `CHANGELOG.md`; this registry file and `bots/MAP.md`. Never writes to Attio, Notion or the comms index. |
@@ -14,7 +14,7 @@
 | **Depends on** | Deal Indications Bot (keeps Attio blocks/interests synced); Notion People CRM |
 | **Feeds** | Brendan (chat digests) |
 | **Connectors needed** | user-composio (Attio, Gmail, Notion), user-whatsapp-mcp, user-Signal MCP, user-imessage; built-in x read tools (unused) |
-| **Last verified** | 2026-11-05 · Suggested Actions (self-report) |
+| **Last verified** | 2026-11-06 · Grok Bot registry refresh (bot absent from live agents) |
 
 ## Routines
 
@@ -65,3 +65,7 @@ Notes: relationship follow-ups moved to the Call Cadence bot on 2026-10-21.
 ## Arrow duties (if Cross)
 
 Generic only: deal-match suggestions (block/interest matching) and next-best-action drafts for Brendan's fund work. Detail: see [`arrow/BOTS.md`](../arrow/BOTS.md).
+
+## Known absence (2026-11-06)
+
+Grok Bot registry refresh inventoried every folder under `/home/box/agent-data/agents/` (17 live bots). Suggested Actions (`c0d5c0d3-201d-4728-9ac4-0c2d749c2c43`) was not among them, and `deleted-agents.json` only records `73ffc797-579a-4643-93bc-3b69e48e755a` (Morning Buy/Sell Sheet, already retired). No teammate/section listing restored it. Treat as gone from the live fleet until Brendan confirms delete vs recreate; do not invent a replacement bot.

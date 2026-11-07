@@ -14,7 +14,7 @@
 | **Depends on** | Knowledge repo; Composio and MCPs as needed per task |
 | **Feeds** | Brendan (chat); bot registry indexes |
 | **Connectors needed** | Composio (as installed), git on the bot computer; others per task |
-P26-11-05 · Grok Bot registry refresh |
+| **Last verified** | 2026-11-06 · Grok Bot registry refresh |
 
 ## Routines
 

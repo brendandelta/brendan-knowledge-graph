@@ -4,7 +4,7 @@ Arrow-facing record only: this bot also serves a second, separate entity Drive. 
 
 | Field | Value |
 |---|---|
-| **Name** | Arrow Document Filing Bot |
+| **Name** | Arrow Document Filing Bot · Daily Drive inbox filing |
 | **Bot id** | 7ba25253-3d1f-43c9-910a-4c3778eb60b8 |
 | **Silo** | Cross; Arrow-facing details only |
 | **Purpose** | Daily filing of Arrow Fund shared-drive `99 - Inbox`, plus questions and a summary for Brendan in its chat; also serves a second, separate entity Drive. |
@@ -16,7 +16,7 @@ Arrow-facing record only: this bot also serves a second, separate entity Drive. 
 | **Depends on** | Repo, filing procedure, per-Drive wrapper and README; explicit Drive account selection. |
 | **Feeds** | Filed documents, archived originals, questions and weekday chat summaries. |
 | **Connectors needed** | `user-composio` (`googledrive`, `googledocs`); approved receipt lookups require QuickBooks/Gmail access. GitHub push uses the existing repo-only token in the git credential store, never copied into registry. |
-| **Last verified** | 2026-11-05 · owner-bot self-report (title, description, slim routine set) |
+| **Last verified** | 2026-11-06 · Grok Bot registry refresh (live display name); was 2026-11-05 · owner-bot self-report (title, description, slim routine set) |
 
 ## Routines
 

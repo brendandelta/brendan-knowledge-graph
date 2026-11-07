@@ -5,7 +5,7 @@ description: Twice daily on weekdays (9:50 AM, 3:50 PM PT) and weekends at 3:53 
 
 # suggested-actions
 
-**Status:** live on Grokbot (Suggested Actions bot)
+**Status:** missing from live fleet as of 2026-11-06 registry refresh (id c0d5c0d3… absent from agent-data; skill retained for rebuild)
 **Source:** synced from the bot's live description and routine prompts on 2026-10-29. The bot's own instructions are the working copy; keep this file in sync with them.
 
 Known mismatches inside the live instructions (not auto-resolved; Brendan to decide):

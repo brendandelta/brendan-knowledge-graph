@@ -1,8 +1,8 @@
-# CoS Bot · Chief of Staff
+# Brendan · Chief of Staff
 
 | Field | Value |
 |---|---|
-| **Name** | CoS Bot · Chief of Staff |
+| **Name** | Brendan · Chief of Staff (also known as CoS Bot) |
 | **Bot id** | `0104f7f8-4b0a-4a12-8779-c24513602227` |
 | **Silo** | Cross |
 | **Purpose** | Chief of Staff: weekday MIT coaching via morning session, midday check, EOD commit, and Monday weekly lock — without dumping lists. |
@@ -14,7 +14,7 @@
 | **Depends on** | Inbox Todo (Todoist feed); Call Cadence / Suggested Actions / Personal CRM Contact Context and Arrow bots' transcripts for morning roll-up; knowledge repo |
 | **Feeds** | Brendan in CoS Bot chat (briefs, nudges, coaching) |
 | **Connectors needed** | `user-composio` (Gmail, Todoist, Attio, Google Sheets/Drive/Calendar); `user-whatsapp-mcp`; `user-Signal MCP`; `user-imessage`; `x`; `cursor-origin`; `cursor-github` |
-| **Last verified** | 2026-11-05 · CoS Bot self-report |
+| **Last verified** | 2026-11-06 · Grok Bot registry refresh (display name synced from live profile) |
 
 ## Routines
 

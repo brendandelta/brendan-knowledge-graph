@@ -39,3 +39,4 @@ none (chat with Brendan only; no auto-send).
 - 2026-11-05 — skill created with Bot registry refresh routine (Brendan, t337u).
 - 2026-11-05 — shared-clone pull --rebase origin main; registry CHANGELOG/INDEX rules mirrored from AGENTS.md.
 - 2026-11-05 — Bot registry refresh steps synced to the live routine (inventory `/home/box/agent-data/agents/` profiles; compare; commit; flag only unrecorded drift).
+- 2026-11-06 — Bot registry refresh: flagged Suggested Actions missing from live; synced CoS/Document Filing/Marwan display names; fixed grok-bot registry Last verified row.

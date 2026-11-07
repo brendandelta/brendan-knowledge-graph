@@ -13,7 +13,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | chief-of-staff | todoist, gmail (arrow), whatsapp, signal, imessage, gcal x2, attio, other bots' transcripts | todoist, chat | profile.md | live (Grokbot) |
 | comms-ingest | signal, imessage, whatsapp, 6 gmails, gcal, attio | comms index, todoist | — | live (Grokbot); migrate. Infrastructure: three skills read its index. |
 | crm-maintenance | comms index, direct thread reads (whatsapp, signal, imessage, 5 gmails, gcal), attio (read only, incl. calls) | composio:notion only (append only); never writes Attio | comms-ingest, brendan-crm | live (Grokbot, bot "Personal CRM Contact Context", Notion only; Attio routines deleted 2026-11-05); migrate |
-| suggested-actions | comms index or direct reads, notion, attio | chat (drafts only) | comms-ingest, deal-indications | live (Grokbot); migrate |
+| suggested-actions | comms index or direct reads, notion, attio | chat (drafts only) | comms-ingest, deal-indications | missing from live fleet (2026-11-06); skill retained for rebuild |
 | call-cadence | notion People CRM, imessage, whatsapp, signal, gcal | chat (call list, drafts), gcal (15-min call events) | brendan-crm | live (Grokbot), v1.1 |
 | grok-bot | knowledge repo, `/home/box/agent-data/agents/` (registry refresh only), connectors per task | bots/MAP.md, bots/grok-bot.md, chat | AGENTS.md bot registry | live (Grokbot); routine "Bot registry refresh" 7pm PT inventories live profiles |
 | money-queue | QBO x3, Chase, Ramp, Shopify, Meta | proposal list only | hard rules | planned |

@@ -10,7 +10,7 @@ Template: [`arrow/bots/_TEMPLATE.md`](_TEMPLATE.md).
 
 | Bot | Slug / file | Skill | Status in registry |
 |---|---|---|---|
-| N-PORT Scraper | [nport-scraper](bots/nport-scraper.md) | `arrow/skills/nport-scraper` | self-reported 2026-11-05 · live (monthly refresh; top-100 done) |
+| N-PORT Scraper | [nport-scraper](bots/nport-scraper.md) | `arrow/skills/nport-scraper` | self-reported 2026-11-06 · live (monthly refresh; full-dataset Gmail draft to Vaidehi after updates) |
 | Private Markets Desk | [private-markets-desk](bots/private-markets-desk.md) | `arrow/skills/private-markets-desk` | self-reported 2026-11-05 · live |
 | Arrow Weekly | [arrow-weekly](bots/arrow-weekly.md) | `arrow/skills/arrow-weekly` | self-reported 2026-11-05 · test (no routine; first send pending) |
 | Arrow Document Filing Bot | [arrow-document-filing](bots/arrow-document-filing.md) | `arrow/skills/arrow-fund-inbox` (+ `document-filing`) | live (self-reported 2026-11-05) |

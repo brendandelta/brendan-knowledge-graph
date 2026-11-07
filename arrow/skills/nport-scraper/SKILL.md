@@ -29,7 +29,8 @@ Each run:
 - adds PMs, advisers and signers for new holders and scores them;
 - re-checks Attio read-only;
 - edits the N-PORT Private Marks Tracker Page in place;
-- sends Brendan a digest of new SPVs, changed positions and live-deal overlaps, or sends nothing if nothing changed.
+- if anything changed: rebuilds the full all-company workbook with /workspace/nport/export_all_workbook.py and creates a Gmail draft from brendan@arrowfund.co to vaidehi@arrowfund.co with the workbook attached (does not send it);
+- sends Brendan a digest of new SPVs, changed positions and live-deal overlaps, plus the Gmail draft link when one was created, or sends nothing if nothing changed.
 
 ## Rules
-Never write to Attio, send messages or contact anyone without Brendan's explicit confirm. Never fabricate numbers; every row links to its SEC filing.
+Never write to Attio without Brendan's explicit confirm. Never send the Vaidehi email; leave it as a draft for Brendan to send. Never contact anyone else without Brendan's explicit confirm. Never fabricate numbers; every row links to its SEC filing.

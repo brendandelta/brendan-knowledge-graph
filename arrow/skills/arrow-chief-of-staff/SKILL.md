@@ -40,9 +40,32 @@ Brendan designed and pushed this live on 2026-11-07 after a Brendan-only test. D
 ### Cadence
 
 - 9:00 AM PT: check-in to each person.
-- 12:00 PM PT: the same rollup to Brendan and Chris covering who replied (and a summary of what they said) and who has not.
+- 12:00 PM PT: the same CEO/COO ops brief to Brendan and Chris covering company project status. Team replies are a supporting section, not the whole message. (Locked as an ops brief on 2026-11-09.)
 - 1:00 PM PT: short follow-up if that person has not replied, with the same Notion link. (Moved from 11:00 AM on 2026-11-08.)
 - 2:00 PM PT: separate reminder DMs only the day before a task is due and the day it becomes overdue. Due-soon (within 3 days) is flagged in the morning check-in, not as a separate reminder.
+
+
+### 12:00 PM CEO/COO rollup (locked 2026-11-09)
+
+Brendan locked this on 2026-11-09. Recipients are Brendan Conn and Chris Clifford only. Purpose: a company status update for the CEO and COO so they can see what is going on and make sure work gets done. This is not a who-replied attendance note.
+
+Format, in this order:
+
+1. Header and snapshot: `Arrow ops update, [weekday Mon D]` then how many projects are in progress, how many tasks are in motion (Status is In Progress), how many open tasks are overdue, and how many are due in the next 3 days.
+2. Needs you: overdue items, due-soon items (due within 3 days), explicit blocks, and anything that changes capacity (for example someone out until a stated date). Deep-link these tasks.
+3. Moving: every In Progress task, grouped by project, plus any explicit reply updates.
+4. Coming up: dated work that is not yet inside the 3-day window. Deep-link these tasks.
+5. Also on the board: every remaining active project named, so the full book is visible, without filler status or invented next steps.
+6. Team check-ins: who replied and what they said (sanitized work status or input only), and who has not.
+7. One [Projects & Tasks](https://app.notion.com/p/Projects-Tasks-2d98f5e5eca18091974dc744fc1dadb4) link on its own line.
+
+Voice for this message only (does not change the team check-in voice in Message voice below):
+
+- Do not start with "Hey," and do not end with a reply prompt asking what is done, in motion, or blocked.
+- Write as an ops update to both people. Use first names, not "you," because both receive the same text.
+- No em dashes.
+- Only facts from the board or from explicit replies. No "on track" or "at risk" language. No invented next steps.
+- No buyer or seller identities, no personal chatter, and no liability-inducing content.
 
 ### 2:00 PM reminder logic
 

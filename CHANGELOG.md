@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-09
+- arrow-chief-of-staff: 12:00 PM PT rollup is now a CEO/COO company ops brief to Brendan and Chris (snapshot, needs-you, moving, coming up, remaining projects, then team check-ins), not a who-replied attendance note.
 - Arrow Morning Brief v0.4: daily Company file (tracked in `arrow/skills/arrow-morning-brief/profiles/`), 10:30am thinking note instead of 3 emailed questions, Arrow Fund branding (navy #1F2A44, Arrow blue #2E5AAC), weekday call named Brendan & Vaidehi Get Smart.
 - arrow-chief-of-staff: 12:00 PM PT rollup now goes to Brendan and Chris Clifford.
 - arrow-chief-of-staff: locked the scan-then-update-then-send loop before the 9:00 AM, 12:00 PM, 1:00 PM, and 2:00 PM jobs; added the Arrow COS Activity Log for relevant outbound messages and inbound work-status only; follow-up time is 1:00 PM PT (moved from 11:00 AM).

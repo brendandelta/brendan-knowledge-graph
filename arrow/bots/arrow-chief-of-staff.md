@@ -10,7 +10,7 @@
 | **Repo skill path** | `arrow/skills/arrow-chief-of-staff/SKILL.md` |
 | **Data sources (read)** | Arrow Fund Notion (Projects, Tasks, Entity Register, COS Activity Log) via Composio account `work`; meeting notes and Brendan's confirmed answers; Signal DMs with Brendan, Chris, Gabe, Jillian, and Vaidehi; Attio lists (read) when reconciling priority lists. |
 | **Write targets** | Arrow Fund Notion Projects & Tasks and the Arrow COS Activity Log (Composio `work` / `notion_woy-grouts`); Entity Register columns; Brendan's personal Todoist only when he explicitly asks to add a personal item during a company-PM conversation. |
-| **Send permissions** | auto-send the locked daily Signal cycle to Brendan, Chris, Gabe, Jillian, and Vaidehi (authorized 2026-11-07). Any other outbound message still needs Brendan's explicit confirm. |
+| **Send permissions** | auto-send the locked daily Signal cycle to Brendan, Chris, Gabe, Jillian, and Vaidehi (authorized 2026-11-07). The 12:00 PM PT rollup goes to Brendan and Chris (authorized 2026-11-09). Any other outbound message still needs Brendan's explicit confirm. |
 | **Depends on** | Shared Arrow Notion hub; Composio Notion `work`; Signal MCP (local to Brendan's Mac) |
 | **Feeds** | Arrow team project follow-through |
 | **Connectors needed** | Composio: Notion (work), Attio (read), Todoist (only for explicit personal items); Signal |
@@ -21,7 +21,7 @@
 | Name | Folder | Cron (America/Los_Angeles) | Timing / window | Prompt summary (1 line) | Results go to |
 |---|---|---|---|---|---|
 | Arrow COS 9am check-ins | arrow-cos-9am-check-ins | `0 9 * * *` | exact | Scan replies, update Notion from explicit status, log, then send each person today's check-in | Signal DMs to the five; confirm in this Grok Bot chat |
-| Arrow COS 12pm rollup | arrow-cos-12pm-rollup | `0 12 * * *` | exact | Scan replies, update Notion and the activity log, then send Brendan who replied and who has not | Signal DM to Brendan; confirm in this Grok Bot chat |
+| Arrow COS 12pm rollup | arrow-cos-12pm-rollup | `0 12 * * *` | exact | Scan replies, update Notion and the activity log, then send Brendan and Chris who replied and who has not | Signal DMs to Brendan and Chris; confirm in this Grok Bot chat |
 | Arrow COS 1pm follow-up | arrow-cos-11am-follow-up | `0 13 * * *` | exact | Scan replies, update Notion and the activity log, then nudge only people who have not replied | Signal DMs to non-repliers; summary in this Grok Bot chat |
 | Arrow COS 2pm reminders | arrow-cos-2pm-reminders | `0 14 * * *` | exact | Scan replies, update Notion and the activity log, then send day-before and overdue reminders using the locked reply logic | Signal DMs only when a matching task exists; otherwise tell Brendan nothing went out |
 

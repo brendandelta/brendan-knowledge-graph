@@ -40,7 +40,7 @@ Brendan designed and pushed this live on 2026-11-07 after a Brendan-only test. D
 ### Cadence
 
 - 9:00 AM PT: check-in to each person.
-- 12:00 PM PT: rollup to Brendan covering who replied (and a summary of what they said) and who has not.
+- 12:00 PM PT: the same rollup to Brendan and Chris covering who replied (and a summary of what they said) and who has not.
 - 1:00 PM PT: short follow-up if that person has not replied, with the same Notion link. (Moved from 11:00 AM on 2026-11-08.)
 - 2:00 PM PT: separate reminder DMs only the day before a task is due and the day it becomes overdue. Due-soon (within 3 days) is flagged in the morning check-in, not as a separate reminder.
 

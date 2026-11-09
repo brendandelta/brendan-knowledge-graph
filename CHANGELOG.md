@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-09
+- arrow-chief-of-staff: 12:00 PM PT rollup now goes to Brendan and Chris Clifford.
 - arrow-chief-of-staff: locked the scan-then-update-then-send loop before the 9:00 AM, 12:00 PM, 1:00 PM, and 2:00 PM jobs; added the Arrow COS Activity Log for relevant outbound messages and inbound work-status only; follow-up time is 1:00 PM PT (moved from 11:00 AM).
 - marwan-deal-board: Part B now replaces auto-filled company descriptions that name founders/backers with a neutral one-liner (Stripe row fixed on the board).
 

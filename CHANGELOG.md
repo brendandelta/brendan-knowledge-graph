@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-09
+- arrow-chief-of-staff: the 12:00 PM CEO/COO ops brief keeps the body link-free and puts person task-board links at the end (Brendan, Chris, Gabe, Vaidehi, Jillian).
 - arrow-chief-of-staff: the 12:00 PM CEO/COO ops brief has no links (no task, project, or hub links).
 - arrow-chief-of-staff: 12:00 PM PT rollup is now a CEO/COO company ops brief to Brendan and Chris (snapshot, needs-you, moving, coming up, remaining projects, then team check-ins), not a who-replied attendance note.
 - Arrow Morning Brief v0.4: daily Company file (tracked in `arrow/skills/arrow-morning-brief/profiles/`), 10:30am thinking note instead of 3 emailed questions, Arrow Fund branding (navy #1F2A44, Arrow blue #2E5AAC), weekday call named Brendan & Vaidehi Get Smart.

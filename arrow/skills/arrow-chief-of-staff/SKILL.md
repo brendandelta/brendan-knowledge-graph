@@ -57,14 +57,14 @@ Format, in this order:
 4. Coming up: dated work that is not yet inside the 3-day window. Name the tasks in plain text.
 5. Also on the board: every remaining active project named, so the full book is visible, without filler status or invented next steps.
 6. Team check-ins: who replied and what they said (sanitized work status or input only), and who has not.
-7. Do not include any links: no task links, no project links, and no hub link.
+7. After the body, a Task boards section with one embedded markdown link per person, each on its own line, pointing to that person's filtered open-task view. Include the whole team in this order: Brendan, Chris, Gabe, Vaidehi, and Jillian. Do not put any links in the main body, so the update reads in flow first.
 
 Voice for this message only (does not change the team check-in voice in Message voice below):
 
 - Do not start with "Hey," and do not end with a reply prompt asking what is done, in motion, or blocked.
 - Write as an ops update to both people. Use first names, not "you," because both receive the same text.
 - No em dashes.
-- Do not include any links.
+- Do not put links in the main body. Put the person task-board links only at the end, each on its own line.
 - Only facts from the board or from explicit replies. No "on track" or "at risk" language. No invented next steps.
 - No buyer or seller identities, no personal chatter, and no liability-inducing content.
 

@@ -52,18 +52,19 @@ Brendan locked this on 2026-11-09. Recipients are Brendan Conn and Chris Cliffor
 Format, in this order:
 
 1. Header and snapshot: `Arrow ops update, [weekday Mon D]` then how many projects are in progress, how many tasks are in motion (Status is In Progress), how many open tasks are overdue, and how many are due in the next 3 days.
-2. Needs you: overdue items, due-soon items (due within 3 days), explicit blocks, and anything that changes capacity (for example someone out until a stated date). Deep-link these tasks.
+2. Needs you: overdue items, due-soon items (due within 3 days), explicit blocks, and anything that changes capacity (for example someone out until a stated date). Name the tasks in plain text.
 3. Moving: every In Progress task, grouped by project, plus any explicit reply updates.
-4. Coming up: dated work that is not yet inside the 3-day window. Deep-link these tasks.
+4. Coming up: dated work that is not yet inside the 3-day window. Name the tasks in plain text.
 5. Also on the board: every remaining active project named, so the full book is visible, without filler status or invented next steps.
 6. Team check-ins: who replied and what they said (sanitized work status or input only), and who has not.
-7. One [Projects & Tasks](https://app.notion.com/p/Projects-Tasks-2d98f5e5eca18091974dc744fc1dadb4) link on its own line.
+7. Do not include any links: no task links, no project links, and no hub link.
 
 Voice for this message only (does not change the team check-in voice in Message voice below):
 
 - Do not start with "Hey," and do not end with a reply prompt asking what is done, in motion, or blocked.
 - Write as an ops update to both people. Use first names, not "you," because both receive the same text.
 - No em dashes.
+- Do not include any links.
 - Only facts from the board or from explicit replies. No "on track" or "at risk" language. No invented next steps.
 - No buyer or seller identities, no personal chatter, and no liability-inducing content.
 

@@ -45,6 +45,7 @@ Standing OK from Brendan (2026-11-02): posting, editing and removing positions t
 - Sell-Side: company, layer, available ($m, range OK) and valuation ($bn) required; optional price/share, min ticket, fees.
 - Buy-Side: company, side, layer, currency, demand ($m), buyer type (leave blank), sector, notes. No price/valuation field, so put terms in Notes, e.g. "Valuation under $30bn. L1, no carry."
 - Company type-ahead: pick a suggestion only when its name matches exactly; otherwise keep the typed text. (Blindly taking the first suggestion once posted rows as Anduril.)
+- Picking a company suggestion auto-fills the Company description, which can name founders, backers and stale marks (seen on Stripe, 2026-11-09). After posting, open the position and replace any description that names people or investors with a neutral one-liner (e.g. "Financial infrastructure / payments platform"). An empty description doesn't save; the site restores the auto-fill.
 - Notes (Spartan-visible) carry only a short version of the terms. Never put investor, seller or intermediary names anywhere on the board.
 
 **Refresh**

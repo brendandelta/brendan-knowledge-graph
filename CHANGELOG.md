@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-09
+- marwan-deal-board: Part B now replaces auto-filled company descriptions that name founders/backers with a neutral one-liner (Stripe row fixed on the board).
+
 ## 2026-11-06
 - Bot registry refresh (Grok Bot): Suggested Actions (`c0d5c0d3…`) missing from live `/home/box/agent-data/agents/` (not in `deleted-agents.json`); marked missing in `bots/suggested-actions.md`, `bots/MAP.md`, INDEX, and `skills/suggested-actions`. Synced CoS live display name to Brendan · Chief of Staff; synced Document Filing and Marwan live display names; fixed corrupted Last verified row on `bots/grok-bot.md`.
 - Arrow Chief of Staff: new Arrow company COS / project-management bot (f6e9b74f-37da-4703-8a77-3277f1cb848f) created and handed the Notion PM rewrite; skill `arrow/skills/arrow-chief-of-staff`, registry `arrow/bots/arrow-chief-of-staff.md`. No notification routines yet.

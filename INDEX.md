@@ -58,6 +58,7 @@ Rebuild map of live Grok Bots. Arrow-only entries under `arrow/bots/` + [`arrow/
 
 ## Ideas (not yet seen twice)
 
+- journal/notes dashboard: start using the existing memory/ folder for working notes and lessons. A richer journal or visual notes surface can wait until this has come up twice.
 - call-scheduler: per-person cadence, suggests times, drafts outreach, books on confirm. Run by hand for one person for two weeks first.
 - relationship-ranker: who is worth time and how often. Reference file of rules + a Notion field first.
 

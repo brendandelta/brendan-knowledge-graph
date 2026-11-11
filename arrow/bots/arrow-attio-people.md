@@ -5,11 +5,11 @@
 | **Name** | Arrow Attio People |
 | **Bot id** | 994d8e46-47dd-4600-9038-81749023d856 |
 | **Silo** | Arrow |
-| **Purpose** | Keeps Arrow Fund's Attio People records current (Arrow context, relationship links, investor fields, empty contact fields) from Arrow comms. People only; Companies belong to Arrow Attio Firms. |
+| **Purpose** | Keeps Arrow Fund's Attio People records current (Arrow context, relationship links, investor fields, empty contact fields, last-contact rollup for email and WhatsApp) from Arrow comms. People only; Companies belong to Arrow Attio Firms. |
 | **Status** | live since 2026-11-05 (took over the Attio People work from Contact Context, now Personal CRM Contact Context) |
 | **Repo skill path** | `arrow/skills/attio-contact-context/SKILL.md` |
 | **Data sources (read)** | comms index; Brendan's Gmail inboxes incl. Arrow; Google Calendar; WhatsApp (Brendan's `user-whatsapp-mcp` and partner WhatsApp, currently `user-Chris' WhatsApp MCP`; Arrow-relevant threads only), Signal (incl. Arrow team groups) and iMessage; Attio People, calls, transcripts, blocks/interests, lists; public professional web pages. Never Notion. Arrow Weekly Log may be read. |
-| **Write targets** | Attio (Arrow Fund workspace) People only, owned fields: `arrow_context`, `introduced_by` (single; inverse `introduced`), `knows`, `close_with`, `contact_owner`, `context_updated`, `check_size_range`, `sector_of_interest`, `lp_fo_ria` (+ FO tag), empty contact fields; human-edit guard always on. Box files: /workspace/attio-context/state.json (cursor), relationship-provenance.jsonl; /workspace/attio-backfill/ (queue.json, relationship_checked.json, log.md, lock, pending-questions.md). Its own skill file in this repo. |
+| **Write targets** | Attio (Arrow Fund workspace) People only, owned fields: `arrow_context`, `introduced_by` (single; inverse `introduced`), `knows`, `close_with`, `contact_owner`, `context_updated`, `check_size_range`, `sector_of_interest`, `lp_fo_ria` (+ FO tag), empty contact fields, and last-contact fields (`last_whatsapp_contact`, `last_whatsapp_contact_by`, `last_contacted`, `last_contacted_by`, `last_contact_channel`, `days_since_last_contact`); human-edit guard always on (last-contact fields are computed and always refreshed). Box files: /workspace/attio-context/state.json (cursor), relationship-provenance.jsonl; /workspace/attio-backfill/ (queue.json, relationship_checked.json, log.md, lock, pending-questions.md). Its own skill file in this repo. |
 | **Send permissions** | None to anyone but Brendan. Messages Brendan only in its own Grok Bot chat, only when notable. Never sends, drafts or replies on email, Slack, WhatsApp, Signal or iMessage. Never moves money, deletes or pays. |
 | **Depends on** | comms-ingest (comms index); Composio Attio connection; WhatsApp, partner WhatsApp (`user-Chris' WhatsApp MCP`), Signal and iMessage connectors; Gmail/Calendar via Composio |
 | **Feeds** | Attio People, which Daily Arrow Report, Arrow Weekly, Arrow Log and Marwan Deal Board read |
@@ -20,7 +20,7 @@
 
 | Name | Folder | Cron (America/Los_Angeles) | Timing / window | Prompt summary (1 line) | Results go to |
 |---|---|---|---|---|---|
-| Attio contact context | attio-contact-context | `30 8,12,15 * * 1-5` and `30 8,17 * * 0,6` | flexible ±15 min | One event run of the skill: update in-scope People touched since the cursor, advance the cursor. | Brendan in this bot's chat, only when notable (people worth adding, conflicts, blocked source) |
+| Attio contact context | attio-contact-context | `30 8,12,15 * * 1-5` and `30 8,17 * * 0,6` | flexible ±15 min | One event run of the skill: update in-scope People touched since the cursor, run the last-contact pass (WhatsApp outbound + email rollup; full days-since refresh on the first PT run of the day), advance the cursor. Live routine still needs the last-contact paragraph from the skill. | Brendan in this bot's chat, only when notable (people worth adding, conflicts, blocked source) |
 | Attio backfill | attio-backfill | `15,45 7-21 * * *` | flexible ±10 min | One 25-person batch of Backfill mode (tiers A–C, D skipped), plus A–C relationship checks; temporary until A–C done. | Brendan in this bot's chat, only when a tier finishes, a failure, or a conflict |
 
 Full routine prompts are kept verbatim in the skill's "Live routine prompts" section.

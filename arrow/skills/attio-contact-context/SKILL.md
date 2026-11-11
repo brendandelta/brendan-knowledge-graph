@@ -1,18 +1,18 @@
 ---
 name: attio-contact-context
-description: Use when keeping Arrow Fund's Attio People records current with plain-language business context, relationship links (Arrow context, Introduced by, Knows, Close with, Relationship owner, Context updated), investor fields (check size, sector of interest, What they are) and empty contact fields, so anyone on the team can find who someone is and how they connect to Arrow. Two modes: event runs on new activity since the cursor, and Backfill mode working through a tiered queue. The only process that writes to Attio People for these fields; never reads or writes Brendan's Notion; never sends anything.
+description: Use when keeping Arrow Fund's Attio People records current with plain-language business context, relationship links (Arrow context, Introduced by, Knows, Close with, Relationship owner, Context updated), investor fields (check size, sector of interest, What they are), empty contact fields, and last-contact fields (last WhatsApp contact, last contacted, days since last contact), so anyone on the team can find who someone is, how they connect to Arrow, and when they were last contacted. Two modes: event runs on new activity since the cursor (including a last-contact pass), and Backfill mode working through a tiered queue. The only process that writes to Attio People for these fields; never reads or writes Brendan's Notion; never sends anything.
 ---
 
 # attio-contact-context
 
-**Status:** live on the Arrow Attio People bot (taken over from Contact Context on 2026-11-05; inherits /workspace/attio-context/state.json, /workspace/attio-backfill/, ATTIO_CONTEXT_TOKEN). Event routine "Attio contact context" (folder attio-contact-context) and backfill routine "Attio backfill" (folder attio-backfill).
+**Status:** live on the Arrow Attio People bot (taken over from Contact Context on 2026-11-05; inherits /workspace/attio-context/state.json, /workspace/attio-backfill/, ATTIO_CONTEXT_TOKEN). Event routine "Attio contact context" (folder attio-contact-context) and backfill routine "Attio backfill" (folder attio-backfill). Last-contact fields (Phases 1 and 2, Brendan approved 2026-11-11) are owned here; the last-contact pass runs as part of each event run, with a full days-since refresh on the first event run of each PT day. Phase 3 (per-owner stale-contact reminders) and Phase 4 (drafted, later opt-in auto check-ins) are planned, not built.
 **Source:** Designed with Brendan in chat, approved 2026-11-03; siloed from the Notion CRM 2026-11-04 (see DECISIONS.md 2026-11-03 and 2026-11-04). Renamed from attio-context on 2026-11-04. Keep this file and the live routine prompts the same; a change to one is made to the other.
 
 Migration notes: Owned by bot "Arrow Attio People" (2026-11-05). Fully separate from Brendan's personal Notion CRM on Contact Context (skills/brendan-crm, skills/crm-maintenance). The two share INPUTS (the same comms sources) but never OUTPUTS: the Notion CRM writes only Notion and never writes Attio; this process writes only Attio (plus its own files under /workspace) and never reads or writes Notion. Company firm intel is a separate skill/bot (arrow/skills/arrow-attio-firm-context, "Arrow Attio Firms"). The weekly Arrow Log is written by "Arrow Log" (arrow/skills/arrow-weekly-log); this bot may read it but never writes it. Hand-over plan: projects/contact-context-attio-split.md and bot-plan.md next to this skill. Workspace paths keep the old name (/workspace/attio-context, /workspace/attio-backfill). People `description` is NOT used here, because LinkedIn and bio enrichment writes it. Attio global search (`/` or Cmd-K) does not index custom text attributes (checked 2026-11-03); teammates (and Gabe's MCP layer) find Arrow context with a records query filter `arrow_context $contains …` or on the record page.
 
 ## Purpose
 
-Every relevant person in Arrow Fund's Attio gets short, plain business context, relationship mapping and investor fields, written so teammates who don't know the Attio schema (for example Gabe) can read a record, or filter People by a word, and see who the person is, what they invest in, how they connect to Arrow, and who they work with.
+Every relevant person in Arrow Fund's Attio gets short, plain business context, relationship mapping, investor fields, and a last-contact rollup, written so teammates who don't know the Attio schema (for example Gabe) can read a record, or filter People by a word, and see who the person is, what they invest in, how they connect to Arrow, who they work with, and when they were last contacted (email or WhatsApp) and by whom.
 
 ## Scope: who belongs in Attio (Brendan, 2026-11-04)
 
@@ -37,6 +37,38 @@ A person is in scope only if Arrow is involved: at least one Arrow team member o
 | What they are (`lp_fo_ria`) | multi-select | See Investor fields. |
 | LP / Network Tags (`tags`) | multi-select | Add only the `FO` tag, per the mapping below. Never touch other tags (Blacklist, Unethical etc. are human-only). |
 | Contact fields: `job_title`, `company` (link to an existing company record only), `primary_location`, `email_addresses`, `phone_numbers`, `linkedin` | various | Taken over from the Notion CRM mirror on 2026-11-04. Fill ONLY when empty, from this process's own sources (email signatures, Attio calls, public professional pages). Never overwrite. Business contact details only (no home address, no personal numbers from the web). `primary_location` needs a full location object (the API rejects partial geo); if you can't build one, skip it. |
+| Last WhatsApp contact (`last_whatsapp_contact`) | timestamp | Date and time of the last outbound WhatsApp message an Arrow team member sent this person. Outbound and 1:1 only. See Last-contact fields. |
+| Last WhatsApp contact by (`last_whatsapp_contact_by`) | actor-reference (workspace member), single | Who sent that WhatsApp message. |
+| Last contacted (`last_contacted`) | timestamp | The later of `last_whatsapp_contact` and Attio's built-in `last_email_interaction`. See Last-contact fields. |
+| Last contacted by (`last_contacted_by`) | actor-reference (workspace member), single | Who made that most recent contact. |
+| Last contact channel (`last_contact_channel`) | select (Email, WhatsApp) | Email or WhatsApp, matching `last_contacted`. |
+| Days since last contact (`days_since_last_contact`) | number | Whole calendar days from `last_contacted` to today in America/Los_Angeles. Recalculated daily. See Last-contact fields. |
+
+## Last-contact fields (WhatsApp and rollup)
+
+Created 2026-11-11 (Phases 1 and 2, Brendan approved). These six fields are process-owned and always refreshed from source data. Do not apply the human-edit skip to them. Write only these six fields in this pass; never create People records; never touch any other field (including `context_updated` and `arrow_context`). Attio's built-in `last_email_interaction`, `last_interaction`, and `strongest_connection_user` stay read-only and are not written.
+
+Attribute ids on the People object (workspace `945181e9-ddcd-4d63-978e-ea968ceae3a8`):
+
+| Slug | Type | Attribute id | Meaning |
+|---|---|---|---|
+| `last_whatsapp_contact` | timestamp | `5573f7e0-992c-47a6-8de1-1489fd95fcc0` | Last outbound WhatsApp send to this person from a connected Arrow WhatsApp. |
+| `last_whatsapp_contact_by` | actor-reference, single | `1c600f63-a73f-4915-9e79-7ddb46adde7b` | Workspace member who sent it (Brendan `cec9d86b-dd49-4011-8eaa-671c96791680`, Chris `1ac8a8df-43a0-4b56-b159-1cb42e01bff1`). Actor-reference was used so the value is a real workspace member, same type as Relationship owner and Strongest connection. |
+| `last_contacted` | timestamp | `c347a38a-3be0-4b9b-9c7d-c5870d02991a` | Later of `last_whatsapp_contact` and `last_email_interaction.interacted_at`. |
+| `last_contacted_by` | actor-reference, single | `8349eae8-d974-4594-9c8c-8d322cdbb516` | Sender of that winning contact. For email, use `last_email_interaction.owner_actor` when its type is `workspace-member`; otherwise leave empty. |
+| `last_contact_channel` | select, single (options: Email, WhatsApp) | `18d7d5a7-e316-4cd3-87ae-8c551dec16f3` | Channel of the winning contact. |
+| `days_since_last_contact` | number | `0927e0f4-a14c-45ca-936f-539c1ac42000` | Whole calendar days in America/Los_Angeles from the date of `last_contacted` to today. 0 if last contact is today. |
+
+Rules for the last-contact pass:
+
+1. **Sources.** Brendan's WhatsApp (`user-whatsapp-mcp`) and partner WhatsApp currently Chris's (`user-Chris' WhatsApp MCP`). Follow CONNECTIONS.md Partner WhatsApp rules: Chris's connector is read-only (never `draft_message` or `send_message`); Arrow-relevant 1:1 chats only; skip personal, family, and non-Arrow threads (skip chats labeled Mom, Dad, or clearly personal such as "poker" or "friend" with no Arrow involvement); dedupe a phone that appears in both mailboxes. Gabe's and Jillian's WhatsApp are not connected, so their WhatsApp sends are missing until those connectors are added. Their email still counts through Attio's `last_email_interaction`.
+2. **Outbound, 1:1 only.** Count only messages we sent (the `me:` lines in `get_messages`) in direct chats. Skip groups. Skip self-chats (Brendan's own number on Brendan's WhatsApp, Chris's own number on Chris's). If both mailboxes have a send to the same person, use the more recent send and attribute it to whoever sent it.
+3. **Match.** Normalize phones to E.164 (`+` and digits) and match against People `phone_numbers`. Do not create records. If one number sits on more than one People record, write all of them and log the collision. If `get_messages` with a bare phone returns "No chat matching", retry with the full JID, including a `:0` device suffix when that is how the chat is stored.
+4. **Coverage.** `list_chats` is capped at 200 and mixes groups with directs, most recent first, so older 1:1 chats can fall off the list. For daily updates, use `recent_activity` with `exclude_groups=true` over the last 36 to 48 hours, plus `list_chats`, then `get_messages` on each 1:1 that had activity. A recovery backfill should walk every reachable 1:1 chat; chats older than the 200-chat window may stay unset until they are active again.
+5. **Rollup.** `last_contacted` is the later of `last_whatsapp_contact` and `last_email_interaction.interacted_at`. `last_contacted_by` and `last_contact_channel` follow that winner. On an exact timestamp tie, prefer WhatsApp.
+6. **Days since.** Recalculate `days_since_last_contact` for every person who has a `last_contacted` value, including email-only people, once per calendar day, on the first event run of the day in America/Los_Angeles. Other event runs the same day only need to update people with new WhatsApp or email activity (and recompute their rollup and days). Batch PATCHes via Composio Attio (`COMPOSIO_PROXY_EXECUTE` / workbench `proxy_execute`, toolkit `attio`, relative paths such as `/objects/people/records/{id}`), respect rate limits, retry 429s, and checkpoint progress.
+7. **Display.** These are ordinary timestamp and number fields, not Attio's built-in interaction type. The API returns timestamps in UTC with nanosecond precision (for example `2026-11-11T19:47:49.000000000Z`). The UI shows the date and time, not "x days ago". `days_since_last_contact` is the "x days ago" number for filters and reminder bots.
+8. **Planned, not built.** Phase 3 is a daily per-owner stale-contact reminder list, filtered on `days_since_last_contact`. Phase 4 is drafted check-in messages, with auto-send only after Brendan explicitly turns it on. This process must not send those reminders or auto messages.
 
 ## Investor fields (fill when empty; value only)
 
@@ -96,7 +128,7 @@ Brendan deletes messages on his comms, but Attio keeps every value's history. Wr
 
 ## Human-edit guard
 
-Before rewriting `arrow_context`, read its current value's `created_by_actor`. If the last value was written by a workspace member (a human), skip that person and log "skipped: human-edited". Only overwrite values written by this process (actor type `app`: the Composio Attio app b07dc751-ba38-4209-82ca-f2bd28526da4, or this process's own token actor id recorded in /workspace/attio-context/state.json as `own_actor_id`). Same for `contact_owner`, `introduced_by`, investor fields and contact fields: fill when empty, never replace a human-set value.
+Before rewriting `arrow_context`, read its current value's `created_by_actor`. If the last value was written by a workspace member (a human), skip that person and log "skipped: human-edited". Only overwrite values written by this process (actor type `app`: the Composio Attio app b07dc751-ba38-4209-82ca-f2bd28526da4, or this process's own token actor id recorded in /workspace/attio-context/state.json as `own_actor_id`). Same for `contact_owner`, `introduced_by`, investor fields and contact fields: fill when empty, never replace a human-set value. The six last-contact fields are an exception: they are computed from WhatsApp and Attio email metadata and are always refreshed, including over a previous bot value.
 
 ## Sources (read only; inputs shared with the Notion CRM, outputs siloed)
 
@@ -132,6 +164,7 @@ a. Read the cursor from state.json. Collect all business-relevant activity since
 b. Update every in-scope Attio person touched. Match by email, then phone, then full name (only if the name is unique). Apply the scope rule and the human-edit guard. Rewrite `arrow_context` in full, add `knows` both ways and set `introduced_by` only under the Relationship evidence rules, add `close_with`, set `contact_owner` only when empty (never on teammates' records), fill empty investor and contact fields, set `context_updated`. Never create people; list in-scope people worth adding.
 c. No backfill in event runs (Backfill mode does it). If a touched person is in the backfill queue, mark them `done` there.
 d. Append one log line: run time, counts (updated, skipped), names updated, skips with reasons (human-edited, ambiguous match, brendan-only, not enough context), people worth adding, options added. Then write the new cursor (run start, PT) to state.json.
+e. **Last-contact pass** (see Last-contact fields): on every event run, read new outbound 1:1 WhatsApp sends since the last last-contact pass (or the last 36 to 48 hours) from Brendan's WhatsApp and Chris's WhatsApp, match by E.164 phone, write the WhatsApp fields, and recompute the rollup. On the first event run of each PT calendar day, also refresh `days_since_last_contact` (and the rollup from the current `last_email_interaction`) for every person who has a `last_contacted` or `last_email_interaction` value, including email-only people. Log last-contact counts (WhatsApp updated, email-only refreshed, unmatched phones, collisions) on the same log line. Keep a small cursor for this pass in /workspace/attio-context/state.json as `last_contact_cursor` (PT timestamp).
 
 Verify each write by reading the record back. Keep going if one record fails; log it.
 
@@ -154,7 +187,7 @@ Each batch:
 
 ## Schedule
 
-Event runs ("Attio contact context"): weekdays 8:30am, 12:30pm and 3:30pm PT; weekends 8:30am and 5:30pm PT. Backfill ("Attio backfill"): every 30 minutes, 7:15am–9:45pm PT daily (:15 and :45).
+Event runs ("Attio contact context"): weekdays 8:30am, 12:30pm and 3:30pm PT; weekends 8:30am and 5:30pm PT. The last-contact pass runs on every event run; the full `days_since_last_contact` refresh runs on the first event run of each PT day (weekdays 8:30am, weekends 8:30am). Backfill ("Attio backfill"): every 30 minutes, 7:15am–9:45pm PT daily (:15 and :45). The last-contact pass is not part of Backfill mode.
 
 ## Notify Brendan
 
@@ -162,7 +195,7 @@ Only for notable items: an in-scope person worth adding to Attio, a human-edited
 
 ## Live routine prompts
 
-Synced verbatim from the live routines on 2026-11-05.
+Synced verbatim from the live routines on 2026-11-05. The last-contact paragraph below is the text to add to the live "Attio contact context" routine; it is in this file but was not yet on the live routine as of 2026-11-11. Until it is added, the skill's Event run step e is still the source of truth when the bot loads this file.
 
 ### Attio contact context (folder attio-contact-context)
 
@@ -172,6 +205,20 @@ Before anything else, read ~/Claude/brendan-knowledge-graph/AGENTS.md and follow
 Load arrow/skills/attio-contact-context/SKILL.md and run that skill for one event run.
 
 Results go to Brendan in this Grok Bot chat, and only when something is notable: people worth adding to Attio, conflicts, or a blocked source. When nothing is notable, stay quiet.
+
+### Last-contact paragraph to add to "Attio contact context" (not yet on the live routine)
+
+Also run the skill's Last-contact pass.
+
+On every event run: read outbound WhatsApp messages (only messages we sent, 1:1 chats only) from Brendan's WhatsApp (`user-whatsapp-mcp`) and Chris Clifford's WhatsApp (`user-Chris' WhatsApp MCP`, read only, Arrow-relevant only, skip his personal and family threads, dedupe chats that also appear in Brendan's). Match each person to an existing Attio People record by normalized E.164 phone number. Do not create People records. Write only the last-contact fields: `last_whatsapp_contact`, `last_whatsapp_contact_by`, `last_contacted`, `last_contacted_by`, `last_contact_channel`, and `days_since_last_contact`. If both mailboxes have a send to the same person, use the more recent send and attribute it to whoever sent it.
+
+Recompute the rollup: `last_contacted` is the later of `last_whatsapp_contact` and Attio's `last_email_interaction`; `last_contacted_by` and `last_contact_channel` follow that winner (for email, use `last_email_interaction`'s `owner_actor` when that owner is a workspace member).
+
+On the first event run of each calendar day in America/Los_Angeles, also refresh `days_since_last_contact` for every person who has a `last_contacted` value, including email-only people. Days are whole calendar days in America/Los_Angeles from `last_contacted` to today.
+
+Gabe's and Jillian's WhatsApp are not connected, so their WhatsApp sends are not counted yet. Phase 3 (daily per-owner stale-contact reminders) and Phase 4 (drafted, later opt-in auto check-ins) are planned, not built. Do not send reminder lists or auto messages. Never send or draft on either WhatsApp connector.
+
+Results for this step stay quiet unless a write failure or a blocked source needs Brendan.
 
 ### Attio backfill (folder attio-backfill; CRON_TZ=America/Los_Angeles `15,45 7-21 * * *`, flexible ±10 min)
 
@@ -194,6 +241,7 @@ Results go to Brendan in this Grok Bot chat only when notable: a tier finished, 
 
 ## Changelog
 
+- 2026-11-11 - Last-contact fields (Phases 1 and 2): six People attributes (`last_whatsapp_contact`, `last_whatsapp_contact_by`, `last_contacted`, `last_contacted_by`, `last_contact_channel`, `days_since_last_contact`). The "by" fields are actor-reference to workspace members. Event runs do a last-contact pass (outbound 1:1 WhatsApp from Brendan's and Chris's connectors, match by E.164, roll up with `last_email_interaction`, refresh days since on the first PT run of the day). Gabe's and Jillian's WhatsApp are not connected. Phase 3 (per-owner stale-contact reminders) and Phase 4 (drafted, later opt-in auto check-ins) are planned, not built. First backfill ran 2026-11-11.
 - 2026-11-10 — Added partner WhatsApp (CONNECTIONS.md; currently `user-Chris' WhatsApp MCP`) as a read source. Chris's Arrow-relevant DMs count as Arrow involvement; his intro groups count as intro evidence; partner-only personal contacts stay out of Attio. Dedup against Brendan's WhatsApp. Never send or draft on the partner connector.
 - 2026-11-06 — Access: Gabe People record id updated to c1ed36e3-ca7a-4c9e-ad79-73d7ffef26a7 (old 37fd798b returned 404 after 2026-11-06 record rotation; gabe@arrowfund.co).
 - 2026-11-05 — v2.3. Relationship evidence rules (Brendan approved): direct evidence plus a per-edge source link in /workspace/attio-context/relationship-provenance.jsonl; human-edit guard on both endpoints; add-only PATCH. `introduced_by` stays single; Introducer = native inverse `introduced`. Backfill runs A–C relationship checks even where Arrow context is filled, tracked in /workspace/attio-backfill/relationship_checked.json. Backfill live prompt synced.

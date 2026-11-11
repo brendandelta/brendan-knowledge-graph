@@ -9,7 +9,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | Skill | Reads | Writes | Depends on | Status |
 |---|---|---|---|---|
 | brendan-crm | composio:notion, composio:attio (read only), gcal, imessage, signal | composio:notion only (never writes Attio; 2026-11-04 silo) | profile.md | live (Claude), v4.3 |
-| delta-bookkeeper | composio:quickbooks, Delta Intake | composio:quickbooks | profile.md | live (Claude); becomes accounting-and-tax |
+| delta-bookkeeper | composio:quickbooks, Delta Intake (Deltameridian Notion) | composio:quickbooks | profile.md | live (Claude); becomes accounting-and-tax; Notion IDs refreshed 2026-11-10 |
 | chief-of-staff | todoist, gmail (arrow), whatsapp (Brendan's + limited partner, currently Chris's), signal, imessage, gcal x2, attio, other bots' transcripts | todoist, chat | profile.md | live (Grokbot) |
 | comms-ingest | signal, imessage, whatsapp (Brendan's + partner, currently Chris's; index-only for partner, limited Todoist), 6 gmails, gcal, attio | comms index, todoist | — | live (Grokbot); migrate. Infrastructure: three skills read its index. |
 | crm-maintenance | comms index, direct thread reads (whatsapp, signal, imessage, 5 gmails, gcal), attio (read only, incl. calls) | composio:notion only (append only); never writes Attio | comms-ingest, brendan-crm | live (Grokbot, bot "Personal CRM Contact Context", Notion only; Attio routines deleted 2026-11-05); migrate |
@@ -42,7 +42,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 
 ## Bot registry
 
-Rebuild map of live Grok Bots. Arrow-only entries under `arrow/bots/` + [`arrow/BOTS.md`](arrow/BOTS.md). Personal / Delta / Janey / Cross under `bots/` + [`bots/MAP.md`](bots/MAP.md). Template: `bots/_TEMPLATE.md` (mirrored at `arrow/bots/_TEMPLATE.md`). Rules in `AGENTS.md`. Grok Bot refreshes daily 7pm PT.
+Rebuild map of live Grok Bots. Arrow-only entries under `arrow/bots/` + [`arrow/BOTS.md`](arrow/BOTS.md). Personal / Delta / Janey / Cross under `bots/` + [`bots/MAP.md`](bots/MAP.md). Template: `bots/_TEMPLATE.md` (mirrored at `arrow/bots/_TEMPLATE.md`). Rules in `AGENTS.md`. Grok Bot refreshes daily 7pm PT. Temporary Personal bot: Global Entry Watch (`bots/global-entry-watch.md`), no skill, created 2026-11-10.
 
 ## Projects (`projects/`)
 

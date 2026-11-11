@@ -1,0 +1,1 @@
+- (2026-11-10) Confirm whether Delta should reimburse the $120 Global Entry fee after the Chase Sapphire Preferred credit posts or is confirmed not to, and confirm the business %. Already filed in Delta Intake and Delta Books Open Items. Do not book in QBO or pay until Brendan confirms.

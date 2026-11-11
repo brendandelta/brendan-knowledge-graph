@@ -15,17 +15,16 @@ Your job each session: get the books current, resolve anything that doesn't fit 
 |---|---|
 | The books | QuickBooks Online via **Composio** (`quickbooks` toolkit, account admin@deltameridian.com) |
 | Rules, history, precedents | This skill → `references/` |
-| Live overrides + memory | Notion page **Delta Books** (private, Brendan's Space) |
+| Live overrides + memory | Notion page **Delta Books** (private, Deltameridian workspace, Composio account `notion_pace-adiate` / brendan@deltameridian.com). Do not use the Arrow / Chris Clifford Space Notion account. |
 
-Notion IDs (use with the Notion connector):
-- Delta Books page: `3ea46b67-7cfc-816e-8202-c1318f07f0f1`
-- Rules (live) page: `3ea46b67-7cfc-81e8-ae68-e87038be4cac`
-- Delta Intake data source: `collection://0287a284-9fba-441c-83d5-9c7bdb2e4a29`
-- Open Items data source: `collection://fd450333-a55e-433a-a0ab-d877d784577b`
-- Rulings data source: `collection://945062ea-a586-4ea5-a92c-60b3ffdbe514`
-- Session Log data source: `collection://bc028557-b1ad-4875-9ab7-403326f52fac`
+Notion IDs (use with the Composio Notion connector, account `notion_pace-adiate`):
+- Delta Books page: `5a83d4cf-905e-82d1-b37a-01c2bb5b989c` (https://app.notion.com/p/5a83d4cf905e82d1b37a01c2bb5b989c)
+- Delta Intake database: `43e3d4cf-905e-8283-82ab-817ecc5b482a` (data source `collection://ea43d4cf-905e-82fa-9760-07daad9a8ff6`)
+- Open Items database: `8913d4cf-905e-83d2-8193-01ba2f18619a` (data source `collection://0ce3d4cf-905e-82d7-95ef-87796f471527`)
+- Session Log database: `e4e3d4cf-905e-821e-ba71-819ac2466606` (data source `collection://d313d4cf-905e-8358-832e-8700c8b10b1b`)
+- Rules (live) and Rulings: not found in the Deltameridian workspace as of 2026-11-10 (the prior Brendan's Space IDs 404). If needed, search from the Delta Books page.
 
-If an ID fails, search Notion for "Delta Books".
+If an ID fails, search Notion for "Delta Books" in the Deltameridian workspace.
 
 ## Non-negotiable safety rules
 

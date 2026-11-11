@@ -1,11 +1,11 @@
 ---
 name: arrow-attio-firm-context
-description: Keeps Arrow's Attio Company records current with dated, sourced firm intel (firm type, holdings and marks, role for Arrow, key people) scraped from Arrow Gmail, Arrow WhatsApp groups, Signal (incl. "Arrow OS Data Input Chat"), Arrow calendar and SEC data. Companies only; never people. AUTO-WRITE supported values on existing Companies with human-edit guards; new records, uncertain or conflicting values remain proposals.
+description: Keeps Arrow's Attio Company records current with dated, sourced firm intel (firm type, holdings and marks, role for Arrow, key people) scraped from Arrow Gmail, Arrow WhatsApp groups (Brendan's and partner WhatsApp, currently Chris's), Signal (incl. "Arrow OS Data Input Chat"), Arrow calendar and SEC data. Companies only; never people. AUTO-WRITE supported values on existing Companies with human-edit guards; new records, uncertain or conflicting values remain proposals.
 ---
 
 # arrow-attio-firm-context
 
-**Status:** v1.2 live (2026-11-05). Mode: AUTO-WRITE (Brendan approved 2026-11-05). Write supported values on existing Company records without waiting; new records, uncertain or conflicting values remain PROPOSE. Human-edit guard always on.
+**Status:** v1.3 live (2026-11-10). Mode: AUTO-WRITE (Brendan approved 2026-11-05). Write supported values on existing Company records without waiting; new records, uncertain or conflicting values remain PROPOSE. Human-edit guard always on.
 **Source:** structure mirrors `arrow/skills/attio-contact-context/SKILL.md` v2.2, adapted for the Attio `companies` object.
 **Bot:** "Arrow Attio Firms" (new bot, see contact-context-split-plan.md).
 
@@ -21,7 +21,7 @@ When a firm comes up in Arrow comms or filings, the Attio company record should 
 
 ## Scope
 - Object: `companies` only (Attio workspace `arrow-fund`). Never people (that's arrow-attio-people / attio-contact-context), never deals, blocks or interests.
-- Arrow involvement test (same spirit as the people skill): the firm (a) appears in an Arrow source (@arrowfund.co mail, an Arrow WhatsApp group, the Signal "Arrow OS Data Input Chat" chat or another Arrow Signal group, an Arrow calendar event with ≥1 @arrowfund.co attendee), AND (b) is Arrow-relevant: holds/marks/trades private shares, is a fund/LP/allocator/intermediary/bank, or is linked to a block, interest or deal.
+- Arrow involvement test (same spirit as the people skill): the firm (a) appears in an Arrow source (@arrowfund.co mail, an Arrow WhatsApp group on Brendan's or a partner WhatsApp connector, an Arrow-relevant 1:1 on a partner WhatsApp connector, the Signal "Arrow OS Data Input Chat" chat or another Arrow Signal group, an Arrow calendar event with ≥1 @arrowfund.co attendee), AND (b) is Arrow-relevant: holds/marks/trades private shares, is a fund/LP/allocator/intermediary/bank, or is linked to a block, interest or deal.
 - Brendan-only items (no other Arrow team member, no Arrow record link, not in an Arrow source) are never added or suggested. Personal, Delta and Janey material is never read into this process (filter: arrow-weekly-log §Filter).
 - Existing records only. Creating a new company record is always a PROPOSE item, even in AUTO mode.
 
@@ -90,7 +90,7 @@ Right before every write, re-read the record and the attribute's current value w
 ## Sources (read-only)
 1. **SEC (public):** `/workspace/nport/nport.db` (fund_holdings, spvs, fund_managers, person_scores), built by N-PORT Scraper. Read only; never write that DB. New quarterly sets get picked up after N-PORT Scraper's monthly refresh on the 1st.
 2. **Arrow Gmail:** brendan@arrowfund.co via Composio `gmail_tagish-stuss`. Other team inboxes only through Attio email metadata.
-3. **WhatsApp (whatsapp MCP), Arrow groups only:** groups whose name contains "Arrow"/"ArrowFund"/"Arrow Fund", or that include a non-Brendan Arrow team member, or that sit in `/workspace/attio-firms/arrow-groups.json` (allowlist, Brendan-approved). Example current Arrow groups: "Kells Capital <> Arrow fund", "Rift Capital <> Arrow Fund", "William Blair x Arrow Fund", "Arrow Fund & D Boral Capital", "Y Invest x Arrow". Ambiguous groups ("Velvet, The Underground I Sundance 2026", "BM 2026 AXIS MUNDI", "Long Feng Community", "dealio", "Poly") are skipped unless allowlisted.
+3. **WhatsApp, Arrow groups and Arrow-relevant partner DMs:** read `user-whatsapp-mcp` and the partner WhatsApp list in CONNECTIONS.md (currently `user-Chris' WhatsApp MCP`). Groups: name contains "Arrow"/"ArrowFund"/"Arrow Fund", or include a non-Brendan Arrow team member, or sit in `/workspace/attio-firms/arrow-groups.json` (allowlist, Brendan-approved). Example current Arrow groups: "Kells Capital <> Arrow fund", "Rift Capital <> Arrow Fund", "William Blair x Arrow Fund", "Arrow Fund & D Boral Capital", "Y Invest x Arrow". Ambiguous groups ("Velvet, The Underground I Sundance 2026", "BM 2026 AXIS MUNDI", "Long Feng Community", "dealio", "Poly") are skipped unless allowlisted. Also read Arrow-relevant direct chats on a partner connector (firm intel Chris gets in 1:1s that may not appear in Brendan's WhatsApp). Skip personal, family, and non-Arrow threads. Follow CONNECTIONS.md Partner WhatsApp rules, including read-only and dedup of shared groups that also appear in Brendan's WhatsApp. Never send_message or draft_message.
 4. **Signal (Signal MCP), Arrow chats only:** the "Arrow OS Data Input Chat" chat (primary firm-intel feed) plus allowlisted Arrow groups. Reachable only while Brendan's Mac is online.
 5. **Arrow calendar:** Attio meetings (`ATTIO_LIST_MEETINGS`) with ≥1 @arrowfund.co participant, and the firm-domain attendees.
 6. **Comms index:** `/workspace/comms-index/` (read-only, written by Comms Ingest) for the Arrow-tagged slice when present.
@@ -101,13 +101,13 @@ Right before every write, re-read the record and the attribute's current value w
 - If Signal MCP `status` fails (Mac offline): skip Signal, log "signal: offline, catch-up pending since <ts>", keep the Signal cursor where it was, and catch up on the next run that can reach it. Never treat offline as "nothing new".
 
 ## State and log
-- State (cursor): `/workspace/attio-firms/state.json` — `{gmail_ts, whatsapp_ts, signal_ts, signal_pending_since, calendar_ts, nport_quarter_seen, proposals_open:[…]}`.
+- State (cursor): `/workspace/attio-firms/state.json` — `{gmail_ts, whatsapp_ts, whatsapp_chris_ts, signal_ts, signal_pending_since, calendar_ts, nport_quarter_seen, proposals_open:[…]}`. Add a `whatsapp_<partner>_ts` cursor when Gabe or Jillian is connected.
 - Proposal queue: `/workspace/attio-firms/proposals.json` (id, company record_id, attribute → old/new, note draft, sources, status proposed|approved|rejected|written).
 - Log: `/workspace/attio-firms/log.md` (one line per run: time PT, sources read, firms found, proposals, writes, skips, conflicts). Log every write with record link, field, old value, new value and dated source; retain bot provenance for the Human-edit guard.
 - Lock: `/workspace/attio-firms/lock` (skip the run if a lock younger than 40 min exists).
 
 ## Event run
-1. Pull: read state; pull each source since its cursor (Gmail, WhatsApp Arrow groups, Signal Arrow chats if reachable, Attio meetings, nport.db if a new quarter).
+1. Pull: read state; pull each source since its cursor (Gmail, WhatsApp Arrow groups on Brendan's and partner connectors, Arrow-relevant partner 1:1s, Signal Arrow chats if reachable, Attio meetings, nport.db if a new quarter).
 2. Extract firm mentions: org names, domains, fund/vehicle names, SEC filer names. Resolve each to an Attio company (domain first, then exact name, then fuzzy with a confidence score). Unresolved Arrow-relevant firms go in a "new company?" proposal.
 3. For each resolved firm, build the delta: firm_type, arrow_role (with the evidence), holdings_marks (public sources), key_people (existing Attio people with that company, or named in an Arrow source), firm_context rewrite, and the dated note.
 4. Run the Human-edit guard. Drop anything already known (same value and same source).
@@ -133,7 +133,7 @@ Then list what was written: record link, field, old value, new value and dated s
 ```
 Pull the knowledge repo (git -C /home/box/Claude/brendan-knowledge-graph pull), read AGENTS.md, then load arrow/skills/arrow-attio-firm-context/SKILL.md (fall back to /workspace/arrow-system-build/arrow-attio-firm-context/SKILL.md only if the repo copy is missing) and run one Event run.
 
-Mode: AUTO-WRITE (Brendan approved on 2026-11-05). Gather dated, sourced firm intel for existing Attio Company records only (firm_type, arrow_role, firm_context, holdings_marks, key_people, firm_intel_updated, firm_intel_source) from Arrow Gmail, Arrow WhatsApp groups, Signal (including the "Arrow OS Data Input Chat"), the Arrow calendar, and read-only SEC N-PORT/Form D data in /workspace/nport/nport.db. Write supported values straight to Attio without waiting. Guards stay on: right before each write, re-read the record and fill only fields that are empty or were last written by this bot; never overwrite a human-entered or human-edited value (propose those instead); add to key_people, never remove. Keep firm_context free of fees, terms, deal prices and live-deal counterparty names. Never touch people, deals or blocks, never merge duplicates, and never use personal or Delta material. Creating a new Company record, or any value that is uncertain or conflicts across sources, stays a proposal that waits for Brendan's yes. Log every write in /workspace/attio-firms/log.md.
+Mode: AUTO-WRITE (Brendan approved on 2026-11-05). Gather dated, sourced firm intel for existing Attio Company records only (firm_type, arrow_role, firm_context, holdings_marks, key_people, firm_intel_updated, firm_intel_source) from Arrow Gmail, Arrow WhatsApp groups on Brendan's and partner WhatsApp (currently Chris's; CONNECTIONS.md), including Arrow-relevant 1:1s on a partner connector, Signal (including the "Arrow OS Data Input Chat"), the Arrow calendar, and read-only SEC N-PORT/Form D data in /workspace/nport/nport.db. Write supported values straight to Attio without waiting. Guards stay on: right before each write, re-read the record and fill only fields that are empty or were last written by this bot; never overwrite a human-entered or human-edited value (propose those instead); add to key_people, never remove. Keep firm_context free of fees, terms, deal prices and live-deal counterparty names. Never touch people, deals or blocks, never merge duplicates, and never use personal or Delta material. Creating a new Company record, or any value that is uncertain or conflicts across sources, stays a proposal that waits for Brendan's yes. Log every write in /workspace/attio-firms/log.md.
 
 Known open item: StepStone Group is a Seller. Hold the $116M Poolside figure until verified, since N-PORT shows $12.2M as of 6/30/26.
 
@@ -143,6 +143,7 @@ Results go to Brendan in this Grok Bot chat only when something was written, pro
 ```
 
 ## Changelog
+- 2026-11-10 v1.3: Added partner WhatsApp (CONNECTIONS.md; currently `user-Chris' WhatsApp MCP`) as a read source for Arrow groups and Arrow-relevant 1:1s, with a `whatsapp_chris_ts` cursor and dedup against Brendan's WhatsApp. Never send or draft on the partner connector.
 - 2026-11-05 v1.2: Brendan approved AUTO-WRITE on existing Companies with immediate human-edit guard; uncertain/conflicting values and new records remain proposals. Correct Signal chat name, hold disputed Poolside figure, log every write, and identify the loaded skill/version/commit and guard/mode lines in every report.
 - 2026-11-05 v0.1 draft (Grok Bot, for Brendan's review).
 - 2026-11-05 v1.1: StepStone `arrow_role` = Seller (Brendan). Go-live approved in PROPOSE mode.

@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-10
+- Partner WhatsApp: added Chris Clifford's WhatsApp as `user-Chris' WhatsApp MCP` (CONNECTIONS.md Partner WhatsApp section). Skills updated: attio-contact-context, arrow-attio-firm-context v1.3, deal-indications, arrow-weekly-log v1.5, plus limited use in comms-ingest (index only, limited Todoist) and chief-of-staff (only threads that involve Brendan or an Arrow ask). Read-only, Arrow-relevant only, dedup against Brendan's WhatsApp. Gabe and Jillian can be added later as more rows under the same rules. No endpoint URL or token stored in the repo. Personal CRM, call-cadence, daily-arrow-report, arrow-weekly, and private-markets-desk left unchanged.
+
 ## 2026-11-09
 - arrow-chief-of-staff: the 12:00 PM CEO/COO ops brief keeps the body link-free and puts person task-board links at the end (Brendan, Chris, Gabe, Vaidehi, Jillian).
 - arrow-chief-of-staff: the 12:00 PM CEO/COO ops brief has no links (no task, project, or hub links).

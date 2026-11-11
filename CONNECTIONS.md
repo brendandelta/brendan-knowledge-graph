@@ -40,7 +40,24 @@ Verified live against Composio 2026-10-20.
 |---|---|---|---|
 | imessage | the Mac | paper, until 1Password | comms-ingest, crm-maintenance, suggested-actions |
 | signal | the Mac | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions |
-| whatsapp v0.3 | Hetzner, 24/7 | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions, chief-of-staff |
+| whatsapp v0.3 | Hetzner, 24/7 | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions, chief-of-staff, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log |
+| whatsapp-chris | Chris Clifford's WhatsApp. Same tool shape as whatsapp v0.3; custom MCP on Brendan's Grok Bot account (added 2026-11-10). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
+
+## Partner WhatsApp (Chris now; Gabe and Jillian later)
+
+Brendan's own WhatsApp is `user-whatsapp-mcp` (whatsapp v0.3 above). Partner mailboxes are separate connectors and must never be mixed with his. As of 2026-11-10:
+
+- Chris Clifford: `user-Chris' WhatsApp MCP` (connected). Same 12 tools as Brendan's WhatsApp MCP.
+- Gabe Borden and Jillian Nuding: planned, not connected yet. When added, append a row here and reuse the rules below. Do not rewrite skills.
+
+Rules for every partner WhatsApp connector:
+
+1. Always address the connector by its exact namespace. Never use a partner connector when the task is Brendan's WhatsApp, and never the reverse.
+2. Default is read-only. Never call `draft_message` or `send_message` on a partner connector unless Brendan explicitly asks to send as that partner.
+3. Arrow-relevant chats only. Skip personal, family, and non-Arrow threads. Same silo as personal, Delta, and Janey material.
+4. Source attribution must name the partner and the mailbox, e.g. `chris (11/10) - chris-whatsapp`.
+5. Dedup: a shared Arrow group or a Brendan-partner thread may appear in both Brendan's WhatsApp and a partner's WhatsApp. Treat identical content at the same time as one item; do not double-write Attio, the weekly log, or Todoist.
+6. Skills should refer to this section rather than restating a one-off Chris-only setup, so adding Gabe or Jillian later is a new row plus the same filters.
 
 ## Git access from the box
 

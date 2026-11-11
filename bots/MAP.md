@@ -23,7 +23,7 @@ A Cross bot may mention Arrow only generically and must point to [`arrow/BOTS.md
 |---|---|---|---|
 | Personal CRM Contact Context | [personal-crm-contact-context.md](personal-crm-contact-context.md) | `skills/crm-maintenance` | live (Notion only; Attio routines deleted 2026-11-05) |
 | Call Cadence | [call-cadence.md](call-cadence.md) | `skills/call-cadence` | live (self-reported 2026-11-05) |
-| Global Entry Watch | [global-entry-watch.md](global-entry-watch.md) | none (temporary inbox watch) | live, short-term (created 2026-11-10; Gmail on this bot not yet confirmed) |
+| Global Entry Watch | [global-entry-watch.md](global-entry-watch.md) | none (temporary inbox watch) | live, short-term (Gmail readable and 8am/6pm PT routine reported live 2026-11-10) |
 
 ## Delta
 

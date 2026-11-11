@@ -2,6 +2,7 @@
 
 ## 2026-11-10
 - Global Entry Watch: temporary Personal bot (`38b25525-947a-41da-95aa-11eb279181c5`) created to scan connmbrendan@gmail.com at 8:00 AM and 6:00 PM PT for official Global Entry / TTP / CBP updates and notify hard on a real change. No skill. Registry: `bots/global-entry-watch.md`.
+- Global Entry Watch: the bot reported it can read connmbrendan@gmail.com and that routine "Global Entry inbox watch" is enabled at 8:00 AM and 6:00 PM PT (flexible ±15). Registry row updated.
 - delta-bookkeeper: refreshed live Notion IDs to the Deltameridian workspace Delta Books page (Composio `notion_pace-adiate`). Prior Brendan's Space IDs 404. Rules (live) and Rulings were not found in this workspace.
 - memory/profile-facts.md: Global Entry application 138811671 paid 2026-11-10, Pending Review, PASSID 171523070.
 - memory/profile-facts.md: visual dashboards and quick access to important information are vital (alongside connecting tools like WhatsApp bots). The existing memory/ folder is the journal home for now; daily notes stay local because memory/daily/ is gitignored. A richer notes surface can wait until this has come up twice.

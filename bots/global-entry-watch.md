@@ -11,16 +11,16 @@
 | **Data sources (read)** | Personal Gmail `connmbrendan@gmail.com` only |
 | **Write targets** | Brendan chat on this bot only |
 | **Send permissions** | none (chat notify only; never auto-send email or book an interview) |
-| **Depends on** | `connmbrendan@gmail.com` connected on this bot; notifications on |
+| **Depends on** | `connmbrendan@gmail.com` connected on this bot (reported readable 2026-11-10); notifications on |
 | **Feeds** | Brendan (this bot's chat) |
 | **Connectors needed** | Gmail for `connmbrendan@gmail.com` (no secrets in this file) |
-| **Last verified** | 2026-11-10 · Grok Bot (bot created; Gmail on this bot not yet confirmed) |
+| **Last verified** | 2026-11-10 · Grok Bot (Watch bot reported Gmail is readable and the routine is live) |
 
 ## Routines
 
 | Name | Folder | Cron (America/Los_Angeles) | Timing / window | Prompt summary (1 line) | Results go to |
 |---|---|---|---|---|---|
-| Global Entry inbox scan | (create once Gmail is connected) | `0 8,18 * * *` | flexible, default window | Search connmbrendan@gmail.com for official Global Entry / TTP / CBP updates since the last check; notify hard on a real change, stay silent otherwise | Brendan in Global Entry Watch chat only |
+| Global Entry inbox watch | (folder id not stored in this repo) | `0 8,18 * * *` | flexible ±15 | Search connmbrendan@gmail.com for official Global Entry / TTP / CBP updates since the last check; notify hard on a real change, stay silent otherwise | Brendan in Global Entry Watch chat only |
 
 ## Full description (verbatim, secrets stripped)
 
@@ -54,6 +54,6 @@ Stay completely silent. Do not send an all-clear, a heartbeat, or a "nothing tod
 
 1. Create a bot named **Global Entry Watch** with the description above (record the new id in this file if it changes).
 2. Connect Gmail for `connmbrendan@gmail.com` on this bot only. Turn on notifications.
-3. Create the twice-daily routine, cron `0 8,18 * * *` America/Los_Angeles, with the prompt in the Routines table.
-4. Run one manual check once Gmail is connected; set **Last verified**.
+3. Create the twice-daily routine named **Global Entry inbox watch**, cron `0 8,18 * * *` America/Los_Angeles, flexible ±15, with the prompt in the Routines table.
+4. Confirm the bot can read `connmbrendan@gmail.com`, run one manual check, and set **Last verified**.
 5. Delete the bot and stop the routine after the interview is booked or Brendan says it is done.

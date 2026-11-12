@@ -10,7 +10,7 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 |---|---|---|---|---|
 | brendan-crm | composio:notion, composio:attio (read only), gcal, imessage, signal | composio:notion only (never writes Attio; 2026-11-04 silo) | profile.md | live (Claude), v4.3 |
 | delta-bookkeeper | composio:quickbooks, Delta Intake (Deltameridian Notion) | composio:quickbooks | profile.md | live (Claude); becomes accounting-and-tax; Notion IDs refreshed 2026-11-10 |
-| chief-of-staff | todoist, gmail (arrow), whatsapp (Brendan's + limited partner, currently Chris's), signal, imessage, gcal x2, attio, other bots' transcripts | todoist, chat | profile.md | live (Grokbot) |
+| chief-of-staff | todoist, gmail (arrow), whatsapp (Brendan's + limited partner, currently Chris's), signal, imessage, gcal x2, attio, other bots' transcripts | todoist, chat | profile.md | live (Grokbot); temp standing item in morning/midday/EOD: WhatsApp MCP + Attio People schema overhaul, until Brendan says done |
 | comms-ingest | signal, imessage, whatsapp (Brendan's + partner, currently Chris's; index-only for partner, limited Todoist), 6 gmails, gcal, attio | comms index, todoist | — | live (Grokbot); migrate. Infrastructure: three skills read its index. |
 | crm-maintenance | comms index, direct thread reads (whatsapp, signal, imessage, 5 gmails, gcal), attio (read only, incl. calls) | composio:notion only (append only); never writes Attio | comms-ingest, brendan-crm | live (Grokbot, bot "Personal CRM Contact Context", Notion only; Attio routines deleted 2026-11-05); migrate |
 | suggested-actions | comms index or direct reads, notion, attio | chat (drafts only) | comms-ingest, deal-indications | missing from live fleet (2026-11-06); skill retained for rebuild |

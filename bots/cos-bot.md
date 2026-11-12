@@ -18,14 +18,14 @@
 
 ## Routines
 
-Every routine prompt starts with the standard "Knowledge repo (read first)" block. Operating detail lives in [`skills/chief-of-staff/SKILL.md`](../skills/chief-of-staff/SKILL.md).
+Every routine prompt starts with the standard "Knowledge repo (read first)" block. Operating detail lives in [`skills/chief-of-staff/SKILL.md`](../skills/chief-of-staff/SKILL.md). Temporary (2026-11-11, until Brendan says finished): morning, midday, and EOD checks carry the WhatsApp MCP upgrade + Attio People schema overhaul as a top accountability item and name the next step he owes. Those prompts also restate "no em dashes".
 
 | Name | Folder | Cron (America/Los_Angeles) | Timing / window | Prompt summary (1 line) | Results go to |
 |---|---|---|---|---|---|
-| Morning session (prep + sit-down nudges) | `hourly-priority-brief` | `10 9 * * 1-5`; `30 9 * * 1-5`; `50 9 * * 1-5`; `10 10 * * 1-5` | flexible, up to 5 min late | 9:10 builds morning brief (Todoist, Gmail, WhatsApp, Signal, iMessage, limited partner WhatsApp, calendars, teammate transcripts) into bot store `morning-brief/<date>.md` with `status: ready`; 9:30 / 9:50 / 10:10 send a short sit-down nudge if not yet delivered | Brendan in CoS Bot chat (full brief only on "go") |
-| Midday accountability check | `midday-accountability-check` | `20 12 * * 1-5` | default timing | Asks whether the morning MIT moved; forces finish / renegotiate / demote; at most one new fire | CoS Bot chat |
+| Morning session (prep + sit-down nudges) | `hourly-priority-brief` | `10 9 * * 1-5`; `30 9 * * 1-5`; `50 9 * * 1-5`; `10 10 * * 1-5` | flexible, up to 5 min late | 9:10 builds morning brief (Todoist, Gmail, WhatsApp, Signal, iMessage, limited partner WhatsApp, calendars, teammate transcripts) into bot store `morning-brief/<date>.md` with `status: ready`; 9:30 / 9:50 / 10:10 send a short sit-down nudge if not yet delivered; until Brendan says finished, the brief includes the WhatsApp MCP + Attio schema standing item and the next step he owes; no em dashes | Brendan in CoS Bot chat (full brief only on "go") |
+| Midday accountability check | `midday-accountability-check` | `20 12 * * 1-5` | default timing | Asks whether the morning MIT moved; forces finish / renegotiate / demote; at most one new fire; until Brendan says finished, also the WhatsApp MCP + Attio schema standing item and the next step he owes; no em dashes | CoS Bot chat |
 | Monday weekly priorities lock | `monday-weekly-priorities-lock` | `0 8 * * 1` | flexible ±15 min | Proposes ≤3 weekly rocks, gets confirmation, reflects them in Todoist | CoS Bot chat |
-| EOD commit | `eod-commit` | `20 17 * * 1-5` | default timing | What moved vs slipped; recommends tomorrow's MIT; syncs Todoist Today; quiet until morning | CoS Bot chat |
+| EOD commit | `eod-commit` | `20 17 * * 1-5` | default timing | What moved vs slipped; recommends tomorrow's MIT; syncs Todoist Today; quiet until morning; until Brendan says finished, also the WhatsApp MCP + Attio schema standing item and the next step he owes; no em dashes | CoS Bot chat |
 | Watch banker for fund wire instructions | `watch-galo-for-space-fund-wire` | `0,30 9-17 * * 1-5` | flexible ±15 min; **PAUSED** | Watches Gmail + a Drive folder for fund wire instructions; alerts only when new | CoS Bot chat (only on find) |
 
 ## Full description (verbatim, secrets stripped)

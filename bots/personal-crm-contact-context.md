@@ -14,13 +14,13 @@
 | **Depends on** | Composio connections (Notion, Gmail, Calendar, Attio read), WhatsApp/Signal/iMessage MCPs, Brendan's Mac being online for Signal/iMessage |
 | **Feeds** | Brendan (chat digests), CoS Bot / Call Cadence / Suggested Actions via the Notion CRM they read |
 | **Connectors needed** | user-composio (Notion, Gmail, Google Calendar, Attio read), user-whatsapp-mcp, user-Signal MCP, user-imessage |
-| **Last verified** | 2026-11-05 13:45 PT · Attio routines deleted |
+| **Last verified** | 2026-11-12 · weekday routine gained section 8b Deferred backlinks (weekend inherits); Attio routines remain deleted |
 
 ## Routines
 
 | Name | Folder | Cron (America/Los_Angeles) | Timing / window | Prompt summary (1 line) | Results go to |
 |---|---|---|---|---|---|
-| CRM enrichment (weekdays) | daily-contact-context | `0 8,12,15 * * 1-5` | default | Sync new interactions into the Notion People CRM, enrich high-confidence identities, log the run, per skills/crm-maintenance | Brendan in this chat, only actionable items |
+| CRM enrichment (weekdays) | daily-contact-context | `0 8,12,15 * * 1-5` | default | Sync new interactions into the Notion People CRM, enrich high-confidence identities, apply deferred backlinks, log the run, per skills/crm-maintenance | Brendan in this chat, only actionable items |
 | CRM enrichment (weekends) | crm-enrichment-weekends | `0 8,17 * * 0,6` | default | Same Notion CRM job on weekends | Brendan in this chat, only actionable items |
 
 Deleted 2026-11-05 (Brendan confirm t86u): Attio contact context (`attio-context`), Attio backfill (`attio-backfill`), Attio questions evening list (Nov 5) (`attio-questions-evening-list-nov-5`). All Attio People work now belongs to Arrow Attio People (`arrow/bots/arrow-attio-people.md`).

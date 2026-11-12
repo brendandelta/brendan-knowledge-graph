@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-12
+- Personal CRM Contact Context / crm-maintenance: added deferred backlinks (section 8b). When a person is mentioned but does not get a page, record them under a heading_3 "Mentioned (no page yet)"; before any new People page is created (routine or manual), search those mentions and back-link. The weekday routine prompt was updated in the same change; the weekend routine inherits from weekdays. Run Log now includes "deferred backlinks created". Brendan confirmed t91u.
+
 ## 2026-11-11
 - chief-of-staff: temporary standing accountability item (Brendan, via Grok Bot, 2026-11-11). Until he says the project is finished (in CoS chat or Grok Bot's chat), every morning brief, midday check, and EOD check includes the WhatsApp MCP upgrade + Attio People schema overhaul as a top item and names the next step he owes. Steps: (1) Brendan finishes the MCP upgrades with Claude and sends Claude's report to Grok Bot; (2) Grok Bot adds Attio WhatsApp ID fields and updates the repo; (3) Brendan approves the People schema cleanup field by field from the audit Page. Check Grok Bot's transcript for progress; drop the item once he says finished. Morning, midday, and EOD prompts also restate "no em dashes".
 - grok-bot: temporary routine "Push: WhatsApp MCP + Attio schema project" (Thu-Fri Nov 12-13, 10 AM, 2 PM, 6 PM PT) pushes Brendan to finish the WhatsApp MCP upgrade with Claude, the Attio WhatsApp ID fields and repo docs, and the People schema overhaul; it self-deletes when done or after the Fri 6 PM run. Brendan · Chief of Staff (personal briefs) asked to carry it in its check-ins too.

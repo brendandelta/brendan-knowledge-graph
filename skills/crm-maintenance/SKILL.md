@@ -111,6 +111,14 @@ B. Never write to Attio: no field, record, note, task, list entry, or attribute,
 
 8. Scope. Create a page only for a human Brendan personally had a genuine two-way exchange with: Source=Grokbot, blank Tier, all five headers, and a Summary. Arrow-only items without Brendan update existing pages only. No wholesale imports, guest lists, newsletters, or one-way emails.
 
+8b. Deferred backlinks. When a person is mentioned in notes or messages but does not get a page, record them on the source page under a heading_3 "Mentioned (no page yet)", one bullet each: Name (spelling variants), company or context, who mentioned them, date.
+
+Before creating ANY new person page (routine runs or manual), search page bodies for that name and its variants in "Mentioned (no page yet)" sections, for example with the Notion search API across the People DB.
+
+Then link the new page to every source page found (Knows / Introduced by where it fits, filling an empty Introduced by only), and append a dated "Mentioned by X on DATE: context" line to the new page's Context. On the source page, append (never edit, since bodies are append-only) a line "-> now has a page (DATE)" under that mention.
+
+Ambiguous name matches go on the "Is this them?" review list and are not auto-linked.
+
 9. Run Log. Append one block covering:
    - index lines processed
    - threads read directly
@@ -120,6 +128,7 @@ B. Never write to Attio: no field, record, note, task, list entry, or attribute,
    - Enrichment: "enriched N | pending review N | low N | skipped N | fields written N | blocks N", plus one line per person (name, level, score, fields written)
    - Notion vs Attio CONFLICTs (no Attio writes)
    - WhatsApp contacts labeled
+   - deferred backlinks created
    - ambiguous skips and failures
    - anything you wanted to rewrite but didn't
    - REVIEW_SENT=<date>, when a review list went out
@@ -170,6 +179,7 @@ Rules:
 - Ping Brendan only for notable items, in this Grok Bot chat.
 
 ## Changelog
+- 2026-11-12 - Deferred backlinks (section 8b), confirmed by Brendan (t91u). Record mentions without a page under heading_3 "Mentioned (no page yet)"; before creating any new People page, search those mentions and back-link. Run Log includes "deferred backlinks created". The weekday routine prompt was updated in the same change; the weekend routine inherits from weekdays.
 - 2026-11-05 — Attio routines deleted on Brendan confirm (t86u): attio-context, attio-backfill, attio-questions-evening-list-nov-5. Notion weekday/weekend routines only. Registry: bots/personal-crm-contact-context.md.
 - 2026-11-05 — Bot renamed **Personal CRM Contact Context**. Notion-only; weekday/weekend routines unchanged. Attio routines on this bot paused pending Brendan delete. Arrow Attio People / Firms / Log own Attio People, firm intel, and the Weekly Log. See projects/contact-context-attio-split.md and bots/personal-crm-contact-context.md.
 - 2026-11-05 — Contact Context split: Notion-only; Attio work moves to Arrow Attio People.

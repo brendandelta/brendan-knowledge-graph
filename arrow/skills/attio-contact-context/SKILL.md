@@ -195,7 +195,7 @@ Only for notable items: an in-scope person worth adding to Attio, a human-edited
 
 ## Live routine prompts
 
-Synced verbatim from the live routines on 2026-11-05. The last-contact paragraph below is the text to add to the live "Attio contact context" routine; it is in this file but was not yet on the live routine as of 2026-11-11. Until it is added, the skill's Event run step e is still the source of truth when the bot loads this file.
+Synced verbatim from the live routines on 2026-11-05. The last-contact paragraph below was added to the live "Attio contact context" routine on 2026-11-11 (Brendan approved), right after the "run that skill for one event run" line.
 
 ### Attio contact context (folder attio-contact-context)
 
@@ -206,7 +206,7 @@ Load arrow/skills/attio-contact-context/SKILL.md and run that skill for one even
 
 Results go to Brendan in this Grok Bot chat, and only when something is notable: people worth adding to Attio, conflicts, or a blocked source. When nothing is notable, stay quiet.
 
-### Last-contact paragraph to add to "Attio contact context" (not yet on the live routine)
+### Last-contact paragraph on "Attio contact context" (live since 2026-11-11)
 
 Also run the skill's Last-contact pass.
 

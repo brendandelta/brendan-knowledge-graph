@@ -36,7 +36,10 @@ Each run (saved routine prompt is source of truth):
 none (chat with Brendan only; no auto-send).
 
 ## Changelog
+Temporary routine **"Push: WhatsApp MCP + Attio schema project"** (folder `push-whatsapp-mcp-attio-schema-project`), CRON_TZ=America/Los_Angeles `0 10,14,18 12-13 11 *`, flexible ±15 minutes (Thu-Fri Nov 12-13, 2026). Brendan asked to be pushed hard until he finishes it. Each run names the next step he owes: Claude's MCP upgrade report, then Grok Bot wiring the Attio WhatsApp ID fields and the repo docs, then field-by-field schema overhaul approvals from the audit Page. If Grok Bot is the blocker, the run does the work instead of nudging. It deletes itself when the project is done or after the Fri 6 PM PT run, which reports what's left and asks whether to extend. Arrow Chief of Staff was asked to carry the same item in its check-ins.
+
 - 2026-11-05 — skill created with Bot registry refresh routine (Brendan, t337u).
 - 2026-11-05 — shared-clone pull --rebase origin main; registry CHANGELOG/INDEX rules mirrored from AGENTS.md.
 - 2026-11-05 — Bot registry refresh steps synced to the live routine (inventory `/home/box/agent-data/agents/` profiles; compare; commit; flag only unrecorded drift).
 - 2026-11-06 — Bot registry refresh: flagged Suggested Actions missing from live; synced CoS/Document Filing/Marwan display names; fixed grok-bot registry Last verified row.
+- 2026-11-11: added temporary routine "Push: WhatsApp MCP + Attio schema project" (Brendan, t493u).

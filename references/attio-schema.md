@@ -106,12 +106,17 @@ Brendan approved these five People attributes on 2026-11-13 after comparing a pa
 
 Rules:
 
-- `liquidity_interest` Yes or Possibly, together with any companies on `liquidity_holdings`, are unconfirmed seller leads. Deal Indications flags them for review and never auto-creates Blocks. A Block is created only after a teammate or a clear follow-up confirms company, side, and enough context to meet the existing write-path bar.
-- `liquidity_holdings` stores supply (holdings they might sell). Never create a Company, Interest, or Block from this field. Unmatched names belong in a note, not a new Company.
+- Blocks and Interests are indications of supply or demand, not qualified inventory. They become qualified only when a teammate adds them to the deal-board lists: Qualified Blocks (`qualified_blocks`, list id `618270d1-a785-4fa3-8534-c35ac11b47bf`, parent object `blocks`) or Qualified Interests (`qualified_interests`, list id `67267bb5-c261-4681-b806-52404a70d1e5`, parent object `interests`). Matching, and any buy/sell sheet, should key off that list membership, not off `deal_classification`. The Morning Buy/Sell Sheet skill was retired (see DECISIONS.md); there is no live buy/sell skill to update.
+- A website form answer of `liquidity_interest` Yes plus at least one existing Company on `liquidity_holdings` creates a normal Block immediately, one per company, the same way any other indication is written. Link `underlying_company` to that Company, and link the person as seller on Blocks `seller_contact_link` (inverse on People is `sourced_blocks_contact`). Status is Available. `deal_classification` is Secondary, because this is a sale of existing holdings. Do not invent a special unconfirmed path, and do not add the Block to Qualified Blocks. The website must not create a Company for an unmatched name; those names stay in the inquiry note, and no Block is created for them. Search for an existing Block with the same seller and company first, and update it rather than duplicating.
+- The option `Unconfirmed` on Blocks `deal_classification` means Primary vs Secondary is not yet known. It is not a qualification flag. Existing Deal Indications writes use it when the type is unknown (47 of the 100 most recently created Blocks). Do not set it just because the Block came from the form.
+- `liquidity_interest` Possibly stays on the person only. No Block is created.
+- Deal Indications later confirms or enriches website-created Blocks from WhatsApp or email: update the existing record (terms, size, overview), and do not create a second Block. Qualification is still a human adding the record to Qualified Blocks.
+- How a Block is qualified: POST `/v2/lists/qualified_blocks/entries` with `parent_object` `blocks` and `parent_record_id` set to the Block's record id (Composio: `ATTIO_PUT_V2_LISTS_LIST_ENTRIES`). No extra entry values are required. The list has one custom attribute, `push_to_deal_board` (checkbox, "Push to Deal Board"): when checked, that qualified Block is shown on the LP portal deal board. The form must not set this. Same pattern for Interests on `qualified_interests`. As of 2026-11-13 there are four Qualified Blocks entries, added by teammates, not by a bot.
+- `liquidity_holdings` stores supply (holdings they might sell). Link only to existing Companies. Never create a Company or an Interest from this field.
 - `notable_past_investments` is track record. Never create Company records from this text. Keep it separate from `companies_of_interest`, which is current demand.
 - `investment_structure` is how they prefer to invest. The live `Secondaries` option on `sector_of_interest` stays for existing data; new answers about how they invest go on this field.
 - `decision_timeline` is how long they typically take to decide once diligence begins. Option titles must match exactly, including `2-4 weeks` and `1-2 months`.
-- attio-contact-context fills `investment_structure` and `decision_timeline` when empty, from chats or email, and never overwrites a human-set or form-set value. It may mention confident past-investment or liquidity facts in `arrow_context` without copying prices or creating records.
+- attio-contact-context fills `investment_structure` and `decision_timeline` when empty, from chats or email, and never overwrites a human-set or form-set value. It may mention confident past-investment or liquidity facts in `arrow_context` without copying prices or creating records. It does not create Blocks.
 
 Related existing fields, confirmed and not changed on 2026-11-13:
 
@@ -119,3 +124,24 @@ Related existing fields, confirmed and not changed on 2026-11-13:
 |---|---|---|---|---|
 | `check_size_range` | Check size range | select, multi | `8682152a-e908-41a8-9c58-e25ea2775fbe` | Already multi-select. Nine live options: `$0-100K`, `$100-200K`, `$200-500K`, `$500-$1M`, `$1M-$5M`, `$5M-$10M`, `$10M-$15M`, `$15M-20M`, `$20M+`. The website form is still single-select and still has three stale values; that is a form follow-up, not a schema change. |
 | `companies_of_interest` | Companies of Interest | record-reference to Companies, multi | `a780dbfd-2aa2-4988-89ec-349904c565a9` | Current appetite. Allowed object is Companies (`b1428e8d-e770-4c68-be6f-b8af71cefa3c`). No reverse relationship. Add only, never replace. Match existing Companies only; never create a Company from typed names. |
+
+## Blocks write path (for website indications and Deal Indications)
+
+Object slug `blocks`, object id `92e38fdb-18d1-44c5-92ff-3a53fe698c54`. Existing names follow "Person - Company", sometimes with a size in parentheses.
+
+The only writable attribute that is required on create is `underlying_company`. `created_at` is required but system-set and not writable. Do not write archived slugs: `intermediaries`, `seller_fund`, `seller_contacts`, `associated_deal`, `associated_deals`, `source_8`.
+
+| Slug | Title | Type | Required | Notes |
+|---|---|---|---|---|
+| `block_name` | Block Name | text | no | "{Person full name} - {Company name}" |
+| `underlying_company` | Underlying Company | record-reference to Companies, single | yes | Existing Company id only. Allowed object `b1428e8d-e770-4c68-be6f-b8af71cefa3c`. |
+| `seller_contact_link` | Seller Contact Link | record-reference to People, multi | no | The seller. Inverse is People `sourced_blocks_contact`. Use this for a website submitter who said they would sell. Do not put a direct seller on `intermediaries_2` or `intermediary_contact_link` (those are for the person who brought the indication). |
+| `deal_classification` | Deal Classification | select, single | no | Live options: Primary (`488867f2-8e0b-4f2b-9244-669df3be116b`), Secondary (`5145eeb3-2c0e-4c7d-b6ab-5464c1cf8c50`), Unconfirmed (`4a5465f8-5928-46c6-88a9-00a690eedb77`). Attribute id `86b89ef6-2692-4c70-a668-f1634492ba63`. Website Yes-and-sell: Secondary. Unconfirmed means type is unknown, not "unqualified." |
+| `status` | Status | status, single | no | Live titles: Available (`5ec49e91-364f-4d1c-a3f6-76bcc3afd623`), Reserved (`ebd4775b-276b-4e46-9674-d77b0413a79c`), Sold (`a26c6be5-9bad-4714-b8c9-b574d18e24e9`), Withdrawn (`0d0e7059-b736-4347-85ea-9c220d464975`). New indications use Available. Attribute id `effd2aab-735a-4b8c-b7ee-3f583b0c03f1`. |
+| `source` | Source | text | no | Provenance, e.g. "website (11/13) - inquiry", matching "chris (10/27) - email". Description: "Where this block was dictated/indicated." Do not write archived `source_8`. |
+| `overview` | Overview | text | no | Context: website form, person said they would sell this company, size unknown if unknown. There is no separate notes attribute; use this. |
+| `terms` | Terms | text | no | Fill when known; otherwise say unknowns here or in overview. Do not invent numbers. |
+| `block_size` | Block Size | currency, USD | no | Fill only when known. |
+| `run_sync` | Run Sync | checkbox | no | Deal Indications sets this true on its writes; the form should too. |
+
+Qualification is a separate step, described in the LP intake rules above. The form creates the Block and stops.

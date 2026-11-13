@@ -40,6 +40,16 @@ Status key: **live** = running today (engine in parentheses) · **draft** = writ
 | carta-investor-onboarding | deal pipeline sheet (gsheets), composio:attio (people, call recordings via skills/comms-ingest/attio-calls.md when a run needs one), gmail (arrow), Carta Closings (read) | chat drafts; sheet / Attio / Carta (invite, countersign) only after Brendan OKs | fund docs (LPA, sub agreement) per vehicle | draft |
 | attio-contact-context | comms-index, gmail (5 inboxes), gcal, whatsapp (Brendan's + partner: Chris's, Gabe's, and Jillian's; CONNECTIONS.md)/signal (incl. team groups)/imessage (read), composio:attio (incl. required Attio call scan each event run, skills/comms-ingest/attio-calls.md, cursor in /workspace/attio-context/state.json); never Notion | composio:attio People only: arrow_context, introduced_by, knows, close_with, contact_owner, context_updated, check_size_range, sector_of_interest, lp_fo_ria (+ FO tag), empty contact fields, last_whatsapp_contact, last_whatsapp_contact_by, last_contacted, last_contacted_by, last_contact_channel, days_since_last_contact, last_contacted_brendan, last_contacted_chris, last_contacted_gabe, last_contacted_jillian, last_contacted_vaidehi, whatsapp_phone_jid, whatsapp_lid, standard_arrow_chat_jid; /workspace/attio-context/state.json (cursor), relationship-provenance.jsonl (private), /workspace/attio-backfill/ (queue.json, relationship_checked.json, log.md, lock) | comms-ingest, attio-schema.md | live (Grokbot, bot "Arrow Attio People", taken over from Contact Context 2026-11-05; inherits state.json, backfill queue, token): routines "Attio contact context" (folder attio-contact-context, includes last-contact pass, on the live routine prompt since 2026-11-11; Attio calls paragraph live 2026-11-13), "Attio backfill" (folder attio-backfill), "Caplight recap watch" (folder caplight-recap-watch, temporary until 2026-11-17) |
 
+## References (`references/`)
+
+Operational docs that skills and routines load. Not skills themselves.
+
+| File | What it is | Used by |
+|---|---|---|
+| [attio-schema.md](references/attio-schema.md) | Arrow Attio objects, field slugs, WhatsApp identity and last-contacted rules | attio-contact-context, arrow-attio-firm-context, deal-indications, comms-ingest |
+| [whatsapp-mcp.md](references/whatsapp-mcp.md) | WhatsApp MCP servers, tools, 56-day retention, admin vs view-only | CONNECTIONS.md, every WhatsApp-reading skill |
+| [whatsapp-attio-daily-sync.md](references/whatsapp-attio-daily-sync.md) | Spec for the daily job that keeps Attio and all four WhatsApp servers in step (v0.5 tools, v0.4 fallbacks). Not a running skill yet. | planned routine, after WhatsApp MCP v0.5.0 is on `release`; feeds deal-indications, attio-contact-context, and arrow-attio-firm-context |
+
 ## Bot registry
 
 Rebuild map of live Grok Bots. Arrow-only entries under `arrow/bots/` + [`arrow/BOTS.md`](arrow/BOTS.md). Personal / Delta / Janey / Cross under `bots/` + [`bots/MAP.md`](bots/MAP.md). Template: `bots/_TEMPLATE.md` (mirrored at `arrow/bots/_TEMPLATE.md`). Rules in `AGENTS.md`. Grok Bot refreshes daily 7pm PT. Temporary Personal bot: Global Entry Watch (`bots/global-entry-watch.md`), no skill, created 2026-11-10.

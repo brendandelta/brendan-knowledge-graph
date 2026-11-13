@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-13
+- Attio WhatsApp identity fields created on the Arrow Fund workspace and documented in `references/attio-schema.md` (this file was listed as still to write). People: `whatsapp_phone_jid` (`3b7c92fd-fc61-45c9-9c84-947eba3df049`), `whatsapp_lid` (`4decbbbb-a151-4e4d-82b5-65c1d06d77a1`), `standard_arrow_chat_jid` (`304310b0-d2c3-4f92-b7ea-73578611c363`). Companies: `standard_arrow_chat_jid` (`b80e24d0-55f4-486e-8257-ca271639f55d`). Skills that map WhatsApp to Attio (attio-contact-context, arrow-attio-firm-context, deal-indications, comms-ingest) now match by JID first and E.164 phone second, fill only empty values, and skip ambiguous matches. First backfill wrote phone JIDs on 157 people, LIDs on 154 of those, and standard Arrow chat JIDs on 23 people and 28 companies. CONNECTIONS.md and `references/whatsapp-mcp.md` updated.
 - WhatsApp MCP: Brendan's own server moved to the v0.4.0 build (same code as the Arrow team server, from `brendandelta/whatsapp-mcp` `release`). Connector address unchanged, WhatsApp stayed linked. 56 day retention now applies to his history too: first purge ran today (14,715 messages down to 8,311; oldest kept 2026-09-18). Send cap 200 per hour. A view-only link now exists for his account as well. Auto update timer installed. CONNECTIONS.md and `references/whatsapp-mcp.md` updated.
 
 ## 2026-11-12

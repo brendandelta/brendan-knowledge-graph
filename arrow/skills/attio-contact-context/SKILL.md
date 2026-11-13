@@ -43,6 +43,9 @@ A person is in scope only if Arrow is involved: at least one Arrow team member o
 | Last contacted by (`last_contacted_by`) | actor-reference (workspace member), single | Who made that most recent contact. |
 | Last contact channel (`last_contact_channel`) | select (Email, WhatsApp) | Email or WhatsApp, matching `last_contacted`. |
 | Days since last contact (`days_since_last_contact`) | number | Whole calendar days from `last_contacted` to today in America/Los_Angeles. Recalculated daily. See Last-contact fields. |
+| WhatsApp phone JID (`whatsapp_phone_jid`) | text | Canonical phone JID, `{digits}@s.whatsapp.net`. Fill only when empty. See WhatsApp identity fields. |
+| WhatsApp LID (`whatsapp_lid`) | text | `{n}@lid` when the server exposes a mapping. Fill only when empty. See WhatsApp identity fields. |
+| Standard Arrow chat JID (`standard_arrow_chat_jid`) | text | Group JID (`{n}@g.us`) of the one standard Arrow chat with this person. Fill only when empty. See WhatsApp identity fields. |
 
 ## Last-contact fields (WhatsApp and rollup)
 
@@ -63,12 +66,28 @@ Rules for the last-contact pass:
 
 1. **Sources.** Brendan's WhatsApp (`user-whatsapp-mcp`) and partner WhatsApp currently Chris's (`user-Chris' WhatsApp MCP`). Follow CONNECTIONS.md Partner WhatsApp rules: Chris's connector is read-only (never `draft_message` or `send_message`); Arrow-relevant 1:1 chats only; skip personal, family, and non-Arrow threads (skip chats labeled Mom, Dad, or clearly personal such as "poker" or "friend" with no Arrow involvement); dedupe a phone that appears in both mailboxes. Gabe's and Jillian's WhatsApp are not connected, so their WhatsApp sends are missing until those connectors are added. Their email still counts through Attio's `last_email_interaction`.
 2. **Outbound, 1:1 only.** Count only messages we sent (the `me:` lines in `get_messages`) in direct chats. Skip groups. Skip self-chats (Brendan's own number on Brendan's WhatsApp, Chris's own number on Chris's). If both mailboxes have a send to the same person, use the more recent send and attribute it to whoever sent it.
-3. **Match.** Normalize phones to E.164 (`+` and digits) and match against People `phone_numbers`. Do not create records. If one number sits on more than one People record, write all of them and log the collision. If `get_messages` with a bare phone returns "No chat matching", retry with the full JID, including a `:0` device suffix when that is how the chat is stored.
+3. **Match.** Follow WhatsApp identity fields: JID first (`whatsapp_phone_jid` or `whatsapp_lid`), E.164 `phone_numbers` second. Do not create records. If more than one People record matches, skip and log the collision (do not write all of them). If the match is unique and the identity fields are empty, fill them. If `get_messages` with a bare phone returns "No chat matching", retry with the full JID, including a `:0` device suffix when that is how the chat is stored.
 4. **Coverage.** `list_chats` is capped at 200 and mixes groups with directs, most recent first, so older 1:1 chats can fall off the list. For daily updates, use `recent_activity` with `exclude_groups=true` over the last 36 to 48 hours, plus `list_chats`, then `get_messages` on each 1:1 that had activity. A recovery backfill should walk every reachable 1:1 chat; chats older than the 200-chat window may stay unset until they are active again.
 5. **Rollup.** `last_contacted` is the later of `last_whatsapp_contact` and `last_email_interaction.interacted_at`. `last_contacted_by` and `last_contact_channel` follow that winner. On an exact timestamp tie, prefer WhatsApp.
 6. **Days since.** Recalculate `days_since_last_contact` for every person who has a `last_contacted` value, including email-only people, once per calendar day, on the first event run of the day in America/Los_Angeles. Other event runs the same day only need to update people with new WhatsApp or email activity (and recompute their rollup and days). Batch PATCHes via Composio Attio (`COMPOSIO_PROXY_EXECUTE` / workbench `proxy_execute`, toolkit `attio`, relative paths such as `/objects/people/records/{id}`), respect rate limits, retry 429s, and checkpoint progress.
 7. **Display.** These are ordinary timestamp and number fields, not Attio's built-in interaction type. The API returns timestamps in UTC with nanosecond precision (for example `2026-11-11T19:47:49.000000000Z`). The UI shows the date and time, not "x days ago". `days_since_last_contact` is the "x days ago" number for filters and reminder bots.
 8. **Planned, not built.** Phase 3 is a daily per-owner stale-contact reminder list, filtered on `days_since_last_contact`. Phase 4 is drafted check-in messages, with auto-send only after Brendan explicitly turns it on. This process must not send those reminders or auto messages.
+
+## WhatsApp identity fields (created 2026-11-13)
+
+Full ids and write rules: `references/attio-schema.md`. People attributes: `whatsapp_phone_jid` (`3b7c92fd-fc61-45c9-9c84-947eba3df049`), `whatsapp_lid` (`4decbbbb-a151-4e4d-82b5-65c1d06d77a1`), `standard_arrow_chat_jid` (`304310b0-d2c3-4f92-b7ea-73578611c363`).
+
+These three fields are fill-when-empty only. Never overwrite a value that is already set, including a human-set value. Never create a People record to store a JID.
+
+**Match (JID first, phone second).** This is now the matching rule for last-contact and for writing the identity fields:
+
+1. Canonicalize the chat JID (strip a `:0` or other device suffix from a phone JID). Query People `whatsapp_phone_jid` or `whatsapp_lid`.
+2. If there is no JID hit, normalize the number to E.164 and match `phone_numbers`.
+3. Use the record only when there is exactly one confident match. If more than one People record matches, skip and log the collision. Do not write last-contact or identity fields onto every colliding record (this replaces the earlier "write all of them" collision rule).
+4. If the match is unique and `whatsapp_phone_jid` or `whatsapp_lid` is empty, write it. Build `whatsapp_phone_jid` from the matched E.164 phone only (`{digits}@s.whatsapp.net`), never from a LID local-part.
+5. `standard_arrow_chat_jid`: set only when a group is clearly the standing Arrow chat with this one person (for example `X <> Arrow Fund`). Skip internals, multi-party chats, deal-specific threads, first-name-only titles, and duplicate chats for the same person. Fill only when empty.
+
+LID-only directs with no phone and no existing JID field stay unmatched.
 
 ## Investor fields (fill when empty; value only)
 
@@ -164,7 +183,7 @@ a. Read the cursor from state.json. Collect all business-relevant activity since
 b. Update every in-scope Attio person touched. Match by email, then phone, then full name (only if the name is unique). Apply the scope rule and the human-edit guard. Rewrite `arrow_context` in full, add `knows` both ways and set `introduced_by` only under the Relationship evidence rules, add `close_with`, set `contact_owner` only when empty (never on teammates' records), fill empty investor and contact fields, set `context_updated`. Never create people; list in-scope people worth adding.
 c. No backfill in event runs (Backfill mode does it). If a touched person is in the backfill queue, mark them `done` there.
 d. Append one log line: run time, counts (updated, skipped), names updated, skips with reasons (human-edited, ambiguous match, brendan-only, not enough context), people worth adding, options added. Then write the new cursor (run start, PT) to state.json.
-e. **Last-contact pass** (see Last-contact fields): on every event run, read new outbound 1:1 WhatsApp sends since the last last-contact pass (or the last 36 to 48 hours) from Brendan's WhatsApp and Chris's WhatsApp, match by E.164 phone, write the WhatsApp fields, and recompute the rollup. On the first event run of each PT calendar day, also refresh `days_since_last_contact` (and the rollup from the current `last_email_interaction`) for every person who has a `last_contacted` or `last_email_interaction` value, including email-only people. Log last-contact counts (WhatsApp updated, email-only refreshed, unmatched phones, collisions) on the same log line. Keep a small cursor for this pass in /workspace/attio-context/state.json as `last_contact_cursor` (PT timestamp).
+e. **Last-contact pass** (see Last-contact fields): on every event run, read new outbound 1:1 WhatsApp sends since the last last-contact pass (or the last 36 to 48 hours) from Brendan's WhatsApp and Chris's WhatsApp, match by JID first and E.164 phone second, fill empty WhatsApp identity fields, write the WhatsApp last-contact fields, and recompute the rollup. On the first event run of each PT calendar day, also refresh `days_since_last_contact` (and the rollup from the current `last_email_interaction`) for every person who has a `last_contacted` or `last_email_interaction` value, including email-only people. Log last-contact counts (WhatsApp updated, email-only refreshed, unmatched phones, collisions) on the same log line. Keep a small cursor for this pass in /workspace/attio-context/state.json as `last_contact_cursor` (PT timestamp).
 
 Verify each write by reading the record back. Keep going if one record fails; log it.
 
@@ -210,7 +229,7 @@ Results go to Brendan in this Grok Bot chat, and only when something is notable:
 
 Also run the skill's Last-contact pass.
 
-On every event run: read outbound WhatsApp messages (only messages we sent, 1:1 chats only) from Brendan's WhatsApp (`user-whatsapp-mcp`) and Chris Clifford's WhatsApp (`user-Chris' WhatsApp MCP`, read only, Arrow-relevant only, skip his personal and family threads, dedupe chats that also appear in Brendan's). Match each person to an existing Attio People record by normalized E.164 phone number. Do not create People records. Write only the last-contact fields: `last_whatsapp_contact`, `last_whatsapp_contact_by`, `last_contacted`, `last_contacted_by`, `last_contact_channel`, and `days_since_last_contact`. If both mailboxes have a send to the same person, use the more recent send and attribute it to whoever sent it.
+On every event run: read outbound WhatsApp messages (only messages we sent, 1:1 chats only) from Brendan's WhatsApp (`user-whatsapp-mcp`) and Chris Clifford's WhatsApp (`user-Chris' WhatsApp MCP`, read only, Arrow-relevant only, skip his personal and family threads, dedupe chats that also appear in Brendan's). Match each person to an existing Attio People record by WhatsApp JID first (`whatsapp_phone_jid` or `whatsapp_lid`) and normalized E.164 phone number second. Do not create People records. If the match is unique and `whatsapp_phone_jid` or `whatsapp_lid` is empty, fill it. If more than one record matches, skip and log the collision. Write only the last-contact fields: `last_whatsapp_contact`, `last_whatsapp_contact_by`, `last_contacted`, `last_contacted_by`, `last_contact_channel`, and `days_since_last_contact`. If both mailboxes have a send to the same person, use the more recent send and attribute it to whoever sent it.
 
 Recompute the rollup: `last_contacted` is the later of `last_whatsapp_contact` and Attio's `last_email_interaction`; `last_contacted_by` and `last_contact_channel` follow that winner (for email, use `last_email_interaction`'s `owner_actor` when that owner is a workspace member).
 
@@ -241,6 +260,7 @@ Results go to Brendan in this Grok Bot chat only when notable: a tier finished, 
 
 ## Changelog
 
+- 2026-11-13 - WhatsApp identity fields: `whatsapp_phone_jid`, `whatsapp_lid`, and `standard_arrow_chat_jid` on People (ids in `references/attio-schema.md`). Match WhatsApp chats by JID first and E.164 phone second. Fill only empty identity values. Skip ambiguous matches (this replaces the earlier last-contact rule that wrote every colliding People record). First backfill ran the same day.
 - 2026-11-11 - Last-contact fields (Phases 1 and 2): six People attributes (`last_whatsapp_contact`, `last_whatsapp_contact_by`, `last_contacted`, `last_contacted_by`, `last_contact_channel`, `days_since_last_contact`). The "by" fields are actor-reference to workspace members. Event runs do a last-contact pass (outbound 1:1 WhatsApp from Brendan's and Chris's connectors, match by E.164, roll up with `last_email_interaction`, refresh days since on the first PT run of the day). Gabe's and Jillian's WhatsApp are not connected. Phase 3 (per-owner stale-contact reminders) and Phase 4 (drafted, later opt-in auto check-ins) are planned, not built. First backfill ran 2026-11-11.
 - 2026-11-10 — Added partner WhatsApp (CONNECTIONS.md; currently `user-Chris' WhatsApp MCP`) as a read source. Chris's Arrow-relevant DMs count as Arrow involvement; his intro groups count as intro evidence; partner-only personal contacts stay out of Attio. Dedup against Brendan's WhatsApp. Never send or draft on the partner connector.
 - 2026-11-06 — Access: Gabe People record id updated to c1ed36e3-ca7a-4c9e-ad79-73d7ffef26a7 (old 37fd798b returned 404 after 2026-11-06 record rotation; gabe@arrowfund.co).

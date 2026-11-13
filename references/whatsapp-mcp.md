@@ -65,6 +65,7 @@ Admin link only:
 - Chats are keyed by JID. A person can appear as a phone JID or as a LID (WhatsApp's privacy id). The collector stores every LID to phone mapping it learns, including from group participant lists, and merges the LID identity into the phone identity.
 - `status` shows how many direct chats are still LID only. On 2026-11-12: Chris 174, Gabe 172, Jillian 122.
 - Group names differ between phones. Always key groups by JID.
+- Attio stores those JIDs on People and Companies (`whatsapp_phone_jid`, `whatsapp_lid`, `standard_arrow_chat_jid`). Match a WhatsApp chat to Attio by JID first and E.164 phone second. See `references/attio-schema.md`.
 
 ## Deploys
 
@@ -73,4 +74,4 @@ Admin link only:
 
 ## Not built yet
 
-Shared contact map across the team accounts, `resolve_person`, coverage report for Attio lists, per-teammate contact log, Attio sync, group create and edit tools, standard Arrow chat finder, bulk sends. When these ship, this file and CONNECTIONS.md are updated in the same commit.
+Shared contact map across the team accounts, `resolve_person`, coverage report for Attio lists, per-teammate contact log, server-side Attio sync, group create and edit tools, and bulk sends. The Attio JID fields and a first manual standard-chat backfill exist as of 2026-11-13 (`references/attio-schema.md`); a server-side standard Arrow chat finder is not built yet. When the remaining tools ship, this file and CONNECTIONS.md are updated in the same commit.

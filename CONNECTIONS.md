@@ -69,6 +69,17 @@ Rules for every partner WhatsApp connector:
 5. Dedup: a shared Arrow group or a Brendan-partner thread may appear in both Brendan's WhatsApp and a partner's WhatsApp. Treat identical content at the same time as one item; do not double-write Attio, the weekly log, or Todoist.
 6. Skills should refer to this section rather than restating a one-off Chris-only setup, so adding Gabe or Jillian later is a new row plus the same filters.
 
+## Attio WhatsApp identity fields
+
+Arrow Attio (workspace `arrow-fund`) stores WhatsApp ids on People and Companies so bots can match a chat by JID first and phone second. Full field ids, write rules, and the standard-chat test: `references/attio-schema.md`.
+
+- People: `whatsapp_phone_jid` (`{E.164 without plus}@s.whatsapp.net`), `whatsapp_lid` (`{n}@lid`), and `standard_arrow_chat_jid` (`{n}@g.us`).
+- Companies: `standard_arrow_chat_jid` only.
+- Fill only empty values. Never overwrite. Never create a person or firm just to store a JID. If more than one Attio record matches, skip and log it.
+- `standard_arrow_chat_jid` is only for a group that is clearly the standing Arrow chat with one person or one firm (for example `X <> Arrow Fund`). Skip internals, multi-party chats, deal-specific threads, first-name-only titles, and duplicate chats for the same counterpart.
+
+Skills that map WhatsApp to Attio (attio-contact-context, arrow-attio-firm-context, deal-indications, comms-ingest) must follow this matching order. Partner WhatsApp stays read-only unless Brendan explicitly asks to send as that partner.
+
 ## Git access from the box
 
 - The box can push to `brendandelta/brendan-knowledge-graph` (since 2026-11-02). Auth is a fine-grained GitHub token scoped to this one repo only (Contents: read/write), stored in the box's git credential helper. Every bot on the box can use it through plain `git push`.

@@ -46,7 +46,7 @@ Run the standard Comms Ingest scan from the /workspace/comms-index/state.json cu
 
 Exit early if nothing is new. Otherwise append to the comms index.
 
-Also scan partner WhatsApp (CONNECTIONS.md; currently `user-Chris' WhatsApp MCP`). Index Arrow-relevant items and tag the source as Chris's WhatsApp (for example `channel: whatsapp-chris`). Do not create Todoist tasks or ping Brendan about Chris's unreplied chats that do not involve him. Only create a task when someone is asking Brendan or Arrow to do something, Chris made a commitment Brendan needs to know about, or there is an unreplied Arrow thread Brendan is on. Never draft or send on a partner WhatsApp connector. Dedup items that also appear in Brendan's WhatsApp.
+Also scan partner WhatsApp (CONNECTIONS.md; currently `user-Chris' WhatsApp MCP`). Index Arrow-relevant items and tag the source as Chris's WhatsApp (for example `channel: whatsapp-chris`). Do not create Todoist tasks or ping Brendan about Chris's unreplied chats that do not involve him. Only create a task when someone is asking Brendan or Arrow to do something, Chris made a commitment Brendan needs to know about, or there is an unreplied Arrow thread Brendan is on. Never draft or send on a partner WhatsApp connector. Dedup items that also appear in Brendan's WhatsApp. When linking a WhatsApp chat to someone already in Attio, match by JID first (`whatsapp_phone_jid`, `whatsapp_lid`, `standard_arrow_chat_jid`) and E.164 phone second (`references/attio-schema.md`). This skill does not write those Attio fields; attio-contact-context and arrow-attio-firm-context own the writes.
 
 Update Todoist (todoist_kino-vend) with dedupe and with source channel + id + timestamp on each task.
 
@@ -72,7 +72,7 @@ Run the same Comms Ingest job as the "Comms Ingest — weekday daytime" routine.
 
 If nothing is new, log a noop and stop. Otherwise append the new items as JSONL and update the digest, state and runs.log.
 
-Also scan partner WhatsApp (CONNECTIONS.md; currently `user-Chris' WhatsApp MCP`). Index Arrow-relevant items and tag the source as Chris's WhatsApp (for example `channel: whatsapp-chris`). Do not create Todoist tasks or ping Brendan about Chris's unreplied chats that do not involve him. Only create a task when someone is asking Brendan or Arrow to do something, Chris made a commitment Brendan needs to know about, or there is an unreplied Arrow thread Brendan is on. Never draft or send on a partner WhatsApp connector. Dedup items that also appear in Brendan's WhatsApp.
+Also scan partner WhatsApp (CONNECTIONS.md; currently `user-Chris' WhatsApp MCP`). Index Arrow-relevant items and tag the source as Chris's WhatsApp (for example `channel: whatsapp-chris`). Do not create Todoist tasks or ping Brendan about Chris's unreplied chats that do not involve him. Only create a task when someone is asking Brendan or Arrow to do something, Chris made a commitment Brendan needs to know about, or there is an unreplied Arrow thread Brendan is on. Never draft or send on a partner WhatsApp connector. Dedup items that also appear in Brendan's WhatsApp. When linking a WhatsApp chat to someone already in Attio, match by JID first (`whatsapp_phone_jid`, `whatsapp_lid`, `standard_arrow_chat_jid`) and E.164 phone second (`references/attio-schema.md`). This skill does not write those Attio fields; attio-contact-context and arrow-attio-firm-context own the writes.
 
 Then dedupe, create, update or close tasks in Todoist (todoist_kino-vend). Tag each task's source channel and write its todoist_task_id into the index.
 

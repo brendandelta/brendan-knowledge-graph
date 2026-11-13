@@ -18,6 +18,7 @@ Migration notes: Brendan decided on 2026-10-29 to KEEP the "added into Attio" ac
 - Outreach to anyone other than the three internal Signal acknowledgements below: draft and get Brendan's approval first; never send unasked.
 - Every block and interest is linked to the person who sent it (Brendan, 2026-10-29); one-time backfill of interests done 2026-10-29.
 - Keep Brendan's personal Notion contact context separate from ArrowFund Attio work.
+- When a block or interest comes from WhatsApp, match the sender and the firm to existing Attio People and Companies by WhatsApp JID first (`whatsapp_phone_jid`, `whatsapp_lid`, `standard_arrow_chat_jid`) and E.164 phone second. If the match is unique and those identity fields are empty, fill them. If more than one record matches, skip the identity write and list it as needs-review. Do not create a person just to store a JID. Details: `references/attio-schema.md`.
 
 ## Routine (weekdays 7:47, 10:47, 12:47, 2:47, 4:47, 10:47pm PT)
 

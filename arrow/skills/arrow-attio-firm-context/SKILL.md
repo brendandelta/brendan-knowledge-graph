@@ -5,7 +5,7 @@ description: Keeps Arrow's Attio Company records current with dated, sourced fir
 
 # arrow-attio-firm-context
 
-**Status:** v1.3 live (2026-11-10). Mode: AUTO-WRITE (Brendan approved 2026-11-05). Write supported values on existing Company records without waiting; new records, uncertain or conflicting values remain PROPOSE. Human-edit guard always on.
+**Status:** v1.4 live (2026-11-13). Mode: AUTO-WRITE (Brendan approved 2026-11-05). Write supported values on existing Company records without waiting; new records, uncertain or conflicting values remain PROPOSE. Human-edit guard always on.
 **Source:** structure mirrors `arrow/skills/attio-contact-context/SKILL.md` v2.2, adapted for the Attio `companies` object.
 **Bot:** "Arrow Attio Firms" (new bot, see contact-context-split-plan.md).
 
@@ -40,6 +40,7 @@ Missing: anything for firm type, Arrow role, holdings, marks, intel date or sour
 | `key_people` | Key people | record-reference → people (multi) | Add-only. Only people already in Attio. Never creates people. |
 | `firm_intel_updated` | Firm intel updated | date | Set by this process on every write. |
 | `firm_intel_source` | Latest intel source | text (URL) | Link to the newest source used (SEC URL, Gmail permalink, Drive file, "Signal: Arrow OS Data Input Chat YYYY-MM-DD"). |
+| `standard_arrow_chat_jid` | Standard Arrow chat JID | text | Group JID (`{n}@g.us`) of the one standard Arrow chat with this firm. Created 2026-11-13 (`b80e24d0-55f4-486e-8257-ca271639f55d`). Fill only when empty. See `references/attio-schema.md`. |
 
 Notes:
 - `key_people` is a one-way reference to People, with no reverse attribute created on People.
@@ -90,7 +91,7 @@ Right before every write, re-read the record and the attribute's current value w
 ## Sources (read-only)
 1. **SEC (public):** `/workspace/nport/nport.db` (fund_holdings, spvs, fund_managers, person_scores), built by N-PORT Scraper. Read only; never write that DB. New quarterly sets get picked up after N-PORT Scraper's monthly refresh on the 1st.
 2. **Arrow Gmail:** brendan@arrowfund.co via Composio `gmail_tagish-stuss`. Other team inboxes only through Attio email metadata.
-3. **WhatsApp, Arrow groups and Arrow-relevant partner DMs:** read `user-whatsapp-mcp` and the partner WhatsApp list in CONNECTIONS.md (currently `user-Chris' WhatsApp MCP`). Groups: name contains "Arrow"/"ArrowFund"/"Arrow Fund", or include a non-Brendan Arrow team member, or sit in `/workspace/attio-firms/arrow-groups.json` (allowlist, Brendan-approved). Example current Arrow groups: "Kells Capital <> Arrow fund", "Rift Capital <> Arrow Fund", "William Blair x Arrow Fund", "Arrow Fund & D Boral Capital", "Y Invest x Arrow". Ambiguous groups ("Velvet, The Underground I Sundance 2026", "BM 2026 AXIS MUNDI", "Long Feng Community", "dealio", "Poly") are skipped unless allowlisted. Also read Arrow-relevant direct chats on a partner connector (firm intel Chris gets in 1:1s that may not appear in Brendan's WhatsApp). Skip personal, family, and non-Arrow threads. Follow CONNECTIONS.md Partner WhatsApp rules, including read-only and dedup of shared groups that also appear in Brendan's WhatsApp. Never send_message or draft_message.
+3. **WhatsApp, Arrow groups and Arrow-relevant partner DMs:** read `user-whatsapp-mcp` and the partner WhatsApp list in CONNECTIONS.md (currently `user-Chris' WhatsApp MCP`). Match a group to an existing Company by `standard_arrow_chat_jid` first, then by name. If a group is clearly the standing Arrow chat with one firm (for example `X <> Arrow Fund`) and that Company's `standard_arrow_chat_jid` is empty, write it; skip internals, multi-party chats, deal-specific threads, and duplicate chats for the same firm (`references/attio-schema.md`). Groups: name contains "Arrow"/"ArrowFund"/"Arrow Fund", or include a non-Brendan Arrow team member, or sit in `/workspace/attio-firms/arrow-groups.json` (allowlist, Brendan-approved). Example current Arrow groups: "Kells Capital <> Arrow fund", "Rift Capital <> Arrow Fund", "William Blair x Arrow Fund", "Arrow Fund & D Boral Capital", "Y Invest x Arrow". Ambiguous groups ("Velvet, The Underground I Sundance 2026", "BM 2026 AXIS MUNDI", "Long Feng Community", "dealio", "Poly") are skipped unless allowlisted. Also read Arrow-relevant direct chats on a partner connector (firm intel Chris gets in 1:1s that may not appear in Brendan's WhatsApp). Skip personal, family, and non-Arrow threads. Follow CONNECTIONS.md Partner WhatsApp rules, including read-only and dedup of shared groups that also appear in Brendan's WhatsApp. Never send_message or draft_message.
 4. **Signal (Signal MCP), Arrow chats only:** the "Arrow OS Data Input Chat" chat (primary firm-intel feed) plus allowlisted Arrow groups. Reachable only while Brendan's Mac is online.
 5. **Arrow calendar:** Attio meetings (`ATTIO_LIST_MEETINGS`) with ≥1 @arrowfund.co participant, and the firm-domain attendees.
 6. **Comms index:** `/workspace/comms-index/` (read-only, written by Comms Ingest) for the Arrow-tagged slice when present.
@@ -143,6 +144,7 @@ Results go to Brendan in this Grok Bot chat only when something was written, pro
 ```
 
 ## Changelog
+- 2026-11-13 v1.4: Companies gained `standard_arrow_chat_jid`. Match Arrow WhatsApp groups by that JID first, then by name. Fill the field only when empty, and only for a clearly unique standard Arrow chat with one firm. See `references/attio-schema.md`.
 - 2026-11-10 v1.3: Added partner WhatsApp (CONNECTIONS.md; currently `user-Chris' WhatsApp MCP`) as a read source for Arrow groups and Arrow-relevant 1:1s, with a `whatsapp_chris_ts` cursor and dedup against Brendan's WhatsApp. Never send or draft on the partner connector.
 - 2026-11-05 v1.2: Brendan approved AUTO-WRITE on existing Companies with immediate human-edit guard; uncertain/conflicting values and new records remain proposals. Correct Signal chat name, hold disputed Poolside figure, log every write, and identify the loaded skill/version/commit and guard/mode lines in every report.
 - 2026-11-05 v0.1 draft (Grok Bot, for Brendan's review).

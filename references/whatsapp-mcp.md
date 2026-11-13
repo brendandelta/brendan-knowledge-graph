@@ -91,4 +91,4 @@ Admin link only:
 
 ## Not built yet
 
-Shared contact map across the team accounts, server-side Attio sync, and bulk sends. The daily WhatsApp-Attio sync job is specified in `references/whatsapp-attio-daily-sync.md` and is not a running skill yet; it depends on the v0.5.0 tools, which are now live. The Attio JID fields and a first manual standard-chat backfill exist as of 2026-11-13 (`references/attio-schema.md`); a server-side standard Arrow chat finder is not built yet. When the remaining tools or the daily job ship, this file and CONNECTIONS.md are updated in the same commit.
+Shared contact map across the team accounts, server-side Attio sync, and bulk sends. The daily WhatsApp-Attio sync job is specified in `references/whatsapp-attio-daily-sync.md` and is implemented as Grok Bot routine "WhatsApp-Attio daily sync" (folder `whatsapp-attio-daily-sync`, first run 2026-11-14). The Attio JID fields and a first manual standard-chat backfill exist as of 2026-11-13 (`references/attio-schema.md`); a server-side standard Arrow chat finder is not built yet. When the remaining tools ship, this file and CONNECTIONS.md are updated in the same commit.

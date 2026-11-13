@@ -8,19 +8,20 @@
 | **Purpose** | Main coordinator: one-off work across silos, repo/registry maintenance, and rebuildability of the bot fleet. |
 | **Status** | live |
 | **Repo skill path** | `skills/grok-bot/SKILL.md` |
-| **Data sources (read)** | Knowledge repo; other bots' registry files and skill files (not their profile.json/settings.json); public web and connectors as each task needs |
-| **Write targets** | Knowledge repo (`bots/`, `arrow/bots/` only for Arrow-owned files when coordinating an Arrow change the owning bot should make; own entry `bots/grok-bot.md`; `bots/MAP.md`; skills it owns); chat with Brendan |
+| **Data sources (read)** | Knowledge repo; other bots' registry files and skill files (not their profile.json/settings.json); all four WhatsApp connectors and Arrow Attio for the daily sync; public web and connectors as each task needs |
+| **Write targets** | Knowledge repo (`bots/`, `arrow/bots/` only for Arrow-owned files when coordinating an Arrow change the owning bot should make; own entry `bots/grok-bot.md`; `bots/MAP.md`; skills it owns); Arrow Attio People (blank-only identity and later-only last_contacted on the daily sync); `/workspace/whatsapp-attio-sync/`; chat with Brendan |
 | **Send permissions** | none (Brendan chat only; never auto-send email or messaging) |
 | **Depends on** | Knowledge repo; Composio and MCPs as needed per task |
 | **Feeds** | Brendan (chat); bot registry indexes |
 | **Connectors needed** | Composio (as installed), git on the bot computer; others per task |
-| **Last verified** | 2026-11-06 · Grok Bot registry refresh |
+| **Last verified** | 2026-11-13 · WhatsApp-Attio daily sync routine added |
 
 ## Routines
 
 | Name | Folder | Cron (America/Los_Angeles) | Timing / window | Prompt summary (1 line) | Results go to |
 |---|---|---|---|---|---|
 | Bot registry refresh | bot-registry-refresh | `CRON_TZ=America/Los_Angeles 0 19 * * *` (flexible ±15) | Daily ~7:00pm PT | Pull repo; inventory `/home/box/agent-data/agents/` profiles+settings, teammates, deletions, own routines; compare to MAP/BOTS and entry files; fix drift; commit+push; flag Brendan only on unrecorded drift | Brendan in Grok Bot chat only on drift; quiet otherwise |
+| WhatsApp-Attio daily sync | whatsapp-attio-daily-sync | `CRON_TZ=America/Los_Angeles 30 6 * * *` (flexible ±15) | Daily ~6:30am PT, first run 2026-11-14 | Follow `references/whatsapp-attio-daily-sync.md`: read changes on all four WhatsApp servers, push identity blank-only to Attio, roll up last_contacted later-only, write handoff/cursors and a coverage row; name-down via import_names stays dry-run until standing approval | Brendan in Grok Bot chat only on failures, collisions, approvals needed, or a re-pair; quiet otherwise |
 
 ## Full description (verbatim, secrets stripped)
 
@@ -40,7 +41,8 @@ Load and follow the `embed-action-links` skill on every user-facing reply that n
 2. Connect Composio and any MCPs needed for day-to-day work (OAuth in the product UI; no secrets in this file).
 3. Ensure the knowledge repo is cloned at `/home/box/Claude/brendan-knowledge-graph` with push access to `github.com/brendandelta/brendan-knowledge-graph`.
 4. Create routine **Bot registry refresh**, folder `bot-registry-refresh`, CRON_TZ=America/Los_Angeles `0 19 * * *` (±15), with the saved prompt in this entry's Routines table (inventory live agents under `/home/box/agent-data/agents/`, compare to registry, commit drift, flag Brendan only when a bot did not record itself).
-5. Run one manual refresh; set **Last verified**.
+5. Create routine **WhatsApp-Attio daily sync**, folder `whatsapp-attio-daily-sync`, CRON_TZ=America/Los_Angeles `30 6 * * *` (±15), first run 2026-11-14, following `references/whatsapp-attio-daily-sync.md`. Name-down stays a dry run until standing approval. Report to Brendan only on failures, collisions, approvals needed, or a re-pair.
+6. Run one manual registry refresh; set **Last verified**.
 
 ## Arrow duties (Cross)
 

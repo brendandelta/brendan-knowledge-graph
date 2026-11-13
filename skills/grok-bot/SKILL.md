@@ -1,6 +1,6 @@
 ---
 name: grok-bot
-description: Grok Bot (Cross) — Brendan's main coordinator on Grok Bot. Rebuild registry, one-off work across silos, and daily Bot registry refresh. Never puts personal/Delta/Janey detail into arrow/.
+description: Grok Bot (Cross) — Brendan's main coordinator on Grok Bot. Rebuild registry, one-off work across silos, daily Bot registry refresh, and WhatsApp-Attio daily sync. Never puts personal/Delta/Janey detail into arrow/.
 ---
 
 # grok-bot
@@ -32,6 +32,18 @@ Each run (saved routine prompt is source of truth):
 5. Commit only this bot's changes with INDEX.md (when a skill/file is added or removed) and CHANGELOG.md, then push.
 6. Send nothing and change no bots. Tell Brendan in this Grok Bot chat only when something drifted that a bot did not record itself (new/deleted/renamed bot or routine mismatch), with a link to the commit. Stay quiet when nothing changed.
 
+## WhatsApp-Attio daily sync
+Routine **"WhatsApp-Attio daily sync"** (folder `whatsapp-attio-daily-sync`), CRON_TZ=America/Los_Angeles `30 6 * * *`, flexible ±15 minutes. First run 2026-11-14.
+
+Each run follows `references/whatsapp-attio-daily-sync.md` (saved routine prompt is source of truth):
+1. `git -C /home/box/Claude/brendan-knowledge-graph fetch && git -C /home/box/Claude/brendan-knowledge-graph rebase origin/main`. Follow AGENTS.md and the spec.
+2. Read changes on all four WhatsApp servers: `user-whatsapp-mcp`, `user-Chris WhatsApp MCP (Admin)`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)`.
+3. Push identity to Attio blank-only. Never create people or companies. Skip collisions to needs-review.
+4. Roll up per-teammate `last_contacted_*` later-only.
+5. Write handoff/cursors under `/workspace/whatsapp-attio-sync/` and a coverage row.
+6. Name-down via `import_names` stays a dry run until Brendan gives standing approval. Log the exact list; do not call the write tool.
+7. Send nothing. Report to Brendan in this Grok Bot chat only on failures, collisions, approvals needed, or a re-pair. Stay quiet otherwise.
+
 ## Send permissions
 none (chat with Brendan only; no auto-send).
 
@@ -43,3 +55,4 @@ none (chat with Brendan only; no auto-send).
 - 2026-11-06 — Bot registry refresh: flagged Suggested Actions missing from live; synced CoS/Document Filing/Marwan display names; fixed grok-bot registry Last verified row.
 - 2026-11-11: added temporary routine "Push: WhatsApp MCP + Attio schema project" (Brendan, t493u).
 - 2026-11-13: deleted "Push: WhatsApp MCP + Attio schema project" after its 2 PM run; all three parts done (MCP v0.4 live and v0.5 PR open, Attio WhatsApp ID fields and repo docs, People schema cleanup applied).
+- 2026-11-13: added routine "WhatsApp-Attio daily sync" (folder whatsapp-attio-daily-sync), daily ~6:30 AM PT flexible ±15 minutes, first run 2026-11-14. Follows `references/whatsapp-attio-daily-sync.md`. Name-down via `import_names` stays a dry run until standing approval. Reports to Brendan in this chat only on failures, collisions, approvals needed, or a re-pair.

@@ -2,7 +2,7 @@
 
 Spec for the daily job that keeps Arrow Attio and the four WhatsApp servers in step, and prepares the Deal Indications, Attio People, and Attio Firms bots for their first runs of the day.
 
-This is a specification, not a running skill. WhatsApp MCP v0.5.0 is live on both Hetzner servers as of 2026-11-13 (release commit `4c602444`). The job should be implemented as a Grok Bot routine on those tools. A v0.4 fallback path is defined below and may be run by hand if a server is temporarily back on the older build.
+Implemented as Grok Bot routine **"WhatsApp-Attio daily sync"** (folder `whatsapp-attio-daily-sync`), daily ~6:30 AM PT (`30 6 * * *` America/Los_Angeles), flexible ±15 minutes, first run 2026-11-14. This file is the runbook the routine follows. WhatsApp MCP v0.5.0 is live on both Hetzner servers as of 2026-11-13 (release commit `4c602444`). A v0.4 fallback path is defined below and may be run by hand if a server is temporarily back on the older build.
 
 Last updated: 2026-11-13.
 
@@ -36,7 +36,7 @@ Vaidehi's WhatsApp is not connected. `last_contacted_vaidehi` stays empty until 
 
 Run once daily, early morning Pacific Time, and finish before Deal Indications' first weekday pass at 7:47am PT.
 
-- Suggested routine: `30 6 * * *` America/Los_Angeles (6:30am PT), flexible ±15 minutes.
+- Live routine on Grok Bot: **"WhatsApp-Attio daily sync"** (folder `whatsapp-attio-daily-sync`), `30 6 * * *` America/Los_Angeles (6:30am PT), flexible ±15 minutes, first run 2026-11-14.
 - Weekend Deal Indications starts at 9:47am PT, so the same 6:30am slot still finishes first.
 - If the job is still running at 7:40am PT on a weekday, it should stop starting new writes, flush the cursors and coverage report it has, and leave the rest for the next day. Deal Indications must not be delayed.
 - Do not run a second copy if the previous run still holds the lock.
@@ -173,8 +173,8 @@ A first v0.5 run should backfill `contact_activity` from stored messages (the se
 
 ## First-run checklist
 
-1. v0.5.0 is on `release` and `status` on all four accounts reports 0.5.0.
-2. Brendan has seen this spec.
+1. Done (2026-11-13): v0.5.0 is on `release` and `status` on all four accounts reports 0.5.0.
+2. Done (2026-11-13): Brendan has seen this spec, and Grok Bot created the live routine (folder `whatsapp-attio-daily-sync`, first run 2026-11-14).
 3. Dry-run name-down lists are approved, or standing blank-only approval is on file.
 4. `/workspace/whatsapp-attio-sync/` exists, is gitignored if it would hold phone numbers in a public repo (it lives on the box, not in the knowledge graph).
 5. Deal Indications, attio-contact-context, and arrow-attio-firm-context routine prompts know to read `handoff.json` when present.

@@ -40,15 +40,25 @@ Verified live against Composio 2026-10-20.
 |---|---|---|---|
 | imessage | the Mac | paper, until 1Password | comms-ingest, crm-maintenance, suggested-actions |
 | signal | the Mac | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions |
-| whatsapp v0.3 | Hetzner, 24/7 | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions, chief-of-staff, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log |
-| whatsapp-chris | Chris Clifford's WhatsApp. Same tool shape as whatsapp v0.3; custom MCP on Brendan's Grok Bot account (added 2026-11-10). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
+| whatsapp (Brendan) | Brendan's own WhatsApp. Own Hetzner server, 24/7. Still v0.3 (12 tools) until it is moved to the v0.4.0 build; see `references/whatsapp-mcp.md` | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions, chief-of-staff, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log |
+| whatsapp-chris | Chris Clifford's WhatsApp. Arrow team Hetzner server, v0.4.0 since 2026-11-12 (18 tools on the admin link, 10 on a view-only link); custom MCP on Brendan's Grok Bot account (added 2026-11-10). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
+| whatsapp-gabe | Gabe Borden's WhatsApp. Arrow team Hetzner server, v0.4.0, linked 2026-11-12. Connector not yet added to any bot. Do not store the endpoint URL or access token in this repo. | paper, until 1Password | none yet |
+| whatsapp-jillian | Jillian Nuding's WhatsApp. Arrow team Hetzner server, v0.4.0, linked 2026-11-12. Connector not yet added to any bot. Do not store the endpoint URL or access token in this repo. | paper, until 1Password | none yet |
 
 ## Partner WhatsApp (Chris now; Gabe and Jillian later)
 
-Brendan's own WhatsApp is `user-whatsapp-mcp` (whatsapp v0.3 above). Partner mailboxes are separate connectors and must never be mixed with his. As of 2026-11-10:
+Brendan's own WhatsApp is `user-whatsapp-mcp` (whatsapp (Brendan) above). Partner mailboxes are separate connectors and must never be mixed with his. As of 2026-11-10:
 
-- Chris Clifford: `user-Chris' WhatsApp MCP` (connected). Same 12 tools as Brendan's WhatsApp MCP.
-- Gabe Borden and Jillian Nuding: planned, not connected yet. When added, append a row here and reuse the rules below. Do not rewrite skills.
+- Chris Clifford: `user-Chris' WhatsApp MCP` (connected). v0.4.0 since 2026-11-12.
+- Gabe Borden and Jillian Nuding: WhatsApp accounts linked and running v0.4.0 since 2026-11-12. Their connectors have not been added to a bot yet. When Brendan adds them, update the rows above and reuse the rules below. Do not rewrite skills.
+
+How the server works, the full tool list, link types, retention and deploys: `references/whatsapp-mcp.md`. Read it before using any WhatsApp connector.
+
+Link types (v0.4.0, enforced by the server, not by convention):
+
+- Admin link: read and write. Brendan holds the admin link for every partner account. Chris also uses the admin link for his own account.
+- View-only link: read tools only. The send, draft, import and group tools do not exist on it. Gabe and Jillian get view-only links for their own accounts.
+- A bot can tell which it has from the last line of `status`.
 
 Rules for every partner WhatsApp connector:
 

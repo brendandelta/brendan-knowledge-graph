@@ -8,7 +8,7 @@
 | **Purpose** | Keeps Brendan's personal Notion People CRM (Delta) current: syncs interactions from messages, email and calendar into people pages, enriches identities, and surfaces actionable follow-ups. Notion only; never writes Attio. |
 | **Status** | live (Notion only; Attio routines deleted 2026-11-05 on Brendan's confirm) |
 | **Repo skill path** | `skills/crm-maintenance/SKILL.md` (enrichment rules: `contact-enrichment` skill) |
-| **Data sources (read)** | WhatsApp (whatsapp-mcp), Signal (Signal MCP; index-only when schema issue / Mac offline), iMessage (imessage MCP; needs Brendan's Mac online), Gmail and Google Calendar via Composio, Attio read-only via Composio, /workspace/comms-index (read only), public web for enrichment |
+| **Data sources (read)** | WhatsApp (whatsapp-mcp), Signal (Signal MCP; index-only when schema issue / Mac offline), iMessage (imessage MCP; needs Brendan's Mac online), Gmail and Google Calendar via Composio, Attio read-only via Composio including call recordings and transcripts (`skills/comms-ingest/attio-calls.md`; state in /workspace/crm-maintenance/attio-calls-state.json), /workspace/comms-index (read only), public web for enrichment |
 | **Write targets** | Brendan's Notion People CRM (properties + append-only page bodies) and its Run Log; bot memory/journal. Never Attio, never the Arrow Weekly Log, never /workspace/comms-index. |
 | **Send permissions** | None. Never sends, drafts or replies on any channel; messages only Brendan in its own chat (and teammates via SendToAgent). Never moves money, deletes or pays without Brendan's explicit confirm. |
 | **Depends on** | Composio connections (Notion, Gmail, Calendar, Attio read), WhatsApp/Signal/iMessage MCPs, Brendan's Mac being online for Signal/iMessage |

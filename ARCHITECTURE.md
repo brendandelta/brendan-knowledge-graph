@@ -48,7 +48,7 @@ Test for which side a thing goes on: would a teammate need it to do Arrow work? 
 ## Build order
 
 0. Mini + Tailscale + MCP servers under launchd. Repo exists.
-1. **Comms index.** First job on the mini, before any skill migrates. Read Grokbot's README, design the schema (full text, attachment descriptions, transcripts, thin-line flag), stand it up, run comms-ingest against it. Everything downstream reads this.
+1. **Comms index.** First job on the mini, before any skill migrates. Read Grokbot's README, design the schema (full text, attachment descriptions, transcripts, thin-line flag), stand it up, run comms-ingest against it. Attio call recordings and transcripts follow `skills/comms-ingest/attio-calls.md` and are a source for every context-writing bot, alongside WhatsApp and email. Everything downstream reads this.
 2. Migrate deal-indications, crm-maintenance, chief-of-staff, suggested-actions onto the index.
 3. Monitor on the wall, Pi thin client, kiosk mode.
 4. Voice pipeline.

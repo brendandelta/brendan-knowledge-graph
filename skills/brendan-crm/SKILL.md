@@ -167,7 +167,7 @@ Dates: `YYYY-MM-DD`, America/Los_Angeles. Today's date comes from the system pro
 ## Sources
 
 - **Notion People** is the system of record. Everything ends up here.
-- **Attio** is read-only: record id, `last_interaction` and contact fields, used to fill Notion. Never written by this skill (2026-11-04 silo).
+- **Attio** is read-only: record id, `last_interaction` and contact fields, used to fill Notion. Never written by this skill (2026-11-04 silo). Scheduled Attio call and transcript pulls are done by crm-maintenance, following `skills/comms-ingest/attio-calls.md`. This spec does not run a scheduled call scan.
 - **Gmail, Google Calendar**: context, guest lists, drafts (drafts only).
 - **iMessage**: read, plus guarded two-step send. Existing threads only. Many contacts have long descriptive names; match by phone or Chat handles first.
 - **WhatsApp**: read-only. Numeric IDs map via Chat handles; add new mappings when discovered.
@@ -190,6 +190,7 @@ Dates: `YYYY-MM-DD`, America/Los_Angeles. Today's date comes from the system pro
 
 ## Changelog
 
+- 2026-11-13 - Sources: Attio call recordings are pulled by crm-maintenance via `skills/comms-ingest/attio-calls.md`. This skill stays on-demand and still never writes Attio.
 - 2026-11-04 — v4.3. Full silo: the CRM writes Notion only and never writes Attio (mirror_fields, mirror rule, list membership and contact fill removed; workflow 1 step 6 is a read-only lookup that only sets Notion `Attio record ID`). arrow/skills/attio-contact-context (renamed from attio-context) is the only Attio People writer and never touches Notion. Inputs shared, outputs siloed.
 - 2026-11-03 — v4.2. Carve-out: arrow/skills/attio-context owns arrow_context, introduced_by/introduced, knows, close_with, contact_owner, context_updated in Attio; the CRM never writes them. (v3 rejected Relationship owner for this CRM; that still stands here, ownership now lives in attio-context.)
 - 2026-10-27 — v4.1. Janey relevance property; Janey and Delta added to Circles; contexts note. Notion db needs the two new options added.

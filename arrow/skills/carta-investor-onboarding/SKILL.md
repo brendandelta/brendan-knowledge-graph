@@ -23,7 +23,7 @@ Status: draft v2 (2026-11-02). Source: Marcela Cardoso dos Santos (Carta Fund Ad
 | System | What lives there | Who writes |
 |---|---|---|
 | Pipeline sheet (one per deal, e.g. "Hubble – Fundraise Pipeline") | One row per prospect: Stage, Subscription $$, Commitment ($), Team Owner, Last touch, CRM match, Next step, Due | Deal team. Bot proposes edits. |
-| Attio (arrow-fund) | Person/company record, call recordings, notes, deal stage | Bot after an OK |
+| Attio (arrow-fund) | Person/company record, call recordings, notes, deal stage | Bot after an OK. When a run needs a recording or transcript, fetch it with `skills/comms-ingest/attio-calls.md`. This skill does not run a scheduled scan. |
 | Gmail (brendan@ / chris@arrowfund.co) | Arrow's own emails: info request, heads-up, countersigned, funded | Brendan sends. Bot drafts. |
 | Carta → Entities → [vehicle] → Closings | Sub docs, prospects, questionnaire, signatures, countersign, capital call | Brendan/Chris. Bot only clicks on an explicit OK. |
 | Drive | Executed LPA, sub agreement template, countersigned copies | Deal team |

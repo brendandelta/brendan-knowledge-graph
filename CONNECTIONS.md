@@ -26,7 +26,7 @@ Verified live against Composio 2026-10-20.
 | googledocs | brendan@arrowfund.co | `googledocs_colius-skiv` | Arrow | arrow-weekly (draft); edits to the Arrow Drive README |
 | notion | Deltameridian workspace | `notion_pace-adiate` (default) | Personal | brendan-crm, crm-maintenance |
 | notion | Arrow team workspace ("Chris Clifford's Space") | `notion_woy-grouts` (alias work) | Arrow | — (Notion overhaul planned) |
-| attio | Arrow Fund workspace, full read-write | `attio_bosser-wooded` | Arrow | deal-indications, crm-maintenance, brendan-crm, suggested-actions |
+| attio | Arrow Fund workspace, full read-write. Meetings and call recordings: `skills/comms-ingest/attio-calls.md`. Prefer `ATTIO_CONTEXT_TOKEN` when present (never print it); Composio is the read fallback. | `attio_bosser-wooded` | Arrow | deal-indications, crm-maintenance, brendan-crm, suggested-actions, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log, comms-ingest |
 | quickbooks | Arrow | `quickbooks_godet-board` (default) | Arrow | — |
 | quickbooks | Delta | `quickbooks_stid-benchy` | Delta | delta-bookkeeper |
 | todoist | brendan@deltameridian.com | `todoist_kino-vend` | all | chief-of-staff, comms-ingest |
@@ -79,6 +79,11 @@ Arrow Attio (workspace `arrow-fund`) stores WhatsApp ids on People and Companies
 - `standard_arrow_chat_jid` is only for a group that is clearly the standing Arrow chat with one person or one firm (for example `X <> Arrow Fund`). Skip internals, multi-party chats, deal-specific threads, first-name-only titles, and duplicate chats for the same counterpart.
 
 Skills that map WhatsApp to Attio (attio-contact-context, arrow-attio-firm-context, deal-indications, comms-ingest) must follow this matching order. Partner WhatsApp stays read-only unless Brendan explicitly asks to send as that partner.
+
+## Attio meetings and call recordings
+
+Attio call recordings and transcripts are a context source alongside WhatsApp and email for every bot that writes context from comms. The shared procedure, working endpoints, paging, empty-transcript retries, and the never-write-from-the-shared-step rule are in `skills/comms-ingest/attio-calls.md`. Each bot keeps its own cursor and seen-recordings list and writes only its own silo.
+
 
 ## Git access from the box
 

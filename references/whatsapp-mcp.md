@@ -15,7 +15,7 @@ Last verified live: 2026-11-12 (Arrow team server, v0.4.0).
 | Server | Accounts | Version |
 |---|---|---|
 | Arrow team server (Hetzner, Arrow account) | Chris Clifford, Gabe Borden, Jillian Nuding | v0.4.0 since 2026-11-12 |
-| Brendan's own server (Hetzner) | Brendan | v0.3 until moved to the same build |
+| Brendan's own server (Hetzner) | Brendan | v0.4.0 since 2026-11-13. Same code, single account layout: the web server runs on the machine itself and the connector address did not change. A timer checks the `release` branch every 3 minutes and rebuilds |
 
 The two servers are separate on purpose. Same code, different machines. Each account has its own container, database, tokens and settings.
 

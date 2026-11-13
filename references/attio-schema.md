@@ -58,7 +58,7 @@ Timestamp attributes. Write only a later timestamp than the value already set. N
 | `last_contacted_jillian` | Last contacted (Jillian) | timestamp | `720e1c9e-1241-4427-a326-80b21ea98efd` |
 | `last_contacted_vaidehi` | Last contacted (Vaidehi) | timestamp | `6d57a92a-d5a4-42fd-b2e6-f60b27734057` |
 
-Gabe's, Jillian's, and Vaidehi's WhatsApp are not connected yet, so those three fields stay empty until their servers exist or email attribution is added.
+Gabe's and Jillian's WhatsApp were connected on Brendan's Grok Bot account on 2026-11-13 (`user-Gabe WhatsApp MCP (Admin)` and `user-Jillian WhatsApp MCP (Admin)`). Those two fields are filled from outbound 1:1 sends on their servers (later-only; leave blank when that teammate has no outbound). Vaidehi's WhatsApp is not connected yet, so `last_contacted_vaidehi` stays empty until her server exists or email attribution is added.
 
 ## People schema cleanup (approved and applied 2026-11-13)
 

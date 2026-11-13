@@ -2,7 +2,7 @@
 
 Instant context for any agent that touches a WhatsApp connector. Code lives in the private repo `brendandelta/whatsapp-mcp`. No endpoint URLs, tokens or server addresses are stored in this repo.
 
-Last verified live: 2026-11-12 (Arrow team server, v0.4.0).
+Last verified live: 2026-11-13 (Arrow team server and Brendan's server, v0.4.0). Chris's, Gabe's, and Jillian's accounts are connected on Brendan's Grok Bot account as `user-Chris' WhatsApp MCP`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)`. Skills that read partner WhatsApp read all three, under CONNECTIONS.md Partner WhatsApp rules.
 
 ## What it is
 

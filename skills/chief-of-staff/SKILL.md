@@ -45,7 +45,7 @@ Interrupt only for true fires (deal-breaking inbound / time-critical ghost). No 
 ### Sources (every check-in)
 1. **Todoist** — P4 urgent / P3 high / P2 medium / P1 low; labels `you-owe`, `waiting`, `whatsapp`, `email`, `ops`, `deal`.
 2. **Gmail** — you-owe (inbound) **and** waiting-on-them via **`in:sent`**.
-3. **WhatsApp / Signal / iMessage** — unreplied + hot deal groups on Brendan's connectors (`user-whatsapp-mcp`, Signal, iMessage); soft-fail aloud if a connector is down; map known `@lid` contacts from memory (e.g. Marwan Chahboun). On partner WhatsApp (CONNECTIONS.md; currently `user-Chris' WhatsApp MCP`) only surface threads that involve Brendan or contain an explicit ask of Brendan or Arrow. Do not surface Chris's unreplied personal chats or his inbox.
+3. **WhatsApp / Signal / iMessage** — unreplied + hot deal groups on Brendan's connectors (`user-whatsapp-mcp`, Signal, iMessage); soft-fail aloud if a connector is down; map known `@lid` contacts from memory (e.g. Marwan Chahboun). On partner WhatsApp (CONNECTIONS.md; `user-Chris' WhatsApp MCP`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)`) only surface threads that involve Brendan or contain an explicit ask of Brendan or Arrow. Do not surface a partner's unreplied personal chats or that partner's inbox. These limits apply equally to Chris, Gabe, and Jillian.
 4. **Calendar** — Arrow Fund (brendan@arrowfund.co) and personal (connmbrendan@gmail.com): today's agenda, conflicts, white space.
 5. **Attio** — blocks/interests for deal inventory before chat threads.
 6. **Bot system (morning brief only)** — read each bot's recent transcript with ReadTranscript (since the last brief):
@@ -101,13 +101,13 @@ Drop this item once he says it is finished. Grok Bot also nudges in its own chat
 All five routine prompts start with the "Knowledge repo (read first)" paragraph, then run the playbook above. The morning, midday, and EOD prompts also restate "no em dashes" and carry the temporary standing accountability item until Brendan says the project is finished. Summaries of the live prompts follow (exact live prompt text is held by the routine engine).
 
 **1) Morning session (prep + sit-down nudges)** (folder hourly-priority-brief). Weekdays: prep 9:10 PT; nudges 9:30, 9:50, 10:10 PT.
-- 9:10: scan Todoist, Gmail (inbox + `in:sent`), WhatsApp/Signal/iMessage (and partner WhatsApp only for threads that involve Brendan or an explicit ask of Brendan or Arrow; CONNECTIONS.md), both calendars; build the full brief in the format above silently into `/cursor/stores/store-a500b914-a256-414f-830b-15a9ae5bc294/morning-brief/<date>.md` with `status: ready`.
+- 9:10: scan Todoist, Gmail (inbox + `in:sent`), WhatsApp/Signal/iMessage (and partner WhatsApp from Chris, Gabe, and Jillian only for threads that involve Brendan or an explicit ask of Brendan or Arrow; CONNECTIONS.md), both calendars; build the full brief in the format above silently into `/cursor/stores/store-a500b914-a256-414f-830b-15a9ae5bc294/morning-brief/<date>.md` with `status: ready`.
 - 9:30 / 9:50 / 10:10: short "sit down, say go" nudge; silent if the file is `status: delivered` or he already said go.
 - On "go": refresh, deliver the full report (include the temporary standing accountability item and the next step he owes), mark `status: delivered`, coach on MIT + next 90-minute action.
 - Evidence only: no outbound email/WhatsApp/Signal/iMessage/Sign and no calendar writes without explicit approval of the exact text. Brendan decides MIT.
 
 **2) Midday accountability check** (folder midday-accountability-check). Cron 20 12 * * 1-5 (PT).
-Quickly refresh Todoist Today/MIT, Gmail sent+inbox for new fires, WhatsApp unreplied if available (Brendan's WhatsApp, plus partner threads that involve Brendan or an explicit ask of Brendan or Arrow). Message like a CoS checking in:
+Quickly refresh Todoist Today/MIT, Gmail sent+inbox for new fires, WhatsApp unreplied if available (Brendan's WhatsApp, plus Chris, Gabe, and Jillian partner threads that involve Brendan or an explicit ask of Brendan or Arrow). Message like a CoS checking in:
 - Ask whether the morning MIT moved (done / in progress / blocked / renegotiated).
 - If blocked: force one choice — finish, renegotiate, or consciously demote — and name the blocker.
 - If done: congratulate briefly and ask what the afternoon MIT is.
@@ -116,17 +116,17 @@ Quickly refresh Todoist Today/MIT, Gmail sent+inbox for new fires, WhatsApp unre
 - Until he says the project is finished, include the temporary standing accountability item (WhatsApp MCP upgrade + Attio People schema overhaul) as a top item and name the next step he owes. No em dashes.
 
 **3) Monday weekly priorities lock** (folder monday-weekly-priorities-lock). Cron 0 8 * * 1 (PT), flexible ±15 min.
-Look across Todoist, aging sent-mail follow-ups, WhatsApp deal threads (include partner WhatsApp only when the thread is Arrow-relevant and involves Brendan or an Arrow ask), and known active projects.
+Look across Todoist, aging sent-mail follow-ups, WhatsApp deal threads (include partner WhatsApp from Chris, Gabe, and Jillian only when the thread is Arrow-relevant and involves Brendan or an Arrow ask), and known active projects.
 - Propose at most THREE weekly rocks / priorities (not a task dump) with why each matters to the company.
 - Ask Brendan to confirm, cut, or replace until there are ≤3 for the week.
 - Once confirmed (or when he replies later), reflect those in Todoist (P4 + due this week on the rocks; don't flood Today).
 - Ask what would make this week a win by Friday. Coach tradeoffs; he decides. Always in this chat.
 
 **4) EOD commit** (folder eod-commit). Cron 20 17 * * 1-5 (PT).
-Scan what moved today (Todoist completions/Today, key email/WhatsApp loops, including partner WhatsApp only when it involves Brendan or an Arrow ask).
+Scan what moved today (Todoist completions/Today, key email/WhatsApp loops, including partner WhatsApp from Chris, Gabe, and Jillian only when it involves Brendan or an Arrow ask).
 - What actually moved vs what slipped (honest, brief).
 - Ask Brendan to name tomorrow's MIT before inbox opens tomorrow.
-- Offer your recommendation for tomorrow's MIT from open P4/P3 + aging follow-ups (sent-mail ghosts, WhatsApp unreplied on Brendan's WhatsApp, plus partner threads that involve Brendan or an Arrow ask) — ranking only.
+- Offer your recommendation for tomorrow's MIT from open P4/P3 + aging follow-ups (sent-mail ghosts, WhatsApp unreplied on Brendan's WhatsApp, plus partner threads from Chris, Gabe, and Jillian that involve Brendan or an Arrow ask) — ranking only.
 - Sync Todoist: date tomorrow's MIT (+ optional 1–2 supports) for the Today widget; clear or undate demoted noise.
 - Keep it a conversation. Always in this chat. Quiet after this until morning.
 - Until he says the project is finished, include the temporary standing accountability item (WhatsApp MCP upgrade + Attio People schema overhaul) as a top item and name the next step he owes. No em dashes.

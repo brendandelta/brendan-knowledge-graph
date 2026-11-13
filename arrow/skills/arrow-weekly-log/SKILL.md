@@ -1,11 +1,11 @@
 ---
 name: arrow-weekly-log
-description: Keeps one Google Doc per week ("Arrow Log — week of <Mon D, YYYY>") in the Arrow Fund shared drive, updated from Arrow Gmail, Arrow WhatsApp groups (including partner WhatsApp, currently Chris's), Arrow Signal chats, Arrow iMessage threads, the Arrow calendar, Attio call recordings (neutral one-liners only), and Attio changes. A general shared Arrow source covering the whole Arrow team (not Brendan-only). Every entry is dated and source-linked; repeats are merged. Arrow-only content, Liability-filtered. Only the Arrow Log bot writes it; any Arrow bot may read it. Never sends anything.
+description: Keeps one Google Doc per week ("Arrow Log — week of <Mon D, YYYY>") in the Arrow Fund shared drive, updated from Arrow Gmail, Arrow WhatsApp groups (including partner WhatsApp: Chris's, Gabe's, and Jillian's), Arrow Signal chats, Arrow iMessage threads, the Arrow calendar, Attio call recordings (neutral one-liners only), and Attio changes. A general shared Arrow source covering the whole Arrow team (not Brendan-only). Every entry is dated and source-linked; repeats are merged. Arrow-only content, Liability-filtered. Only the Arrow Log bot writes it; any Arrow bot may read it. Never sends anything.
 ---
 
 # arrow-weekly-log
 
-**Status:** v1.6 LIVE (2026-11-13). Running on the "Arrow Log" bot (id f322ab2a-a8c5-4a6b-9fd3-b47148aaddf5); first backfill (week of Nov 2) published 2026-11-05 12:10pm PT.
+**Status:** v1.7 LIVE (2026-11-13). Running on the "Arrow Log" bot (id f322ab2a-a8c5-4a6b-9fd3-b47148aaddf5); first backfill (week of Nov 2) published 2026-11-05 12:10pm PT.
 **Owner bot:** "Arrow Log" (its own dedicated bot; plan in arrow-log-bot-plan.md). No other bot writes the log.
 **Readers:** Any Arrow bot may read the log (read-only). It is a general shared Arrow source, not limited to the two report bots. Current readers: `daily-arrow-report` and `arrow-weekly` (each also pulls current Attio status). Other bots keep reading Brendan's / the team's comms directly unless they explicitly choose the log.
 
@@ -42,7 +42,7 @@ Data notes                                           [H1, gaps: sources offline,
 - Meetings: time PT · title · Arrow attendees · external firm(s) (never confidential buyer/seller identities) · one-line outcome if a source says so. When the source is an Attio call recording, use a neutral one-liner and link the call (`https://app.attio.com/arrow-fund/calls/{meeting_id}/{call_recording_id}`). Never copy transcript text into the log. Never record fees.
 - Commitments (any party, not Brendan-only): `<ddd MMM D> · [Owner] to [action] for [party] · due [date] · status (open / done <date>) · [source](link)`. Owner and party can be any Arrow team member, counterparty, LP or firm. Examples: `Gabe to send Hadrian deck for Chris · due Fri` · `Chris to intro [firm] for Vaidehi · due Mon` · `Jillian to confirm venue for Arrow event · due Wed`. Never record promises about returns, allocation or deal terms.
 - Firm intel: firm · fact · as-of date · source. Public-filing facts only (SEC N-PORT, N-CSR, Form D, published reports, each with its link), plus `firm_type` from the Attio company record. Never copy `firm_context` or notes wholesale. Never private marks or indications from comms, private terms, or buyer or seller identities (Liability filter).
-- Links: Gmail permalink (`https://mail.google.com/mail/u/brendan@arrowfund.co/#all/<threadId>`), Attio record URL, Drive file URL, SEC URL. For WhatsApp/Signal/iMessage, which have no web link, use `WhatsApp: <group name>, <ddd h:mma> PT` (same for Signal / iMessage). For a partner mailbox, prefix the partner: `Chris WhatsApp: <chat>, <ddd h:mma> PT`.
+- Links: Gmail permalink (`https://mail.google.com/mail/u/brendan@arrowfund.co/#all/<threadId>`), Attio record URL, Drive file URL, SEC URL. For WhatsApp/Signal/iMessage, which have no web link, use `WhatsApp: <group name>, <ddd h:mma> PT` (same for Signal / iMessage). For a partner mailbox, prefix the partner: `Chris WhatsApp: <chat>, <ddd h:mma> PT`, `Gabe WhatsApp: <chat>, <ddd h:mma> PT`, or `Jillian WhatsApp: <chat>, <ddd h:mma> PT`.
 
 ### Merging repeats
 - Key = section + normalized subject (deal id / person record id / meeting id / firm record id / commitment text hash, 80% token overlap).
@@ -51,7 +51,7 @@ Data notes                                           [H1, gaps: sources offline,
 
 ## Sources (read-only, since the last run's cursor)
 1. Arrow Gmail: brendan@arrowfund.co via Composio `gmail_tagish-stuss`. Sent and received. Skip automated senders (render.py `is_automated` rules: Luma, DocuSign, newsletters, `e.`/`mail.`/`events.` subdomains, `support@`, `offerings@`, no-reply).
-2. WhatsApp: Brendan's `user-whatsapp-mcp`, plus the partner WhatsApp list in CONNECTIONS.md (currently `user-Chris' WhatsApp MCP`). Arrow groups only (same test as arrow-attio-firm-context §Sources 3 + allowlist `/workspace/arrow-log/arrow-chats.json`). DMs only if the person is an Attio Arrow contact AND the content passes the filter. Follow CONNECTIONS.md Partner WhatsApp rules: read-only; skip personal, family, and non-Arrow threads; dedupe items that also appear in Brendan's WhatsApp. Never send_message or draft_message.
+2. WhatsApp: Brendan's `user-whatsapp-mcp`, plus the partner WhatsApp list in CONNECTIONS.md (`user-Chris' WhatsApp MCP`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)`). Arrow groups only (same test as arrow-attio-firm-context §Sources 3 + allowlist `/workspace/arrow-log/arrow-chats.json`). DMs only if the person is an Attio Arrow contact AND the content passes the filter. Follow CONNECTIONS.md Partner WhatsApp rules: read-only; skip personal, family, and non-Arrow threads; dedupe by phone JID against Brendan's WhatsApp and the other partner servers. Never send_message or draft_message.
 3. Signal (Signal MCP): "Data OS input" plus allowlisted Arrow chats. If the Mac is offline, skip it, write "Signal offline since <ts>; will catch up" in Data notes, and keep the cursor.
 4. iMessage (imessage MCP): only threads with Arrow team members or Attio Arrow contacts, content filtered. Same offline handling (it also runs through the Mac).
 5. Arrow calendar: Attio meetings (`ATTIO_LIST_MEETINGS`) with ≥1 @arrowfund.co participant, and Brendan's arrowfund.co Google Calendar if connected.
@@ -129,7 +129,7 @@ Written by the Friday 6:30am PT run (before Arrow Weekly's 7:00am run), then ref
 - Every bullet links to the entry below it.
 
 ## State and log
-- State: `/workspace/arrow-log/state.json`: `{week_start, doc_id, folder_id: "1Ge4r1wH2tMllGqom6sMQX96xkmBk58I5", cursors:{gmail, whatsapp, whatsapp_chris, signal, imessage, attio, calendar, attio_calls_cursor, attio_calls_seen, attio_calls_pending_transcripts}, offline_since:{signal, imessage}, item_index:{key → heading, line, sources[]}}`. Seed the call cursor to the last 7 days if missing (`skills/comms-ingest/attio-calls.md`).
+- State: `/workspace/arrow-log/state.json`: `{week_start, doc_id, folder_id: "1Ge4r1wH2tMllGqom6sMQX96xkmBk58I5", cursors:{gmail, whatsapp, whatsapp_chris, whatsapp_gabe, whatsapp_jillian, signal, imessage, attio, calendar, attio_calls_cursor, attio_calls_seen, attio_calls_pending_transcripts}, offline_since:{signal, imessage}, item_index:{key → heading, line, sources[]}}`. Seed the call cursor to the last 7 days if missing (`skills/comms-ingest/attio-calls.md`).
 - Run log: `/workspace/arrow-log/log.md` (time PT, sources read/skipped, items added/merged/dropped-by-filter count).
 - Lock: `/workspace/arrow-log/lock`.
 
@@ -156,6 +156,7 @@ All times are CRON_TZ=America/Los_Angeles, on the "Arrow Log" bot.
 - **"Arrow log Friday wrap"**: "Pull the knowledge repo clone at /home/box/Claude/brendan-knowledge-graph, load arrow/skills/arrow-weekly-log/SKILL.md, and do one Run, then write the Friday wrap at the top of this week's doc (Friday wrap section). It must be done by 6:55am PT, because Arrow Weekly reads it at 7:00am. Same rules as every Run: Arrow only, build the wrap only from entries already in the doc, run the Liability filter final self-check on every entry and on the wrap before saving, write only the log doc and /workspace/arrow-log/, and send, draft, share or message nothing. In this chat, tell Brendan only about Liability-filter flags and runs that failed twice in a row; otherwise end silently with no message."
 
 ## Changelog
+- 2026-11-13 v1.7: Partner WhatsApp sources are now Chris, Gabe, and Jillian (`user-Chris' WhatsApp MCP`, `user-Gabe WhatsApp MCP (Admin)`, `user-Jillian WhatsApp MCP (Admin)`), with cursors `whatsapp_chris`, `whatsapp_gabe`, and `whatsapp_jillian`. Citations use `Chris WhatsApp:`, `Gabe WhatsApp:`, or `Jillian WhatsApp:`. Dedup by phone JID against Brendan's WhatsApp and the other partner servers.
 - 2026-11-13 v1.6: Attio call recordings and transcripts are a source on every run (Brendan: write Attio call scanning into every bot that scans comms for context). Follow `skills/comms-ingest/attio-calls.md`. Log only neutral one-liners; never copy transcript text; never record fees. Call cursor lives in `/workspace/arrow-log/state.json`.
 - 2026-11-10 v1.5: Added partner WhatsApp (CONNECTIONS.md; currently `user-Chris' WhatsApp MCP`) as a read source, with a `whatsapp_chris` cursor, `Chris WhatsApp:` citations, and dedup against Brendan's WhatsApp. Never send or draft on the partner connector.
 - 2026-11-06 v1.4: Brendan: name who a block or interest belongs to; valuations and PPS may be logged; never record fees (the liability risk). Rule 4 and the deals/blocks entry format updated; rule 9 called out as the core liability rule.

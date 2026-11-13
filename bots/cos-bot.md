@@ -8,12 +8,12 @@
 | **Purpose** | Chief of Staff: weekday MIT coaching via morning session, midday check, EOD commit, and Monday weekly lock — without dumping lists. |
 | **Status** | live (wire-watch routine paused) |
 | **Repo skill path** | `skills/chief-of-staff/SKILL.md` (also uses `to-do-bot-operating-playbook`, `embed-action-links`) |
-| **Data sources (read)** | Todoist; Gmail (brendan@arrowfund.co via Composio); Google Calendar (Arrow + personal); WhatsApp / Signal / iMessage MCPs, plus partner WhatsApp (`user-Chris' WhatsApp MCP`) only for threads that involve Brendan or an explicit ask of Brendan or Arrow; Attio via Composio (first source for deal inventory); Google Drive/Sheets; Carta (box browser); teammate bot transcripts |
+| **Data sources (read)** | Todoist; Gmail (brendan@arrowfund.co via Composio); Google Calendar (Arrow + personal); WhatsApp / Signal / iMessage MCPs, plus partner WhatsApp (`user-Chris' WhatsApp MCP`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)`) only for threads that involve Brendan or an explicit ask of Brendan or Arrow; Attio via Composio (first source for deal inventory); Google Drive/Sheets; Carta (box browser); teammate bot transcripts |
 | **Write targets** | Todoist (create / date / complete / priority); bot store `morning-brief/<YYYY-MM-DD>.md`; knowledge repo `skills/chief-of-staff/SKILL.md` + `INDEX.md` + `CHANGELOG.md`; Gmail sends only after Brendan's explicit approval of exact text |
 | **Send permissions** | draft-only. Never sends email or messaging without Brendan's explicit approval of the exact text (DraftExternalMessage card, or chat draft + yes then Composio Gmail send). Never moves money, sends, deletes, or pays without explicit confirm. Saved Allow rules: Composio connector calls without asking; updating prompts of CRM enrichment (weekends), Midday accountability check, and Monday weekly priorities lock routines. |
 | **Depends on** | Inbox Todo (Todoist feed); Call Cadence / Suggested Actions / Personal CRM Contact Context and Arrow bots' transcripts for morning roll-up; knowledge repo |
 | **Feeds** | Brendan in CoS Bot chat (briefs, nudges, coaching) |
-| **Connectors needed** | `user-composio` (Gmail, Todoist, Attio, Google Sheets/Drive/Calendar); `user-whatsapp-mcp`; `user-Chris' WhatsApp MCP` (limited); `user-Signal MCP`; `user-imessage`; `x`; `cursor-origin`; `cursor-github` |
+| **Connectors needed** | `user-composio` (Gmail, Todoist, Attio, Google Sheets/Drive/Calendar); `user-whatsapp-mcp`; `user-Chris' WhatsApp MCP`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)` (limited); `user-Signal MCP`; `user-imessage`; `x`; `cursor-origin`; `cursor-github` |
 | **Last verified** | 2026-11-06 · Grok Bot registry refresh (display name synced from live profile) |
 
 ## Routines
@@ -43,7 +43,7 @@ Load and follow the `embed-action-links` skill on every user-facing reply that n
 ## Rebuild steps
 
 1. Create the bot named **CoS Bot · Chief of Staff** with the description above; bot id should match after recreate (record the new id in this file if it changes). Title: Chief of Staff.
-2. Connect Composio (Gmail for brendan@arrowfund.co, Todoist, Attio, Google Calendar/Drive/Sheets), WhatsApp MCP, partner WhatsApp (`user-Chris' WhatsApp MCP`), Signal MCP, and iMessage MCP (OAuth / host setup; no secrets in this file). Box browser may need Carta sign-in for fund-admin checks.
+2. Connect Composio (Gmail for brendan@arrowfund.co, Todoist, Attio, Google Calendar/Drive/Sheets), WhatsApp MCP, partner WhatsApp (`user-Chris' WhatsApp MCP`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)`), Signal MCP, and iMessage MCP (OAuth / host setup; no secrets in this file). Box browser may need Carta sign-in for fund-admin checks.
 3. Ensure the knowledge repo is cloned at `/home/box/Claude/brendan-knowledge-graph` and the bot store path for morning briefs exists: `/cursor/stores/store-a500b914-a256-414f-830b-15a9ae5bc294/morning-brief/`.
 4. Create the five routines with the crons and folders above; prompts open with the Knowledge-repo block and load `skills/chief-of-staff/SKILL.md` / `to-do-bot-operating-playbook`. Leave the banker wire-watch **paused** unless Brendan reopens it.
 5. Confirm Saved Allow rules: Composio connector calls; prompt updates for Midday accountability check, Monday weekly priorities lock, and CRM enrichment (weekends).

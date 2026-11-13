@@ -40,25 +40,25 @@ Verified live against Composio 2026-10-20.
 |---|---|---|---|
 | imessage | the Mac | paper, until 1Password | comms-ingest, crm-maintenance, suggested-actions |
 | signal | the Mac | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions |
-| whatsapp (Brendan) | Brendan's own WhatsApp. Own Hetzner server, 24/7. On the v0.4.0 build since 2026-11-13 (18 tools on the admin link, 56 day retention, auto updates from the `release` branch); see `references/whatsapp-mcp.md` | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions, chief-of-staff, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log |
-| whatsapp-chris | Chris Clifford's WhatsApp. Arrow team Hetzner server, v0.4.0 since 2026-11-12 (18 tools on the admin link, 10 on a view-only link); custom MCP on Brendan's Grok Bot account as `user-Chris WhatsApp MCP (Admin)` (added 2026-11-10, renamed 2026-11-13). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
-| whatsapp-gabe | Gabe Borden's WhatsApp. Arrow team Hetzner server, v0.4.0 since 2026-11-12 (18 tools on the admin link, 10 on a view-only link); custom MCP on Brendan's Grok Bot account as `user-Gabe WhatsApp MCP (Admin)` (connected 2026-11-13). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
-| whatsapp-jillian | Jillian Nuding's WhatsApp. Arrow team Hetzner server, v0.4.0 since 2026-11-12 (18 tools on the admin link, 10 on a view-only link); custom MCP on Brendan's Grok Bot account as `user-Jillian WhatsApp MCP (Admin)` (connected 2026-11-13). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
+| whatsapp (Brendan) | Brendan's own WhatsApp. Own Hetzner server, 24/7. On the v0.5.0 build since 2026-11-13 (31 tools on the admin link, 15 on a view-only link, 56 day body purge with `contact_activity` and the change log kept, auto updates from the `release` branch); see `references/whatsapp-mcp.md` | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions, chief-of-staff, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log |
+| whatsapp-chris | Chris Clifford's WhatsApp. Arrow team Hetzner server, v0.5.0 since 2026-11-13 (31 tools on the admin link, 15 on a view-only link); custom MCP on Brendan's Grok Bot account as `user-Chris WhatsApp MCP (Admin)` (added 2026-11-10, renamed 2026-11-13). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
+| whatsapp-gabe | Gabe Borden's WhatsApp. Arrow team Hetzner server, v0.5.0 since 2026-11-13 (31 tools on the admin link, 15 on a view-only link); custom MCP on Brendan's Grok Bot account as `user-Gabe WhatsApp MCP (Admin)` (connected 2026-11-13). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
+| whatsapp-jillian | Jillian Nuding's WhatsApp. Arrow team Hetzner server, v0.5.0 since 2026-11-13 (31 tools on the admin link, 15 on a view-only link); custom MCP on Brendan's Grok Bot account as `user-Jillian WhatsApp MCP (Admin)` (connected 2026-11-13). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
 
 ## Partner WhatsApp (Chris, Gabe, and Jillian)
 
 Brendan's own WhatsApp is `user-whatsapp-mcp` (whatsapp (Brendan) above). Partner mailboxes are separate connectors and must never be mixed with his. As of 2026-11-13 all three partner accounts are connected on Brendan's Grok Bot account:
 
-- Chris Clifford: `user-Chris WhatsApp MCP (Admin)` (connected 2026-11-10, renamed 2026-11-13). v0.4.0 since 2026-11-12.
-- Gabe Borden: `user-Gabe WhatsApp MCP (Admin)` (connected 2026-11-13). v0.4.0 since 2026-11-12.
-- Jillian Nuding: `user-Jillian WhatsApp MCP (Admin)` (connected 2026-11-13). v0.4.0 since 2026-11-12.
+- Chris Clifford: `user-Chris WhatsApp MCP (Admin)` (connected 2026-11-10, renamed 2026-11-13). v0.5.0 since 2026-11-13.
+- Gabe Borden: `user-Gabe WhatsApp MCP (Admin)` (connected 2026-11-13). v0.5.0 since 2026-11-13.
+- Jillian Nuding: `user-Jillian WhatsApp MCP (Admin)` (connected 2026-11-13). v0.5.0 since 2026-11-13.
 
 How the server works, the full tool list, link types, retention and deploys: `references/whatsapp-mcp.md`. Read it before using any WhatsApp connector.
 
-Link types (v0.4.0, enforced by the server, not by convention):
+Link types (v0.5.0, enforced by the server, not by convention):
 
-- Admin link: read and write. Brendan holds the admin link for every partner account. Chris also uses the admin link for his own account.
-- View-only link: read tools only. The send, draft, import and group tools do not exist on it. Gabe and Jillian get view-only links for their own accounts.
+- Admin link: read and write (31 tools). Brendan holds the admin link for every partner account. Chris also uses the admin link for his own account.
+- View-only link: the 15 read tools only, including `contact_activity`, `changes_since`, `export_contacts`, `resolve_person`, and `coverage_report`. The send, draft, `import_contacts`, `import_names`, and group draft tools do not exist on it. Gabe and Jillian get view-only links for their own accounts.
 - A bot can tell which it has from the last line of `status`.
 
 Rules for every partner WhatsApp connector:

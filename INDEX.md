@@ -47,8 +47,8 @@ Operational docs that skills and routines load. Not skills themselves.
 | File | What it is | Used by |
 |---|---|---|
 | [attio-schema.md](references/attio-schema.md) | Arrow Attio objects, field slugs, WhatsApp identity and last-contacted rules, People LP intake fields, Blocks write path, Qualified Blocks / Qualified Interests lists | attio-contact-context, arrow-attio-firm-context, deal-indications, comms-ingest |
-| [whatsapp-mcp.md](references/whatsapp-mcp.md) | WhatsApp MCP servers, tools, 56-day retention, admin vs view-only | CONNECTIONS.md, every WhatsApp-reading skill |
-| [whatsapp-attio-daily-sync.md](references/whatsapp-attio-daily-sync.md) | Spec for the daily job that keeps Attio and all four WhatsApp servers in step (v0.5 tools, v0.4 fallbacks). Not a running skill yet. | planned routine, after WhatsApp MCP v0.5.0 is on `release`; feeds deal-indications, attio-contact-context, and arrow-attio-firm-context |
+| [whatsapp-mcp.md](references/whatsapp-mcp.md) | WhatsApp MCP servers, v0.5.0 tools, 56-day body purge (`contact_activity` and the change log are kept), admin vs view-only | CONNECTIONS.md, every WhatsApp-reading skill |
+| [whatsapp-attio-daily-sync.md](references/whatsapp-attio-daily-sync.md) | Spec for the daily job that keeps Attio and all four WhatsApp servers in step (v0.5.0 tools, v0.4 fallbacks). Not a running skill yet. | planned routine; v0.5.0 is live on both servers as of 2026-11-13; feeds deal-indications, attio-contact-context, and arrow-attio-firm-context |
 
 ## Bot registry
 

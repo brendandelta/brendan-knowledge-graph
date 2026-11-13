@@ -2,7 +2,7 @@
 
 Spec for the daily job that keeps Arrow Attio and the four WhatsApp servers in step, and prepares the Deal Indications, Attio People, and Attio Firms bots for their first runs of the day.
 
-This is a specification, not a running skill. The job should be implemented as a Grok Bot routine once WhatsApp MCP v0.5.0 is on `release` and the new tools are live on both Hetzner servers. Until then, a v0.4 fallback path is defined below and may be run by hand.
+This is a specification, not a running skill. WhatsApp MCP v0.5.0 is live on both Hetzner servers as of 2026-11-13 (release commit `4c602444`). The job should be implemented as a Grok Bot routine on those tools. A v0.4 fallback path is defined below and may be run by hand if a server is temporarily back on the older build.
 
 Last updated: 2026-11-13.
 
@@ -58,7 +58,7 @@ Until standing approval for step 4 is on file, the job still does steps 1, 3, 5,
 
 ## v0.5 tools this job is built on
 
-From the v0.5.0 server PR (not on `release` at the time this was written):
+From WhatsApp MCP v0.5.0 (live on `release` as of 2026-11-13):
 
 | Tool | Link type | This job uses it for |
 |---|---|---|
@@ -146,7 +146,7 @@ Call `coverage_report` again. Append one row to the run log (same Deal Indicatio
 - **Partial run at the 7:40am cutoff:** persist cursors only for accounts fully processed; leave the rest for tomorrow.
 - **Need Brendan:** a confirm-list, a name-down first-run, a connector that needs a QR re-pair, or a collision on a person who already has deal records. Never auto-merge people in this job.
 
-## v0.4 fallback (until v0.5 is on `release`)
+## v0.4 fallback (if a server is not on v0.5)
 
 Use this only when the v0.5 tools are missing from `status`.
 

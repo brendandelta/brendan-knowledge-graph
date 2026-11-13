@@ -143,3 +143,5 @@
 - DECISIONS: 2026-11-04 silo entry.
 - arrow/skills/attio-contact-context v2.1: check_size_range options renamed $0-100K / $100-200K / $200-500K (in place in Attio); sector_of_interest options added (Secondaries, Climate, Healthcare, Media, Energy, Private Credit) and mapping updated.
 - arrow/skills/attio-contact-context v2.2: sector_of_interest expanded to 60 structured options in Attio (37 added; none renamed or archived), mapping guidance extended.
+
+- 2026-11-13 - arrow/skills/attio-contact-context: the Attio calls paragraph is now live on the "Attio contact context" routine prompt (Arrow Attio People), text mirrored in the skill's routine section.

@@ -8,6 +8,7 @@ description: Sort, rename, and file documents from the "99 - Inbox" folder in th
 Brendan and the team drop documents into `99 - Inbox` at the root of the Arrow Fund shared drive.
 
 **How:** follow the shared procedure in `arrow/skills/document-filing/SKILL.md` (next to this skill) exactly, with the settings below. Its APPROVAL LAYER applies here in full: no folder is created in this drive without Brendan's explicit approval and a README amendment written in the same step.
+**Open every file:** the shared procedure's HARD RULE applies here in full. On every run (scheduled or asked), open and read the actual contents of every file in this inbox, including files carried over from prior days, before filing, recommending, or asking. Download each file and extract the text (pdftotext/OCR) or export Docs/Sheets; never judge by filename, and never report that a file was not re-read. The weekday 12pm PT routine prompt restates this rule.
 **What goes where:** the drive's README (amendments v2–v7; v7 of 2026-11-02 holds the key folder IDs) holds the folder map, folder IDs, naming patterns and every confirmed filing rule (Apex Horizon, carry side letters, Harvey Esquire, S11/Hubble, S12–S16, Delaware SR confirmations, Carta, Taiga, deal-attributable vendor costs, shortcuts, invoices Arrow issues). Read it in full every run. Rules are added to the README, not here.
 
 ## Settings

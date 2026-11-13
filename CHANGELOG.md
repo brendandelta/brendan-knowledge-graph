@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-12
+- document-filing: hard rule (Brendan, 2026-11-12) to open and read the actual contents of every inbox file on every run, including files carried over from prior days, before filing, recommending, or asking. Never judge by filename; never report that a file was not re-read; summaries must describe each file from its contents. Pointers added to arrow-fund-inbox and delta-meridian-inbox. The weekday 12pm PT routine prompt restates this rule.
 - Personal CRM Contact Context / crm-maintenance: added deferred backlinks (section 8b). When a person is mentioned but does not get a page, record them under a heading_3 "Mentioned (no page yet)"; before any new People page is created (routine or manual), search those mentions and back-link. The weekday routine prompt was updated in the same change; the weekend routine inherits from weekdays. Run Log now includes "deferred backlinks created". Brendan confirmed t91u.
 
 ## 2026-11-11

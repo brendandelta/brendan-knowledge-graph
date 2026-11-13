@@ -41,7 +41,7 @@ Verified live against Composio 2026-10-20.
 | imessage | the Mac | paper, until 1Password | comms-ingest, crm-maintenance, suggested-actions |
 | signal | the Mac | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions |
 | whatsapp (Brendan) | Brendan's own WhatsApp. Own Hetzner server, 24/7. On the v0.4.0 build since 2026-11-13 (18 tools on the admin link, 56 day retention, auto updates from the `release` branch); see `references/whatsapp-mcp.md` | paper, until 1Password | comms-ingest, crm-maintenance, deal-indications, suggested-actions, chief-of-staff, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log |
-| whatsapp-chris | Chris Clifford's WhatsApp. Arrow team Hetzner server, v0.4.0 since 2026-11-12 (18 tools on the admin link, 10 on a view-only link); custom MCP on Brendan's Grok Bot account as `user-Chris' WhatsApp MCP` (added 2026-11-10). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
+| whatsapp-chris | Chris Clifford's WhatsApp. Arrow team Hetzner server, v0.4.0 since 2026-11-12 (18 tools on the admin link, 10 on a view-only link); custom MCP on Brendan's Grok Bot account as `user-Chris WhatsApp MCP (Admin)` (added 2026-11-10, renamed 2026-11-13). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
 | whatsapp-gabe | Gabe Borden's WhatsApp. Arrow team Hetzner server, v0.4.0 since 2026-11-12 (18 tools on the admin link, 10 on a view-only link); custom MCP on Brendan's Grok Bot account as `user-Gabe WhatsApp MCP (Admin)` (connected 2026-11-13). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
 | whatsapp-jillian | Jillian Nuding's WhatsApp. Arrow team Hetzner server, v0.4.0 since 2026-11-12 (18 tools on the admin link, 10 on a view-only link); custom MCP on Brendan's Grok Bot account as `user-Jillian WhatsApp MCP (Admin)` (connected 2026-11-13). Do not store the endpoint URL or access token in this repo. | paper, until 1Password | attio-contact-context, arrow-attio-firm-context, deal-indications, arrow-weekly-log, comms-ingest (index only, limited Todoist), chief-of-staff (limited) |
 
@@ -49,7 +49,7 @@ Verified live against Composio 2026-10-20.
 
 Brendan's own WhatsApp is `user-whatsapp-mcp` (whatsapp (Brendan) above). Partner mailboxes are separate connectors and must never be mixed with his. As of 2026-11-13 all three partner accounts are connected on Brendan's Grok Bot account:
 
-- Chris Clifford: `user-Chris' WhatsApp MCP` (connected 2026-11-10). v0.4.0 since 2026-11-12.
+- Chris Clifford: `user-Chris WhatsApp MCP (Admin)` (connected 2026-11-10, renamed 2026-11-13). v0.4.0 since 2026-11-12.
 - Gabe Borden: `user-Gabe WhatsApp MCP (Admin)` (connected 2026-11-13). v0.4.0 since 2026-11-12.
 - Jillian Nuding: `user-Jillian WhatsApp MCP (Admin)` (connected 2026-11-13). v0.4.0 since 2026-11-12.
 

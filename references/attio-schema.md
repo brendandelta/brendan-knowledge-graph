@@ -2,7 +2,7 @@
 
 Workspace: [Arrow Fund](https://app.attio.com/arrow-fund) (`arrow-fund`, workspace id `945181e9-ddcd-4d63-978e-ea968ceae3a8`). Reached through Composio (`user-composio`, connection `attio_bosser-wooded`).
 
-This file is the Attio field reference for bots that map WhatsApp (and later other channels) onto People and Companies. Brendan approved the People schema cleanup on 2026-11-13; the changes below are live. Last-contact fields stay documented in `arrow/skills/attio-contact-context/SKILL.md`. Firm-intel fields stay documented in `arrow/skills/arrow-attio-firm-context/SKILL.md`.
+This file is the Attio field reference for bots that map WhatsApp (and later other channels) onto People and Companies. Brendan approved the People schema cleanup on 2026-11-13; the changes below are live. The LP intake fields in the last section were added the same day. Last-contact fields stay documented in `arrow/skills/attio-contact-context/SKILL.md`. Firm-intel fields stay documented in `arrow/skills/arrow-attio-firm-context/SKILL.md`.
 
 ## WhatsApp identity fields (created 2026-11-13)
 
@@ -90,3 +90,32 @@ Select-option cleanup on People:
 - `inquiry_role`: an `Intermediary` option was added (`e3239162-fc5e-4f42-8f29-d631a864a218`). The one person on `Broker-Dealer` was moved to Intermediary. `Broker-Dealer` was not archived, because the website form still posts that role. Map both `Broker-Dealer` and Intermediary to What they are (`lp_fo_ria`) Intermediary. Never use the word "Broker" in new options, values, or prose.
 
 The website inquiry form lives at [arrowfund.co/request-access](https://www.arrowfund.co/request-access) and posts JSON to `POST /api/inquiries`. The client source is the Next.js `RequestAccessForm` on that site. The server mapping was not in this knowledge repo or in any public `brendandelta` GitHub repo. Form field names and the option strings the browser sends are documented in the 2026-11-13 changelog entry so the form can be updated in the same change as any further Attio option work.
+
+
+## People LP intake fields (created 2026-11-13)
+
+Brendan approved these five People attributes on 2026-11-13 after comparing a partner LP intake survey with Arrow's [Request access](https://www.arrowfund.co/request-access) form. They are optional. The website form and People-view updates are a follow-up (not in this repo).
+
+| Slug | Title | Type | Attribute id | Options (title, option id) |
+|---|---|---|---|---|
+| `investment_structure` | Investment Structure | select, multi | `a690ac7c-090f-4abd-9c86-54144a7965f1` | Direct (`e7876b6d-d8d3-46d7-b9f7-1381a4889c70`), SPVs (`50d2438c-bff4-4b43-9d71-19a3e7849f04`), Fund commitments (`8ccd3495-a9f9-49e1-95c8-0ac18062987d`), Secondaries (`64dced25-2266-47c5-900c-f3a71a2d137d`), Co-investments (`2c0b76da-2791-4ccb-b9c8-f5389dce83f7`) |
+| `decision_timeline` | Decision Timeline | select, single | `3f53b1f0-ce14-4ea3-96a4-5f79beb51119` | Under 2 weeks (`28778b48-3fc9-4526-b9c2-c1e002928eb4`), 2-4 weeks (`8c5da56e-5c5e-442b-8b29-9950426210b9`), 1-2 months (`2befa2b5-8f8c-4804-a9c9-7e39ca0d132b`), More than 2 months (`059d575e-c249-448f-b49b-1bb3241db94a`), Varies by deal (`85910dfd-811c-4ef6-8b26-0d40312dcd08`) |
+| `liquidity_interest` | Liquidity Interest | select, single | `5d3cb0ae-6e0a-4427-a117-035a6958ecdc` | Yes (`17a1ff6b-d899-4120-9a07-fb80d63ba8b8`), Possibly (`31b298b7-ad16-46a4-ab27-1f0fd5e08d73`), No (`54216edc-80bc-4306-ab4f-59efc46c6d3b`) |
+| `liquidity_holdings` | Holdings They'd Sell | record-reference to Companies, multi | `27007815-dce1-44d4-946f-bbbd3cbd13de` | Allowed object is Companies (`b1428e8d-e770-4c68-be6f-b8af71cefa3c`). No reverse relationship. Link only to existing Companies. |
+| `notable_past_investments` | Notable Past Investments | text | `e3b2b39d-c855-47a3-8385-d01ddc9f43fe` | Raw text only. |
+
+Rules:
+
+- `liquidity_interest` Yes or Possibly, together with any companies on `liquidity_holdings`, are unconfirmed seller leads. Deal Indications flags them for review and never auto-creates Blocks. A Block is created only after a teammate or a clear follow-up confirms company, side, and enough context to meet the existing write-path bar.
+- `liquidity_holdings` stores supply (holdings they might sell). Never create a Company, Interest, or Block from this field. Unmatched names belong in a note, not a new Company.
+- `notable_past_investments` is track record. Never create Company records from this text. Keep it separate from `companies_of_interest`, which is current demand.
+- `investment_structure` is how they prefer to invest. The live `Secondaries` option on `sector_of_interest` stays for existing data; new answers about how they invest go on this field.
+- `decision_timeline` is how long they typically take to decide once diligence begins. Option titles must match exactly, including `2-4 weeks` and `1-2 months`.
+- attio-contact-context fills `investment_structure` and `decision_timeline` when empty, from chats or email, and never overwrites a human-set or form-set value. It may mention confident past-investment or liquidity facts in `arrow_context` without copying prices or creating records.
+
+Related existing fields, confirmed and not changed on 2026-11-13:
+
+| Slug | Title | Type | Attribute id | Notes |
+|---|---|---|---|---|
+| `check_size_range` | Check size range | select, multi | `8682152a-e908-41a8-9c58-e25ea2775fbe` | Already multi-select. Nine live options: `$0-100K`, `$100-200K`, `$200-500K`, `$500-$1M`, `$1M-$5M`, `$5M-$10M`, `$10M-$15M`, `$15M-20M`, `$20M+`. The website form is still single-select and still has three stale values; that is a form follow-up, not a schema change. |
+| `companies_of_interest` | Companies of Interest | record-reference to Companies, multi | `a780dbfd-2aa2-4988-89ec-349904c565a9` | Current appetite. Allowed object is Companies (`b1428e8d-e770-4c68-be6f-b8af71cefa3c`). No reverse relationship. Add only, never replace. Match existing Companies only; never create a Company from typed names. |

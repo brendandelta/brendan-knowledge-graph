@@ -15,7 +15,7 @@ Brendan and the team drop documents into `99 - Inbox` at the root of the Arrow F
 
 | Setting | Value |
 |---|---|
-| Composio account (always pass it) | `googledrive_left-bim` (brendan@arrowfund.co) |
+| Composio account (always pass it) | the Google Drive connection for brendan@arrowfund.co |
 | Drive | Arrow Fund shared drive, root `0AP9pttwIqgIZUk9PVA` |
 | Inbox | `99 - Inbox` — `1L1YNUipRP08o2N_jJF8O7_0dWoKJFQQX` |
 | Archive (originals) | `99 - Inbox / 0 Archive` — `19GtsWWa-6lWPSCBqJuTbicB-b-qLtbmk` |

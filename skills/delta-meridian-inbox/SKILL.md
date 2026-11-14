@@ -15,7 +15,7 @@ Brendan drops Delta Meridian Holdings LLC documents into `99 - Inbox` at the roo
 
 | Setting | Value |
 |---|---|
-| Composio account (always pass it) | `googledrive_decare-benami` (brendan@deltameridian.com) |
+| Composio account (always pass it) | the Google Drive connection for brendan@deltameridian.com |
 | Drive | Brendan's My Drive in the Delta workspace (no shared drive) |
 | Inbox | `99 - Inbox` — `103Y4mfhniazUGgTuDdq5WllTSVswHB1P` (created 2026-11-02) |
 | Archive (originals) | `99 - Inbox / 0 Archive` — `1YTp_o4LNEcCOismkZwm4xtbZE4rFtK92` |

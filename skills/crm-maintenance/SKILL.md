@@ -28,7 +28,7 @@ A. Append only. Never delete, rewrite, reorder, or "clean up" any block in any N
 B. Never write to Attio: no field, record, note, task, list entry, or attribute, empty or not. Attio is read only here (calls, notes and transcripts in section 3, and the record ID and last interaction copied into Notion). Nothing from Notion ever reaches Attio.
 
 1. Setup. Read the CRM spec first: skills/brendan-crm/SKILL.md in the knowledge repo (/home/box/Claude/brendan-knowledge-graph). The Notion "Delta CRM — Spec" page was retired on 2026-10-29 (backup at /workspace/kg-audit/notion-delta-crm-spec-backup.md). If the spec and this prompt disagree, keep following this prompt and tell Brendan.
-   - Composio Notion account: notion_pace-adiate (never "work").
+   - Composio Notion account: the Notion connection for the Deltameridian workspace (brendan@deltameridian.com) (never "work").
    - People db: 3f73d4cf-905e-81ed-b8b0-febace2abe7e.
    - Run Log: 3f73d4cf-905e-8106-aed6-d4e10c18edd1.
    - Attio: Arrow Attio connection (Arrow Fund workspace), read only.
@@ -161,7 +161,7 @@ How it reads:
 - Pull Attio calls, notes and transcripts directly, read only (Arrow Attio connection), following skills/comms-ingest/attio-calls.md and the weekday section 3 state file. Never write Attio.
 
 Where it writes:
-- Brendan's Notion People db (3f73d4cf-905e-81ed-b8b0-febace2abe7e, Composio notion_pace-adiate), and nowhere else.
+- Brendan's Notion People db (3f73d4cf-905e-81ed-b8b0-febace2abe7e, Composio, the Notion connection for the Deltameridian workspace (brendan@deltameridian.com)), and nowhere else.
 - Never write to Attio in any way. Arrow Attio People owns Attio People (`arrow/skills/attio-contact-context`); the two are fully siloed (Brendan, 2026-11-04 / 2026-11-05).
 
 Read the CRM spec first: skills/brendan-crm/SKILL.md in the knowledge repo (/home/box/Claude/brendan-knowledge-graph). The Notion "Delta CRM — Spec" page was retired on 2026-10-29.

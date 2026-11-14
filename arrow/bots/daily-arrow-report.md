@@ -13,7 +13,7 @@
 | **Send permissions** | none currently; every send needs Brendan's explicit approval in this bot's chat. (Draft SKILL.md mentions auto-send per DECISIONS 2026-10-29; not adopted until Brendan confirms directly here.) Private flags go to Brendan in this bot's chat only. |
 | **Depends on** | Arrow Log (log "Last updated" must be ≥ 9:30am PT on run day); Attio |
 | **Feeds** | Daily team email to chris@, gabe@, vaidehi@, jillian@arrowfund.co (once live) |
-| **Connectors needed** | Composio (`user-composio`): Attio, Google Drive (`googledrive_left-bim`), Google Docs (`googledocs_colius-skiv`); Gmail for the future send |
+| **Connectors needed** | Composio (`user-composio`): Attio, Google Drive (the Google Drive connection for brendan@arrowfund.co), Google Docs (the Google Docs connection for brendan@arrowfund.co); Gmail for the future send |
 | **Last verified** | 2026-11-05 · Daily Arrow Report (self-report) |
 
 ## Routines

@@ -9,7 +9,7 @@
 | **Status** | live (daily Signal cycle 9/12/1/2 PT; 12pm CEO/COO ops brief; reply scan and activity log locked 2026-11-09) |
 | **Repo skill path** | `arrow/skills/arrow-chief-of-staff/SKILL.md` |
 | **Data sources (read)** | Arrow Fund Notion (Projects, Tasks, Entity Register, COS Activity Log) via Composio account `work`; meeting notes and Brendan's confirmed answers; Signal DMs with Brendan, Chris, Gabe, Jillian, and Vaidehi; Attio lists (read) when reconciling priority lists. |
-| **Write targets** | Arrow Fund Notion Projects & Tasks and the Arrow COS Activity Log (Composio `work` / `notion_woy-grouts`); Entity Register columns; Brendan's personal Todoist only when he explicitly asks to add a personal item during a company-PM conversation. |
+| **Write targets** | Arrow Fund Notion Projects & Tasks and the Arrow COS Activity Log (Composio `work` / the Notion connection for the Arrow team workspace (brendan@arrowfund.co)); Entity Register columns; Brendan's personal Todoist only when he explicitly asks to add a personal item during a company-PM conversation. |
 | **Send permissions** | auto-send the locked daily Signal cycle to Brendan, Chris, Gabe, Jillian, and Vaidehi (authorized 2026-11-07). The 12:00 PM PT rollup is a CEO/COO company ops brief to Brendan and Chris (authorized 2026-11-09). Any other outbound message still needs Brendan's explicit confirm. |
 | **Depends on** | Shared Arrow Notion hub; Composio Notion `work`; Signal MCP (local to Brendan's Mac) |
 | **Feeds** | Arrow team project follow-through |
@@ -36,7 +36,7 @@ See the current skill at arrow/skills/arrow-chief-of-staff/SKILL.md rather than 
 ## Rebuild steps
 
 1. Create the bot and point it at `arrow/skills/arrow-chief-of-staff/SKILL.md`.
-2. Connect Composio Notion account `work` (`notion_woy-grouts`, brendan@arrowfund.co). Never use `notion_pace-adiate`.
+2. Connect Composio Notion account `work` (the Notion connection for the Arrow team workspace (brendan@arrowfund.co)). Never use any other Notion connection.
 3. Confirm the Arrow COS Activity Log exists at `4138f5e5-eca1-815e-b8a1-d84a6bedf32d`.
 4. Recreate the four daily routines (9am check-ins, 12pm rollup, 1pm follow-up in folder `arrow-cos-11am-follow-up`, 2pm reminders) from this registry and the skill.
 5. Sync the live bot profile so it no longer says the notification layer is unbuilt.

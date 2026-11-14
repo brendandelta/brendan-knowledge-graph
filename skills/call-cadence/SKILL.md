@@ -18,7 +18,7 @@ state_file: /workspace/call-cadence/state.json      # on the bot computer; makes
 
 crm:
   notion_people_db_id: 3f73d4cf-905e-81ed-b8b0-febace2abe7e
-  composio_account: notion_pace-adiate
+  composio_account: the Notion connection for the Deltameridian workspace (brendan@deltameridian.com)
   spec: skills/brendan-crm/SKILL.md                 # only source of truth for the CRM spec; Notion "Delta CRM Spec" page retired 2026-10-29
   fields_read: [Name, Tier, Cadence days, Last touch, Last touch channel, Follow up by, Next step, Phone, Email, Chat handles]
   access: read-only                                 # never write Tier, Cadence days, Follow up by, or anything else
@@ -31,7 +31,7 @@ channels:                                           # use the last-touch channel
   email: Arrow Gmail connection in Composio (brendan@arrowfund.co)
 
 calendar:
-  composio_account: googlecalendar_unclub-taha
+  composio_account: the Google Calendar connection for brendan@arrowfund.co
   book_on: connmbrendan@gmail.com
   busy_check: [connmbrendan@gmail.com, brendan@arrowfund.co]
   calling_hours: weekdays 11:00–17:00 PT

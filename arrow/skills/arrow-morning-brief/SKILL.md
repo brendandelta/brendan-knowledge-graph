@@ -33,7 +33,7 @@ description: Sun-Thu external markets brief (world/economy, macro, public, priva
 - **Subject (thinking note):** `Arrow Fund · Get Smart · <Weekday Mon D>` (e.g. `Arrow Fund · Get Smart · Fri Nov 6`).
 - Older threads used `Arrow Morning Markets · for` / `Agenda · Arrow Morning Markets`. When searching admin@ for last night's brief, match either the new subject or that older prefix.
 - **Sunday = weekend edition** (see §3b-Sunday): covers everything important from Friday, Saturday and Sunday; longer week-ahead + weekend recap; slightly longer read (target ~12-15 min). Mon-Thu editions stay the standard 8-12 min overnight brief.
-- From: **admin@arrowfund.co** via Composio Gmail account id **`gmail_dammer-immi`**, tool `GMAIL_SEND_EMAIL` with `is_html: true`. Set the From display name to **`Brendan Bot`** if Gmail allows it for this mailbox; otherwise leave the default (Arrow Admin / admin@).
+- From: **admin@arrowfund.co** via Composio, **the Gmail connection for admin@arrowfund.co**, tool `GMAIL_SEND_EMAIL` with `is_html: true`. Set the From display name to **`Brendan Bot`** if Gmail allows it for this mailbox; otherwise leave the default (Arrow Admin / admin@).
 - Send once per job. On gather/render failure: retry up to 2 times, 10 minutes apart; if still failing, email Brendan a short plain-text delay note with the same subject + ` (delayed)` and stop. Never send a partial brief.
 
 ## 2. Files and archive
@@ -161,13 +161,13 @@ Known template issue: the nested `<!-- omit tr ... -->` inside the head comment 
 - [ ] Company file is present, 400-600 words, follows the 10-part structure with unsourced fields cut, and the company is not already in `profiles/INDEX.md` or a prior local `company-file.md`.
 - [ ] Masthead shows ARROW FUND and Morning Markets Brief; colors match the template (navy `#1F2A44`, Arrow blue `#2E5AAC`).
 - [ ] Recipients are **brendan@arrowfund.co** and **vaidehi@arrowfund.co** (the approved live list).
-- [ ] From account is `gmail_dammer-immi` / admin@.
+- [ ] From account is the Gmail connection for admin@arrowfund.co / admin@.
 
 Fail any check → fix or cut; never send a failing brief.
 
 ### 3e. Send
 
-Call Composio `GMAIL_SEND_EMAIL` on account **`gmail_dammer-immi`**:
+Call Composio `GMAIL_SEND_EMAIL` on **the Gmail connection for admin@arrowfund.co**:
 
 - `to`: `brendan@arrowfund.co` and `vaidehi@arrowfund.co`
 - `subject`: per §1

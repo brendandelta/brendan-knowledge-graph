@@ -8,31 +8,31 @@ Verified live against Composio 2026-10-20.
 
 ## Composio connections (active)
 
-| Toolkit | Account | Connection id | Context | Used by |
+| Toolkit | Account | Connection (pick by account) | Context | Used by |
 |---|---|---|---|---|
 | gmail | brendan@arrowfund.co | Arrow Gmail connection | Arrow | comms-ingest, crm-maintenance, chief-of-staff, deal-indications |
-| gmail | admin@arrowfund.co | `gmail_dammer-immi` | Arrow | — |
-| gmail | brendan@deltameridian.com | `gmail_antes-dyce` | Delta | comms-ingest, crm-maintenance |
-| gmail | admin@deltameridian.com | `gmail_crept-situla` (default) | Delta | comms-ingest, crm-maintenance |
-| gmail | connmbrendan@gmail.com | `gmail_gifola-hexine` | Personal | comms-ingest, crm-maintenance |
-| gmail | brendanmconn96@gmail.com | `gmail_rebold-anotta` | Personal | comms-ingest |
-| gmail | brendanfinancialt1@gmail.com | `gmail_cerris-heed` | Personal finance | comms-ingest (crm-maintenance skips) |
-| googlecalendar | brendan@arrowfund.co | `googlecalendar_unclub-taha` | Arrow | chief-of-staff, comms-ingest |
-| googledrive | brendanmconn96@gmail.com | `googledrive_octan-lined` (default; change default to arrow) | Personal | — |
-| googledrive | connmbrendan@gmail.com | `googledrive_mev-zuni` | Personal; holds some Janey folders | — |
-| googledrive | brendan@arrowfund.co | `googledrive_left-bim` | Arrow | arrow-fund-inbox |
-| googledrive | brendan@deltameridian.com | `googledrive_decare-benami` | Delta | delta-meridian-inbox |
-| googlesheets | brendan@arrowfund.co | `googlesheets_cush-citron` | Arrow | deal-indications |
-| googledocs | brendan@arrowfund.co | `googledocs_colius-skiv` | Arrow | arrow-weekly (draft); edits to the Arrow Drive README |
-| notion | Deltameridian workspace | `notion_pace-adiate` (default) | Personal | brendan-crm, crm-maintenance |
-| notion | Arrow team workspace ("Chris Clifford's Space") | `notion_woy-grouts` (alias work) | Arrow | — (Notion overhaul planned) |
+| gmail | admin@arrowfund.co | the Gmail connection for admin@arrowfund.co | Arrow | — |
+| gmail | brendan@deltameridian.com | the Gmail connection for brendan@deltameridian.com | Delta | comms-ingest, crm-maintenance |
+| gmail | admin@deltameridian.com | the Gmail connection for admin@deltameridian.com (default) | Delta | comms-ingest, crm-maintenance |
+| gmail | connmbrendan@gmail.com | the Gmail connection for connmbrendan@gmail.com | Personal | comms-ingest, crm-maintenance |
+| gmail | brendanmconn96@gmail.com | the Gmail connection for brendanmconn96@gmail.com | Personal | comms-ingest |
+| gmail | brendanfinancialt1@gmail.com | the Gmail connection for brendanfinancialt1@gmail.com | Personal finance | comms-ingest (crm-maintenance skips) |
+| googlecalendar | brendan@arrowfund.co | the Google Calendar connection for brendan@arrowfund.co | Arrow | chief-of-staff, comms-ingest |
+| googledrive | brendanmconn96@gmail.com | the Google Drive connection for brendanmconn96@gmail.com (default; change default to arrow) | Personal | — |
+| googledrive | connmbrendan@gmail.com | the Google Drive connection for connmbrendan@gmail.com | Personal; holds some Janey folders | — |
+| googledrive | brendan@arrowfund.co | the Google Drive connection for brendan@arrowfund.co | Arrow | arrow-fund-inbox |
+| googledrive | brendan@deltameridian.com | the Google Drive connection for brendan@deltameridian.com | Delta | delta-meridian-inbox |
+| googlesheets | brendan@arrowfund.co | the Google Sheets connection for brendan@arrowfund.co | Arrow | deal-indications |
+| googledocs | brendan@arrowfund.co | the Google Docs connection for brendan@arrowfund.co | Arrow | arrow-weekly (draft); edits to the Arrow Drive README |
+| notion | Deltameridian workspace | the Notion connection for the Deltameridian workspace (brendan@deltameridian.com) (default) | Personal | brendan-crm, crm-maintenance |
+| notion | Arrow team workspace ("Chris Clifford's Space") | the Notion connection for the Arrow team workspace (brendan@arrowfund.co) (alias work) | Arrow | — (Notion overhaul planned) |
 | attio | Arrow Fund workspace, full read-write. Meetings and call recordings: `skills/comms-ingest/attio-calls.md`. Prefer `ATTIO_CONTEXT_TOKEN` when present (never print it); Composio is the read fallback. | Arrow Attio connection | Arrow | deal-indications, crm-maintenance, brendan-crm, suggested-actions, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log, comms-ingest |
-| quickbooks | Arrow | `quickbooks_godet-board` (default) | Arrow | — |
-| quickbooks | Delta | `quickbooks_stid-benchy` | Delta | delta-bookkeeper |
-| todoist | brendan@deltameridian.com | `todoist_kino-vend` | all | chief-of-staff, comms-ingest |
-| shopify | Janey store | `shopify_styx-dhai` | Janey | — |
-| github | brendandelta | `github_worth-cower` | infra | — |
-| linkedin | brendanmconn96@gmail.com | `linkedin_odic-bran` | Personal | — |
+| quickbooks | Arrow | the QuickBooks connection for Arrow (default) | Arrow | — |
+| quickbooks | Delta | the QuickBooks connection for Delta | Delta | delta-bookkeeper |
+| todoist | brendan@deltameridian.com | the Todoist connection for brendan@deltameridian.com | all | chief-of-staff, comms-ingest |
+| shopify | Janey store | the Shopify connection for the Janey store | Janey | — |
+| github | brendandelta | the GitHub connection for brendandelta | infra | — |
+| linkedin | brendanmconn96@gmail.com | the LinkedIn connection for brendanmconn96@gmail.com | Personal | — |
 
 ## Custom MCP servers
 

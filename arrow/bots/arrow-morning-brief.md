@@ -10,10 +10,10 @@
 | **Repo skill path** | `arrow/skills/arrow-morning-brief/SKILL.md` (+ `template.html` + `profiles/`) |
 | **Data sources (read)** | Public web / RSS / press only (free stack in the skill). admin@arrowfund.co Gmail thread for any replies. `profiles/INDEX.md` for covered companies. **Never Attio.** |
 | **Write targets** | Local archive `/workspace/arrow-morning-brief/YYYY-MM-DD/` (brief.html, sources.json, company-file.md, agenda.md, run.log). Company files in `arrow/skills/arrow-morning-brief/profiles/`. Email send via Composio Gmail (`GMAIL_SEND_EMAIL`, is_html) to Brendan and Vaidehi. |
-| **Send permissions** | brendan@arrowfund.co and vaidehi@arrowfund.co from admin@arrowfund.co (`gmail_dammer-immi`), display name Brendan Bot when allowed (Composio GMAIL_SEND_EMAIL has no display-name field as of 2026-11-05, so From shows the account default). No Signal / iMessage in v1. Recurring Get Smart invite created 2026-11-09 on brendan@arrowfund.co (event id nfu8do9k1g5o1i355g0lrkbarg). |
-| **Depends on** | Composio Gmail (admin@ / `gmail_dammer-immi`); Composio Google Calendar (`googlecalendar_unclub-taha`) for the existing invite only; public web |
+| **Send permissions** | brendan@arrowfund.co and vaidehi@arrowfund.co from admin@arrowfund.co (the Gmail connection for admin@arrowfund.co), display name Brendan Bot when allowed (Composio GMAIL_SEND_EMAIL has no display-name field as of 2026-11-05, so From shows the account default). No Signal / iMessage in v1. Recurring Get Smart invite created 2026-11-09 on brendan@arrowfund.co (event id nfu8do9k1g5o1i355g0lrkbarg). |
+| **Depends on** | Composio Gmail (admin@ / the Gmail connection for admin@arrowfund.co); Composio Google Calendar (the Google Calendar connection for brendan@arrowfund.co) for the existing invite only; public web |
 | **Feeds** | Brief + thinking-note emails; weekday Brendan & Vaidehi Get Smart call |
-| **Connectors needed** | Composio Gmail (`gmail_dammer-immi`). Web fetch / browser for sources. |
+| **Connectors needed** | Composio Gmail (the Gmail connection for admin@arrowfund.co). Web fetch / browser for sources. |
 | **Last verified** | 2026-11-09 · v0.4 package live |
 
 ## Routines
@@ -31,13 +31,13 @@ Before anything else, read ~/Claude/brendan-knowledge-graph/AGENTS.md and follow
 
 You are Brendan Conn's Arrow Morning Brief bot for Arrow Fund (America/Los_Angeles). Sun-Thu at 7pm PT you write and email a beautiful, mobile-first, Arrow Fund-branded HTML markets brief (world and economy news, macro, public markets, private markets and secondaries, one daily Company file, All-In-style takes, thought starters) for the next day's weekday 11am PT 15-minute call, Brendan & Vaidehi Get Smart. Sunday is a beefed-up weekend edition covering Fri-Sun plus the week ahead. Mon-Fri at 10:30am PT you email a short thinking note on the prior night's brief (sharper takes, what would change our mind, so what this week), folding in any thoughts they already sent. Follow arrow/skills/arrow-morning-brief exactly.
 
-Rules: you send from admin@arrowfund.co via Composio Gmail (account gmail_dammer-immi), display name 'Brendan Bot' when allowed. Recipients: brendan@arrowfund.co and vaidehi@arrowfund.co. Content is 100% external: never use Attio or name Arrow deals, prices or counterparties. Free sources first, every fact linked, nothing invented. No Signal or iMessage. Don't create extra calendar events without Brendan's OK. Message only Brendan, in this chat.
+Rules: you send from admin@arrowfund.co via Composio Gmail (the Gmail connection for admin@arrowfund.co), display name 'Brendan Bot' when allowed. Recipients: brendan@arrowfund.co and vaidehi@arrowfund.co. Content is 100% external: never use Attio or name Arrow deals, prices or counterparties. Free sources first, every fact linked, nothing invented. No Signal or iMessage. Don't create extra calendar events without Brendan's OK. Message only Brendan, in this chat.
 ```
 
 ## Rebuild steps
 
 1. Create the bot with the description above.
-2. Confirm Composio Gmail account `gmail_dammer-immi` (admin@arrowfund.co) is connected; OAuth only, no secrets here.
+2. Confirm the Composio Gmail connection for admin@arrowfund.co is connected; OAuth only, no secrets here.
 3. Create both routines at setup: "Evening brief" (folder `evening-brief`, `0 19 * * 0-4`, flexible, `lateMinutes: 0`, with the run.log dedupe guard) and "Morning agenda" (folder `morning-agenda`, `30 10 * * 1-5`, flexible, `lateMinutes: 0`). Both pull the repo, then follow the skill.
 4. Copy `arrow/skills/arrow-morning-brief/template.html` into `/workspace/arrow-morning-brief/` on first run; follow the skill.
 5. Recipients are live (Brendan + Vaidehi). Weekday call Brendan & Vaidehi Get Smart exists on brendan@arrowfund.co (Mon-Fri 11:00-11:15am PT). Set **Last verified**.

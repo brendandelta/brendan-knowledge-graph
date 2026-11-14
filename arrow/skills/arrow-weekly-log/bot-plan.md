@@ -4,7 +4,7 @@
 **Skill:** `arrow/skills/arrow-weekly-log/SKILL.md` (final draft: /workspace/arrow-system-build/arrow-weekly-log/SKILL.md)
 **Writes:** only the current week's doc in [Arrow Weekly Log](https://drive.google.com/drive/folders/1Ge4r1wH2tMllGqom6sMQX96xkmBk58I5), plus `/workspace/arrow-log/` (state.json is already seeded with the Nov 2 week's doc and folder IDs).
 **Connections it needs:**
-- Composio Arrow Gmail connection (read), `googledrive_left-bim` and `googledocs_colius-skiv` (all brendan@arrowfund.co), and the Arrow Attio connection (read).
+- Composio Arrow Gmail connection (read), the Google Drive connection for brendan@arrowfund.co and the Google Docs connection for brendan@arrowfund.co (all brendan@arrowfund.co), and the Arrow Attio connection (read).
 - WhatsApp MCP, Signal MCP and iMessage MCP, read-only. It must never use their draft or send tools.
 
 ## Description (paste as the bot's instructions)

@@ -16,7 +16,7 @@ spec: this file                           # Source of truth. The Notion page "De
 
 notion:                                  # PRIVATE. The brain.
   workspace: Deltameridian
-  composio_account: notion_pace-adiate   # brendan@deltameridian.com
+  composio_account: the Notion connection for the Deltameridian workspace (brendan@deltameridian.com)   # brendan@deltameridian.com
   hq_page_id: 3f73d4cf-905e-81be-8904-ecd4cfb67450
   people_db_id: 3f73d4cf-905e-81ed-b8b0-febace2abe7e
   properties:

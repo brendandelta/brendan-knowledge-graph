@@ -52,8 +52,8 @@ Screenshot: `google-chrome --headless=new --no-sandbox --force-device-scale-fact
 Let `D` be yesterday (PT), and `S`/`E` the UTC bounds of that PT day.
 
 **A. Arrow Log (what happened)**
-1. Find the doc titled `Arrow Log — week of <Monday of D's week>` in folder `1Ge4r1wH2tMllGqom6sMQX96xkmBk58I5`. Use `GOOGLEDRIVE_FIND_FILE` on `googledrive_left-bim` with `'<folder>' in parents`. If D is a Sunday, that's the week that started 6 days earlier.
-2. Read it with `GOOGLEDOCS_GET_DOCUMENT_PLAINTEXT` on `googledocs_colius-skiv`.
+1. Find the doc titled `Arrow Log — week of <Monday of D's week>` in folder `1Ge4r1wH2tMllGqom6sMQX96xkmBk58I5`. Use `GOOGLEDRIVE_FIND_FILE` on the Google Drive connection for brendan@arrowfund.co with `'<folder>' in parents`. If D is a Sunday, that's the week that started 6 days earlier.
+2. Read it with `GOOGLEDOCS_GET_DOCUMENT_PLAINTEXT` on the Google Docs connection for brendan@arrowfund.co.
 3. Parse the bullets under each heading: Deals and blocks moved · New people · People updates · Meetings · Commitments · Firm intel · Data notes.
    - Keep the bullets whose date prefix is D, plus any bullet marked "updated <D>".
    - For Commitments, also keep every bullet still open that is past its due date.

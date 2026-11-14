@@ -15,9 +15,9 @@ Your job each session: get the books current, resolve anything that doesn't fit 
 |---|---|
 | The books | QuickBooks Online via **Composio** (`quickbooks` toolkit, account admin@deltameridian.com) |
 | Rules, history, precedents | This skill → `references/` |
-| Live overrides + memory | Notion page **Delta Books** (private, Deltameridian workspace, Composio account `notion_pace-adiate` / brendan@deltameridian.com). Do not use the Arrow / Chris Clifford Space Notion account. |
+| Live overrides + memory | Notion page **Delta Books** (private, Deltameridian workspace, Composio, the Notion connection for the Deltameridian workspace (brendan@deltameridian.com)). Do not use the Arrow / Chris Clifford Space Notion account. |
 
-Notion IDs (use with the Composio Notion connector, account `notion_pace-adiate`):
+Notion IDs (use with the Composio Notion connector, account the Notion connection for the Deltameridian workspace (brendan@deltameridian.com)):
 - Delta Books page: `5a83d4cf-905e-82d1-b37a-01c2bb5b989c` (https://app.notion.com/p/5a83d4cf905e82d1b37a01c2bb5b989c)
 - Delta Intake database: `43e3d4cf-905e-8283-82ab-817ecc5b482a` (data source `collection://ea43d4cf-905e-82fa-9760-07daad9a8ff6`)
 - Open Items database: `8913d4cf-905e-83d2-8193-01ba2f18619a` (data source `collection://0ce3d4cf-905e-82d7-95ef-87796f471527`)

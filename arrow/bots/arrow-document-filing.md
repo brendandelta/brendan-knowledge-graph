@@ -10,7 +10,7 @@ Arrow-facing record only: this bot also serves a second, separate entity Drive. 
 | **Purpose** | Daily filing of Arrow Fund shared-drive `99 - Inbox`, plus questions and a summary for Brendan in its chat; also serves a second, separate entity Drive. |
 | **Status** | live |
 | **Repo skill path** | `arrow/skills/document-filing` (shared procedure, incl. the always-post daily summary), `arrow/skills/arrow-fund-inbox` (Arrow wrapper); second-entity wrapper lives outside `arrow/` |
-| **Data sources (read)** | Google Drive via Composio, Arrow account `googledrive_left-bim`, and Drive README. Read-only QuickBooks/Gmail receipt lookups when Brendan approves. Non-Arrow accounts omitted. |
+| **Data sources (read)** | Google Drive via Composio, the Google Drive connection for brendan@arrowfund.co, and Drive README. Read-only QuickBooks/Gmail receipt lookups when Brendan approves. Non-Arrow accounts omitted. |
 | **Write targets** | Arrow Drive: copies, moves to archive, renames, README Google Docs; knowledge repo. Non-Arrow targets omitted. |
 | **Send permissions** | Sends no emails or messages to anyone; posts only to Brendan in its own chat. Saved send rules allow Composio connector calls without asking; not blanket permission to send externally. |
 | **Depends on** | Repo, filing procedure, per-Drive wrapper and README; explicit Drive account selection. |

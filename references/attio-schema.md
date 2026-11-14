@@ -149,3 +149,20 @@ The only writable attribute that is required on create is `underlying_company`. 
 | `run_sync` | Run Sync | checkbox | no | Deal Indications sets this true on its writes; the form should too. |
 
 Qualification is a separate step, described in the LP intake rules above. The form creates the Block and stops.
+
+## Emerging Manager LPs list (created 2026-11-14)
+
+Company list `emerging_manager_lps` (list id `89e0181b-28f4-43e4-994c-c96ea9faa829`), created 2026-11-14 to hold the 43 LPs from Nicolas Keller's LinkedIn graphic "43 LPs that back emerging fund managers" (Nov 2026, public sources). There was no existing company-level LP list; `Prospective LP` is a People list and was left unchanged. Workspace access is read-and-write, matching other Arrow company lists.
+
+List attributes (all on the list, not on Companies):
+
+| Slug | Title | Type | Attribute id | Notes |
+|---|---|---|---|---|
+| `lp_type` | LP Type | select, single | `874f4e31-7eea-4c5f-92e3-a6982d01d901` | Options: Fund of Funds (`90d0ac26-b418-4915-9ad3-3321aae848d5`), Government Fund (`04f55f49-c113-4eec-9ce0-d81e159c2dd9`), Pension (`5255c9bb-5140-48bd-954b-431ec85fed73`), State Fund / Endowment (`b7ecde8b-ed1b-4ce1-bd8c-15cde2ba534d`). |
+| `country` | Country | text | `8a1dc101-697a-47ee-81ba-106f5f6ee020` | Country from the graphic (US, UK, France, Luxembourg, South Korea, Poland, Sweden, Finland, Australia). |
+| `source` | Source | text | `01f0ee45-7fdb-44f2-bf5e-f27afbd87687` | "Nicolas Keller LinkedIn graphic, Nov 2026". |
+| `outreach_status` | Outreach Status | select, single | `60b5f69c-e37d-4895-9a77-53d2b68723d5` | Options: Not started (`a93e790c-fd58-49c4-9b22-285d7c4ef178`), Researching (`1980074d-d979-4a30-aaa5-de3be207de5d`), Warm intro sought (`b4f7f5d9-5af4-46af-9394-3ba002f94a1e`), Contacted (`b73f412d-6283-4a83-9959-6734c24d736e`), In conversation (`d65c69e0-ab44-48e7-94ef-7ad02318052a`), Pass (`ee7f77db-f9a9-4469-94c0-db49656886ff`). First ingest set every entry to Not started. |
+| `warmest_contact` | Warmest Contact | record-reference to People, single | `806615be-ba68-40e9-84ca-035096284edd` | Existing Attio person only. No reverse relationship. Do not create people. |
+| `warm_path_notes` | Warm Path Notes | text | `747297c3-98c9-4c7c-a11c-6df3890a5fbb` | Who we know, which teammate last contacted them, and when, or "None in Attio". |
+
+First ingest (2026-11-14): 43 companies added (5 matched by domain or exact name, 38 created). Companies were matched by official domain first, then exact name. Shared government domains (`portal.ct.gov`, `nj.gov`) and a colliding `trs.texas.gov` already on the State of Texas record were not written onto new or matched records. Snapshot: `/workspace/attio-lp-ingest-2026-11-14/emerging-manager-lps.csv`.

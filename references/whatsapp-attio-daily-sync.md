@@ -4,7 +4,7 @@ Spec for the daily job that keeps Arrow Attio and the four WhatsApp servers in s
 
 Implemented as Grok Bot routine **"WhatsApp-Attio daily sync"** (folder `whatsapp-attio-daily-sync`), daily ~6:30 AM PT (`30 6 * * *` America/Los_Angeles), flexible ±15 minutes, first run 2026-11-14. This file is the runbook the routine follows. WhatsApp MCP v0.5.0 is live on both Hetzner servers as of 2026-11-13 (release commit `4c602444`). A v0.4 fallback path is defined below and may be run by hand if a server is temporarily back on the older build.
 
-Last updated: 2026-11-13 (outbound-only last-contact rule; handoff `groups` block; consumers keep their own cursors).
+Last updated: 2026-11-14 (standing approval for blank-only name-down; overwrites still need a fresh yes).
 
 ## Goal
 
@@ -50,11 +50,11 @@ Brendan already approved the design (push identity up, push names down, roll up 
 1. **Never send, draft, or execute a group change.** Group draft tools from v0.5 exist for humans and for other skills behind draft-then-approve. This job does not call them.
 2. **Attio identity writes are blank-only.** Never overwrite `whatsapp_phone_jid`, `whatsapp_lid`, or `standard_arrow_chat_jid`. Never create a person or company just to store a JID. If more than one Attio record matches, skip and list it as needs-review.
 3. **Last-contacted writes are later-only.** Write a timestamp only when it is later than the value already set. Never move a date backwards.
-4. **Name-down to the servers (`import_names`) needs standing approval, once.** The first production run of name-down should be a dry run: log the exact `{phone_or_jid, name}` list per account, send Brendan that list, and wait for a yes. After he approves standing blank-only name-down, later runs may call `import_names` with the default fill-blanks behavior, no overwrite flag, and a post-run count. Any run that would use the overwrite flag needs a fresh yes on that exact list.
+4. **Blank-only name-down (`import_names`) has standing approval (Brendan, 2026-11-14).** Later runs may call `import_names` with the default fill-blanks behavior, no overwrite flag, and a post-run count of filled vs skipped. Any run that would use the overwrite flag, or would change an existing saved name, still needs a fresh yes on that exact list.
 5. **Partner servers stay read-only for everything except that approved blank-only `import_names`.** Never `set_contact_name`, `import_contacts`, `draft_message`, `send_message`, `check_numbers` (live), or group writes on a partner connector.
 6. **No money, no external messages, no quoted WhatsApp text in Attio or in the report.**
 
-Until standing approval for step 4 is on file, the job still does steps 1, 3, 5, and 6, and only logs the name-down list.
+Standing blank-only approval for step 4 is on file as of 2026-11-14. The job now runs name-down each morning. Overwrites are still blocked until a fresh yes.
 
 ## v0.5 tools this job is built on
 
@@ -102,11 +102,11 @@ Companies only get `standard_arrow_chat_jid`, same test, blank-only.
 
 `export_contacts` is the full-reconciliation tool (weekly, or after a first-run, or if `changes_since` is unavailable). Daily runs prefer `changes_since`.
 
-### 3. Push Attio names down (after standing approval)
+### 3. Push Attio names down (standing blank-only approval, 2026-11-14)
 
-Build, per account, the list of contacts whose Attio person has a real name and whose server name is empty. Call `import_names` with fill-blanks (no overwrite). Log accepted, skipped, and conflicted rows.
+Build, per account, the list of contacts whose Attio person has a real name and whose server name is empty. Call `import_names` with fill-blanks (no overwrite flag). Log accepted, skipped, and conflicted rows. The first approved batch ran on 2026-11-14.
 
-Until standing approval exists, write that list to `/workspace/whatsapp-attio-sync/name-down-pending/<date>.json` and mention it in the report. Do not call the write tool.
+If a future run would overwrite existing saved names, write that list to `/workspace/whatsapp-attio-sync/name-down-pending/<date>.json`, mention it in the report, and wait for a fresh yes. Do not call `import_names` with `overwrite=true` without that yes.
 
 ### 4. Roll up per-teammate last-contacted
 
@@ -147,7 +147,7 @@ Call `coverage_report` again. Append one row to the run log (same Deal Indicatio
 - **`import_names` partial failure:** log the failed rows, do not retry with overwrite, do not treat a partial as standing-approval for the failed subset.
 - **Lock expired mid-run:** the next run may start. Steps are idempotent (blank-only, later-only, cursor advanced only after success).
 - **Partial run at the 7:40am cutoff:** persist cursors only for accounts fully processed; leave the rest for tomorrow.
-- **Need Brendan:** a confirm-list, a name-down first-run, a connector that needs a QR re-pair, or a collision on a person who already has deal records. Never auto-merge people in this job.
+- **Need Brendan:** a confirm-list, any name-down that would overwrite an existing saved name, a connector that needs a QR re-pair, or a collision on a person who already has deal records. Never auto-merge people in this job.
 
 ## v0.4 fallback (if a server is not on v0.5)
 
@@ -178,7 +178,7 @@ A first v0.5 run should backfill `contact_activity` from stored messages (the se
 
 1. Done (2026-11-13): v0.5.0 is on `release` and `status` on all four accounts reports 0.5.0.
 2. Done (2026-11-13): Brendan has seen this spec, and Grok Bot created the live routine (folder `whatsapp-attio-daily-sync`, first run 2026-11-14).
-3. Dry-run name-down lists are approved, or standing blank-only approval is on file.
+3. Done (2026-11-14): Brendan gave standing approval for blank-only name-down. Overwrites still need a fresh yes. The 2026-11-14 dry-run list was applied the same day (`import_names` overwrite=false).
 4. `/workspace/whatsapp-attio-sync/` exists, is gitignored if it would hold phone numbers in a public repo (it lives on the box, not in the knowledge graph).
 5. Deal Indications, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log, and comms-ingest skills read `handoff.json` when present, including the `groups` block (repo done 2026-11-13; live routine prompts still to sync on those bots).
 6. First production run is watched: coverage before and after, cursor health, and a confirm-list of unmapped chats for Brendan.

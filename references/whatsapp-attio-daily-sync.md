@@ -112,7 +112,7 @@ Until standing approval exists, write that list to `/workspace/whatsapp-attio-sy
 
 What counts (Brendan, 2026-11-13, final): only an Arrow teammate's own outbound messages. In a 1:1 chat, our outbound message counts. In a group of 15 or fewer members, a teammate's post counts for every non-Arrow member. In a larger group, only members we @-mention or quote count. The other person's messages, in 1:1s or groups, never count. Arrow teammates never count as contacting each other. Skip self-chats.
 
-Read it from `contact_activity`. Once whatsapp-mcp v0.5.1 ships, use the combined `last_contact` field, which implements exactly this outbound-only rule; the inbound fields are kept for information only and must not be written into Attio last-contacted timestamps. On v0.5.0, where those combined fields do not exist yet, use the direct-chat `last_outbound` rows only. For each matched person:
+Read it from `contact_activity`'s person-level `last_contact` field (whatsapp-mcp v0.5.1, live on all four servers since 2026-11-13), which implements exactly this outbound-only rule; the inbound fields are kept for information only and must not be written into Attio last-contacted timestamps. If `status` ever shows a server below 0.5.1, use that server's direct-chat `last_outbound` rows only. For each matched person:
 
 - Brendan's server → `last_contacted_brendan`
 - Chris's → `last_contacted_chris`

@@ -31,7 +31,7 @@ B. Never write to Attio: no field, record, note, task, list entry, or attribute,
    - Composio Notion account: notion_pace-adiate (never "work").
    - People db: 3f73d4cf-905e-81ed-b8b0-febace2abe7e.
    - Run Log: 3f73d4cf-905e-8106-aed6-d4e10c18edd1.
-   - Attio: attio_bosser-wooded (Arrow Fund workspace), read only.
+   - Attio: Arrow Attio connection (Arrow Fund workspace), read only.
    - Make Notion calls at most 3 at a time, and retry rate limits.
 
 2. INPUT: Comms Index first, then threads read directly when needed.
@@ -158,7 +158,7 @@ How it reads:
 - Start from the Comms Index at /workspace/comms-index. Read it only; never write there.
 - When necessary, read the full threads directly with read-only connectors (iMessage, WhatsApp, Signal read tools, the 5 Gmail inboxes, Calendar). Do this for substantive conversations (two-way exchanges, deals, asks, commitments, intros, personal details, truncated text) to capture the full context.
 - If the index is empty or stale, read the channels directly for the whole window.
-- Pull Attio calls, notes and transcripts directly, read only (attio_bosser-wooded), following skills/comms-ingest/attio-calls.md and the weekday section 3 state file. Never write Attio.
+- Pull Attio calls, notes and transcripts directly, read only (Arrow Attio connection), following skills/comms-ingest/attio-calls.md and the weekday section 3 state file. Never write Attio.
 
 Where it writes:
 - Brendan's Notion People db (3f73d4cf-905e-81ed-b8b0-febace2abe7e, Composio notion_pace-adiate), and nowhere else.

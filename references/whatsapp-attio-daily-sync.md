@@ -28,7 +28,7 @@ Messages themselves stay on the WhatsApp servers and are deleted after 56 days. 
 | Gabe Borden | `user-Gabe WhatsApp MCP (Admin)` | Arrow team Hetzner server | Admin | Names only, after standing approval; never draft, send, or change groups |
 | Jillian Nuding | `user-Jillian WhatsApp MCP (Admin)` | Arrow team Hetzner server | Admin | Names only, after standing approval; never draft, send, or change groups |
 
-Attio is Composio `attio_bosser-wooded`, workspace `arrow-fund`. Field ids, the JID-first then phone-second match order, and fill-blank / later-only rules: `references/attio-schema.md`. Partner WhatsApp rules: `CONNECTIONS.md`. How the servers work: `references/whatsapp-mcp.md`.
+Attio is Arrow Attio via Composio, workspace `arrow-fund`. Field ids, the JID-first then phone-second match order, and fill-blank / later-only rules: `references/attio-schema.md`. Partner WhatsApp rules: `CONNECTIONS.md`. How the servers work: `references/whatsapp-mcp.md`.
 
 Vaidehi's WhatsApp is not connected. `last_contacted_vaidehi` stays empty until her server exists or a later job can attribute email to her.
 

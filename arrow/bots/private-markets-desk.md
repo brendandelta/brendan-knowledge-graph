@@ -10,7 +10,7 @@
 | **Repo skill path** | `arrow/skills/private-markets-desk/SKILL.md` |
 | **Data sources (read)** | Web search/fetch (TechCrunch, Bloomberg, Reuters and peers); X public reads; Signal MCP (read/search deal chatter); WhatsApp MCP and iMessage MCP (read); Notion preferred as info layer when connected. Missing upgrades: Caplight/Forge/EquityZen secondaries, Crunchbase/PitchBook-class, Carta. |
 | **Write targets** | Private Markets Desk chat; weekday team brief email (below); brief copies on the bot computer at `/workspace/briefs/YYYY-MM-DD.txt`; its skill file in this repo. |
-| **Send permissions** | Auto-send of the weekday team brief only (standing rule Brendan set 2026-09-25; DECISIONS 2026-10-29 also approves): from brendan@arrowfund.co via Composio Gmail account `gmail_tagish-stuss` to exactly chris@, gabe@, jillian@, vaidehi@arrowfund.co. No other email, Slack, WhatsApp, iMessage or Signal sends; Signal only an exact draft Brendan approved in chat. Everything else is draft-only. Never move money, delete, or pay without Brendan's explicit confirm. |
+| **Send permissions** | Auto-send of the weekday team brief only (standing rule Brendan set 2026-09-25; DECISIONS 2026-10-29 also approves): from brendan@arrowfund.co via the Arrow Gmail connection in Composio to exactly chris@, gabe@, jillian@, vaidehi@arrowfund.co. No other email, Slack, WhatsApp, iMessage or Signal sends; Signal only an exact draft Brendan approved in chat. Everything else is draft-only. Never move money, delete, or pay without Brendan's explicit confirm. |
 | **Depends on** | Composio Gmail (brendan@arrowfund.co); public web |
 | **Feeds** | Arrow leadership (chris/gabe/jillian/vaidehi via email); Brendan (Private Markets Desk chat) |
 | **Connectors needed** | Composio (Gmail send); Signal MCP; WhatsApp MCP; iMessage MCP; Notion when connected. Missing: Caplight/Forge/EquityZen, Crunchbase/PitchBook, Carta. |
@@ -20,7 +20,7 @@
 
 | Name | Folder | Cron (America/Los_Angeles) | Timing / window | Prompt summary (1 line) | Results go to |
 |---|---|---|---|---|---|
-| Weekday AI private markets brief | `weekly-private-markets-brief` | `CRON_TZ=America/Los_Angeles 0 8 * * 1-5` (weekdays 8:00am PT) | flexible ±15 min (server-picked start ~7:52am PT) | Researches and writes a short ALL-AI teach pack (3 teach cards late-stage/growth/niche, 2 watchlist one-liners, 1 pattern) with full source URLs. | (1) Private Markets Desk chat; (2) email from brendan@arrowfund.co via Composio Gmail `gmail_tagish-stuss` to chris@, gabe@, jillian@, vaidehi@arrowfund.co, subject `Brendan Morning PM Brief — {Day Mon D, YYYY}` |
+| Weekday AI private markets brief | `weekly-private-markets-brief` | `CRON_TZ=America/Los_Angeles 0 8 * * 1-5` (weekdays 8:00am PT) | flexible ±15 min (server-picked start ~7:52am PT) | Researches and writes a short ALL-AI teach pack (3 teach cards late-stage/growth/niche, 2 watchlist one-liners, 1 pattern) with full source URLs. | (1) Private Markets Desk chat; (2) email from brendan@arrowfund.co via Composio Gmail (Arrow Gmail connection) to chris@, gabe@, jillian@, vaidehi@arrowfund.co, subject `Brendan Morning PM Brief — {Day Mon D, YYYY}` |
 
 ### Routine prompt (verbatim)
 
@@ -45,7 +45,7 @@ Even if nothing material moved overnight, still deliver the 3 cards from curated
 
 DELIVERY (required every weekday run):
 1) Post the full pack in Brendan’s Private Markets Desk chat.
-2) Email the SAME pack (and nothing else) from Brendan’s Arrow Gmail via the connected Composio Gmail toolkit, using the connected account brendan@arrowfund.co (Composio account id gmail_tagish-stuss when selection is required).
+2) Email the SAME pack (and nothing else) from Brendan’s Arrow Gmail via the connected Composio Gmail toolkit, using the connected account brendan@arrowfund.co (pick the brendan@arrowfund.co connection when selection is required).
    - To (exactly these four, no others): chris@arrowfund.co, gabe@arrowfund.co, jillian@arrowfund.co, vaidehi@arrowfund.co
    - Subject exactly: Brendan Morning PM Brief — {Weekday Mon/Tue/…} {Mon} {D}, {YYYY}  (example: Brendan Morning PM Brief — Fri Sep 25, 2026). Keep the “Brendan Morning PM Brief” prefix and the date; do not invent other subject styles.
    - Body: the full teach pack including every source as a clickable full URL. Plain text or simple HTML is fine; if HTML, mark it as HTML. No preamble sales pitch, no signature dump beyond a short “— Private Markets Desk / Brendan”, no attachments unless Brendan later asks.
@@ -103,7 +103,7 @@ Load and follow the `embed-action-links` skill on every user-facing reply that n
 ## Rebuild steps
 
 1. Create the bot named "Private Markets Desk" with the description above (bot id will differ).
-2. Connect Composio Gmail for brendan@arrowfund.co (account id `gmail_tagish-stuss` when selection is required); optionally Signal, WhatsApp, iMessage, and Notion.
+2. Connect Composio Gmail for brendan@arrowfund.co (pick the brendan@arrowfund.co connection when selection is required); optionally Signal, WhatsApp, iMessage, and Notion.
 3. Clone this repo to `/home/box/Claude/brendan-knowledge-graph`.
 4. Create routine "Weekday AI private markets brief" with folder `weekly-private-markets-brief`, cron `CRON_TZ=America/Los_Angeles 0 8 * * 1-5`, and the prompt above.
 5. Run one weekday check (chat post + team email); set **Last verified**.

@@ -28,7 +28,7 @@ channels:                                           # use the last-touch channel
   imessage: user-imessage MCP                       # runs through Brendan's laptop; often unreachable when it is offline
   whatsapp: user-whatsapp-mcp                       # new numbers need allow_new_contact plus Brendan's OK; send to plain-number address, not ":0"
   signal: user-Signal MCP
-  email: Composio gmail_tagish-stuss (brendan@arrowfund.co)
+  email: Arrow Gmail connection in Composio (brendan@arrowfund.co)
 
 calendar:
   composio_account: googlecalendar_unclub-taha

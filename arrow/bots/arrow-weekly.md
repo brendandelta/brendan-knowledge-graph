@@ -47,7 +47,7 @@ Every Friday before the "Arrow Weekly" meeting, turn this week's Arrow Log doc p
 ## Tools
 - Use Composio only for Attio, Gmail and Google Drive/Docs (do not rely on a separate native Gmail plugin). Find the log doc with `GOOGLEDRIVE_FIND_FILE` on `googledrive_left-bim` (`'1Ge4r1wH2tMllGqom6sMQX96xkmBk58I5' in parents`) and read it with `GOOGLEDOCS_GET_DOCUMENT_PLAINTEXT` on `googledocs_colius-skiv`. Read-only on both; never edit the log.
 - Attio toolkit must be ACTIVE.
-- Send mail only as brendan@arrowfund.co via Composio Gmail account id gmail_tagish-stuss (confirm with GMAIL_LIST_SEND_AS / connection list if unsure).
+- Send mail only as brendan@arrowfund.co via the Arrow Gmail connection in Composio (confirm with GMAIL_LIST_SEND_AS / connection list if unsure).
 - Never write, update, or delete Attio records.
 
 ## Recipients

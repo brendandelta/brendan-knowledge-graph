@@ -90,7 +90,7 @@ Right before every write, re-read the record and the attribute's current value w
 
 ## Sources (read-only)
 1. **SEC (public):** `/workspace/nport/nport.db` (fund_holdings, spvs, fund_managers, person_scores), built by N-PORT Scraper. Read only; never write that DB. New quarterly sets get picked up after N-PORT Scraper's monthly refresh on the 1st.
-2. **Arrow Gmail:** brendan@arrowfund.co via Composio `gmail_tagish-stuss`. Other team inboxes only through Attio email metadata.
+2. **Arrow Gmail:** brendan@arrowfund.co via Composio (Arrow Gmail connection). Other team inboxes only through Attio email metadata.
 3. **WhatsApp, Arrow groups and Arrow-relevant partner DMs:** read `user-whatsapp-mcp` and the partner WhatsApp list in CONNECTIONS.md (`user-Chris WhatsApp MCP (Admin)`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)`). Match a group to an existing Company by `standard_arrow_chat_jid` first, then by name. If a group is clearly the standing Arrow chat with one firm (for example `X <> Arrow Fund`) and that Company's `standard_arrow_chat_jid` is empty, write it; skip internals, multi-party chats, deal-specific threads, and duplicate chats for the same firm (`references/attio-schema.md`). Groups: name contains "Arrow"/"ArrowFund"/"Arrow Fund", or include a non-Brendan Arrow team member, or sit in `/workspace/attio-firms/arrow-groups.json` (allowlist, Brendan-approved). Example current Arrow groups: "Kells Capital <> Arrow fund", "Rift Capital <> Arrow Fund", "William Blair x Arrow Fund", "Arrow Fund & D Boral Capital", "Y Invest x Arrow". Ambiguous groups ("Velvet, The Underground I Sundance 2026", "BM 2026 AXIS MUNDI", "Long Feng Community", "dealio", "Poly") are skipped unless allowlisted. Also read Arrow-relevant direct chats on each partner connector (firm intel Chris, Gabe, or Jillian gets in 1:1s that may not appear in Brendan's WhatsApp). Skip personal, family, and non-Arrow threads. Follow CONNECTIONS.md Partner WhatsApp rules, including read-only and dedup by phone JID of shared groups or threads that also appear in Brendan's WhatsApp or on another partner server. Never send_message or draft_message.
 4. **Signal (Signal MCP), Arrow chats only:** the "Arrow OS Data Input Chat" chat (primary firm-intel feed) plus allowlisted Arrow groups. Reachable only while Brendan's Mac is online.
 5. **Arrow calendar:** Attio meetings (`ATTIO_LIST_MEETINGS`) with ≥1 @arrowfund.co participant, and the firm-domain attendees.
@@ -99,7 +99,7 @@ Right before every write, re-read the record and the attribute's current value w
 8. **Attio:** company record, its deals/blocks/interests links, people at the company (`team`) for key-people candidates.
 
 ## Access
-- Composio: Attio `attio_bosser-wooded` (workspace arrow-fund); Gmail `gmail_tagish-stuss`.
+- Composio: Arrow Attio connection (workspace arrow-fund); Arrow Gmail connection.
 - If Signal MCP `status` fails (Mac offline): skip Signal, log "signal: offline, catch-up pending since <ts>", keep the Signal cursor where it was, and catch up on the next run that can reach it. Never treat offline as "nothing new".
 
 ## State and log

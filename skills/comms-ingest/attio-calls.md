@@ -21,7 +21,7 @@ Daily Arrow Report and Arrow Weekly do not run this scan. They read the Arrow Lo
 
 ## Auth
 
-Prefer `ATTIO_CONTEXT_TOKEN` as `Authorization: Bearer` against `https://api.attio.com/v2`. Never print, log, or echo the token. The token's scopes must include `meeting` and `call_recording`. If the token is unavailable or a call returns 401/403, fall back to Composio Attio read tools (account `attio_bosser-wooded`). Do not invent endpoints Composio does not expose.
+Prefer `ATTIO_CONTEXT_TOKEN` as `Authorization: Bearer` against `https://api.attio.com/v2`. Never print, log, or echo the token. The token's scopes must include `meeting` and `call_recording`. If the token is unavailable or a call returns 401/403, fall back to Composio Attio read tools (account Arrow Attio connection). Do not invent endpoints Composio does not expose.
 
 ## Endpoints that work (verified 2026-11-13)
 

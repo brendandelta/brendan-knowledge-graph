@@ -14,7 +14,7 @@
 | **Send permissions** | No external sends to anyone. Only messages Brendan in this bot's own Grok Bot chat when something was written, proposed or notably changed. |
 | **Depends on** | Knowledge repo and AGENTS.md; firm-context skill; comms-ingest; N-PORT scraper/read-only filing data; Brendan's Mac online for Signal |
 | **Feeds** | Brendan's firm-update proposals; Attio Companies under AUTO-WRITE guards; Arrow Log reads firm context |
-| **Connectors needed** | Composio (Attio account `attio_bosser-wooded`, Gmail account `gmail_tagish-stuss`); Signal MCP; `user-whatsapp-mcp`; `user-Chris WhatsApp MCP (Admin)`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)` |
+| **Connectors needed** | Composio (Arrow Attio and Arrow Gmail connections); Signal MCP; `user-whatsapp-mcp`; `user-Chris WhatsApp MCP (Admin)`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)` |
 | **Last verified** | 2026-11-05 · registry executor; AUTO-WRITE description and routine synced; skill v1.2 verified; routine/configuration supplied by owner bot; no manual event run performed |
 
 ## Routines

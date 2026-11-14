@@ -10,7 +10,7 @@ Verified live against Composio 2026-10-20.
 
 | Toolkit | Account | Connection id | Context | Used by |
 |---|---|---|---|---|
-| gmail | brendan@arrowfund.co | `gmail_tagish-stuss` | Arrow | comms-ingest, crm-maintenance, chief-of-staff, deal-indications |
+| gmail | brendan@arrowfund.co | Arrow Gmail connection | Arrow | comms-ingest, crm-maintenance, chief-of-staff, deal-indications |
 | gmail | admin@arrowfund.co | `gmail_dammer-immi` | Arrow | — |
 | gmail | brendan@deltameridian.com | `gmail_antes-dyce` | Delta | comms-ingest, crm-maintenance |
 | gmail | admin@deltameridian.com | `gmail_crept-situla` (default) | Delta | comms-ingest, crm-maintenance |
@@ -26,7 +26,7 @@ Verified live against Composio 2026-10-20.
 | googledocs | brendan@arrowfund.co | `googledocs_colius-skiv` | Arrow | arrow-weekly (draft); edits to the Arrow Drive README |
 | notion | Deltameridian workspace | `notion_pace-adiate` (default) | Personal | brendan-crm, crm-maintenance |
 | notion | Arrow team workspace ("Chris Clifford's Space") | `notion_woy-grouts` (alias work) | Arrow | — (Notion overhaul planned) |
-| attio | Arrow Fund workspace, full read-write. Meetings and call recordings: `skills/comms-ingest/attio-calls.md`. Prefer `ATTIO_CONTEXT_TOKEN` when present (never print it); Composio is the read fallback. | `attio_bosser-wooded` | Arrow | deal-indications, crm-maintenance, brendan-crm, suggested-actions, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log, comms-ingest |
+| attio | Arrow Fund workspace, full read-write. Meetings and call recordings: `skills/comms-ingest/attio-calls.md`. Prefer `ATTIO_CONTEXT_TOKEN` when present (never print it); Composio is the read fallback. | Arrow Attio connection | Arrow | deal-indications, crm-maintenance, brendan-crm, suggested-actions, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log, comms-ingest |
 | quickbooks | Arrow | `quickbooks_godet-board` (default) | Arrow | — |
 | quickbooks | Delta | `quickbooks_stid-benchy` | Delta | delta-bookkeeper |
 | todoist | brendan@deltameridian.com | `todoist_kino-vend` | all | chief-of-staff, comms-ingest |

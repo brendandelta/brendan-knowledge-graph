@@ -65,7 +65,7 @@ Every Friday before the "Arrow Weekly" meeting, produce a Word report from Attio
 ## Tools
 - Use Composio only for Attio and Gmail (do not rely on a separate native Gmail plugin).
 - Attio toolkit must be ACTIVE.
-- Send mail only as brendan@arrowfund.co via Composio Gmail account id gmail_tagish-stuss (confirm with GMAIL_LIST_SEND_AS / connection list if unsure).
+- Send mail only as brendan@arrowfund.co via the Arrow Gmail connection in Composio (confirm with GMAIL_LIST_SEND_AS / connection list if unsure).
 - Never write, update, or delete Attio records.
 
 ## Recipients
@@ -371,7 +371,7 @@ Run the standard Comms Ingest scan from the /workspace/comms-index/state.json cu
 - Signal, iMessage and WhatsApp
 - the calendar and Attio
 - all 6 Composio Gmails, inbox and sent, using these connection ids:
-  - arrowfund: gmail_tagish-stuss
+  - arrowfund: Arrow Gmail connection (brendan@arrowfund.co)
   - brendan@deltameridian: gmail_antes-dyce
   - admin@deltameridian: gmail_crept-situla
   - connmbrendan: gmail_gifola-hexine
@@ -392,7 +392,7 @@ Ping Brendan only for urgent issues outside quiet hours, 11pm–7am PT.
 
 Prompt:
 Run the same Comms Ingest job as the "Comms Ingest — weekday daytime" routine. Use the schema and state in /workspace/comms-index/README.md and state.json. Do a cheap gate across Signal, iMessage, WhatsApp, the calendar, Attio, and all 6 Composio Gmails, inbox and sent. Use these connection ids:
-- arrowfund: gmail_tagish-stuss
+- arrowfund: Arrow Gmail connection (brendan@arrowfund.co)
 - brendan@deltameridian: gmail_antes-dyce
 - admin@deltameridian: gmail_crept-situla
 - connmbrendan: gmail_gifola-hexine
@@ -464,7 +464,7 @@ B. Nothing personal ever reaches Attio: no page-body text, Tier, Next step, sect
    - Composio Notion account: notion_pace-adiate (never "work").
    - People db: 3f73d4cf-905e-81ed-b8b0-febace2abe7e.
    - Run Log: 3f73d4cf-905e-8106-aed6-d4e10c18edd1.
-   - Attio: attio_bosser-wooded (Arrow Fund workspace).
+   - Attio: Arrow Attio connection (Arrow Fund workspace).
    - Make Notion calls at most 3 at a time, and retry rate limits.
 
 2. INPUT: Comms Index first, then threads read directly when needed.
@@ -561,7 +561,7 @@ How it reads:
 - Start from the Comms Index at /workspace/comms-index. Read it only; never write there.
 - When necessary, read the full threads directly with read-only connectors (iMessage, WhatsApp, Signal read tools, the 5 Gmail inboxes, Calendar). Do this for substantive conversations (two-way exchanges, deals, asks, commitments, intros, personal details, truncated text) to capture the full context.
 - If the index is empty or stale, read the channels directly for the whole window.
-- Pull Attio calls, notes and transcripts directly (attio_bosser-wooded).
+- Pull Attio calls, notes and transcripts directly (Arrow Attio connection).
 
 Where it writes:
 - Brendan's Notion People db (3f73d4cf-905e-81ed-b8b0-febace2abe7e, Composio notion_pace-adiate).
@@ -621,7 +621,7 @@ Even if nothing material moved overnight, still deliver the 3 cards from curated
 
 DELIVERY (required every weekday run):
 1) Post the full pack in Brendan’s Private Markets Desk chat.
-2) Email the SAME pack (and nothing else) from Brendan’s Arrow Gmail via the connected Composio Gmail toolkit, using the connected account brendan@arrowfund.co (Composio account id gmail_tagish-stuss when selection is required).
+2) Email the SAME pack (and nothing else) from Brendan’s Arrow Gmail via the connected Composio Gmail toolkit, using the connected account brendan@arrowfund.co (pick the brendan@arrowfund.co connection when selection is required).
    - To (exactly these four, no others): chris@arrowfund.co, gabe@arrowfund.co, jillian@arrowfund.co, vaidehi@arrowfund.co
    - Subject exactly: Brendan Morning PM Brief — {Weekday Mon/Tue/…} {Mon} {D}, {YYYY}  (example: Brendan Morning PM Brief — Fri Sep 25, 2026). Keep the “Brendan Morning PM Brief” prefix and the date; do not invent other subject styles.
    - Body: the full teach pack including every source as a clickable full URL. Plain text or simple HTML is fine; if HTML, mark it as HTML. No preamble sales pitch, no signature dump beyond a short “— Private Markets Desk / Brendan”, no attachments unless Brendan later asks.

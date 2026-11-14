@@ -38,7 +38,7 @@ Run the standard Comms Ingest scan from the /workspace/comms-index/state.json cu
 - the calendar and Attio
 - Attio call recordings and transcripts, following skills/comms-ingest/attio-calls.md (keep the call cursor and seen list in /workspace/comms-index/state.json; index meeting metadata and the transcript when present; never write Attio)
 - all 6 Composio Gmails, inbox and sent, using these connection ids:
-  - arrowfund: gmail_tagish-stuss
+  - arrowfund: Arrow Gmail connection (brendan@arrowfund.co)
   - brendan@deltameridian: gmail_antes-dyce
   - admin@deltameridian: gmail_crept-situla
   - connmbrendan: gmail_gifola-hexine
@@ -64,7 +64,7 @@ Prompt:
 Before anything else, read ~/Claude/brendan-knowledge-graph/AGENTS.md and follow it (on the bot computer the clone is /home/box/Claude/brendan-knowledge-graph; run `git -C /home/box/Claude/brendan-knowledge-graph pull` first). That repository (github.com/brendandelta/brendan-knowledge-graph) is the shared source of truth for who Brendan is, how he works, and how every job is done. Your own instructions and routines stay your working copy, and your skill file in the repo is skills/comms-ingest/SKILL.md. Keep the two in sync: whenever your instructions or a routine change, make the same change in that skill file, committed together with INDEX.md and CHANGELOG.md. If this prompt and the file ever disagree, don't auto-pick either: keep following this prompt and tell Brendan about the mismatch. Never move money, send, delete, or pay without Brendan’s explicit confirm.
 
 Run the same Comms Ingest job as the "Comms Ingest — weekday daytime" routine. Use the schema and state in /workspace/comms-index/README.md and state.json. Do a cheap gate across Signal, iMessage, WhatsApp (Brendan's `user-whatsapp-mcp`), the calendar, Attio (including call recordings and transcripts per skills/comms-ingest/attio-calls.md), and all 6 Composio Gmails, inbox and sent. Use these connection ids:
-- arrowfund: gmail_tagish-stuss
+- arrowfund: Arrow Gmail connection (brendan@arrowfund.co)
 - brendan@deltameridian: gmail_antes-dyce
 - admin@deltameridian: gmail_crept-situla
 - connmbrendan: gmail_gifola-hexine

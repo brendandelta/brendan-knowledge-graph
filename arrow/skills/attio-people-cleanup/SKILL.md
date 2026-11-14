@@ -5,7 +5,7 @@ description: Weekly Arrow Fund Attio People cleanup. Auto-delete obvious machine
 
 # Attio People junk cleanup (weekly)
 
-Workspace: Arrow Fund Attio (`arrow-fund`), via Composio `user-composio`.
+Workspace: Arrow Fund Attio (`arrow-fund`), via Composio.
 Reference classifier: `/workspace/attio-cleanup/classify.py`. Brendan's do-not-touch list: `/workspace/attio-cleanup/keep-list.json`.
 Approved by Brendan 2026-11-13. First approved cleanup run on that date deleted 210 records (log: `deleted-2026-11-13.csv`).
 

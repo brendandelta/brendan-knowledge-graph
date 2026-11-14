@@ -8,7 +8,7 @@
 | **Purpose** | Keep Brendan on regular phone calls with people in his Notion People CRM: due lists, draft outreach for approval, watch replies, book agreed 15-minute calls. |
 | **Status** | live |
 | **Repo skill path** | `skills/call-cadence/SKILL.md` |
-| **Data sources (read)** | Notion People CRM (read-only; db `3f73d4cf-905e-81ed-b8b0-febace2abe7e` via Composio `notion_pace-adiate`); iMessage, WhatsApp and Signal MCPs; Gmail via Composio `gmail_tagish-stuss`; Google Calendar via Composio `googlecalendar_unclub-taha` (busy on connmbrendan@gmail.com and brendan@arrowfund.co) |
+| **Data sources (read)** | Notion People CRM (read-only; db `3f73d4cf-905e-81ed-b8b0-febace2abe7e` via Composio `notion_pace-adiate`); iMessage, WhatsApp and Signal MCPs; Gmail via Composio (Arrow Gmail connection); Google Calendar via Composio `googlecalendar_unclub-taha` (busy on connmbrendan@gmail.com and brendan@arrowfund.co) |
 | **Write targets** | Google Calendar `connmbrendan@gmail.com` (15-min phone events); `/workspace/call-cadence/state.json`. CRM writes go through Personal CRM Contact Context (`89db7e33-9cc6-4c60-9044-923d6879b0bf`). |
 | **Send permissions** | Every outgoing message needs Brendan's individual approval of the exact text; never batch-send. Booking a calendar event is automatic once the other person has agreed to a specific time and the slot is free. No AI attribution in any message. |
 | **Depends on** | Personal CRM Contact Context (owns CRM writes; Call Cadence only reads Notion People); Composio Notion/Gmail/Calendar; WhatsApp/Signal/iMessage MCPs (iMessage needs Brendan's Mac online) |
@@ -37,7 +37,7 @@ Setup:
 - CRM: Notion database "People" id 3f73d4cf-905e-81ed-b8b0-febace2abe7e via Composio account notion_pace-adiate. Fields: Name, Tier, Cadence days, Last touch, Last touch channel, Follow up by, Next step, Phone, Email, Chat handles. CRM spec (rules, fields, tiers): skills/brendan-crm/SKILL.md in the knowledge repo is the only source of truth (the old Notion "Delta CRM Spec" page is retired).
 - You READ the CRM only. Never write Tier, Cadence days or Follow up by. Contact Context owns CRM writes; if a call happened or you learned an email, tell Contact Context (SendToAgent 89db7e33-9cc6-4c60-9044-923d6879b0bf) instead of writing.
 - Due = Last touch + Cadence days (or Follow up by if earlier). Rank by days overdue / cadence. Max 3 calls/day, 12/week, smoothed across weekdays.
-- Channels: iMessage (user-imessage, laptop-dependent), WhatsApp (user-whatsapp-mcp), Signal (user-Signal MCP), email via Composio gmail_tagish-stuss (brendan@arrowfund.co). Use the last-touch channel first. All are draft then send; check the preview resolves to the person, not a group. WhatsApp new numbers need allow_new_contact plus Brendan's OK.
+- Channels: iMessage (user-imessage, laptop-dependent), WhatsApp (user-whatsapp-mcp), Signal (user-Signal MCP), email via the Arrow Gmail connection in Composio (brendan@arrowfund.co). Use the last-touch channel first. All are draft then send; check the preview resolves to the person, not a group. WhatsApp new numbers need allow_new_contact plus Brendan's OK.
 - Calendar: Composio googlecalendar_unclub-taha. Book on connmbrendan@gmail.com; check busy on connmbrendan@gmail.com and brendan@arrowfund.co. Calls only 11am-5pm PT weekdays.
 - Event: title "Brendan <> {First} – {1-2 word topic}", 15 min default, phone call: create_meeting_room false, their phone in location, invite their email if known.
 
@@ -56,7 +56,7 @@ Load and follow the `embed-action-links` skill on every user-facing reply that n
 ## Rebuild steps
 
 1. Create a bot named "Call Cadence" (title blank) and paste the description above verbatim.
-2. Connect Composio (Notion `notion_pace-adiate`, Gmail `gmail_tagish-stuss`, Google Calendar `googlecalendar_unclub-taha`), WhatsApp MCP, Signal MCP and iMessage MCP.
+2. Connect Composio (Notion `notion_pace-adiate`, Gmail (Arrow Gmail connection), Google Calendar `googlecalendar_unclub-taha`), WhatsApp MCP, Signal MCP and iMessage MCP.
 3. Clone this repo to `/home/box/Claude/brendan-knowledge-graph` and confirm `skills/call-cadence/SKILL.md` loads.
 4. Create the two routines above (prompts = knowledge-repo paragraph + the call-cadence morning / reply-watch job text). Ensure `/workspace/call-cadence/state.json` exists for idempotent runs.
 5. Run one manual morning list; confirm no outbound sends without Brendan's exact-text approval; set **Last verified**.

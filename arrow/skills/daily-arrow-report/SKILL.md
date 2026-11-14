@@ -34,7 +34,7 @@ Owner: Brendan Conn · Workspace: Attio "Arrow Fund" · Timezone: America/Los_An
 - **Subject:** `Arrow Daily Report – <Weekday, Mon D>` (en dash), e.g. `Arrow Daily Report – Thursday, Oct 8`.
 - **Body:** the rendered HTML from `template.html`, plus a plain-text alternative with the same content.
 - **Send once per day.** If the log read or the Attio status pull fails or comes back partial, do not send a partial report. Retry up to 3 times, 10 minutes apart. If it still fails, send a short note: "Report delayed: Attio unavailable" (same recipients, same subject with "(delayed)").
-- **Test mode** (where we are now): render the files, show Brendan the render in chat, and send nothing. Per DECISIONS 2026-10-29, once Brendan approves the process the report auto-sends once a day from brendan@arrowfund.co via Composio `gmail_tagish-stuss`, with no further confirmation.
+- **Test mode** (where we are now): render the files, show Brendan the render in chat, and send nothing. Per DECISIONS 2026-10-29, once Brendan approves the process the report auto-sends once a day from brendan@arrowfund.co via Composio (Arrow Gmail connection), with no further confirmation.
 - **Log freshness gate:** before building, check that the Arrow Log doc's "Last updated" line is 9:30am PT today or later. If it isn't, wait 15 minutes and recheck, up to 3 times. If it's still stale: in test mode, tell Brendan; in live mode, send the "(delayed)" note described above, with the reason "Arrow Log not updated".
 
 ## 2. Files

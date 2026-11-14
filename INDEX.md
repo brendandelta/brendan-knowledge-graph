@@ -4,6 +4,8 @@ Every skill, what it reads, what it writes, what depends on it. If a skill isn't
 
 Status key: **live** = running today (engine in parentheses) · **draft** = written, never run · **planned** = workflow has come up, not written.
 
+Connection account ids, workspace ids and endpoints are not kept in this public repo. Skills name connections generically (for example "Arrow Attio via Composio", "Arrow Gmail connection"); bots pick the matching connection by account.
+
 ## Personal (`skills/`)
 
 | Skill | Reads | Writes | Depends on | Status |

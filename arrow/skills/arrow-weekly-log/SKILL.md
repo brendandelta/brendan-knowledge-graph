@@ -50,7 +50,7 @@ Data notes                                           [H1, gaps: sources offline,
 - Commitments flip to "done <date>" in place when a later source shows they were completed.
 
 ## Sources (read-only, since the last run's cursor)
-1. Arrow Gmail: brendan@arrowfund.co via Composio `gmail_tagish-stuss`. Sent and received. Skip automated senders (render.py `is_automated` rules: Luma, DocuSign, newsletters, `e.`/`mail.`/`events.` subdomains, `support@`, `offerings@`, no-reply).
+1. Arrow Gmail: brendan@arrowfund.co via Composio (Arrow Gmail connection). Sent and received. Skip automated senders (render.py `is_automated` rules: Luma, DocuSign, newsletters, `e.`/`mail.`/`events.` subdomains, `support@`, `offerings@`, no-reply).
 2. WhatsApp: Brendan's `user-whatsapp-mcp`, plus the partner WhatsApp list in CONNECTIONS.md (`user-Chris WhatsApp MCP (Admin)`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)`). Arrow groups only (same test as arrow-attio-firm-context §Sources 3 + allowlist `/workspace/arrow-log/arrow-chats.json`). DMs only if the person is an Attio Arrow contact AND the content passes the filter. Follow CONNECTIONS.md Partner WhatsApp rules: read-only; skip personal, family, and non-Arrow threads; dedupe by phone JID against Brendan's WhatsApp and the other partner servers. Never send_message or draft_message.
 3. Signal (Signal MCP): "Data OS input" plus allowlisted Arrow chats. If the Mac is offline, skip it, write "Signal offline since <ts>; will catch up" in Data notes, and keep the cursor.
 4. iMessage (imessage MCP): only threads with Arrow team members or Attio Arrow contacts, content filtered. Same offline handling (it also runs through the Mac).

@@ -65,7 +65,7 @@ notion:                                  # PRIVATE. The brain.
 
 attio:                                   # SHARED with Arrow Fund teammates and admins. READ ONLY for this process.
   workspace: arrow-fund
-  composio_account: attio_bosser-wooded
+  composio_account: Arrow Attio connection
   claude_may_read: [record id, last_interaction, contact fields, list membership]   # used to fill Notion only
   claude_may_write: []                   # nothing, ever (2026-11-04 silo). Attio People are written only by arrow/skills/attio-contact-context.
   on_conflict: Notion vs Attio differences are logged as CONFLICT for Brendan; never fixed in Attio.

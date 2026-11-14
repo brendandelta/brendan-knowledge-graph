@@ -70,7 +70,7 @@ Even if nothing material moved overnight, still deliver the 3 cards from curated
 
 DELIVERY (required every weekday run):
 1) Post the full pack in Brendan’s Private Markets Desk chat.
-2) Email the SAME pack (and nothing else) from Brendan’s Arrow Gmail via the connected Composio Gmail toolkit, using the connected account brendan@arrowfund.co (Composio account id gmail_tagish-stuss when selection is required).
+2) Email the SAME pack (and nothing else) from Brendan’s Arrow Gmail via the connected Composio Gmail toolkit, using the connected account brendan@arrowfund.co (pick the brendan@arrowfund.co connection when selection is required).
    - To (exactly these four, no others): chris@arrowfund.co, gabe@arrowfund.co, jillian@arrowfund.co, vaidehi@arrowfund.co
    - Subject exactly: Brendan Morning PM Brief — {Weekday Mon/Tue/…} {Mon} {D}, {YYYY}  (example: Brendan Morning PM Brief — Fri Sep 25, 2026). Keep the “Brendan Morning PM Brief” prefix and the date; do not invent other subject styles.
    - Body: the full teach pack including every source as a clickable full URL. Plain text or simple HTML is fine; if HTML, mark it as HTML. No preamble sales pitch, no signature dump beyond a short “— Private Markets Desk / Brendan”, no attachments unless Brendan later asks.

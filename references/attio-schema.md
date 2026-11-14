@@ -1,6 +1,6 @@
 # Attio schema reference (Arrow Fund)
 
-Workspace: [Arrow Fund](https://app.attio.com/arrow-fund) (`arrow-fund`, workspace id `945181e9-ddcd-4d63-978e-ea968ceae3a8`). Reached through Composio (`user-composio`, connection `attio_bosser-wooded`).
+Workspace: [Arrow Fund](https://app.attio.com/arrow-fund) (`arrow-fund`). Reached through Arrow Attio via Composio.
 
 This file is the Attio field reference for bots that map WhatsApp (and later other channels) onto People and Companies. Brendan approved the People schema cleanup on 2026-11-13; the changes below are live. The LP intake fields in the last section were added the same day. Last-contact fields stay documented in `arrow/skills/attio-contact-context/SKILL.md`. Firm-intel fields stay documented in `arrow/skills/arrow-attio-firm-context/SKILL.md`.
 

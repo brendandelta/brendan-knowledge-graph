@@ -123,7 +123,7 @@ Dates: `YYYY-MM-DD`, America/Los_Angeles. Today's date comes from the system pro
 
 ### 4. Brief me on X / prep me for X
 1. Pull the Notion page: properties, `My notes`, `Touch log`, `Context`, Knows, Introduced by.
-2. Pull recent threads: Gmail (all accounts), iMessage, WhatsApp by name/phone/handle. Google Calendar for the upcoming meeting if this is call prep. Attio `last_interaction` only if the Notion page has an Attio record ID (it includes teammates' interactions; say so).
+2. Pull recent threads: Gmail (all accounts), iMessage, WhatsApp (resolve the person with `resolve_person` on phone or Chat handle, never a first name, then `get_messages` by JID; `contact_activity` for last WhatsApp touch; small groups they share count too). Google Calendar for the upcoming meeting if this is call prep. Attio `last_interaction` only if the Notion page has an Attio record ID (it includes teammates' interactions; say so).
 3. Output 5–8 lines, no headers:
    - Who (role, company) · tier · how we know them (Met at, Introduced by)
    - Last touch (date, channel, gist)
@@ -189,6 +189,7 @@ Dates: `YYYY-MM-DD`, America/Los_Angeles. Today's date comes from the system pro
 - **Contexts.** Four: Personal, Delta, Arrow, Janey (see profile.md). A person can matter to more than one; `Arrow relevance` and `Janey relevance` say how, `Circles` says where you know them from. Nothing about Janey goes to Attio.
 
 ## Changelog
+- 2026-11-13 - WhatsApp lookups use v0.5 `resolve_person` and `contact_activity` (`references/whatsapp-mcp.md`); never by first name.
 
 - 2026-11-13 - Sources: Attio call recordings are pulled by crm-maintenance via `skills/comms-ingest/attio-calls.md`. This skill stays on-demand and still never writes Attio.
 - 2026-11-04 — v4.3. Full silo: the CRM writes Notion only and never writes Attio (mirror_fields, mirror rule, list membership and contact fill removed; workflow 1 step 6 is a read-only lookup that only sets Notion `Attio record ID`). arrow/skills/attio-contact-context (renamed from attio-context) is the only Attio People writer and never touches Notion. Inputs shared, outputs siloed.

@@ -44,7 +44,7 @@ First backfill: 2026-11-13, from Brendan's and Chris's WhatsApp groups whose nam
 
 ## Related last-contact fields
 
-On People, `last_whatsapp_contact`, `last_whatsapp_contact_by`, `last_contacted`, `last_contacted_by`, `last_contact_channel`, and `days_since_last_contact` are owned by attio-contact-context. When that skill matches a 1:1 chat, it now uses the JID-first, phone-second rule above, then refreshes those six fields and the per-teammate last-contacted timestamps. See that skill for attribute ids and rollup rules.
+On People, `last_whatsapp_contact`, `last_whatsapp_contact_by`, `last_contacted`, `last_contacted_by`, `last_contact_channel`, and `days_since_last_contact` are owned by attio-contact-context. When that skill matches a WhatsApp contact (1:1 or a counted group), it uses the JID-first, phone-second rule above, then refreshes those six fields and the per-teammate last-contacted timestamps. See that skill for attribute ids and rollup rules.
 
 ### Per-teammate last-contacted (created 2026-11-13)
 
@@ -58,7 +58,7 @@ Timestamp attributes. Write only a later timestamp than the value already set. N
 | `last_contacted_jillian` | Last contacted (Jillian) | timestamp | `720e1c9e-1241-4427-a326-80b21ea98efd` |
 | `last_contacted_vaidehi` | Last contacted (Vaidehi) | timestamp | `6d57a92a-d5a4-42fd-b2e6-f60b27734057` |
 
-Gabe's and Jillian's WhatsApp were connected on Brendan's Grok Bot account on 2026-11-13 (`user-Gabe WhatsApp MCP (Admin)` and `user-Jillian WhatsApp MCP (Admin)`). Those two fields are filled from outbound 1:1 sends on their servers (later-only; leave blank when that teammate has no outbound). Vaidehi's WhatsApp is not connected yet, so `last_contacted_vaidehi` stays empty until her server exists or email attribution is added.
+Gabe's and Jillian's WhatsApp were connected on Brendan's Grok Bot account on 2026-11-13 (`user-Gabe WhatsApp MCP (Admin)` and `user-Jillian WhatsApp MCP (Admin)`). Those two fields are filled from their servers (later-only; leave blank when that teammate has no counted contact). What counts (Brendan, 2026-11-13): 1:1 chats plus groups of 15 or fewer members, where a teammate's post counts for every non-Arrow member and a member's own post counts for that member; in bigger groups only @-mentions and quoted replies; Arrow teammates never count as contacting each other. Source is `contact_activity`: combined fields from whatsapp-mcp v0.5.1, direct-chat rows on v0.5.0 (`references/whatsapp-mcp.md`). Vaidehi's WhatsApp is not connected yet, so `last_contacted_vaidehi` stays empty until her server exists or email attribution is added.
 
 ## People schema cleanup (approved and applied 2026-11-13)
 

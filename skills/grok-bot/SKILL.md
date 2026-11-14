@@ -39,8 +39,8 @@ Each run follows `references/whatsapp-attio-daily-sync.md` (saved routine prompt
 1. `git -C /home/box/Claude/brendan-knowledge-graph fetch && git -C /home/box/Claude/brendan-knowledge-graph rebase origin/main`. Follow AGENTS.md and the spec.
 2. Read changes on all four WhatsApp servers: `user-whatsapp-mcp`, `user-Chris WhatsApp MCP (Admin)`, `user-Gabe WhatsApp MCP (Admin)`, and `user-Jillian WhatsApp MCP (Admin)`.
 3. Push identity to Attio blank-only. Never create people or companies. Skip collisions to needs-review.
-4. Roll up per-teammate `last_contacted_*` later-only.
-5. Write handoff/cursors under `/workspace/whatsapp-attio-sync/` and a coverage row.
+4. Roll up per-teammate `last_contacted_*` later-only: 1:1 plus groups of 15 or fewer, bigger groups only @-mentions and quoted replies, teammates never count for each other (spec step 4; v0.5.1 combined fields, 1:1 rows on v0.5.0).
+5. Write handoff/cursors under `/workspace/whatsapp-attio-sync/` and a coverage row. Never copy this job's cursors into another bot's state file; each consumer keeps its own.
 6. Name-down via `import_names` stays a dry run until Brendan gives standing approval. Log the exact list; do not call the write tool.
 7. Send nothing. Report to Brendan in this Grok Bot chat only on failures, collisions, approvals needed, or a re-pair. Stay quiet otherwise.
 
@@ -56,3 +56,4 @@ none (chat with Brendan only; no auto-send).
 - 2026-11-11: added temporary routine "Push: WhatsApp MCP + Attio schema project" (Brendan, t493u).
 - 2026-11-13: deleted "Push: WhatsApp MCP + Attio schema project" after its 2 PM run; all three parts done (MCP v0.4 live and v0.5 PR open, Attio WhatsApp ID fields and repo docs, People schema cleanup applied).
 - 2026-11-13: added routine "WhatsApp-Attio daily sync" (folder whatsapp-attio-daily-sync), daily ~6:30 AM PT flexible ±15 minutes, first run 2026-11-14. Follows `references/whatsapp-attio-daily-sync.md`. Name-down via `import_names` stays a dry run until standing approval. Reports to Brendan in this chat only on failures, collisions, approvals needed, or a re-pair.
+- 2026-11-13: daily sync spec updated for the group-chat last-contact rule and own-cursor rule (no cursor copy into Deal Indications state). Live routine prompt needs the same two lines.

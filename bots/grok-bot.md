@@ -21,7 +21,7 @@
 | Name | Folder | Cron (America/Los_Angeles) | Timing / window | Prompt summary (1 line) | Results go to |
 |---|---|---|---|---|---|
 | Bot registry refresh | bot-registry-refresh | `CRON_TZ=America/Los_Angeles 0 19 * * *` (flexible ±15) | Daily ~7:00pm PT | Pull repo; inventory `/home/box/agent-data/agents/` profiles+settings, teammates, deletions, own routines; compare to MAP/BOTS and entry files; fix drift; commit+push; flag Brendan only on unrecorded drift | Brendan in Grok Bot chat only on drift; quiet otherwise |
-| WhatsApp-Attio daily sync | whatsapp-attio-daily-sync | `CRON_TZ=America/Los_Angeles 30 6 * * *` (flexible ±15) | Daily ~6:30am PT, first run 2026-11-14 | Follow `references/whatsapp-attio-daily-sync.md`: read changes on all four WhatsApp servers, push identity blank-only to Attio, roll up last_contacted later-only, write handoff/cursors and a coverage row; name-down via import_names stays dry-run until standing approval | Brendan in Grok Bot chat only on failures, collisions, approvals needed, or a re-pair; quiet otherwise |
+| WhatsApp-Attio daily sync | whatsapp-attio-daily-sync | `CRON_TZ=America/Los_Angeles 30 6 * * *` (flexible ±15) | Daily ~6:30am PT, first run 2026-11-14 | Follow `references/whatsapp-attio-daily-sync.md`: read changes on all four WhatsApp servers, push identity blank-only to Attio, roll up last_contacted later-only (outbound-only rule), write handoff (including the `groups` identity block)/cursors and a coverage row, never copy cursors to other bots; name-down via import_names stays dry-run until standing approval | Brendan in Grok Bot chat only on failures, collisions, approvals needed, or a re-pair; quiet otherwise |
 
 ## Full description (verbatim, secrets stripped)
 

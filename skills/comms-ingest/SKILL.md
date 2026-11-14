@@ -27,7 +27,7 @@ Load and follow the `embed-action-links` skill on every user-facing reply that n
 
 ## WhatsApp read method (v0.5, 2026-11-13)
 
-Follow `references/whatsapp-mcp.md`, How skills read WhatsApp. Index groups as well as 1:1s on all four servers (Brendan's plus Chris's, Gabe's, and Jillian's Arrow-relevant chats), one entry per group JID across servers, with members from `get_group_info`. Per account, read new items with `changes_since` and this bot's own cursors in `/workspace/comms-index/state.json` (`whatsapp_changes_cursor`, `whatsapp_chris_changes_cursor`, `whatsapp_gabe_changes_cursor`, `whatsapp_jillian_changes_cursor`), saved after the index append succeeds; keep the time cursors as the fallback. Tag people with `resolve_person` identifiers (phone JID, LID, E.164), never a first-name guess. `coverage_report` goes on the run's health line.
+Follow `references/whatsapp-mcp.md`, How skills read WhatsApp. Index groups as well as 1:1s on all four servers (Brendan's plus Chris's, Gabe's, and Jillian's Arrow-relevant chats), one entry per group JID across servers. Resolve a group to people and firms through today's `/workspace/whatsapp-attio-sync/handoff.json` `groups` block first (identity lookup only, never a cursor), falling back to `get_group_info` plus `resolve_person`. Per account, read new items with `changes_since` and this bot's own cursors in `/workspace/comms-index/state.json` (`whatsapp_changes_cursor`, `whatsapp_chris_changes_cursor`, `whatsapp_gabe_changes_cursor`, `whatsapp_jillian_changes_cursor`), saved after the index append succeeds; keep the time cursors as the fallback. Tag people with `resolve_person` identifiers (phone JID, LID, E.164), never a first-name guess. `coverage_report` goes on the run's health line.
 
 ## Routines
 

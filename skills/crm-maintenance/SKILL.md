@@ -46,7 +46,7 @@ B. Never write to Attio: no field, record, note, task, list entry, or attribute,
 
 2b. WhatsApp MCP v0.5 (Brendan's `user-whatsapp-mcp` only; this Notion silo does not read partner WhatsApp). It runs 24/7 on a server; message bodies are kept 56 days. Shared rules: `references/whatsapp-mcp.md`, How skills read WhatsApp.
    - Call `status` first, and put `coverage_report` counts on the Run Log health line.
-   - New items: `changes_since` with this bot's own cursor (`whatsapp_changes_cursor` in its state), saved after the run's writes; `recent_activity` is the fallback. Full threads: `get_messages(chat, since=...)` by JID. Groups count as context; members come from `get_group_info`.
+   - New items: `changes_since` with this bot's own cursor (`whatsapp_changes_cursor` in its state), saved after the run's writes; `recent_activity` is the fallback. Full threads: `get_messages(chat, since=...)` by JID. Groups count as context; resolve members through today's daily-sync `handoff.json` `groups` block when present, falling back to `get_group_info` plus `resolve_person`.
    - Identity: look people up with `resolve_person` (phone, JID, LID, or exact full name). `ambiguous: true` means do not pick. Never by first name. Ignore a ":0" device suffix; store phones in E.164.
    - Last WhatsApp touch: `contact_activity(phone_or_jid=...)` (survives the 56-day purge) instead of re-reading old messages.
    - CRM feed: every run, call unresolved_contacts. Match each one against People by phone. For a genuine two-way contact you can confidently identify, enrich or create the page per section 8. Then you may call set_contact_name (Brendan's server only) to label that number in the MCP database; log each label in the Run Log. Bulk naming (`import_names`) is the Grok Bot daily sync's job, not this one.
@@ -170,6 +170,7 @@ Rules:
 - Ping Brendan only for notable items, in this Grok Bot chat.
 
 ## Changelog
+- 2026-11-13 - Group member lookups use today's daily-sync `handoff.json` `groups` block when present, then `get_group_info` plus `resolve_person`.
 - 2026-11-13 - WhatsApp step 2b moved from v0.3 to v0.5: `changes_since` with own cursor, `resolve_person` (never first name), `contact_activity` for last touch, groups as context, `coverage_report` health line. Notion-only writes unchanged.
 - 2026-11-13 - Attio calls step now follows the shared procedure in `skills/comms-ingest/attio-calls.md` (Brendan: write Attio call scanning into every bot that scans comms for context). Call-scan state lives in /workspace/crm-maintenance/attio-calls-state.json. Notion-only writes and the never-write-Attio rule are unchanged.
 - 2026-11-12 - Deferred backlinks (section 8b), confirmed by Brendan (t91u). Record mentions without a page under heading_3 "Mentioned (no page yet)"; before creating any new People page, search those mentions and back-link. Run Log includes "deferred backlinks created". The weekday routine prompt was updated in the same change; the weekend routine inherits from weekdays.

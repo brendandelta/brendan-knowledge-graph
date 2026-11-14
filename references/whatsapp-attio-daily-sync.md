@@ -4,7 +4,7 @@ Spec for the daily job that keeps Arrow Attio and the four WhatsApp servers in s
 
 Implemented as Grok Bot routine **"WhatsApp-Attio daily sync"** (folder `whatsapp-attio-daily-sync`), daily ~6:30 AM PT (`30 6 * * *` America/Los_Angeles), flexible ±15 minutes, first run 2026-11-14. This file is the runbook the routine follows. WhatsApp MCP v0.5.0 is live on both Hetzner servers as of 2026-11-13 (release commit `4c602444`). A v0.4 fallback path is defined below and may be run by hand if a server is temporarily back on the older build.
 
-Last updated: 2026-11-13 (group-chat last-contact rule; consumers keep their own cursors).
+Last updated: 2026-11-13 (outbound-only last-contact rule; handoff `groups` block; consumers keep their own cursors).
 
 ## Goal
 
@@ -13,8 +13,8 @@ One shared identity picture in Attio, refreshed every morning before Deal Indica
 1. Push phone JIDs, LIDs, and names from every WhatsApp server up to Attio, filling blank fields only.
 2. Push Attio names down to every WhatsApp server via `import_names`, filling blanks only.
 3. Roll up per-teammate `last_contacted_*` timestamps from `contact_activity` (1:1 plus small groups, step 4), later-only.
-4. Advance a `changes_since` cursor per account so downstream bots read only what is new.
-5. Hand those cursors, coverage numbers, and any needs-review collisions to Deal Indications, attio-contact-context, and arrow-attio-firm-context.
+4. Advance a `changes_since` cursor per account (this job's own cursor; consumers keep theirs).
+5. Hand coverage numbers, needs-review collisions, and a `groups` identity block to Deal Indications, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log, and comms-ingest. Cursors in the handoff are for reference only and must never be copied into another bot's state.
 6. Publish a coverage report.
 
 Messages themselves stay on the WhatsApp servers and are deleted after 56 days. This job writes facts and identifiers into Attio, never quoted message text. Buyer and seller identities stay out of anything external. Say "Intermediary", never "Broker".
@@ -110,9 +110,9 @@ Until standing approval exists, write that list to `/workspace/whatsapp-attio-sy
 
 ### 4. Roll up per-teammate last-contacted
 
-What counts (Brendan, 2026-11-13): 1:1 chats plus groups of 15 or fewer members. In those small groups, a teammate's post counts as contact with every non-Arrow member, and a member's own post counts as contact with that member. In groups over 15, only @-mentions and quoted replies count. Arrow teammates never count as contacting each other. Skip self-chats.
+What counts (Brendan, 2026-11-13, final): only an Arrow teammate's own outbound messages. In a 1:1 chat, our outbound message counts. In a group of 15 or fewer members, a teammate's post counts for every non-Arrow member. In a larger group, only members we @-mention or quote count. The other person's messages, in 1:1s or groups, never count. Arrow teammates never count as contacting each other. Skip self-chats.
 
-Read it from `contact_activity`. On whatsapp-mcp v0.5.1 and later, use the combined `last_contact` (and `last_outbound` / `last_inbound`), which include the group rule. On v0.5.0, where those fields do not exist yet, use the direct-chat rows only. For each matched person:
+Read it from `contact_activity`. Once whatsapp-mcp v0.5.1 ships, use the combined `last_contact` field, which implements exactly this outbound-only rule; the inbound fields are kept for information only and must not be written into Attio last-contacted timestamps. On v0.5.0, where those combined fields do not exist yet, use the direct-chat `last_outbound` rows only. For each matched person:
 
 - Brendan's server → `last_contacted_brendan`
 - Chris's → `last_contacted_chris`
@@ -125,12 +125,13 @@ Also refresh `last_whatsapp_contact`, `last_whatsapp_contact_by`, and the six-fi
 
 ### 5. Feed the context bots
 
-Write a small handoff file `/workspace/whatsapp-attio-sync/handoff.json` that Deal Indications, attio-contact-context, and arrow-attio-firm-context can read on their next run:
+Write a small handoff file `/workspace/whatsapp-attio-sync/handoff.json` that Deal Indications, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log, and comms-ingest can read on their next run:
 
 - This job's `changes_since` cursors per account, for reference only. Do not copy them into another bot's state (for example `/workspace/attio-sync/state.json`): this cursor marks what the sync saw, not what Deal Indications processed, and copying it would make that bot skip messages. Each consumer keeps its own cursor (`references/whatsapp-mcp.md`, How skills read WhatsApp).
 - Chats with new activity since the last handoff, already deduped by phone JID, Arrow-relevant only (personal, family, and non-Arrow threads already filtered).
 - Needs-review collisions and the unmapped confirm-list delta.
 - Coverage snapshot.
+- A `groups` block for Arrow-relevant groups, deduped across all four servers. Each entry has: `group_jid`; the group's name on each server; `member_count`; `members`, each with their Attio People id, matched by JID first and then by E.164 phone (`person_id` is null if unmatched); and `linked_company_id`, set when a Company's `standard_arrow_chat_jid` matches that group (null otherwise). The file holds no message text. The `groups` block is an identity lookup only, never a read cursor. Consumers resolve a group to people and firms through this block first, and fall back to `get_group_info` plus `resolve_person` when the file is missing, stale, or the group is absent.
 
 The daily sync does not write blocks, interests, `arrow_context`, or `firm_context`. Those stay with their owner skills. It only makes their WhatsApp reads cheap and correctly identified.
 
@@ -157,7 +158,7 @@ Use this only when the v0.5 tools are missing from `status`.
 | `changes_since` | `recent_activity(hours, limit)` plus `list_chats` since the last run | `recent_activity` caps at 1000 messages and 720 hours. Page `list_chats` by last-activity and then `get_messages(chat, since=...)` for Arrow-relevant chats. |
 | `export_contacts` | `list_contacts` (paginated) plus `list_chats(directs_only=true)` and `unresolved_contacts` | LID-only chats have no phone until a mapping appears. |
 | `import_names` | Do not fall back to `set_contact_name` in a loop on partner servers. Hold the name-down list until v0.5, or (Brendan's server only, after a yes) a careful `set_contact_name` batch. | `import_contacts` is an address-book import, not a name-down tool. |
-| `contact_activity` | Derive last outbound and inbound from `get_messages` within the 56-day window | Dates older than 56 days are gone. Per-teammate last-contacted will shrink until v0.5's surviving activity log is backfilled. |
+| `contact_activity` | Derive last outbound from `get_messages` within the 56-day window (inbound may be noted for information only; it does not count as contact) | Dates older than 56 days are gone. Per-teammate last-contacted will shrink until v0.5's surviving activity log is backfilled. |
 | `resolve_person` | JID-first, phone-second Attio query as in `references/attio-schema.md` | Same collision rule. |
 | `coverage_report` | `status` counts plus a local tally of mapped vs unmapped directs | Less complete, good enough for a daily health line. |
 
@@ -179,5 +180,5 @@ A first v0.5 run should backfill `contact_activity` from stored messages (the se
 2. Done (2026-11-13): Brendan has seen this spec, and Grok Bot created the live routine (folder `whatsapp-attio-daily-sync`, first run 2026-11-14).
 3. Dry-run name-down lists are approved, or standing blank-only approval is on file.
 4. `/workspace/whatsapp-attio-sync/` exists, is gitignored if it would hold phone numbers in a public repo (it lives on the box, not in the knowledge graph).
-5. Deal Indications, attio-contact-context, arrow-attio-firm-context, and arrow-weekly-log skills read `handoff.json` when present (repo done 2026-11-13; live routine prompts still to sync).
+5. Deal Indications, attio-contact-context, arrow-attio-firm-context, arrow-weekly-log, and comms-ingest skills read `handoff.json` when present, including the `groups` block (repo done 2026-11-13; live routine prompts still to sync on those bots).
 6. First production run is watched: coverage before and after, cursor health, and a confirm-list of unmapped chats for Brendan.

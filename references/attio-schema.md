@@ -92,6 +92,10 @@ Select-option cleanup on People:
 The website inquiry form lives at [arrowfund.co/request-access](https://www.arrowfund.co/request-access) and posts JSON to `POST /api/inquiries`. The client source is the Next.js `RequestAccessForm` on that site. The server mapping was not in this knowledge repo or in any public `brendandelta` GitHub repo. Form field names and the option strings the browser sends are documented in the 2026-11-13 changelog entry so the form can be updated in the same change as any further Attio option work.
 
 
+### People data hygiene (junk records)
+
+Machine-sender and service-desk People records are removed weekly by `arrow/skills/attio-people-cleanup` (bot "Attio Cleanup"), which lists the protective fields it checks and keeps the run history (2026-11-13: 210 deleted, 8 renamed, 102 keep-listed). Any new linking or LP field added here should also be added to that skill's protections.
+
 ## People LP intake fields (created 2026-11-13)
 
 Brendan approved these five People attributes on 2026-11-13 after comparing a partner LP intake survey with Arrow's [Request access](https://www.arrowfund.co/request-access) form. They are optional. The website form and People-view updates are a follow-up (not in this repo).

@@ -22,6 +22,7 @@ Template: [`arrow/bots/_TEMPLATE.md`](_TEMPLATE.md).
 | Brendan <> Vaidehi Market Reports (Arrow Morning Brief) | [arrow-morning-brief](bots/arrow-morning-brief.md) | `arrow/skills/arrow-morning-brief` | live v0.4 (approved 2026-11-09: Company file, thinking note, Get Smart call) · recipients Brendan + Vaidehi · bot 3e40c3a8 |
 | Arrow Chief of Staff | [arrow-chief-of-staff](bots/arrow-chief-of-staff.md) | `arrow/skills/arrow-chief-of-staff` | live (self-reported 2026-11-09 · daily Signal 9/12/1/2; 12pm CEO/COO ops brief to Brendan and Chris; activity log and reply scan) |
 | Arrow Log | [arrow-log](bots/arrow-log.md) | `arrow/skills/arrow-weekly-log` | self-reported 2026-11-06 · live v1.4 (valuation/PPS/owner OK; fees never) |
+| Attio Cleanup | [attio-cleanup](bots/attio-cleanup.md) | `arrow/skills/attio-people-cleanup` | live (created 2026-11-13 · routine "Weekly Attio People cleanup" Sundays 6pm PT flexible; first batch 2026-11-13: 210 deleted, 8 renamed, 102 keep-listed) |
 
 ## Data flow (from INDEX.md and skills)
 
@@ -51,6 +52,7 @@ flowchart LR
   Attio -->|status| Daily
   Attio -->|status| Weekly
   Attio --> Marwan[Marwan Deal Board]
+  Cleanup[Attio Cleanup] -->|weekly junk deletes| Attio
   Web[Public web] --> PMD[Private Markets Desk]
   Web --> MorningBrief[Arrow Morning Brief]
 ```

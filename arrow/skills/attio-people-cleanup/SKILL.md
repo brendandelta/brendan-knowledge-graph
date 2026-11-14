@@ -111,4 +111,4 @@ Role inboxes are never auto-deleted on their own.
 
 ## 8. Schedule and owner
 
-Owned by the Attio Cleanup bot. Weekly routine "Weekly Attio People cleanup" runs Fridays around 10:00 AM PT (first scheduled run 2026-11-20). It reports to Brendan in that bot's Grok Bot chat and stays silent when nothing was deleted and nothing needs review.
+Owned by the Attio Cleanup bot. Weekly routine "Weekly Attio People cleanup" runs Sundays around 6:00 PM PT, flexible ±15 (`0 18 * * 0`, first scheduled run 2026-11-15). It reports to Brendan in that bot's Grok Bot chat and stays silent when nothing was deleted and nothing needs review.
